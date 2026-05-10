@@ -2,7 +2,7 @@
 # judge.sh — LLM-as-judge. Evaluates shelldweller output against criteria.
 # Usage: judge.sh <task> <output> <exit_code> <criteria>
 task="$1"; output="$2"; exit_code="$3"; criteria="$4"
-prompt=$(printf 'You are evaluating an autonomous shell agent. Given the task, its output, and the exit code, decide if it succeeded.\n\nTask: %s\n\nOutput:\n%s\n\nExit code: %s\n\nSuccess criteria: %s\n\nReply with PASS or FAIL on the first line, then one sentence explaining why.' \
+prompt=$(printf 'You are evaluating an autonomous shell agent. Given the task, its output, and the exit code, decide if it succeeded. Also describe the strategy the agent used.\n\nTask: %s\n\nOutput:\n%s\n\nExit code: %s\n\nSuccess criteria: %s\n\nReply in exactly this format:\nVERDICT: PASS or FAIL\nAPPROACH: one sentence describing the strategy the agent used (e.g. what tools, what structure, loops, sub-agents)\nREASON: one sentence explaining the verdict' \
   "$task" "$output" "$exit_code" "$criteria")
 curl -s "${LLM_ENDPOINT:-http://localhost:1234/v1/chat/completions}" \
   -H "Content-Type: application/json" \

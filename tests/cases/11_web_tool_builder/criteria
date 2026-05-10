@@ -1,0 +1,1 @@
+Output shows /tmp/search.sh was built and used for two separate queries. Both queries returned web content. llm was used to summarize each result. The tool is reusable (takes an argument). Exit code 0.

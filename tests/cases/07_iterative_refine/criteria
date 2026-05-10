@@ -1,0 +1,1 @@
+Output shows at least one haiku, at least one scoring call with a numeric score, and the final haiku printed from /tmp/haiku.txt. The agent made multiple llm calls (score + optional rewrites). Exit code 0.

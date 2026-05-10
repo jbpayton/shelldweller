@@ -1,0 +1,1 @@
+Write a haiku about Unix. Use a separate llm call to score it from 1-10 and explain why. If the score is below 7, use another llm call to rewrite it incorporating the feedback. Repeat up to 3 attempts. Print each attempt and its score. Write the final haiku to /tmp/haiku.txt and print its contents.

@@ -1,0 +1,1 @@
+Spawn three shelldweller sub-agents as background jobs running in parallel: one to list files in /etc and count them, one to find all files in /usr/bin larger than 100kb and list their names, one to compute all prime numbers up to 500 and count them. Wait for all three to finish. Collect their outputs and write a combined report to /tmp/report.txt. Print the report.
