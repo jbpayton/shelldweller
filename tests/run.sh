@@ -56,6 +56,38 @@ run_single() {
   fi
 }
 
+write_staging() {
+  local name="$1"; local task="$2"; local output="$3"; local verdict="$4"
+  local approach reason staging_file
+  approach=$(printf '%s' "$verdict" | grep '^APPROACH:' | sed 's/^APPROACH: //')
+  reason=$(printf '%s' "$verdict" | grep '^REASON:' | sed 's/^REASON: //')
+  staging_file="$SCRIPT_DIR/results/staging/${name}.md"
+  cat > "$staging_file" <<MDEOF
+# ${name}
+
+**Model**: ${MODEL}
+**Date**: $(date +%Y-%m-%d)
+
+## Task
+
+${task}
+
+## What emerged
+
+${approach}
+
+## Output
+
+\`\`\`
+${output}
+\`\`\`
+
+## Verdict
+
+PASS — ${reason}
+MDEOF
+}
+
 judge_and_tally() {
   local task="$1"; local output="$2"; local exit_code="$3"; local criteria="$4"
   printf 'Exit code: %s\n' "$exit_code"
@@ -66,6 +98,7 @@ judge_and_tally() {
   printf '%s\n' "$verdict"
   if printf '%s' "$verdict" | grep -q '^VERDICT: PASS'; then
     pass=$((pass + 1))
+    write_staging "$(basename "$CASE_DIR")" "$task" "$output" "$verdict"
   else
     fail=$((fail + 1))
   fi

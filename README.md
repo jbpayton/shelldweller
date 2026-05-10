@@ -66,7 +66,7 @@ echo "$prompt" | tee -a /var/log/llm.in | llm | tee -a /var/log/llm.out
 
 ## Findings
 
-The test suite in `tests/` has 18 cases across two tiers, all run against `qwen/qwen3.6-35b-a3b` via LM Studio. All 18 pass.
+The test suite in `tests/` has 20 cases across two tiers, all run against `qwen/qwen3.6-35b-a3b` — a quantized MoE model that fits on a single RTX 3090, served locally via LM Studio. All 20 pass. Selected result transcripts are in [`tests/results/`](tests/results/). Better results are expected with more capable frontier models; the substrate does not depend on the model.
 
 ### Baseline tier (cases 01–12)
 
