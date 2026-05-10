@@ -8,9 +8,16 @@ The agent harness is a zero- or negative-value abstraction at current and projec
 
 ## Quickstart
 
-LM Studio must be running with your model loaded and "Local Server" started on port 1234. The `LLM_MODEL` value must match exactly what LM Studio reports for the loaded model.
+`bin/llm` speaks the OpenAI chat completions API (`POST /v1/chat/completions`). Any server that implements this endpoint works: LM Studio, Ollama, llama.cpp, vLLM, or the OpenAI/Anthropic APIs directly via a compatible proxy. The two env vars you care about:
 
-> **Qwen3 / reasoning models.** `bin/llm` automatically strips `<think>...</think>` blocks from responses before they reach bash — you do not need to disable thinking mode in LM Studio. Thinking improves response quality; the harness handles the rest.
+- `LLM_ENDPOINT` — full URL to the completions endpoint (default: `http://host.docker.internal:1234/v1/chat/completions`)
+- `LLM_MODEL` — model identifier as the server reports it
+
+If your backend uses a different API shape entirely (e.g. a raw text-generation endpoint with no JSON envelope), `bin/llm` is nine lines of shell — swap the curl call and jq filter to match. Text in, text out is the only contract.
+
+The examples below use LM Studio on the host at port 1234, which is the tested configuration. On Linux, `--add-host=host.docker.internal:host-gateway` is required so the container can reach the host. Without it you'll get connection refused — this is the most likely first-run failure.
+
+> **Reasoning models (Qwen3, DeepSeek-R1, etc.).** `bin/llm` automatically strips `<think>...</think>` blocks before they reach bash — reasoning mode can stay on. Thinking improves response quality and the bridle handles the output.
 
 ```sh
 docker build -t shelldweller .
@@ -25,8 +32,6 @@ docker run --rm \
 ```
 
 Note `--tmpfs /tmp:exec` — the model writes and executes scripts from /tmp; the exec flag is required.
-
-On Linux, `--add-host=host.docker.internal:host-gateway` is required so the container can reach LM Studio on the host. Without it you'll get connection refused. This is the most likely first-run failure.
 
 **With logging:**
 
