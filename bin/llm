@@ -1,0 +1,8 @@
+#!/bin/sh
+# llm — the LLM as a Unix device. Reads prompt from stdin, writes response to stdout.
+prompt=$(cat)
+curl -s "${LLM_ENDPOINT:-http://host.docker.internal:1234/v1/chat/completions}" \
+  -H "Content-Type: application/json" \
+  -d "$(jq -nc --arg m "${LLM_MODEL:-local-model}" --arg p "$prompt" \
+        '{model:$m, messages:[{role:"user", content:$p}], stream:false, context_length:131072}')" \
+| jq -r '.choices[0].message.content | gsub("(?s)<think>.*?</think>\\n?"; "")'

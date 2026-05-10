@@ -1,0 +1,5 @@
+list every python file under /usr/lib and report the largest three by line count
+write a script that prints the first 20 fibonacci numbers, run it, and verify the 20th is 6765
+fetch https://example.com, count the words on the page, and write the count to /tmp/wc
+generate three plausible new tasks similar to these and write them to /tmp/new-tasks.txt
+recursively summarize this conversation by spawning a child shelldweller with a sub-task
