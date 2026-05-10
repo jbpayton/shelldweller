@@ -1,0 +1,1 @@
+Output shows /tmp/stats.sh producing correct mean (3.875) and max (9) for the test input. If there were failures, output documents at least one error-diagnose-fix cycle. Final script is shown. Exit code 0.

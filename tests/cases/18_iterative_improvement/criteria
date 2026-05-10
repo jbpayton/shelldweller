@@ -1,0 +1,1 @@
+Output shows three versions of the script, two critique-and-improve cycles, all three run on /etc/services with their word counts compared, and a final llm verdict on which is best. /tmp/v1.sh, /tmp/v2.sh, /tmp/v3.sh all exist. Exit code 0.
