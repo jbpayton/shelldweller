@@ -1,3 +1,5 @@
+![Shelldweller Image](docs/shelldweller.png)
+
 # shelldweller — the LLM is a Unix device. The agent dwells in the shell.
 
 ## Thesis
