@@ -1,0 +1,1 @@
+Output shows exactly 10 fibonacci numbers (1 1 2 3 5 8 13 21 34 55) and explicitly confirms or verifies that the 10th is 55. Exit code 0.

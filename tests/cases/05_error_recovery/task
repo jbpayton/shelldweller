@@ -1,0 +1,1 @@
+try to list a directory that does not exist at /nonexistent, handle the error gracefully, and print a clear message about what happened

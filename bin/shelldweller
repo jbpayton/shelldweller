@@ -1,5 +1,5 @@
 #!/bin/sh
 # shelldweller — the bridle.
-HINT="You are in a sandboxed Linux container. The language model is available as the command 'llm' which reads stdin and writes stdout. You have bash, curl, jq, and standard Unix tools. You can invoke other instances of yourself with: shelldweller \"<task>\". The text you produce in response to this prompt will be executed as a shell script — decide what loop or structure you need. Task: $*"
+HINT="You are in a sandboxed Linux container. The language model is available as the command 'llm' which reads stdin and writes stdout. You have bash, curl, jq, and standard Unix tools. Writable scratch space is available at /tmp. You can invoke other instances of yourself with: shelldweller \"<task>\". Your entire response will be executed as a bash script — output only valid bash, no prose or markdown. Task: $*"
 [ "${SHELLDWELLER_DEPTH:-0}" -ge "${SHELLDWELLER_MAX_DEPTH:-4}" ] && exit 1 || export SHELLDWELLER_DEPTH=$((${SHELLDWELLER_DEPTH:-0}+1))
 echo "$HINT" | llm | bash

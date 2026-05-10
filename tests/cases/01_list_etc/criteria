@@ -1,0 +1,1 @@
+Output contains recognizable /etc filenames such as passwd, hosts, hostname, or resolv.conf. The listing is coherent and not empty.
