@@ -1,8 +1,11 @@
 #!/bin/sh
 # llm — the LLM as a Unix device. Reads prompt from stdin, writes response to stdout.
+# Optional: set LLM_SYSTEM env var to include a system message.
 prompt=$(cat)
+msgs=$(jq -nc --arg s "${LLM_SYSTEM:-}" --arg p "$prompt" \
+  'if $s != "" then [{role:"system",content:$s},{role:"user",content:$p}] else [{role:"user",content:$p}] end')
 curl -s "${LLM_ENDPOINT:-http://host.docker.internal:1234/v1/chat/completions}" \
   -H "Content-Type: application/json" \
-  -d "$(jq -nc --arg m "${LLM_MODEL:-local-model}" --arg p "$prompt" \
-        '{model:$m, messages:[{role:"user", content:$p}], stream:false, context_length:131072}')" \
+  -d "$(jq -nc --arg m "${LLM_MODEL:-local-model}" --argjson msgs "$msgs" \
+        '{model:$m, messages:$msgs, stream:false, context_length:131072, temperature:0.2}')" \
 | jq -r '.choices[0].message.content | gsub("(?s)<think>.*?</think>\\n?"; "")'
