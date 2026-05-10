@@ -1,11 +1,18 @@
 #!/bin/sh
-# llm — the LLM as a Unix device. Reads prompt from stdin, writes response to stdout.
-# Optional: set LLM_SYSTEM env var to include a system message.
+# llm — LLM as Unix device. OpenAI-compatible (default) or Anthropic (LLM_FORMAT=anthropic).
 prompt=$(cat)
-msgs=$(jq -nc --arg s "${LLM_SYSTEM:-}" --arg p "$prompt" \
-  'if $s != "" then [{role:"system",content:$s},{role:"user",content:$p}] else [{role:"user",content:$p}] end')
-curl -s "${LLM_ENDPOINT:-http://host.docker.internal:1234/v1/chat/completions}" \
-  -H "Content-Type: application/json" \
-  -d "$(jq -nc --arg m "${LLM_MODEL:-local-model}" --argjson msgs "$msgs" \
-        '{model:$m, messages:$msgs, stream:false, context_length:131072, temperature:0.2}')" \
-| jq -r '.choices[0].message.content | gsub("(?s)<think>.*?</think>\\n?"; "")'
+if [ "${LLM_FORMAT:-openai}" = "anthropic" ]; then
+  curl -s "${LLM_ENDPOINT:-https://api.anthropic.com/v1/messages}" \
+    -H "Content-Type: application/json" -H "x-api-key: ${LLM_API_KEY}" -H "anthropic-version: 2023-06-01" \
+    -d "$(jq -nc --arg m "${LLM_MODEL:-claude-sonnet-4-6}" --arg s "${LLM_SYSTEM:-}" --arg p "$prompt" \
+      '{model:$m,max_tokens:8096,messages:[{role:"user",content:$p}]}+(if $s!="" then {system:$s} else {} end)')" \
+  | jq -r '.content[0].text // empty'
+else
+  msgs=$(jq -nc --arg s "${LLM_SYSTEM:-}" --arg p "$prompt" \
+    'if $s!="" then [{role:"system",content:$s},{role:"user",content:$p}] else [{role:"user",content:$p}] end')
+  curl -s "${LLM_ENDPOINT:-http://host.docker.internal:1234/v1/chat/completions}" \
+    -H "Content-Type: application/json" -H "Authorization: Bearer ${LLM_API_KEY:-nokey}" \
+    -d "$(jq -nc --arg m "${LLM_MODEL:-local-model}" --argjson ms "$msgs" \
+          '{model:$m,messages:$ms,stream:false}')" \
+  | jq -r '.choices[0].message.content | gsub("(?s)<think>.*?</think>\\n?"; "")'
+fi

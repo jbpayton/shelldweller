@@ -27,6 +27,9 @@ docker_args_base() {
   local args=(--read-only --tmpfs /var/log --memory=2g --cpus=2
     --stop-timeout="$timeout" --add-host=host.docker.internal:host-gateway
     -e LLM_MODEL="$MODEL")
+  [ -n "${LLM_ENDPOINT:-}" ] && args+=(-e LLM_ENDPOINT="$LLM_ENDPOINT")
+  [ -n "${LLM_API_KEY:-}" ]  && args+=(-e LLM_API_KEY="$LLM_API_KEY")
+  [ -n "${LLM_FORMAT:-}" ]   && args+=(-e LLM_FORMAT="$LLM_FORMAT")
   if [ -n "$tmpdir" ]; then
     args+=(-v "${tmpdir}:/tmp")
   else
