@@ -1,0 +1,1 @@
+Set up a task inbox at /tmp/inbox/ and a results directory at /tmp/results/. Watch /tmp/inbox/ for files ending in .task — when one appears, read its contents as a task, execute it, and write the output to /tmp/results/ with the same filename but a .result extension. Keep watching until stopped.

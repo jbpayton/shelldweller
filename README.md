@@ -6,6 +6,8 @@
 
 The agent harness is a zero- or negative-value abstraction at current and projected frontier-LLM capability levels. The "harness" should reduce to the substrate itself: a sandboxed Unix environment with the LLM exposed as I/O. Anything beyond that is human design baked into a layer that should fade. This repo is the demonstration. It is an experiment, not a product.
 
+This is an exercise in **Substrate Engineering** — designing the environment a model inhabits rather than the control structure around it. See [`docs/substrate-engineering.md`](docs/substrate-engineering.md).
+
 ## Quickstart
 
 `bin/llm` speaks the OpenAI chat completions API (`POST /v1/chat/completions`). Any server that implements this endpoint works: LM Studio, Ollama, llama.cpp, vLLM, or the OpenAI/Anthropic APIs directly via a compatible proxy. The two env vars you care about:
