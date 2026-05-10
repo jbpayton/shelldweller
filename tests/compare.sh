@@ -30,7 +30,7 @@ PID_GPT=$!
 LLM_ENDPOINT=https://api.anthropic.com/v1/messages \
 LLM_MODEL="${ANTHROPIC_MODEL}" \
 LLM_API_KEY="${ANTHROPIC_API_KEY}" \
-LLM_FORMAT=anthropic \
+LLM_FORMAT=anthropic LLM_TEMPERATURE=0.5 \
   bash "$SCRIPT_DIR/run.sh" 2>&1 | tee "$STAGING/run_claude.log" &
 PID_CLAUDE=$!
 

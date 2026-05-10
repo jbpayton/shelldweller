@@ -4,8 +4,8 @@ prompt=$(cat)
 if [ "${LLM_FORMAT:-openai}" = "anthropic" ]; then
   curl -s "${LLM_ENDPOINT:-https://api.anthropic.com/v1/messages}" \
     -H "Content-Type: application/json" -H "x-api-key: ${LLM_API_KEY}" -H "anthropic-version: 2023-06-01" \
-    -d "$(jq -nc --arg m "${LLM_MODEL:-claude-sonnet-4-6}" --arg s "${LLM_SYSTEM:-}" --arg p "$prompt" \
-      '{model:$m,max_tokens:8096,messages:[{role:"user",content:$p}]}+(if $s!="" then {system:$s} else {} end)')" \
+    -d "$(jq -nc --arg m "${LLM_MODEL:-claude-sonnet-4-6}" --arg s "${LLM_SYSTEM:-}" --arg p "$prompt" --arg t "${LLM_TEMPERATURE:-}" \
+      '{model:$m,max_tokens:8096,messages:[{role:"user",content:$p}]}+(if $s!="" then {system:$s} else {} end)+(if $t!="" then {temperature:($t|tonumber)} else {} end)')" \
   | jq -r '.content[0].text // empty'
 else
   msgs=$(jq -nc --arg s "${LLM_SYSTEM:-}" --arg p "$prompt" \
