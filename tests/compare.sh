@@ -17,7 +17,7 @@ echo "GPT-5.5  → OpenAI API"
 echo "Claude   → Anthropic API"
 echo ""
 
-LLM_MODEL=qwen/qwen3.6-35b-a3b \
+LLM_MODEL=qwen/qwen3.6-35b-a3b LLM_TEMPERATURE=0.2 \
   bash "$SCRIPT_DIR/run.sh" 2>&1 | tee "$STAGING/run_qwen3.log" &
 PID_QWEN=$!
 
