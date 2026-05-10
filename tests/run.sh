@@ -39,8 +39,9 @@ docker_args_base() {
 run_single() {
   local task="$1"; local tmpdir="$2"; local timeout="$3"; local server_port="$4"
 
-  if [ -n "$server_port" ]; then
-    # Server mode: start container in background, run probe, stop container
+  if [ -f "$CASE_DIR/probe.sh" ]; then
+    # Probe mode: container runs in background, probe.sh interacts with it
+    # (via HTTP if server_port set, via filesystem otherwise), then we stop it
     local cid probe_output probe_exit
     mapfile -t args < <(docker_args_base "$tmpdir" "$timeout" "$server_port")
     cid=$(docker run -d "${args[@]}" shelldweller "$task" 2>&1)
@@ -83,7 +84,7 @@ run_case() {
   [ -f "$case_dir/server" ] && server_port=$(cat "$case_dir/server")
 
   local tmpdir=""
-  if [ -f "$case_dir/persistent" ] || [ -n "$server_port" ]; then
+  if [ -f "$case_dir/persistent" ] || [ -n "$server_port" ] || [ -f "$case_dir/probe.sh" ]; then
     tmpdir=$(mktemp -d /tmp/shelldweller-"$name"-XXXX)
     printf '\n[/tmp → %s]\n' "$tmpdir"
   fi

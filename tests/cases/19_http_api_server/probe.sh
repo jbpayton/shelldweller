@@ -1,17 +1,20 @@
 #!/bin/bash
 cid="$1"; tmpdir="$2"; port="$3"
 
-# Wait for server to accept connections (up to 60s)
-for i in $(seq 1 30); do
-  if curl -sf -X POST "http://localhost:$port/task" \
+# Wait for server to be ready — short timeout per attempt, server may be slow to start
+for i in $(seq 1 20); do
+  code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 5 \
+    -X POST "http://localhost:$port/task" \
+    -H "Authorization: Bearer shelldweller-2026" \
     -H "Content-Type: application/json" \
-    -d '{"task":"list files in /etc"}' >/dev/null 2>&1; then
-    break
-  fi
-  sleep 2
+    -d '{"task":"echo ready"}' 2>/dev/null)
+  [ "$code" = "200" ] && break
+  sleep 3
 done
 
-# Send a real task and capture response
-curl -s -X POST "http://localhost:$port/task" \
+# Send the real task — generous timeout for llm+bash execution
+curl -s --max-time 120 \
+  -X POST "http://localhost:$port/task" \
+  -H "Authorization: Bearer shelldweller-2026" \
   -H "Content-Type: application/json" \
   -d '{"task":"list files in /etc and count them"}'
