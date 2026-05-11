@@ -12,7 +12,7 @@ else
     'if $s!="" then [{role:"system",content:$s},{role:"user",content:$p}] else [{role:"user",content:$p}] end')
   curl -s "${LLM_ENDPOINT:-http://host.docker.internal:1234/v1/chat/completions}" \
     -H "Content-Type: application/json" -H "Authorization: Bearer ${LLM_API_KEY:-nokey}" \
-    -d "$(jq -nc --arg m "${LLM_MODEL:-local-model}" --argjson ms "$msgs" --arg t "${LLM_TEMPERATURE:-}" \
-          '{model:$m,messages:$ms,stream:false}+(if $t!="" then {temperature:($t|tonumber)} else {} end)')" \
+    -d "$(jq -nc --arg m "${LLM_MODEL:-local-model}" --argjson ms "$msgs" --arg t "${LLM_TEMPERATURE:-}" --arg c "${LLM_CONTEXT:-}" \
+          '{model:$m,messages:$ms,stream:false}+(if $t!="" then {temperature:($t|tonumber)} else {} end)+(if $c!="" then {context_length:($c|tonumber)} else {} end)')" \
   | jq -r '.choices[0].message.content | gsub("(?s)<think>.*?</think>\\n?"; "")'
 fi
