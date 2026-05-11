@@ -2,15 +2,13 @@
 
 # shelldweller — the LLM is a Unix device. The agent dwells in the shell.
 
-> *An experiment in Substrate Engineering: what emerges when you give a language model a Unix environment and get out of the way.*
+Shelldweller is sixteen lines of shell. `bin/llm` exposes a language model as a Unix command — pipe a prompt in, get a response out. `bin/shelldweller` sends a hint and a task to the model, then pipes whatever the model produces directly to bash. No framework, no tool schema, no planner. The model decides what structure it needs and writes it.
+
+The container gives the model bash, python3, curl, jq, socat, and standard Unix tools. The harness code itself is pure shell. What the model reaches for inside that environment is its own choice.
 
 ## Thesis
 
-**Harness Engineering** asks: *what control structure does the model need to behave reliably?* It builds instructions, state management, verification loops, and session lifecycle around the model.
-
-**Substrate Engineering** asks a different question: *what environment does the model need to discover its own structure?* Rather than designing the control loop, you design the substrate — the tools, I/O surfaces, and affordances — and let the model decide what loops, protocols, and state it needs.
-
-Shelldweller is the demonstration. Sixteen lines of shell expose the LLM as a Unix device: `bin/llm` reads stdin, calls the API, writes stdout. `bin/shelldweller` sends a hint and a task, pipes the model's response to bash, and gets out of the way. No framework, no tool schema, no planner. The model writes whatever it needs.
+This is an experiment in **Substrate Engineering** — designing the environment a model inhabits rather than the control structure around it. The distinction matters: most agent work is *Harness Engineering*, building instructions, state management, and verification loops around the model. Substrate Engineering asks whether those layers are necessary at all, or whether the right substrate makes them emerge on their own.
 
 The thesis: if the substrate is right, the harness becomes unnecessary. The experiment is whether this is true, and what shape the self-built structures take. See [`docs/substrate-engineering.md`](docs/substrate-engineering.md).
 
@@ -64,7 +62,7 @@ echo "$prompt" | tee -a /var/log/llm.in | llm | tee -a /var/log/llm.out
 ## What this is not
 
 - **Not a framework.** No agent loop, no tool-calling schema, no planner. The model writes its own loop if it wants one.
-- **Not Python.** No dependencies beyond bash, curl, jq, coreutils, and findutils. No pip, no venv, no requirements.txt.
+- **Not Python in the harness.** The bridle and the LLM device are pure shell. The container includes python3 as a tool the model can reach for — the harness doesn't care what the model uses inside bash.
 - **Not a conversation.** No history is passed to the model. Each `llm` call is stateless. Memory, if any, is the model writing files to /tmp.
 - **Not parsed.** The model's output is executed directly as bash. If the model produces garbage, bash fails. That is a finding.
 - **Not persistent.** The container is ephemeral (`--rm`). Nothing survives a run unless the model writes to a host-mounted volume you provide.
