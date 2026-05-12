@@ -1,0 +1,3 @@
+#!/bin/sh
+# narrate — write timestamped progress to stderr; not part of the executed workflow.
+printf '[%s] %s\n' "$(date +%H:%M:%S)" "$*" >&2
