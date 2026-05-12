@@ -1,22 +1,23 @@
 #!/bin/sh
-# shelldweller — the bridle. Multi-round session: model produces a script, bash runs it,
-# the output goes to the user AND back into the model's context for the next round.
-# The session ends when the model produces empty output (signaling done), when
-# /tmp/.done is written, or when SHELLDWELLER_MAX_ROUNDS (default 6) is reached.
-HINT="You are a user at an Alpine Linux terminal. What you emit is what you type on the keyboard; what you receive in the next round is what appears on the monitor. Each round: you type a bash script, it runs, its combined stdout+stderr comes back to you. Real users see results, react, type next. So do you. There is no chat layer — the human user sees what your scripts print to the terminal. End your session by typing nothing (empty output) or by touching /tmp/.done. Available commands: 'llm' (stdin → natural language); 'llm-bash' (stdin → executable bash); 'shelldweller' for sub-agents — result=\$(shelldweller \"task\") or shelldweller \"task\" & ... wait; 'narrate <text>' writes to stderr; 'checkbash <file>' validates syntax. Tools: bash, python3, curl, jq, socat, GNU coreutils and findutils. Each llm/llm-bash/shelldweller invocation is stateless; pass context in the prompt or via /tmp. Internet via curl. /tmp is writable. For how to use rounds well and recover from failures, read /etc/shelldweller-protocol.md (specifically the 'How to be at a terminal' section). Task: $*"
+# shelldweller — the bridle. Multi-round session: model writes naturally with
+# markdown ``` fences around executable bash; the bridle extracts the fenced
+# bash, runs it, feeds output back for the next round. Session ends on empty
+# output, /tmp/.done, or SHELLDWELLER_MAX_ROUNDS (default 6).
+HINT="You are a user at an Alpine Linux terminal. Produce a complete bash workflow that accomplishes the task. Wrap any bash you want executed in \`\`\`bash ... \`\`\` (or just \`\`\`) fences; everything outside the fences is narration the human sees. If your workflow exits non-zero, you will be re-invoked with the failure output appended so you can fix it (up to \${SHELLDWELLER_MAX_RETRIES:-2} retries). Otherwise this is one-shot — write the whole workflow, not an interactive plan. Available commands: 'llm' (stdin→natural language); 'llm-bash' (stdin→raw bash); 'shelldweller' for sub-agents — invoke as result=\$(shelldweller \"task\") or in parallel with shelldweller \"task\" & ... wait; 'narrate <text>' writes to stderr; 'checkbash <file>' validates syntax. Tools: bash, python3, curl, jq, socat, GNU coreutils/findutils. Each llm/llm-bash/shelldweller invocation is stateless; pass context via the prompt or /tmp. Internet via curl. Full reference: cat /etc/shelldweller-protocol.md. Task: $*"
 [ "${SHELLDWELLER_DEPTH:-0}" -ge "${SHELLDWELLER_MAX_DEPTH:-4}" ] && exit 1 || export SHELLDWELLER_DEPTH=$((${SHELLDWELLER_DEPTH:-0}+1))
-buffer="$HINT"; code=0
-for round in $(seq 1 ${SHELLDWELLER_MAX_ROUNDS:-6}); do
-  script=$(echo "$buffer" | llm-bash | sed 's/^\(===.*===\)\s*$/echo "\1"/')
+context=""; code=0
+for attempt in 0 $(seq 1 ${SHELLDWELLER_MAX_RETRIES:-2}); do
+  script=$(echo "$HINT$context" | llm | extract-bash | sed 's/^\(===.*===\)\s*$/echo "\1"/')
   [ -z "$(printf '%s' "$script" | tr -d '[:space:]')" ] && break
   output=$(echo "$script" | bash 2>&1); code=$?
   printf '%s\n' "$output"
-  [ -f /tmp/.done ] && { rm -f /tmp/.done; break; }
-  buffer="$buffer
-=== ROUND $round (you produced) ===
+  [ $code -eq 0 ] && exit 0
+  context="
+=== Previous attempt failed (exit $code) ===
+Script:
 $script
-=== ROUND $round (execution output, exit $code) ===
+Output:
 $output
-=== continue or emit empty output / touch /tmp/.done to finish ==="
+=== Revise to address the failure. ==="
 done
 exit $code
