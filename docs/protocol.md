@@ -81,3 +81,51 @@ bash, python3 is there.
 
 `shelldweller` calls can nest. Depth is capped at 4 by default
 (`SHELLDWELLER_MAX_DEPTH`). Each level inherits the depth counter.
+
+## How to be at a terminal
+
+The substrate gives you a multi-round session. Each round you emit a
+bash script; it runs; the output comes back to you for the next round.
+Treat this exactly like a human user at a keyboard.
+
+**Do not write monolithic scripts in round 1.** A real user at a
+terminal types `ls`, looks at the output, decides what to do next, then
+types the next thing. They do not write a 200-line script and hit
+enter. Round 1 should be your first move, not your whole workflow. The
+loop is for incremental building.
+
+**Use the rounds.** You have up to `SHELLDWELLER_MAX_ROUNDS` (default
+6) rounds per session. Take small steps. Verify each step worked
+before moving on. Build up state in /tmp as you go.
+
+**Empty output means "task complete or impossible."** It does NOT
+mean "this is hard, I give up." If your previous round exited
+non-zero, you must attempt at least one fix before emitting empty.
+Surrendering after one failed attempt is not valid use of the loop.
+
+**Read error messages literally.** When you see
+`line N: TOKEN: command not found`, this is the substrate telling you
+exactly what to fix:
+
+- *Where:* line N of the script you just ran.
+- *What:* the literal word `TOKEN` was treated as a command.
+- *Why:* you wrote bare text outside a command. Most likely a section
+  header like `=== TOKEN ===` without `echo`, or an unquoted variable
+  expansion.
+- *Fix:* find line N, wrap the bare text in `echo "..."`, or remove it.
+
+When you see `syntax error`, run the failing script through
+`checkbash` to pinpoint the exact location.
+
+**When stuck, narrow scope.** If a complex operation fails, write a
+smaller version that does just one piece. Isolate the bug. Build back
+up. This is debugging — exactly like a human user would do.
+
+**Anything explanatory goes to stderr.** If you find yourself wanting
+to write prose, that is a sign it should be `narrate "..."` or `>&2`,
+not stdout. The stdout channel is for the executing program.
+
+**`checkbash` before piping unfamiliar code to bash.** If a sub-agent
+or `llm-bash` call produced a script you intend to execute, run
+`checkbash /path/to/script` first. It catches syntax errors before
+they cause exit 127 or worse.
