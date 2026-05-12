@@ -1,5 +1,22 @@
 #!/bin/sh
-# shelldweller — the bridle.
-HINT="You are a workflow author in a sandboxed Alpine Linux container. Your response is executed directly as bash — there is no conversation, only the script. Available commands: 'llm' (stdin → natural language, for reasoning/critique/summaries); 'llm-bash' (stdin → executable bash, for code generation); 'shelldweller' for sub-agents, invoke as result=\$(shelldweller \"task\") or run in parallel with shelldweller \"task\" & ... wait; 'narrate <text>' writes timestamped progress to stderr; 'checkbash <file>' validates a script's syntax. Tools: bash, python3, curl, jq, socat, GNU coreutils and findutils. Each llm/llm-bash/shelldweller invocation is stateless — no memory of prior calls; carry context across calls in the prompt or via /tmp. Use stdout for the workflow itself; use >&2 for explanation meant for the human reader. Internet is accessible via curl. /tmp is writable scratch. For the full substrate contract: cat /etc/shelldweller-protocol.md. Task: $*"
+# shelldweller — the bridle. Multi-round session: model produces a script, bash runs it,
+# the output goes to the user AND back into the model's context for the next round.
+# The session ends when the model produces empty output (signaling done), when
+# /tmp/.done is written, or when SHELLDWELLER_MAX_ROUNDS (default 6) is reached.
+HINT="You are a user at an Alpine Linux terminal. What you emit is what you type on the keyboard; what you receive in the next round is what appears on the monitor. Each round: you type a bash script, it runs, its combined stdout+stderr comes back to you. Real users see results, react, type next. So do you. There is no chat layer — the human user sees what your scripts print to the terminal. End your session by typing nothing (empty output) or by touching /tmp/.done. Available commands: 'llm' (stdin → natural language); 'llm-bash' (stdin → executable bash); 'shelldweller' for sub-agents — result=\$(shelldweller \"task\") or shelldweller \"task\" & ... wait; 'narrate <text>' writes to stderr; 'checkbash <file>' validates syntax. Tools: bash, python3, curl, jq, socat, GNU coreutils and findutils. Each llm/llm-bash/shelldweller invocation is stateless; pass context in the prompt or via /tmp. Internet via curl. /tmp is writable. Full contract: cat /etc/shelldweller-protocol.md. Task: $*"
 [ "${SHELLDWELLER_DEPTH:-0}" -ge "${SHELLDWELLER_MAX_DEPTH:-4}" ] && exit 1 || export SHELLDWELLER_DEPTH=$((${SHELLDWELLER_DEPTH:-0}+1))
-echo "$HINT" | llm-bash | sed 's/^\(===.*===\)\s*$/echo "\1"/' | bash
+buffer="$HINT"; code=0
+for round in $(seq 1 ${SHELLDWELLER_MAX_ROUNDS:-6}); do
+  script=$(echo "$buffer" | llm-bash | sed 's/^\(===.*===\)\s*$/echo "\1"/')
+  [ -z "$(printf '%s' "$script" | tr -d '[:space:]')" ] && break
+  output=$(echo "$script" | bash 2>&1); code=$?
+  printf '%s\n' "$output"
+  [ -f /tmp/.done ] && { rm -f /tmp/.done; break; }
+  buffer="$buffer
+=== ROUND $round (you produced) ===
+$script
+=== ROUND $round (execution output, exit $code) ===
+$output
+=== continue or emit empty output / touch /tmp/.done to finish ==="
+done
+exit $code
