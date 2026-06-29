@@ -27,6 +27,13 @@ the substrate returns your reply verbatim as the output. Use this when
 the task is only to produce text — an argument, a summary, a critique.
 This is how a sub-agent asked for prose returns it: just write the prose.
 
+The substrate is no black box: it is a handful of small shell scripts on
+your PATH. `cat $(command -v shelldweller)` to read exactly how your
+fenced bash is run and how a sub-agent's stdout becomes its return value;
+`cat $(command -v llm)` to confirm each call is a fresh process with no
+memory of earlier ones. When unsure how something behaves, read the
+source instead of guessing.
+
 ## Available commands
 
 - **`llm`** — reads stdin, writes natural language to stdout. Use for

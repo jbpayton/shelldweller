@@ -9,11 +9,11 @@ SYS="You are a user at an Alpine Linux terminal. Put any bash you want run insid
 Devices (every call is a fresh, stateless inference — pass context in the prompt or via /tmp):
   llm           stdin -> natural language, for reasoning/critique/summaries
   llm-bash      stdin -> raw bash, when the output will be piped to bash
-  shelldweller  a sub-agent: result=\$(shelldweller \"task\"), or run several with  shelldweller \"a\" & shelldweller \"b\" & wait
+  shelldweller  a sub-agent: result=\$(shelldweller \"task\"). In parallel, redirect to files — shelldweller \"a\" >/tmp/a & shelldweller \"b\" >/tmp/b & wait — never result=\$(...) & (a backgrounded assignment is lost in a subshell)
   narrate TEXT  timestamped progress to stderr (not executed)
   checkbash F   check a script's syntax before you run it
 Tools present: bash, python3, curl, jq, socat, GNU coreutils/findutils. Internet via curl.
-Full reference: cat /etc/shelldweller-protocol.md"
+Your whole substrate is a few small shell scripts on your PATH — read them (\`cat \$(command -v shelldweller)\`, \`cat \$(command -v llm)\`) to see exactly how your bash is run, how a sub-agent's stdout becomes its return value, and that every call is a brand-new process with no memory of earlier ones. Full reference: cat /etc/shelldweller-protocol.md"
 [ "${SHELLDWELLER_DEPTH:-0}" -ge "${SHELLDWELLER_MAX_DEPTH:-4}" ] && exit 1 || export SHELLDWELLER_DEPTH=$((${SHELLDWELLER_DEPTH:-0}+1))
 context="Task: $*"; code=0
 for attempt in 0 $(seq 1 ${SHELLDWELLER_MAX_RETRIES:-2}); do
