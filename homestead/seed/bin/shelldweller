@@ -23,7 +23,11 @@ Devices (every call is a fresh, stateless inference — pass context in the prom
 Tools present: bash, python3, curl, jq, socat, GNU coreutils/findutils. Internet via curl.
 Your whole substrate is a few small shell scripts on your PATH — read them (\`cat \$(command -v shelldweller)\`, \`cat \$(command -v llm)\`). Full reference: cat /home/dweller/protocol.md"
 [ "${SHELLDWELLER_DEPTH:-0}" -ge "${SHELLDWELLER_MAX_DEPTH:-4}" ] && exit 1 || export SHELLDWELLER_DEPTH=$((${SHELLDWELLER_DEPTH:-0}+1))
-context="Task: $*"; code=0
+# -f FILE reads the task from a file, keeping this process's command line
+# short — ps output embedded in a long argv makes pkill patterns match the
+# bridle itself (a turn once killed itself cleaning up its own server).
+if [ "${1:-}" = "-f" ]; then task=$(cat "$2"); else task="$*"; fi
+context="Task: $task"; code=0
 for attempt in 0 $(seq 1 ${SHELLDWELLER_MAX_RETRIES:-2}); do
   response=$(printf '%s' "$context" | LLM_SYSTEM="$SYS" llm)
   # No fenced bash to run? The reply itself is the answer (a text task, or a
@@ -34,7 +38,7 @@ for attempt in 0 $(seq 1 ${SHELLDWELLER_MAX_RETRIES:-2}); do
   output=$(echo "$script" | bash 2>&1); code=$?
   printf '%s\n' "$output"
   [ $code -eq 0 ] && exit 0
-  context="Task: $*
+  context="Task: $task
 
 === Your previous attempt failed (exit $code) ===
 Script you ran:
