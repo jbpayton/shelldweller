@@ -1,8 +1,8 @@
-![Shelldweller Image](docs/shelldweller.png)
+![Shelldweller](docs/shelldweller.svg)
 
 # shelldweller — the LLM is a Unix device. The agent dwells in the shell.
 
-Shelldweller is sixteen lines of shell. `bin/llm` exposes a language model as a Unix command — pipe a prompt in, get a response out. `bin/shelldweller` sends a hint and a task to the model, then pipes whatever the model produces directly to bash. No framework, no tool schema, no planner. The model decides what structure it needs and writes it.
+Shelldweller is a handful of small shell scripts. `bin/llm` exposes a language model as a Unix command — pipe a prompt in, get a response out. `bin/shelldweller` sends a hint and a task to the model, then pipes whatever the model produces directly to bash. No framework, no tool schema, no planner. The model decides what structure it needs and writes it.
 
 The container gives the model bash, python3, curl, jq, socat, and standard Unix tools. The harness code itself is pure shell. What the model reaches for inside that environment is its own choice.
 
@@ -11,6 +11,11 @@ The container gives the model bash, python3, curl, jq, socat, and standard Unix 
 This is an experiment in **Substrate Engineering** — designing the environment a model inhabits rather than the control structure around it. The distinction matters: most agent work is *Harness Engineering*, building instructions, state management, and verification loops around the model. Substrate Engineering asks whether those layers are necessary at all, or whether the right substrate makes them emerge on their own.
 
 The thesis: if the substrate is right, the harness becomes unnecessary. The experiment is whether this is true, and what shape the self-built structures take. See [`docs/substrate-engineering.md`](docs/substrate-engineering.md).
+
+## Experiments
+
+- **Phases 1–2 — the command-form experiment** (this README, complete): does structure emerge from a minimal substrate? It does — loops, ReAct protocols, judges, and teams, all unprompted. The three-model comparison found the plumbing never failed and every failure was the model's own workflow; what *didn't* emerge was economy — no model cached work, verified its success claims, or managed its delegation while inference was free.
+- **Phase 3 — [homestead](homestead/)** (current): the dweller gets a persistent home, a real token meter, and machinery it can rewrite — including its own bridle. The question is no longer whether a harness emerges for one task, but whether the model can bootstrap one for itself that compounds across runs. See [`homestead/README.md`](homestead/README.md).
 
 ## Quickstart
 
