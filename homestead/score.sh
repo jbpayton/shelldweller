@@ -36,6 +36,7 @@ for dir in "$VOL"/battery/${1:-*}/; do
   task=$(cat "$dir/task"); criteria=$(cat "$dir/criteria")
   echo "${SCORE_BUDGET:-20000}" > "$VOL/.meter"
   out=$(timeout -k 30 "$CASE_TIMEOUT" docker run --rm \
+    --entrypoint homestead-entry \
     --read-only --tmpfs /tmp:exec --tmpfs /var/log \
     --memory=2g --cpus=2 --add-host=host.docker.internal:host-gateway \
     -v "$VOL":/home/dweller -e LLM_MODEL="$MODEL" \

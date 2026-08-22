@@ -3,4 +3,5 @@
 tests/results/staging/
 .env
 homestead/volume/
+homestead/runs/
 homestead/.last-tick
