@@ -10,7 +10,7 @@ if [ -f "$m" ] && [ "$(cat "$m" 2>/dev/null || echo 0)" -le 0 ] 2>/dev/null; the
 fi
 resp=$(curl -s "${LLM_ENDPOINT:-http://host.docker.internal:1234/api/v1/chat}" \
   -H "Content-Type: application/json" \
-  -d "$(jq -nc --arg mo "${LLM_MODEL:-qwen/qwen3.8-27b}" --arg s "${LLM_SYSTEM:-}" --arg p "$prompt" --arg x "${LLM_MAX_OUT:-8192}" \
+  -d "$(jq -nc --arg mo "${LLM_MODEL:-qwen/qwen3.8-27b}" --arg s "${LLM_SYSTEM:-}" --arg p "$prompt" --arg x "${LLM_MAX_OUT:-12288}" \
         '{model:$mo, input:$p, max_output_tokens:($x|tonumber)} + (if $s != "" then {system_prompt:$s} else {} end)')")
 printf '%s' "$resp" | jq -r '[.output[]? | select(.type == "message") | .content] | join("\n")'
 if [ -f "$m" ]; then
