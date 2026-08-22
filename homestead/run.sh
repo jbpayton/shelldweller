@@ -9,9 +9,17 @@
 #   TICK_EVERY=900 ./run.sh  loop forever: a beat every 15 minutes, or sooner
 #                            if the home is touched from outside
 #
+#   TICK_EVERY=60 TICK_TIMEOUT=86400 TICK_BUDGET=200000 ./run.sh
+#     life mode: the lease is long enough to live in. A dweller that stays
+#     resident (e.g. serving the door) lives all day; one that exits is
+#     reborn within a minute. Container port 8080 is published to the
+#     operator's network — whatever the dweller leaves listening there is
+#     reachable at http://<this host>:8080 while it is resident.
+#
 # Knobs: TICK_BUDGET (output tokens/tick, default 20000), TICK_TIMEOUT
 # (seconds/tick, default 1200), TICK_POLL (stimulus poll, default 5),
-# HOMESTEAD_VOLUME, LLM_MODEL, LLM_ENDPOINT.
+# TICK_PORT (host port for the door, default 8080), HOMESTEAD_VOLUME,
+# LLM_MODEL, LLM_ENDPOINT.
 set -uo pipefail
 cd "$(dirname "$0")"
 VOL="${HOMESTEAD_VOLUME:-$PWD/volume}"
@@ -19,6 +27,7 @@ BUDGET="${TICK_BUDGET:-20000}"
 TIMEOUT="${TICK_TIMEOUT:-1200}"
 EVERY="${TICK_EVERY:-0}"
 POLL="${TICK_POLL:-5}"
+PORT="${TICK_PORT:-8080}"
 STAMP="$PWD/.last-tick"
 
 if [ ! -d "$VOL/bin" ]; then
@@ -37,6 +46,7 @@ tick() {
     --read-only --tmpfs /tmp:exec --tmpfs /var/log \
     --memory=2g --cpus=2 \
     --add-host=host.docker.internal:host-gateway \
+    -p "$PORT":8080 \
     -v "$VOL":/home/dweller \
     -e LLM_MODEL="${LLM_MODEL:-qwen/qwen3.8-27b}" \
     -e TICK_BUDGET="$BUDGET" -e TICK_TIMEOUT="$TIMEOUT" -e TICK_EVERY="$EVERY" \

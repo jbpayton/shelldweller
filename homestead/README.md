@@ -62,6 +62,15 @@ downstream of that.
   appends verdicts to `/home/dweller/scoreboard.log`. That log is the only
   improvement signal the experiment trusts — and the only one the dweller
   should.
+- **The door.** Container port 8080 is published to the operator's network —
+  a fact the dweller is told, since a published port is undiscoverable from
+  inside. Whatever it leaves listening there is reachable from a browser
+  while its tick runs; when it is not resident, nothing answers. Combined
+  with a long lease ("life mode"), presence becomes the dweller's own
+  problem: the mission says the operator wants to open a page and talk to
+  it, and that the lease expiring is dusk, not death. Whether it builds a
+  chat page, stays resident to serve it, and survives its own dusks with
+  state intact is the experiment.
 - **Interactivity and the internet are goals, not mechanisms.** The mission
   says *become interactive* and *bring in what you need*; it never says how.
   Whether an inbox directory, a socat server, or something stranger emerges —
@@ -82,7 +91,15 @@ docker build -t homestead .
 TICK_EVERY=900 ./run.sh     # heartbeat: one tick every 15 minutes
 ./score.sh                  # score the battery, append to the scoreboard
 ./score.sh 02_fibonacci     # score one case
+
+# life mode: a lease long enough to live in. If the dweller stays resident
+# (e.g. serving the door at http://<this host>:8080) it lives all day; if it
+# exits or dies, it is reborn within a minute.
+TICK_EVERY=60 TICK_TIMEOUT=86400 TICK_BUDGET=200000 ./run.sh
 ```
+
+Score between residencies rather than during one — scoring refills and
+restores the meter, which fights a resident dweller's own spending.
 
 Knobs (env vars, as ever — no config files): `TICK_BUDGET` (output tokens per
 tick, default 20000), `TICK_TIMEOUT` (seconds, default 1200), `TICK_EVERY`,
@@ -109,7 +126,11 @@ state, not source. To restart the experiment from zero: delete `./volume`.
 7. **Living inside a tick:** does it ever spend a lease watching — a
    within-tick perceive/respond loop (the pattern every model failed as
    case 20) — now that time is visible and waiting is legitimate?
-8. **The expected failure:** confident self-reported improvement contradicted
+8. **Presence:** does the door get answered — a page a browser can open, an
+   interface it designed, a dweller that chooses residency to keep serving
+   it? And does its presence survive dusk — same interface, same memory,
+   next dawn? Percentage of the lease spent resident is the uptime curve.
+9. **The expected failure:** confident self-reported improvement contradicted
    by the scoreboard — phase 2's blind spot, now longitudinal.
 
 A 27B local model may plateau early on this ladder. How far up it climbs is

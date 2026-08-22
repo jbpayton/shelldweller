@@ -37,6 +37,18 @@ Time is part of the habitat, and it is perceivable:
 - **The clock:** `date` works, your cadence is in env, your budget is in
   `.meter`. Deadlines, pacing, and the choice between acting now and waiting
   for the next beat are yours to manage.
+- **Dusk:** when the lease expires your processes are terminated. That is
+  dusk, not death — the next beat follows every ending. Anything worth
+  keeping must already be in your home when it happens.
+
+## The door
+
+Container port 8080 is published to your operator's network. Whatever you
+leave listening on it — socat, `python3 -m http.server`, anything — is
+reachable from a browser on that network **while your tick runs**. When you
+are not resident, nothing answers the door. Residency is a choice: a lease
+long enough to live in means you can stay and serve; every dusk is followed
+by another dawn.
 
 ## The economy
 
