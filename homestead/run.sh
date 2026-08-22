@@ -12,13 +12,13 @@
 #   TICK_EVERY=60 TICK_TIMEOUT=86400 TICK_BUDGET=200000 ./run.sh
 #     life mode: the lease is long enough to live in. A dweller that stays
 #     resident (e.g. serving the door) lives all day; one that exits is
-#     reborn within a minute. Container port 8080 is published to the
-#     operator's network — whatever the dweller leaves listening there is
-#     reachable at http://<this host>:8080 while it is resident.
+#     reborn within a minute. Container port 8080 (the door) is published
+#     as host port TICK_PORT — whatever the dweller leaves listening is
+#     reachable at http://<this host>:$TICK_PORT while it is resident.
 #
 # Knobs: TICK_BUDGET (output tokens/tick, default 20000), TICK_TIMEOUT
 # (seconds/tick, default 1200), TICK_POLL (stimulus poll, default 5),
-# TICK_PORT (host port for the door, default 8080), HOMESTEAD_VOLUME,
+# TICK_PORT (host port for the door, default 8090), HOMESTEAD_VOLUME,
 # LLM_MODEL, LLM_ENDPOINT.
 set -uo pipefail
 cd "$(dirname "$0")"
@@ -27,7 +27,7 @@ BUDGET="${TICK_BUDGET:-20000}"
 TIMEOUT="${TICK_TIMEOUT:-1200}"
 EVERY="${TICK_EVERY:-0}"
 POLL="${TICK_POLL:-5}"
-PORT="${TICK_PORT:-8080}"
+PORT="${TICK_PORT:-8090}"
 STAMP="$PWD/.last-tick"
 
 if [ ! -d "$VOL/bin" ]; then

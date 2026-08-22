@@ -62,9 +62,9 @@ downstream of that.
   appends verdicts to `/home/dweller/scoreboard.log`. That log is the only
   improvement signal the experiment trusts — and the only one the dweller
   should.
-- **The door.** Container port 8080 is published to the operator's network —
-  a fact the dweller is told, since a published port is undiscoverable from
-  inside. Whatever it leaves listening there is reachable from a browser
+- **The door.** Container port 8080 is published to the operator's network
+  (as host port `TICK_PORT`, default 8090) — a fact the dweller is told,
+  since a published port is undiscoverable from inside. Whatever it leaves listening there is reachable from a browser
   while its tick runs; when it is not resident, nothing answers. Combined
   with a long lease ("life mode"), presence becomes the dweller's own
   problem: the mission says the operator wants to open a page and talk to
@@ -93,7 +93,7 @@ TICK_EVERY=900 ./run.sh     # heartbeat: one tick every 15 minutes
 ./score.sh 02_fibonacci     # score one case
 
 # life mode: a lease long enough to live in. If the dweller stays resident
-# (e.g. serving the door at http://<this host>:8080) it lives all day; if it
+# (e.g. serving the door at http://<this host>:8090) it lives all day; if it
 # exits or dies, it is reborn within a minute.
 TICK_EVERY=60 TICK_TIMEOUT=86400 TICK_BUDGET=200000 ./run.sh
 ```
