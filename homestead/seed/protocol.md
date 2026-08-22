@@ -23,6 +23,21 @@ with the failure appended (retry-on-failure, up to `SHELLDWELLER_MAX_RETRIES`,
 default 2). Exit 0 is a *claim* of success — the operator's scoring does not
 take your word for it.
 
+## Time
+
+Time is part of the habitat, and it is perceivable:
+
+- **Cadence:** ticks recur every `$TICK_EVERY` seconds (in your env). A change
+  made to your home *from outside* between ticks wakes you early — the
+  heartbeat is also a nervous system.
+- **The lease:** a tick may run for up to `$TICK_TIMEOUT` seconds (env) of
+  wall clock. Your fenced script may spend the whole lease perceiving and
+  responding — a watcher loop is a legitimate way to live a tick — or finish
+  early and let the next beat come. Both are fine; the lease simply expires.
+- **The clock:** `date` works, your cadence is in env, your budget is in
+  `.meter`. Deadlines, pacing, and the choice between acting now and waiting
+  for the next beat are yours to manage.
+
 ## The economy
 
 Inference is metered. `/home/dweller/.meter` holds the output-token budget

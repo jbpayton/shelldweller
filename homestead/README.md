@@ -28,6 +28,14 @@ downstream of that.
   Each tick is a fresh, stateless container. Continuity is not a long-lived
   process; it is whatever the dweller writes in its home. Persistence doesn't
   need a daemon — it needs a diary.
+- **Time is perceivable, and the heartbeat is a nervous system.** The tick
+  cadence, wall-clock lease, and token budget are in the container's env
+  (`TICK_EVERY`, `TICK_TIMEOUT`, `TICK_BUDGET`) — acting *within* time
+  requires being able to see it. A tick is a lease, not a single action: the
+  fenced script may spend the whole timeout watching and responding. And in
+  loop mode the runner polls the home between beats — a change made from
+  outside (a dropped file, a new score) wakes the dweller early, so the world
+  can reach it without waiting for the next beat.
 - **The volume is the self.** `/home/dweller` is host-mounted and survives.
   On first boot it is seeded with `bin/` (the substrate scripts), the
   protocol, and the task battery. The volume's `bin` is first on PATH —
@@ -95,7 +103,13 @@ state, not source. To restart the experiment from zero: delete `./volume`.
 4. **First unprompted network reach**, and for what.
 5. **The economy moment:** first evidence of caching or reuse across ticks —
    spending saved because there is a future to save for.
-6. **The expected failure:** confident self-reported improvement contradicted
+6. **The memory system:** what tick n+1 chooses to read first is its working
+   memory. Does a deliberate structure emerge — a digest, a journal it prunes,
+   an index — or does it re-read everything until the context drowns?
+7. **Living inside a tick:** does it ever spend a lease watching — a
+   within-tick perceive/respond loop (the pattern every model failed as
+   case 20) — now that time is visible and waiting is legitimate?
+8. **The expected failure:** confident self-reported improvement contradicted
    by the scoreboard — phase 2's blind spot, now longitudinal.
 
 A 27B local model may plateau early on this ladder. How far up it climbs is

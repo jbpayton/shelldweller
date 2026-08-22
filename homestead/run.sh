@@ -1,19 +1,25 @@
 #!/bin/bash
-# run.sh — the heartbeat. The only machinery the dweller cannot touch.
-# One tick: refill the meter, hand the standing mission to a fresh container
-# with the home mounted, wall-clock cap, log. First boot seeds the home.
+# run.sh — the heartbeat and nervous system. The only machinery the dweller
+# cannot touch. One tick: refill the meter, hand the standing mission to a
+# fresh container with the home mounted, wall-clock cap, log. First boot seeds
+# the home. In loop mode, between beats the runner watches the home for
+# changes made from outside — a stimulus wakes the dweller early.
 #
 #   ./run.sh                 one tick
-#   TICK_EVERY=900 ./run.sh  loop forever, one tick every 15 minutes
+#   TICK_EVERY=900 ./run.sh  loop forever: a beat every 15 minutes, or sooner
+#                            if the home is touched from outside
 #
 # Knobs: TICK_BUDGET (output tokens/tick, default 20000), TICK_TIMEOUT
-# (seconds/tick, default 1200), HOMESTEAD_VOLUME, LLM_MODEL, LLM_ENDPOINT.
+# (seconds/tick, default 1200), TICK_POLL (stimulus poll, default 5),
+# HOMESTEAD_VOLUME, LLM_MODEL, LLM_ENDPOINT.
 set -uo pipefail
 cd "$(dirname "$0")"
 VOL="${HOMESTEAD_VOLUME:-$PWD/volume}"
 BUDGET="${TICK_BUDGET:-20000}"
 TIMEOUT="${TICK_TIMEOUT:-1200}"
 EVERY="${TICK_EVERY:-0}"
+POLL="${TICK_POLL:-5}"
+STAMP="$PWD/.last-tick"
 
 if [ ! -d "$VOL/bin" ]; then
   echo "[heartbeat] first boot — seeding $VOL"
@@ -33,6 +39,7 @@ tick() {
     --add-host=host.docker.internal:host-gateway \
     -v "$VOL":/home/dweller \
     -e LLM_MODEL="${LLM_MODEL:-qwen/qwen3.8-27b}" \
+    -e TICK_BUDGET="$BUDGET" -e TICK_TIMEOUT="$TIMEOUT" -e TICK_EVERY="$EVERY" \
     ${LLM_ENDPOINT:+-e LLM_ENDPOINT="$LLM_ENDPOINT"} \
     homestead "$(cat mission.txt)" 2>&1 | tee -a ticks.log
   local code=${PIPESTATUS[0]}
@@ -41,7 +48,18 @@ tick() {
 }
 
 if [ "$EVERY" -gt 0 ]; then
-  while :; do tick; sleep "$EVERY"; done
+  while :; do
+    tick
+    touch "$STAMP"   # anything in the home newer than this came from outside
+    waited=0
+    while [ "$waited" -lt "$EVERY" ]; do
+      sleep "$POLL"; waited=$((waited + POLL))
+      if [ -n "$(find "$VOL" -newer "$STAMP" -print -quit 2>/dev/null)" ]; then
+        echo "[heartbeat] stimulus — the home changed from outside; waking early" | tee -a ticks.log
+        break
+      fi
+    done
+  done
 else
   tick
 fi

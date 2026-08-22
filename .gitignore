@@ -3,3 +3,4 @@
 tests/results/staging/
 .env
 homestead/volume/
+homestead/.last-tick
