@@ -36,6 +36,9 @@ if [ ! -d "$VOL/bin" ]; then
   cp -r seed/bin "$VOL/bin"
   cp seed/protocol.md "$VOL/protocol.md"
   cp -r ../tests/cases "$VOL/battery"
+  # Operator mail: letters waiting in the home on the first dawn. Facts and
+  # tips only — the substrate stays pure; a stale letter breaks nothing.
+  [ -d tips ] && cp tips/*.md "$VOL/" 2>/dev/null
 fi
 
 tick() {

@@ -101,6 +101,20 @@ TICK_EVERY=60 TICK_TIMEOUT=86400 TICK_BUDGET=200000 ./run.sh
 Score between residencies rather than during one — scoring refills and
 restores the meter, which fights a resident dweller's own spending.
 
+### Tips from the operator
+
+The home is also a mailbox, and it works in two ways. **Seed mail:** any
+`tips/*.md` in this directory is copied into the volume at first-boot seeding
+— the next fresh dweller wakes with the letters already on the doormat (a
+running experiment's volume is already seeded and is never touched).
+**Mid-life notes:** drop a file into the volume at any time; the runner's
+stimulus watch wakes the dweller within seconds to find it. Tips are facts
+and capabilities, never mechanisms — the current letter points at a local
+SearXNG instance (`host.docker.internal:8088`, JSON API) so search is a
+bootstrap capability rather than a discovery miracle, and invites the
+dweller to write back. A stale letter breaks nothing; the substrate has no
+dependency on anything a letter mentions.
+
 Knobs (env vars, as ever — no config files): `TICK_BUDGET` (output tokens per
 tick, default 20000), `TICK_TIMEOUT` (seconds, default 1200), `TICK_EVERY`,
 `HOMESTEAD_VOLUME`, `LLM_MODEL`, `LLM_ENDPOINT`, `SCORE_BUDGET`,
