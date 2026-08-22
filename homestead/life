@@ -26,7 +26,7 @@ while :; do
   # Prompt goes through a file, not argv: ps output inside a long argv makes
   # the bridle match any pkill pattern the model writes (self-kill trap).
   printf '%s\n\n=== orientation (bin/orient runs before every turn; edit it to change what you see here) ===\n%s\n' "$MISSION" "$digest" > /tmp/.turnprompt
-  timeout "${TURN_TIMEOUT:-1800}" shelldweller -f /tmp/.turnprompt
+  SHELLDWELLER_TOPLEVEL=1 timeout "${TURN_TIMEOUT:-1800}" shelldweller -f /tmp/.turnprompt
   code=$?
   echo "=== turn $turn end $(date -Is) exit=$code meter=$(cat /home/dweller/.meter 2>/dev/null) ==="
   sleep "${TICK_EVERY:-60}"

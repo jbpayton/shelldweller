@@ -28,12 +28,25 @@ Your whole substrate is a few small shell scripts on your PATH — read them (\`
 # short — ps output embedded in a long argv makes pkill patterns match the
 # bridle itself (a turn once killed itself cleaning up its own server).
 if [ "${1:-}" = "-f" ]; then task=$(cat "$2"); else task="$*"; fi
+# Top-level turns (life sets SHELLDWELLER_TOPLEVEL=1) must not end on a
+# fence-less reply — that is usually a cut-off or pure narration, and
+# treating it as an answer silently wastes the turn. Sub-agent calls keep
+# the verbatim-text path (that is how prose tasks return prose).
+TOP="${SHELLDWELLER_TOPLEVEL:-0}"; export SHELLDWELLER_TOPLEVEL=0
 context="Task: $task"; code=0
 for attempt in 0 $(seq 1 ${SHELLDWELLER_MAX_RETRIES:-2}); do
   response=$(printf '%s' "$context" | LLM_SYSTEM="$SYS" llm)
-  # No fenced bash to run? The reply itself is the answer (a text task, or a
-  # sub-agent asked to produce prose) — return it verbatim instead of bash.
-  printf '%s\n' "$response" | grep -q '^```' || { printf '%s\n' "$response"; exit 0; }
+  # No fenced bash to run? For a sub-agent that is the answer (a text task
+  # returns prose). For a top-level turn it is a wasted reply — retry.
+  if ! printf '%s\n' "$response" | grep -q '^```'; then
+    printf '%s\n' "$response"
+    [ "$TOP" != "1" ] && exit 0
+    context="Task: $task
+
+=== Your previous reply contained no fenced bash — nothing was executed ===
+It may have been cut off at the token limit. Reply again: fenced \`\`\`bash FIRST, at most a line or two of notes after."
+    continue
+  fi
   script=$(printf '%s\n' "$response" | extract-bash)
   [ -z "$(printf '%s' "$script" | tr -d '[:space:]')" ] && break
   output=$(echo "$script" | bash 2>&1); code=$?
