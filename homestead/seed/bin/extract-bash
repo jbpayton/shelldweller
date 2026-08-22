@@ -1,0 +1,8 @@
+#!/bin/sh
+# extract-bash — extract bash from markdown ``` fences. If no fences, pass-through.
+content=$(cat)
+if printf '%s' "$content" | grep -q '^```'; then
+  printf '%s\n' "$content" | awk '/^```/ { in_code = !in_code; next } in_code { print }'
+else
+  printf '%s\n' "$content"
+fi

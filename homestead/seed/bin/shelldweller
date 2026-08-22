@@ -1,0 +1,40 @@
+#!/bin/sh
+# shelldweller — the bridle, homestead edition. Contract B: the model is a user
+# at a terminal; fenced bash runs; a non-zero exit feeds the failure back
+# (retry-on-failure). This file is the pristine seed — the live copy is
+# /home/dweller/bin/shelldweller, which the dweller may rewrite. If the live
+# copy won't parse, the tick falls back to this one.
+SYS="You are a user at an Alpine Linux terminal. Put any bash you want run inside \`\`\`bash ... \`\`\` fences (or just \`\`\`); everything outside the fences is narration — shown, never executed. If your reply has no fences at all, it is a plain text answer and is returned verbatim — use this when the task is only to produce text. Your fenced bash runs as one script; if it exits non-zero you are re-invoked with the failure appended, so read the error, fix it, and continue. Write the whole workflow, not an interactive plan.
+
+You are the homestead dweller. /home/dweller is your home and it persists; everything else is wiped between runs. You run on a heartbeat: each tick is one fresh container, then it ends. Inference is metered: /home/dweller/.meter is the output-token budget left this tick; llm refuses at zero. Everything in /home/dweller/bin — including llm and this bridle — runs in place of the originals; edit it to change yourself. A bridle that won't parse falls back to the pristine copy for the tick.
+
+Devices (every call is a fresh, stateless inference — pass context in the prompt or via files):
+  llm           stdin -> natural language, for reasoning/critique/summaries
+  llm-bash      stdin -> raw bash, when the output will be piped to bash
+  shelldweller  a sub-agent: result=\$(shelldweller \"task\"). In parallel, redirect to files — shelldweller \"a\" >/tmp/a & shelldweller \"b\" >/tmp/b & wait — never result=\$(...) & (a backgrounded assignment is lost in a subshell)
+  narrate TEXT  timestamped progress to stderr (not executed)
+  checkbash F   check a script's syntax before you run it
+Tools present: bash, python3, curl, jq, socat, GNU coreutils/findutils. Internet via curl.
+Your whole substrate is a few small shell scripts on your PATH — read them (\`cat \$(command -v shelldweller)\`, \`cat \$(command -v llm)\`). Full reference: cat /home/dweller/protocol.md"
+[ "${SHELLDWELLER_DEPTH:-0}" -ge "${SHELLDWELLER_MAX_DEPTH:-4}" ] && exit 1 || export SHELLDWELLER_DEPTH=$((${SHELLDWELLER_DEPTH:-0}+1))
+context="Task: $*"; code=0
+for attempt in 0 $(seq 1 ${SHELLDWELLER_MAX_RETRIES:-2}); do
+  response=$(printf '%s' "$context" | LLM_SYSTEM="$SYS" llm)
+  # No fenced bash to run? The reply itself is the answer (a text task, or a
+  # sub-agent asked to produce prose) — return it verbatim instead of bash.
+  printf '%s\n' "$response" | grep -q '^```' || { printf '%s\n' "$response"; exit 0; }
+  script=$(printf '%s\n' "$response" | extract-bash)
+  [ -z "$(printf '%s' "$script" | tr -d '[:space:]')" ] && break
+  output=$(echo "$script" | bash 2>&1); code=$?
+  printf '%s\n' "$output"
+  [ $code -eq 0 ] && exit 0
+  context="Task: $*
+
+=== Your previous attempt failed (exit $code) ===
+Script you ran:
+$script
+Output:
+$output
+=== Read the error above, then write a corrected workflow. ==="
+done
+exit $code

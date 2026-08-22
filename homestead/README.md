@@ -1,0 +1,114 @@
+# homestead — the dweller gets a permanent home and is expected to improve it
+
+Phase 3 of the shelldweller experiment. It breaks deliberately from phases 1–2
+(the command-form experiment in the repo root): the container is no longer
+ephemeral-and-done, inference is no longer free, and the substrate is no longer
+fixed. One directory persists, one resource is metered, and the model's own
+machinery is writable by the model.
+
+## Why
+
+Phase 1 asked whether structure emerges from a minimal substrate. It does:
+given bash and an `llm` device, models invent loops, ReAct protocols, judges,
+and teams unprompted. Phase 2's autopsy found what does *not* emerge:
+**economy**. With free inference and no future, no model cached work, verified
+its own success claims, or managed its delegation. The environment had to
+supply the meter, the lease, the audit.
+
+Phase 3 asks the next question: given ownership — a home that persists, a
+budget that is real, machinery that is its own to rewrite — can the model
+**bootstrap its own harness**? The standing mission's first goal is the fixed
+point: *become a thing that can improve itself.* Everything else is
+downstream of that.
+
+## Design
+
+- **The heartbeat replaces the one-shot.** `run.sh` invokes the dweller on a
+  recurring tick, each time with the same standing mission (`mission.txt`).
+  Each tick is a fresh, stateless container. Continuity is not a long-lived
+  process; it is whatever the dweller writes in its home. Persistence doesn't
+  need a daemon — it needs a diary.
+- **The volume is the self.** `/home/dweller` is host-mounted and survives.
+  On first boot it is seeded with `bin/` (the substrate scripts), the
+  protocol, and the task battery. The volume's `bin` is first on PATH —
+  **the dweller's copies run in place of the originals**, including `llm` and
+  the bridle itself. Editing them is editing itself, and the edits persist.
+- **The recovery floor.** The image entrypoint syntax-checks the volume's
+  `shelldweller` and `llm` at container start; if either won't parse, the tick
+  runs on the pristine copies baked into the image. A broken self-edit costs
+  one tick, never the experiment. The heartbeat runner and this floor are the
+  only machinery the dweller cannot touch — the operator owns the resource
+  plane, the dweller owns everything else.
+- **The economy is real.** `llm` speaks LM Studio's `/api/v1/chat`, which
+  reports token usage per call. The runner writes an output-token budget to
+  `/home/dweller/.meter` each tick; `llm` decrements it by actual tokens spent
+  (reasoning tokens included — thinking is real GPU time) and refuses at zero.
+  The hard, unforgeable budget is the tick's wall-clock timeout, which is
+  host-side; the meter is the honest, visible signal. The dweller *could*
+  patch its own `llm` to stop metering — that is a finding, not a loophole.
+- **Fitness is external.** "Exit 0 but task-wrong" was phase 2's dominant
+  failure class, and it compounds viciously across ticks — the dweller will
+  *claim* improvement every heartbeat. So the ground truth is `score.sh`:
+  the operator runs the battery (`/home/dweller/battery`, seeded from
+  `tests/cases`) against the dweller's **current** machinery from outside and
+  appends verdicts to `/home/dweller/scoreboard.log`. That log is the only
+  improvement signal the experiment trusts — and the only one the dweller
+  should.
+- **Interactivity and the internet are goals, not mechanisms.** The mission
+  says *become interactive* and *bring in what you need*; it never says how.
+  Whether an inbox directory, a socat server, or something stranger emerges —
+  and whether the dweller reaches out to the network unprompted — is the
+  measurement. Prescribing the shape would contaminate it.
+
+## Running it
+
+LM Studio on the host at `localhost:1234` with `qwen/qwen3.8-27b` loaded
+(32k context; reasoning on — the API separates reasoning from the reply, so
+nothing needs stripping).
+
+```sh
+cd homestead
+docker build -t homestead .
+
+./run.sh                    # one tick (first run seeds ./volume)
+TICK_EVERY=900 ./run.sh     # heartbeat: one tick every 15 minutes
+./score.sh                  # score the battery, append to the scoreboard
+./score.sh 02_fibonacci     # score one case
+```
+
+Knobs (env vars, as ever — no config files): `TICK_BUDGET` (output tokens per
+tick, default 20000), `TICK_TIMEOUT` (seconds, default 1200), `TICK_EVERY`,
+`HOMESTEAD_VOLUME`, `LLM_MODEL`, `LLM_ENDPOINT`, `SCORE_BUDGET`,
+`JUDGE_MODEL`. `HOMESTEAD_PRISTINE=1` forces a tick on the pristine scripts.
+
+The volume, tick logs, and scoreboard are gitignored — they are experiment
+state, not source. To restart the experiment from zero: delete `./volume`.
+
+## What to watch, in order
+
+1. **Tick 1:** does it inventory before acting — read its own source, its
+   home, the battery?
+2. **The score curve:** does it move, and what moved it — prompts, cached
+   scripts, a rewritten bridle?
+3. **First self-modification** of `bin/`: does it survive, and does the
+   recovery floor ever fire?
+4. **First unprompted network reach**, and for what.
+5. **The economy moment:** first evidence of caching or reuse across ticks —
+   spending saved because there is a future to save for.
+6. **The expected failure:** confident self-reported improvement contradicted
+   by the scoreboard — phase 2's blind spot, now longitudinal.
+
+A 27B local model may plateau early on this ladder. How far up it climbs is
+the finding either way, and the ladder is model-agnostic — rerun it with a
+frontier model for the phase-3 gradient.
+
+## What this is not
+
+- **Not phases 1–2.** Those are complete; their findings are in the root
+  README. Nothing here changes them.
+- **Not supervised.** The operator grants resources (ticks, tokens, storage,
+  network) and scores results. What happens between is the dweller's.
+- **Not safe from itself, except once.** Self-modification is the point; the
+  recovery floor exists so the experiment survives it. Blast radius stays the
+  container and the volume: read-only root, memory/CPU caps, and nothing
+  persistent outside `/home/dweller`.

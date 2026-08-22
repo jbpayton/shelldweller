@@ -1,0 +1,15 @@
+#!/bin/sh
+# homestead-entry — the recovery floor. Prefer the dweller's own machinery in
+# /home/dweller/bin; if its bridle or llm won't parse (or HOMESTEAD_PRISTINE=1),
+# run this tick on the pristine copies baked into the image. A broken self-edit
+# costs one tick, never the experiment.
+export HOME=/home/dweller
+if [ "${HOMESTEAD_PRISTINE:-0}" != "1" ] \
+   && bash -n /home/dweller/bin/shelldweller 2>/dev/null \
+   && bash -n /home/dweller/bin/llm 2>/dev/null; then
+  export PATH="/home/dweller/bin:$PATH"
+else
+  echo "[homestead] pristine tick (volume machinery absent, unparseable, or HOMESTEAD_PRISTINE=1)" >&2
+fi
+cd /home/dweller 2>/dev/null || cd /
+exec shelldweller "$@"
