@@ -47,6 +47,16 @@ for attempt in 0 $(seq 1 ${SHELLDWELLER_MAX_RETRIES:-2}); do
 It may have been cut off at the token limit. Reply again: fenced \`\`\`bash FIRST, at most a line or two of notes after."
     continue
   fi
+  # An odd number of fence markers means the reply was cut off inside a
+  # fence — running the half-script harms more than it helps. Retry instead.
+  if [ $(( $(printf '%s\n' "$response" | grep -c '^```') % 2 )) -ne 0 ]; then
+    printf '%s\n' "$response"
+    context="Task: $task
+
+=== Your previous reply was CUT OFF mid-fence — nothing was executed ===
+Resend ONLY the fenced bash, smaller: one step this turn, the rest next turn."
+    continue
+  fi
   script=$(printf '%s\n' "$response" | extract-bash)
   [ -z "$(printf '%s' "$script" | tr -d '[:space:]')" ] && break
   output=$(echo "$script" | bash 2>&1); code=$?
