@@ -14,8 +14,32 @@ The thesis: if the substrate is right, the harness becomes unnecessary. The expe
 
 ## Experiments
 
-- **Phases 1–2 — the command-form experiment** (this README, complete): does structure emerge from a minimal substrate? It does — loops, ReAct protocols, judges, and teams, all unprompted. The three-model comparison found the plumbing never failed and every failure was the model's own workflow; what *didn't* emerge was economy — no model cached work, verified its success claims, or managed its delegation while inference was free.
-- **Phase 3 — [homestead](homestead/)** (current): the dweller gets a persistent home, a real token meter, and machinery it can rewrite — including its own bridle. The question is no longer whether a harness emerges for one task, but whether the model can bootstrap one for itself that compounds across runs. See [`homestead/README.md`](homestead/README.md).
+- **Phases 1–2 — the command-form experiment** (this README, complete): does
+  structure emerge from a minimal substrate? It does — loops, ReAct protocols,
+  judges, and teams, all unprompted. The three-model comparison found the
+  plumbing never failed and every failure was the model's own workflow; what
+  *didn't* emerge was economy — no model cached work, verified its success
+  claims, or managed delegation while inference was free.
+
+- **Phase 3 — [homestead](homestead/)** (current): the dweller gets a persistent
+  home, a real token meter, a published port, and machinery it can rewrite —
+  including its own bridle and its own orientation. The question is no longer
+  whether a harness emerges for one task, but whether the model can bootstrap
+  one for itself and keep it working.
+
+  So far, on a 27B model running on one consumer GPU: a working chat page
+  75 minutes from first boot, the full 20-case battery swept overnight
+  (including case 20, the task inbox that beat all three frontier models in
+  phase 2), self-built tooling and a self-healing 10-minute status feed — and a
+  set of failure classes that turn out to matter more than the successes, all
+  about **decay**: instruments that outlive the thing they measure, metrics that
+  get Goodharted once they rot, and memory stores that drift apart until a bare
+  pointer outranks a reasoned decision.
+
+  Read [`homestead/FINDINGS.md`](homestead/FINDINGS.md) for the journey,
+  [`homestead/README.md`](homestead/README.md) for the architecture, and
+  [`docs/substrate-engineering.md`](docs/substrate-engineering.md) for what
+  three phases did to the thesis.
 
 ## Quickstart
 

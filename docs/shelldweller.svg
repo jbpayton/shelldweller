@@ -51,26 +51,31 @@
   <!-- phase 3: homestead -->
   <text x="60" y="462" font-size="13" fill="#fbbf24" letter-spacing="3">PHASE 3 · HOMESTEAD</text>
 
-  <rect x="60" y="474" width="96" height="38" rx="6" fill="#111713" stroke="#2c4534"/>
-  <text x="108" y="498" font-size="13" fill="#e9e7e2" text-anchor="middle">tick n</text>
-  <line x1="156" y1="493" x2="182" y2="493" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arr)"/>
-  <rect x="186" y="474" width="96" height="38" rx="6" fill="#111713" stroke="#2c4534"/>
-  <text x="234" y="498" font-size="13" fill="#e9e7e2" text-anchor="middle">tick n+1</text>
-  <line x1="282" y1="493" x2="308" y2="493" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arr)"/>
-  <rect x="312" y="474" width="96" height="38" rx="6" fill="#111713" stroke="#2c4534"/>
-  <text x="360" y="498" font-size="13" fill="#e9e7e2" text-anchor="middle">tick n+2</text>
-  <text x="428" y="499" font-size="15" fill="#8fa898">…</text>
+  <!-- one persistent container, turns inside it -->
+  <rect x="60" y="470" width="560" height="60" rx="6" fill="#0f1512" stroke="#5a4a1e" stroke-dasharray="5 3"/>
+  <text x="70" y="486" font-size="11" fill="#fbbf24">one container, stays up</text>
 
-  <rect x="470" y="474" width="150" height="38" rx="6" fill="#111713" stroke="#5a4a1e"/>
-  <text x="545" y="498" font-size="13" fill="#fbbf24" text-anchor="middle">.meter 19431 tk</text>
+  <rect x="74" y="492" width="80" height="30" rx="5" fill="#111713" stroke="#2c4534"/>
+  <text x="114" y="512" font-size="12" fill="#e9e7e2" text-anchor="middle">turn n</text>
+  <line x1="154" y1="507" x2="176" y2="507" stroke="#4ade80" stroke-width="1.4" marker-end="url(#arr)"/>
+  <rect x="180" y="492" width="80" height="30" rx="5" fill="#111713" stroke="#2c4534"/>
+  <text x="220" y="512" font-size="12" fill="#e9e7e2" text-anchor="middle">turn n+1</text>
+  <line x1="260" y1="507" x2="282" y2="507" stroke="#4ade80" stroke-width="1.4" marker-end="url(#arr)"/>
+  <rect x="286" y="492" width="80" height="30" rx="5" fill="#111713" stroke="#2c4534"/>
+  <text x="326" y="512" font-size="12" fill="#e9e7e2" text-anchor="middle">turn n+2</text>
+  <text x="378" y="512" font-size="14" fill="#8fa898">…</text>
 
-  <line x1="108" y1="512" x2="108" y2="536" stroke="#8fa898" stroke-width="1" marker-end="url(#arrdim)"/>
-  <line x1="234" y1="512" x2="234" y2="536" stroke="#8fa898" stroke-width="1" marker-end="url(#arrdim)"/>
-  <line x1="360" y1="512" x2="360" y2="536" stroke="#8fa898" stroke-width="1" marker-end="url(#arrdim)"/>
+  <rect x="400" y="492" width="208" height="30" rx="5" fill="#111713" stroke="#2c4534"/>
+  <text x="504" y="505" font-size="10" fill="#4ade80" text-anchor="middle">services keep running between turns</text>
+  <text x="504" y="517" font-size="9" fill="#8fa898" text-anchor="middle">web page on :8080 · watchers · meter</text>
 
-  <rect x="60" y="540" width="560" height="44" rx="6" fill="#111713" stroke="#22c55e"/>
-  <text x="340" y="561" font-size="14" fill="#4ade80" text-anchor="middle">/home/dweller — persists</text>
-  <text x="340" y="578" font-size="12" fill="#8fa898" text-anchor="middle">the dweller rewrites its own machinery</text>
+  <line x1="114" y1="530" x2="114" y2="548" stroke="#8fa898" stroke-width="1" marker-end="url(#arrdim)"/>
+  <line x1="326" y1="530" x2="326" y2="548" stroke="#8fa898" stroke-width="1" marker-end="url(#arrdim)"/>
+  <line x1="504" y1="530" x2="504" y2="548" stroke="#8fa898" stroke-width="1" marker-end="url(#arrdim)"/>
+
+  <rect x="60" y="552" width="560" height="42" rx="6" fill="#111713" stroke="#22c55e"/>
+  <text x="340" y="571" font-size="14" fill="#4ade80" text-anchor="middle">/home/dweller — survives turns, restarts, reboots</text>
+  <text x="340" y="587" font-size="11" fill="#8fa898" text-anchor="middle">journal · orientation · tools · the dweller rewrites its own machinery</text>
 
   <!-- shell spiral -->
   <path d="M1060 380 A144 144 0 0 0 916 236 A89 89 0 0 0 827 325 A55 55 0 0 0 882 380 A34 34 0 0 0 916 346 A21 21 0 0 0 895 325 A13 13 0 0 0 882 338 A8 8 0 0 0 890 346"
@@ -80,7 +85,7 @@
   <!-- heartbeat trace -->
   <polyline points="790,470 880,470 900,470 912,442 928,492 940,458 952,470 1110,470"
             fill="none" stroke="#fbbf24" stroke-width="2" stroke-linejoin="round" opacity="0.85"/>
-  <text x="950" y="508" font-size="12" fill="#8fa898" text-anchor="middle">the heartbeat · one tick at a time</text>
+  <text x="950" y="508" font-size="12" fill="#8fa898" text-anchor="middle">the heartbeat · a turn at a time</text>
 
   <!-- badges -->
   <text x="600" y="614" font-size="15" fill="#8fa898" text-anchor="middle">pure shell · no framework · fences are the contract · metered inference · persistent home · self-rewriting</text>

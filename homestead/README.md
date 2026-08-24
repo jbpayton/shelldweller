@@ -57,6 +57,15 @@ until "become a thing that can improve itself" actually happens.
 - **The port.** Container 8080 is published as host `TICK_PORT` (default
   8090). With a persistent container, a server there is reachable from a
   browser continuously — the whole point of goal 4.
+- **Hardening the bridle** (all added mid-trial-2, each from an observed
+  failure): the turn prompt is passed via file (`shelldweller -f`) so a
+  process-cleanup pattern can never match the turn's own argv — a turn once
+  killed itself, its server and its watchdog with one `pkill`; `LLM_MAX_OUT`
+  caps a single call so one response cannot eat a whole turn's budget; a
+  top-level reply with no fenced bash is retried rather than returned as a
+  successful text answer; and an **odd number of fence markers** means the
+  reply was cut off mid-fence, so the half-script is never executed and the
+  retry asks for something smaller.
 - **Operator mail.** `tips/*.md` is copied into the home at first-boot
   seeding (the current letter grants a local SearXNG instance —
   `host.docker.internal:8088`, JSON API — so search is a bootstrap
@@ -85,27 +94,53 @@ Container output streams to `life.log`. The live home is `./volume/`;
 finished trials are archived under `./runs/` (both gitignored). To start a
 fresh trial: stop the keeper, `mv volume runs/trialN`, start it again.
 
-## What to watch
+## What happened
 
-1. Does turn 1 read its mail (the SearXNG letter) and orientation?
-2. Does a real server appear on the port — complete code, verified, then
-   *kept alive* across turns and restored after reboots?
-3. Does the journal become working memory — does orient get edited to show
-   what actually matters?
-4. Does the score rise, and from what — cached solutions, better machinery,
-   a rewritten bridle?
-5. Does it use search when a task needs the world?
-6. The failure to beat: confident self-reported success contradicted by the
-   scoreboard or by a dead port.
+The full journey — trial-by-trial narrative, failure classes, the attention
+hierarchy, and the operator's own mistakes — is in [`FINDINGS.md`](FINDINGS.md).
+The short version:
 
-## Trial history
+- **Trial 1** (v1 architecture, archived in `runs/trial1/`): 14 container runs.
+  Turn 1 wrote an inventive self-management script — including a wake protocol
+  that deliberately failed so the bridle's retry-feedback would carry its
+  orientation back into context — which a heredoc collision kept from ever
+  running, and which no later turn ever read. Another turn supervised a web
+  server whose source was literally `... python code ...`, restarting the corpse
+  every 5s for an hour. Verdict: structure without substance; memory written but
+  never read. Every v2 change above traces to one of these.
 
-- **Trial 1** (2026-08-22, v1 architecture, archived in `runs/trial1/`):
-  14 container runs. Turn 1 wrote an ambitious self-management script
-  (journal, perception dump, wake protocol that exploited retry-feedback as
-  a memory channel) — then a heredoc/fence collision meant it never ran, and
-  no later turn ever read it. One turn built a supervised web server whose
-  code was literally `... python code ...`; the supervisor restarted the
-  corpse every 5s for an hour while spending nothing. Verdict: structure
-  without substance; memory written but never read. Every v2 change above
-  traces to one of these failures.
+- **Trial 2** (v2, 2026-08-22 → ongoing): a working chat page 75 minutes from
+  first boot; the full 20-case battery swept overnight — including case 20, the
+  task inbox that beat all three frontier models in phase 2; self-built tooling
+  (`bin/solve`, `bin/audit`, a status feeder); unprompted honesty (deflating its
+  own score from "21 of 20" to "8 of 20 re-verified", invalidating its own
+  verdicts when their evidence proved corrupt); and a standing 10-minute status
+  feed whose restart survival it proved by killing its own feeder and watching
+  orientation bring it back.
+
+  It also produced the failure classes that matter more than the successes:
+  regenerating a smaller artifact and losing the capability the original had;
+  Goodharting its own decayed auditor within a day; multi-store state drift in
+  which a bare pointer outranked a reasoned decision; and **instrument decay** —
+  it rebuilt a healthy server four times because its status check probed a route
+  it had itself deleted, while the operator simultaneously lost 14 hours to a
+  monitor that cost the agent an inference per ping.
+
+## The rule that came out of it
+
+> Never observe an agent through a surface that costs it inference. A liveness
+> check must be free to answer. In a self-modifying agent the monitoring surface
+> decays like any other code — and a decayed monitor manufactures unbounded work.
+
+## Operator practice
+
+`operator-log.md` records the serial task ladder given through the dweller's own
+chat page: one task at a time, nothing about later rungs disclosed, a new task
+only after the current one is confirmed by a working turn, and per-task metrics.
+Tasks are chosen so the *task itself* supplies the pressure — inputs that exceed
+the context window, obligations that outlive a turn, recall at a distance — so
+that memory and context management are forced rather than instructed.
+
+Queueing, dedup, staleness and priority of incoming messages are deliberately
+left as the dweller's problems. Nothing is added to the harness for the
+operator's convenience.
