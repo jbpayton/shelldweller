@@ -70,3 +70,19 @@ Metrics: wall time, working turns consumed, notable failures, what improved.
   observes a dead service and does nothing.
 - Task 3 (status feed) HELD, not restated, until the page is back and the
   dweller reports in on it.
+
+## Post-reboot recovery — 2026-08-24 01:45Z
+- Dweller restored a face within ~20 min of note 8 (general, no mechanism
+  named): wrote a NEW bin/webserver.py (84 lines, / + /health) and started it.
+- REGRESSION: it rebuilt rather than restarted. Its previous web/server.py
+  (3.6KB, POST /ask + chat history + chat.log) still sat untouched on disk;
+  the replacement has no /ask, so the page loads but cannot receive messages.
+  Operator channel still severed; note 9 sent (emergency) stating the symptom
+  only.
+- Pattern across today: under pressure it regenerates a smaller thing that
+  satisfies the immediate check (health 200) and loses the capability the
+  original had — same shape as the audit decay and the orient refactor that
+  kept the report and dropped the remedy.
+- Also still stale: notes/demand.md drives it toward closed task-2 work
+  (verdict list, orient surgery) which are both long done.
+- Task 3 still HELD — cannot be sent until the page can receive.
