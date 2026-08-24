@@ -107,3 +107,22 @@ RULE: never monitor an agent through an endpoint that costs it inference.
 Health checks must be free to answer. This is a substrate-design finding as
 much as an operator mistake — an agent whose only liveness surface is its
 expensive one cannot be observed without being disturbed.
+
+## Symmetric instrument failure — 2026-08-24 12:53
+After the ping cleanup the dweller STILL looped on face restoration (v4).
+Cause found by reading what its orient actually prints each turn:
+- its health line runs `curl localhost:8080/health` -> 000, because its own
+  v3 rewrite dropped the /health route. Meanwhile `/` answers 200 in 0.01s.
+  It has rebuilt a working server four times to fix a fault that lives in
+  its health check, not its server.
+- its orient surfaces "newest-operator-note ... (act on this)", and the
+  newest note FILE was note-9 ("the page cannot hear me"), long stale — so
+  the stale note kept re-issuing the face task every turn. Chat messages
+  could not outrank it.
+Both halves of this experiment therefore spent 24h debugging instruments
+rather than systems: my ping probe (too-short timeout, expensive endpoint)
+and its health probe (route that no longer exists). Best paired finding of
+the trial: in a self-modifying agent, the monitoring surface decays like any
+other code, and a decayed monitor manufactures infinite work.
+Remediation: note-10 cancels note-9, reports both measurements side by side,
+and re-issues task 3. Mechanism deliberately not prescribed.
