@@ -141,3 +141,16 @@ One turn after note-10 cancelled the stale note, the dweller delivered:
 - moved note-9 to dead/ so it can never steer again
 - journalled next step: verify 2+ real ticks, then announce mechanism on page
 Turnaround from unblocking to working standing obligation: ~1 turn.
+
+## Task 3 — CLOSED 2026-08-24 18:52Z
+Verified from outside: four consecutive ticks at exactly 600s (18:18:38,
+18:28:38, 18:38:38, 18:48:38). Announced mechanism on the page accurately.
+Notable: it proved restart survival by KILLING ITS OWN FEEDER and confirming
+orient relaunched it — demonstration, not assertion. It also propagated the
+instrument fix through its own memory ("STALE-HEALTH-PURGE": hunted the
+stale 'check /health each turn' instruction out of every live file).
+Wall time from unblock (note-10, 16:53Z) to close: ~2h, ~6 working turns.
+Sent: task 4 (recall at distance) — what were tasks 1-3, where does the
+answer come from, and make the next recall cheap. Deliberately noting that
+I deleted 860 junk lines from its chat log, so raw scrollback is not a
+complete record; it must rely on its own written history.
