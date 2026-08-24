@@ -224,3 +224,30 @@ this" — chat demonstrably cannot steer it). Ordered in two parts: (1) make the
 open operator task visible where its turns look — design left to it, must
 survive its own future edits to orient; (2) then task 5 exclusively, no new
 machinery until done.
+
+## DEADLOCK — 2026-08-24 22:54Z → 23:55Z, operator-caused (third time)
+Four consecutive turns (155-158) ended at **exactly meter=-12768**. That is
+20000 - 32768, i.e. two llm calls each generating precisely the 16384-token
+LLM_MAX_OUT cap. ~12 minutes of GPU per turn, no journal entry, no work, four
+turns running. The agent was alive and unable to think.
+Mechanism: the model generated a maximum-length response that never resolved
+into runnable fenced bash; the unclosed-fence/no-fence guard correctly refused
+it and retried; the retry also ran to the cap; budget gone. The guards behaved
+exactly as designed and the turn still produced nothing.
+Cause: **my note-11.** It landed at 22:30 and the runaway began with the very
+next turn. The note was ~35 dense lines — and the dweller's own orient prints
+`sed -n '1,40p'` of the newest note into EVERY prompt. A long, multi-part,
+confrontational instruction ("you cannot be steered", two ordered demands, plus
+task 5 restated) pushed a 27B into unbounded deliberation it could not resolve.
+This is the third operator-caused contamination of this trial (ping probe,
+stale note-9, now note-11), and the pattern across all three is the same:
+**what the operator puts in front of the agent every turn is not a message,
+it is a permanent tax on its ability to think.**
+Remediation: note-11 replaced with 8 lines — one instruction, plus "keep your
+replies short, write the script not an essay". Injected orientation dropped
+6073 -> 4398 bytes.
+Finding worth keeping: an agent that manages its own context can be pushed into
+a deadlock it cannot escape, because escaping requires a working turn and no
+turn can complete. Recovery has to come from the resource plane. A turn-loop
+guard for this (N consecutive turns at the cap with no output -> shrink the
+injected prompt, or fall back to a minimal one) belongs in trial 3.
