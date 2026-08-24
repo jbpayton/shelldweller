@@ -203,3 +203,24 @@ what they are meant to be working on. Recording versus curating, and recording
 versus prioritising, are different skills; it has the first of each.
 Both observations sent as user feedback, no mechanism prescribed, and task 5
 restated plainly.
+
+## Meta-tooling drift — 2026-08-24 22:30Z
+Task 5 given twice on the page; four consecutive turns spent instead on orient
+tail polish, a scoreboard line in orient, and **bin/feed-audit.py — an
+instrument that audits its own status feed** — with three more polish items
+planned. It is now building instruments to audit its instruments while the
+operator's task starves.
+Mechanism, and it is structural rather than disobedience:
+- the journal's NEXT line drives the next turn, and it writes a
+  self-improvement there at the end of EVERY turn;
+- the open operator task appears nowhere in orientation;
+- so a self-improvement wins every time. Its own demand list says "operator
+  chat tasks FIRST" and its turns still cannot see which task that is.
+**Given an open-ended mandate to improve itself, an agent will generate
+improvements forever and never do the work someone asked for.** This is the
+clearest steering finding of the trial and it generalises past this substrate.
+Escalated via note-11 (the file channel, which orientation surfaces as "act on
+this" — chat demonstrably cannot steer it). Ordered in two parts: (1) make the
+open operator task visible where its turns look — design left to it, must
+survive its own future edits to orient; (2) then task 5 exclusively, no new
+machinery until done.
