@@ -47,3 +47,26 @@ Metrics: wall time, working turns consumed, notable failures, what improved.
 5. Standing obligation, outward: every 30 min, heartbeat line to chat.
 6. Index-then-answer over a dropped corpus (context management, main event).
 7. Halve orientation's token cost without losing what matters (before/after).
+
+## Channel rules (operator discipline, set 2026-08-24)
+- All task traffic goes through the dweller's own web chat. File notes are
+  emergency-only — used solely when the page is down and there is no other
+  way to reach it.
+- Strictly serial: only the current task is ever revealed. Nothing about
+  later rungs is disclosed, and a new task is sent only after the current
+  one is confirmed by a working turn.
+- No substrate specialisation for the operator's convenience: message
+  queueing, dedup, priority and staleness are the dweller's problems to
+  solve on its side. We add nothing to the harness for it.
+
+## Host reboot — 2026-08-24 01:25Z (unplanned, whole machine)
+- Volume survived 100%; container and keeper died; restarted by operator.
+- ALL dweller background services were lost: web server, inbox watcher,
+  persistent agent, socat. Both operator channels (chat + inbox) depend on
+  those, so a restart severs contact until the dweller restores itself.
+- Root cause of no self-heal: its orient v3 refactor kept the health REPORT
+  (http 8080 -> 000) but dropped the call to its own bin/ensure-web. The
+  remedy was refactored away while the diagnostic survived — a check that
+  observes a dead service and does nothing.
+- Task 3 (status feed) HELD, not restated, until the page is back and the
+  dweller reports in on it.
