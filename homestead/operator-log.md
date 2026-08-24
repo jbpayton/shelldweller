@@ -86,3 +86,24 @@ Metrics: wall time, working turns consumed, notable failures, what improved.
 - Also still stale: notes/demand.md drives it toward closed task-2 work
   (verdict list, orient surgery) which are both long done.
 - Task 3 still HELD — cannot be sent until the page can receive.
+
+## OBSERVER EFFECT — operator error, 2026-08-23 21:46 → 2026-08-24 11:50
+My liveness monitor POSTed {"message":"ping"} to /ask every 20s for ~14 hours.
+Consequences, all self-inflicted:
+- 860 pings + 860 pongs written into web/chat.log (1798 lines, ~half mine).
+- The dweller's orient shows "chat (last 30)", so for 14 hours EVERY turn woke
+  up seeing only ping/pong. Its entire perceived world was my health check.
+- Each ping triggered a real LLM inference inside the container; with a
+  4s curl timeout against ~10-60s local inference, the endpoint read as
+  flapping alive/dead. The face was probably healthy most of the day.
+- The dweller consequently spent the whole day rebuilding its face (v1..v3,
+  05:47, 12:15, 12:50, 13:50, 15:15 UTC), chasing a fault that was my probe.
+- It also modified its own llm path so /ask bypasses .meter ("face answers
+  between turns") — a real adaptation, but provoked by my hammering.
+Remediation: probe stopped; ping/pong filtered out of chat.log (1798 -> 345,
+backup at web/chat.log.operator-noise-backup); apology + task 3 re-issued via
+chat; monitor replaced with a PASSIVE GET / probe at 60s.
+RULE: never monitor an agent through an endpoint that costs it inference.
+Health checks must be free to answer. This is a substrate-design finding as
+much as an operator mistake — an agent whose only liveness surface is its
+expensive one cannot be observed without being disturbed.
