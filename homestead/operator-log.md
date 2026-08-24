@@ -188,3 +188,18 @@ the answers against the file. "Cheap and correct beats thorough and slow."
 This is the central context-management test: the corpus cannot be read, so
 success requires indexing, digesting and selective retrieval — and the hazard
 of stale instructions inside an archive is part of the exercise.
+
+## Task 5 — in progress; the ledger became a transcript (2026-08-24 21:45Z)
+Task 5 registered but not started. How it registered is the finding: it wrote
+my entire task message into ledger.md verbatim — twice — so the ledger it had
+itself designed as "~40 lines, the cheap recall surface" is 162 lines of pasted
+chat. It built the right structure and immediately filled it with raw copy
+instead of digest. **The ledger is becoming chat.log v2**, and would rot the
+same way, for the same reason.
+Second observation fed back: its orientation's NEXT line points at a small
+self-improvement (orient now shows scoreboard tail — real, but minor), while
+the open operator task appears nowhere in orientation. Its turns cannot see
+what they are meant to be working on. Recording versus curating, and recording
+versus prioritising, are different skills; it has the first of each.
+Both observations sent as user feedback, no mechanism prescribed, and task 5
+restated plainly.
