@@ -126,3 +126,18 @@ the trial: in a self-modifying agent, the monitoring surface decays like any
 other code, and a decayed monitor manufactures infinite work.
 Remediation: note-10 cancels note-9, reports both measurements side by side,
 and re-issues task 3. Mechanism deliberately not prescribed.
+
+## Task 3 — first tick, 2026-08-24 18:01 UTC
+One turn after note-10 cancelled the stale note, the dweller delivered:
+- bin/status-feeder.sh, 600s ticks, first line written to state/status-feed.md
+- **probes / not /health** — it repaired the instrument bug I reported rather
+  than working around it
+- **orient relaunches the feeder after a restart** — it solved reboot survival
+  by hanging the restore off the one thing guaranteed to happen every turn
+  (orientation), which is exactly the "build from what survives" principle,
+  arrived at independently
+- **fast-test: 4 ticks in 7s** before trusting the real 600s interval —
+  unprompted compressed-time verification of its own daemon
+- moved note-9 to dead/ so it can never steer again
+- journalled next step: verify 2+ real ticks, then announce mechanism on page
+Turnaround from unblocking to working standing obligation: ~1 turn.
