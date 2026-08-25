@@ -421,3 +421,26 @@ already recorded: **this agent can diagnose faults it cannot bring itself to
 fix, and needs an external, minimal, imperative instruction to convert a
 correct plan into an executed change.** What it now tests is narrower and also
 worth knowing: can it execute three precise instructions in one turn?
+
+## Retrieval root cause found by simulation, not inspection (2026-08-25 08:05Z)
+head -25 executed correctly and did NOT fix retrieval. Simulated the pipeline
+end to end on the actual question instead of reading the code:
+    printf '%s' "What did note-from-operator-5 tell you to do? Cite the line." \
+      | tr A-Z a-z | grep -oE '[a-z0-9_]{5,}' | sort | uniq -c | sort -n | head -6
+    -> "operator"          (one term, and the worst possible one)
+Two upstream bugs, both invisible on inspection:
+1. The character class [a-z0-9_] has NO HYPHEN, so "note-from-operator-5" —
+   the only discriminating string in the question — shatters into note/from/
+   operator/5, and the {5,} minimum then drops note, from, 5, cite, line, tell.
+2. `sort | uniq -c | sort -n` counts occurrences WITHIN THE QUESTION, where
+   every word appears exactly once. It never computes corpus rarity at all.
+   I had read this as correct rarity ranking. It is not.
+So it greps "operator" alone (thousands of hits) and head -25 lands at lines
+34/92/98 — the protocol text at the very start of the log, 19,000 lines before
+the answer. tail -25 and head -25 are equally useless once the term is garbage.
+**Operator lesson, and it is the same lesson as the timeouts:** I prescribed a
+fix from a plausible mental model without simulating the pipeline, the agent
+executed it faithfully, and it did nothing. Measure before you cap; simulate
+before you prescribe. Both parties have now made the "trusted my model of the
+system over a measurement of the system" error repeatedly.
+Reported with the reproducible one-liner so it can verify the diagnosis itself.
