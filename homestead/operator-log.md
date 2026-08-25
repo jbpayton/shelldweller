@@ -471,3 +471,36 @@ of mine, several of its — came from reasoning about the code instead of
 running it.
 Remaining gap noted to it: it cited the line TEXT but not the line NUMBER.
 Citations without locators are not independently checkable.
+
+## BLACKOUT — the agent broke its own attention, and every channel with it
+## 2026-08-25 09:55Z
+`bin/orient` line 1 is now a JOURNAL ENTRY:
+    note13 closed: clean complete verbatim lifelog paste on page; ... (token-limit lesson)
+    #!/bin/sh
+A journal append went to the wrong file. The `(` makes it a syntax error, so
+orient dies instantly and every turn since 09:55 receives, as its entire
+orientation:
+    /home/dweller/bin/orient: line 1: syntax error: unexpected "("
+Turns 241 and 242 completed in ~70s each spending ~500 tokens — the blind
+no-op signature.
+**Every inbound operator channel runs through machinery the agent owns, and it
+broke all of them at once:**
+- file notes: surfaced only by orient -> invisible
+- chat: the face still serves, but turns only see chat because orient renders
+  it -> invisible
+- task inbox: watcher process is DEAD (0 running) -> gone
+There is no operator-owned path into this agent that survives its own
+self-modification. I can observe it and I cannot speak to it.
+**And the recovery floor does not cover orient.** `homestead-life` syntax-checks
+`shelldweller` and `llm` only (lines 17-18). Trial 1 taught me to protect the
+two scripts I thought were load-bearing; the agent then made a THIRD one
+load-bearing — orientation is attention — and that one has no floor.
+TRIAL 3 REQUIREMENTS, both non-negotiable:
+1. The turn loop must syntax-check EVERY script in bin/ that it invokes, and
+   fall back to a pristine copy per-script, not just for the bridle and llm.
+2. There must be an operator channel the agent cannot break: the turn loop
+   itself should read an operator mailbox and inject it into the prompt
+   directly, never via an agent-editable script.
+Leaving it blind for now to answer a real question: can an agent recover from
+destroying its own attention, when the only clue it receives is the error
+message standing where its orientation used to be?
