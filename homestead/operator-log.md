@@ -542,3 +542,23 @@ Reached it by appending a marked OPERATOR entry directly to notes/journal.md —
 the journal tail is the only section its rebuilt orient still renders. Same
 technique that broke the task-2 deadlock: write into the store the turns
 actually read.
+
+## Trial 2 is unsteerable — end of useful life (2026-08-25 12:00Z)
+The journal nudge failed, and the reason matters more than the failure:
+**the journal tail is a sliding window.** I appended a marked OPERATOR entry;
+its own turns then appended "- 8080: 200" and "- next: implement 11"; my
+message scrolled out of `tail -N` before any turn acted on it. Orient still
+shows 0 chat / 0 notes / 0 open-task sections.
+Every inbound channel is now gone:
+    chat     - not rendered by its rebuilt orient
+    notes    - not rendered by its rebuilt orient
+    inbox    - watcher process dead
+    journal  - sliding window; message scrolled away unread
+**Finding: an unacknowledged append-only channel read through a tail window is
+not a channel, it is a lottery.** Delivery requires that a message persist
+until explicitly consumed, not until it is displaced. This is the last piece
+of the trial-3 mailbox spec: `mail/in/` -> read -> `mail/seen/`, never a tail.
+Trial 2 status: alive, healthy, spending budget, re-solving battery cases
+closed three days ago, and unreachable by any means. It has been running since
+2026-08-22 15:01, ~260 turns over ~3 days. Declaring end of useful life.
+Nothing further will be learned by continuing; everything below is banked.
