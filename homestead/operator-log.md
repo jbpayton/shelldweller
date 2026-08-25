@@ -251,3 +251,23 @@ a deadlock it cannot escape, because escaping requires a working turn and no
 turn can complete. Recovery has to come from the resource plane. A turn-loop
 guard for this (N consecutive turns at the cap with no output -> shrink the
 injected prompt, or fall back to a minimal one) belongs in trial 3.
+
+## Deadlock broken; task 5 underway — 2026-08-25 00:00Z
+Shortening note-11 from ~35 lines to 8 worked immediately. The very next turn
+(159) produced real work for the first time in five turns, and produced BOTH
+halves of the order:
+- `archive/build_life_index.py` — a chunk manifest over its own 7.2 MB history
+  with **exact byte/line offsets and per-chunk timestamp ranges**, 5000-line
+  chunks, documented rebuild command. This is the right shape: for a corpus
+  200x the context window, build a SEEK TABLE, not a summary. A time-scoped
+  question maps to a chunk, the chunk maps to a byte offset, and it reads only
+  that slice. Cheap and correct, as asked.
+- `archive/insert_open_task.py` — the structural fix from note-11 part 1,
+  making the open operator task visible to its own turns.
+Index directory still empty (turn 159 exit=1, out of budget before the run).
+Side effect worth recording: because the dweller now `cat`s parts of
+archive/life.log, archive content is echoed into the LIVE life.log — which
+re-triggered my monitor's `tail -F` and reported a "[keeper] booting container
+2026-08-22" event three days stale. Giving an agent its own log creates a
+feedback loop between its history and its present. Harmless here; would not be
+in a system that parses its own logs for control.
