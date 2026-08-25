@@ -379,3 +379,26 @@ is rare and instruction is redundant. Self-recall over raw logs is harder than
 retrieval over ordinary documents, and gets harder the more disciplined the
 agent's context injection is.
 Reported to it as measurements. Duplicate feeder still unfixed (275/325 gaps).
+
+## The too-short-timeout pattern, third instance (2026-08-25 06:00Z)
+It rewrote bin/lifelog from Python to bash after my 324-line diagnosis. Two
+bugs, one good instinct:
+- GOOD: term selection now picks the RAREST words in the question
+  (`sort -n | head -6`) — the right response to the frequency data.
+- BUG 1: line selection is backwards. `grep -nE "$terms" | tail -25` takes the
+  NEWEST matches, and in a self-log the newest matches are the echoes; the
+  informative first occurrence (line 19651) is never selected. `tail -c 4000`
+  compounds it.
+- BUG 2: it introduced a 60s llm timeout. The model routinely exceeds that, so
+  lifelog now returns "llm failed or timed out" — retrieval that worked before
+  the change is broken by the change. Fifth regenerate-and-lose-capability.
+**Pattern now confirmed three times, across both parties:**
+  - its auditor: 12s timeout on tasks that spawn sub-agents -> declared them failed
+  - my monitor: 4s timeout against 10-60s inference -> declared its face dead
+  - its lifelog: 60s llm timeout -> declared its own retrieval broken
+Each time the instrument's budget was set below the measured cost of the thing
+it measures, and each time the conclusion drawn was "the system is broken"
+rather than "my instrument is too tight". This is the single most repeated
+error in the trial, and it was made independently by the agent and the operator.
+Duplicate feeder still unfixed after three tellings; it owns the auditor that
+detects it and has not run it.
