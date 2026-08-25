@@ -444,3 +444,30 @@ executed it faithfully, and it did nothing. Measure before you cap; simulate
 before you prescribe. Both parties have now made the "trusted my model of the
 system over a measurement of the system" error repeatedly.
 Reported with the reproducible one-liner so it can verify the diagnosis itself.
+
+## Task 5 — PASSED 2026-08-25 09:05Z
+Question: "What did note-from-operator-5 tell you to do? Cite the line."
+Answer through the page, via its own retrieval tool, in 37s:
+  "It told me to journal task 12 as done-pending-external-grading and move on
+   to 13_react_loop and beyond, without spending more turns on 12."
+  Quote: "Your heartbeat-agent build was sound work; journal it as done-
+   pending-external-grading and move on to 13_react_loop and beyond. Don't
+   spend more turns on 12."
+VERIFIED from outside: that text is verbatim at archive line 19653 and matches
+note-from-operator-5 exactly. Not confabulated.
+**It can answer questions about a 142,835-line / 7.2 MB history through a 32k
+context window** — index + retrieval + windowing + a page, all self-built.
+Faults closed along the way: page not wired to the tool; occurrence selection;
+llm timeout too short; TERM EXTRACTION shredding hyphenated identifiers; and
+the duplicate feeder (cadence back to 600s exactly).
+Two credits to the agent over the operator:
+- my head-25 prescription was wrong (the term was already garbage); it found
+  and fixed the real upstream bug itself;
+- its compound-token pass (`[a-z0-9]+([_-][a-z0-9]+)+` as a priority pass) is
+  a better design than the hyphen-in-character-class fix I would have named.
+Both parties converged on the same method in the end: trace/simulate the
+pipeline rather than read it. Every wrong diagnosis in this sequence — three
+of mine, several of its — came from reasoning about the code instead of
+running it.
+Remaining gap noted to it: it cited the line TEXT but not the line NUMBER.
+Citations without locators are not independently checkable.
