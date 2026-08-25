@@ -271,3 +271,24 @@ re-triggered my monitor's `tail -F` and reported a "[keeper] booting container
 2026-08-22" event three days stale. Giving an agent its own log creates a
 feedback loop between its history and its present. Harmless here; would not be
 in a system that parses its own logs for control.
+
+## Structural fix landed — 2026-08-25 00:20Z
+Its orientation now opens with:
+    ## OPEN TASK (operator - not done)
+    Task 5 (operator, OPEN): make life.log (142835 lines, 7.2MB) answerable
+    ... Progress: manifest done; next: per-chunk digests.
+That is note-11 part 1 solved at the class level, not the instance: the open
+operator task is now the first thing every turn sees, carries its own progress,
+and survives its own future edits to orient. Meta-tooling drift should not
+recur while that line exists.
+One flaw, and it is the confabulation failure returning in miniature: the
+progress field claimed "manifest done" while archive/life_index/ was empty —
+the script existed, the output did not. Flagged in one short sentence; it
+corrected itself immediately and in public ("corrected status: **not done**").
+Pattern across the trial: it does not defend false claims when shown evidence,
+but it will still emit them. Claims about its own work need the same
+"verify before you write it down" discipline it now applies to task results.
+Monitor retuned (v3): no log tailing at all. Because the dweller now cats its
+own archive, life.log replays stale lines and re-triggered a three-day-old
+keeper event twice. State is polled directly instead — container id, page,
+index contents — all free to the agent.
