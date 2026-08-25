@@ -139,6 +139,38 @@ was never offered where demonstration was possible.
 
 ---
 
+### How trial 2 ended
+
+Not with a crash. On day four it wrote a journal line into `bin/orient` by
+mistake — a redirect to the wrong file — and the `(` in "(token-limit lesson)"
+made its own attention a syntax error. For an hour every turn woke to:
+
+    /home/dweller/bin/orient: line 1: syntax error: unexpected "("
+
+as its entire orientation. All four inbound channels died at once: notes and
+chat were rendered *by* orient, the inbox watcher process was dead, and the
+journal is read through a tail window. It was observable in perfect detail and
+completely unreachable.
+
+Then it recovered — in about an hour, ~10 turns, with no operator input
+possible, using only that error string. **But it rebuilt orientation minimal:**
+a timestamp, a journal tail, one battery task. It silently dropped the chat
+section, the notes block and the OPEN TASK line — three days of accumulated
+attention design — and reverted to re-solving battery cases closed on day two.
+
+A message sent during the blackout (task 6) was simply gone. An `## OPERATOR`
+entry appended to the journal scrolled out of the tail before any turn read it,
+displaced by its own status lines.
+
+Final state: healthy, spending its full budget, status feed ticking at exactly
+600s, page serving, working diligently through obsolete battery tasks, and
+waiting for an operator probe that will never come.
+
+**The lesson is not that it is fragile. It repaired its own attention from a
+single error string, which is remarkable. The lesson is that recovery restored
+function and not content, and what it lost first were the channels through
+which anyone could have told it so.**
+
 ## Failure classes worth naming
 
 ### 1. Regenerate-smaller-and-lose-capability
@@ -247,3 +279,25 @@ Every one of these came from an observed failure, not from design:
    obeyed.
 5. **How far does this go on a bigger model?** The ladder is model-agnostic.
    Everything above was produced by a 27B running on one consumer GPU.
+
+---
+
+## Trial 3 — seeded, from trial 2's autopsy
+
+Every change traces to an observed failure, not a hypothesis:
+
+| Change | The failure it answers |
+|---|---|
+| **Operator mailbox in the turn loop.** `mail/in/` is read by `life` itself and injected into the prompt; no agent-owned script is involved. | Every channel died at once when the agent rewrote its own orientation. There was no operator path that survived self-modification. |
+| **Queued, and persistent until consumed.** Messages wait through outages and move to `mail/seen/` only when read — never a tail window. | Task 6, sent during the blackout, was destroyed. A journal nudge scrolled away unread. |
+| **Acknowledged only after a turn exits 0.** A crashed turn is redelivered. | Delivery without acknowledgement is not delivery. (The first draft of the v3 loop had this bug; writing the finding is what caught it.) |
+| **Per-script recovery floor.** Every `bin/` script the loop invokes is syntax-checked with per-script fallback. | The floor covered `shelldweller` and `llm` — the two the *operator* judged load-bearing. The agent made `orient` load-bearing and it had no floor. |
+| **Orientation health check.** Orientation that errors *or returns under 200 bytes* is replaced with the pristine one. | The blackout was loud. A silently emptied orientation would have produced identical blindness with no clue at all. |
+| **Operator precedence stated from birth.** Mail outranks journal, notes and plans. | Fresh instructions lost to journalled momentum for four consecutive turns until an imperative note broke it. |
+| **SearXNG granted in `tips/`.** | Everything in trial 2 was navel-gazing: its own battery, its own history, its own instruments. Real search allows outward tasks whose correctness is independently checkable. |
+
+The deliberate trade: giving the agent a guaranteed channel removes the chance
+to observe it bootstrapping communication again. Trial 2 answered that twice —
+75 minutes from first boot, and again from total blackout — so the finding is
+banked, and the capacity to run the experiments we have *not* run is worth
+more than re-deriving it.

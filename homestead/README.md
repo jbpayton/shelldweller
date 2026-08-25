@@ -118,6 +118,13 @@ The short version:
   feed whose restart survival it proved by killing its own feeder and watching
   orientation bring it back.
 
+  It ended on day four by writing a journal line into its own `bin/orient`,
+  turning its attention into a syntax error and killing every operator channel
+  at once. It repaired that from the error string alone in about an hour — then
+  rebuilt orientation minimal, silently dropping the chat, notes and open-task
+  sections it had spent three days building, and reverted to re-solving battery
+  cases closed on day two. Recovery restored function, not content.
+
   It also produced the failure classes that matter more than the successes:
   regenerating a smaller artifact and losing the capability the original had;
   Goodharting its own decayed auditor within a day; multi-store state drift in
