@@ -14,8 +14,8 @@
 # LLM_ENDPOINT.
 set -uo pipefail
 cd "$(dirname "$0")"
-VOL="${HOMESTEAD_VOLUME:-$PWD/volume}"
-PORT="${TICK_PORT:-8090}"
+VOL="${HOMESTEAD_VOLUME:-$PWD/volume3}"
+PORT="${TICK_PORT:-8091}"
 IDLE_KILL="${IDLE_KILL:-1800}"
 
 if [ ! -d "$VOL/bin" ]; then
@@ -26,6 +26,7 @@ if [ ! -d "$VOL/bin" ]; then
   cp -r ../tests/cases "$VOL/battery"
   # Operator mail: letters waiting in the home on the first turn.
   [ -d tips ] && cp tips/*.md "$VOL/" 2>/dev/null
+  mkdir -p "$VOL/mail/in" "$VOL/mail/out" "$VOL/mail/seen"
 fi
 
 watchdog() {

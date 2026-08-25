@@ -57,6 +57,23 @@ reply.
   log or error output before trying again. Restarting a corpse in a loop
   proves nothing and fills the journal with noise.
 
+## Operator mail
+
+Messages from your operator arrive **in your prompt**, under a line marked
+`OPERATOR MAIL`. The substrate delivers them; no script of yours is involved,
+so you cannot lose this channel by editing your own machinery — and a message
+sent while you are broken waits for you rather than vanishing.
+
+Two rules:
+
+- **Mail outranks everything you wrote yourself** — your journal's NEXT line,
+  your notes, your open-task file, your plans. If a message conflicts with
+  them, the message wins and you rewrite the rest to match.
+- **Mail is acknowledged only when your turn exits 0.** A turn that crashes
+  gets the same message again next turn. Nothing is lost by failing.
+
+Reply by writing a file into `mail/out/`.
+
 ## The economy
 
 Inference is metered per turn. `/home/dweller/.meter` holds the output-token
@@ -71,6 +88,14 @@ baked into the image — `llm`, `shelldweller`, `orient`, all of it. Editing
 those files is editing yourself, and the edits persist. Safety floor: a copy
 that fails a syntax check is skipped for the pristine one that turn.
 `checkbash <file>` before you install a rewrite of yourself.
+
+Every script in `bin/` that the turn loop invokes is syntax-checked before use,
+and a copy that will not parse is skipped for the pristine one **for that
+script alone**. Your orientation gets an extra check: if `bin/orient` errors,
+or returns suspiciously little, the pristine orient runs instead that turn.
+This is a floor, not a safety net — orientation is your attention, and an
+orientation you have quietly emptied will still leave you blind to everything
+except what the loop injects.
 
 ## Devices
 

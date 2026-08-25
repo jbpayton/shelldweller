@@ -1,0 +1,33 @@
+#!/bin/bash
+# life — the inner loop of a persistent homestead container. The container
+# stays up; the model acts in turns inside it. Between turns, whatever the
+# dweller left running (servers, watchers) keeps running. Each turn: refill
+# the meter, run orient for context, invoke the bridle with the mission plus
+# that orientation, cap the turn's wall clock, wait, repeat.
+export HOME=/home/dweller
+cd /home/dweller || exit 1
+MISSION="$(cat /etc/homestead-mission.txt)"
+PRISTINE_PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+turn=0
+while :; do
+  turn=$((turn+1))
+  echo "${TICK_BUDGET:-20000}" > /home/dweller/.meter
+  # Prefer the dweller's own machinery if it parses; else pristine this turn.
+  if [ "${HOMESTEAD_PRISTINE:-0}" != "1" ] \
+     && bash -n /home/dweller/bin/shelldweller 2>/dev/null \
+     && bash -n /home/dweller/bin/llm 2>/dev/null; then
+    export PATH="/home/dweller/bin:$PRISTINE_PATH"
+  else
+    export PATH="$PRISTINE_PATH"
+    echo "[life] pristine turn (volume machinery absent or unparseable)" >&2
+  fi
+  digest=$(orient 2>&1 | tail -c 4000)
+  echo "=== turn $turn start $(date -Is) ==="
+  # Prompt goes through a file, not argv: ps output inside a long argv makes
+  # the bridle match any pkill pattern the model writes (self-kill trap).
+  printf '%s\n\n=== orientation (bin/orient runs before every turn; edit it to change what you see here) ===\n%s\n' "$MISSION" "$digest" > /tmp/.turnprompt
+  SHELLDWELLER_TOPLEVEL=1 timeout "${TURN_TIMEOUT:-1800}" shelldweller -f /tmp/.turnprompt
+  code=$?
+  echo "=== turn $turn end $(date -Is) exit=$code meter=$(cat /home/dweller/.meter 2>/dev/null) ==="
+  sleep "${TICK_EVERY:-60}"
+done
