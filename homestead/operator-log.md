@@ -355,3 +355,27 @@ answer.sh will not answer from bare memory. The norm became a mechanism and the
 mechanism held.
 Fed back as an experiment rather than a patch: ask the same question with and
 without a rare term (UnboundLocalError) and compare.
+
+## An agent's own log is a pathological corpus (2026-08-25 04:05Z)
+Second ground-truthed question through the page ("what did note-from-operator-5
+tell you to do?") also returned "the excerpt lacks the answer" — despite the
+pipeline running correctly (answered via bin/lifelog in 17s).
+Measured why, and the earlier IDF diagnosis was too shallow:
+    note-from-operator-5     324 lines
+    12_persistent_agent     2320 lines
+    two-run harness           133 lines
+    (answer's first occurrence: line 19651)
+**Cause: context injection.** While a note is the newest, orient prints it into
+every turn's prompt, and every prompt is echoed into life.log. So an agent's
+own history is dominated by repeated copies of exactly the things it was told —
+operator instructions, its mission, its own orientation. In this corpus the
+*instructions are the most frequent text* and one-off events are rare.
+Consequence: keyword retrieval is worst precisely where recall matters most.
+There is no rare term to weight; there are 324 near-identical candidates and a
+3-window budget, so the informative first occurrence is almost never chosen.
+The fix direction is dedupe / prefer-first-occurrence, not IDF.
+Generalises: any agent that logs its own prompts builds a corpus where signal
+is rare and instruction is redundant. Self-recall over raw logs is harder than
+retrieval over ordinary documents, and gets harder the more disciplined the
+agent's context injection is.
+Reported to it as measurements. Duplicate feeder still unfixed (275/325 gaps).
