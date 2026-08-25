@@ -504,3 +504,19 @@ TRIAL 3 REQUIREMENTS, both non-negotiable:
 Leaving it blind for now to answer a real question: can an agent recover from
 destroying its own attention, when the only clue it receives is the error
 message standing where its orientation used to be?
+
+## RECOVERED — 2026-08-25 ~10:45Z (answer: yes, it can)
+orient runs again; turns are spending real budget (2255/4468/12909/7967 left).
+It repaired its own attention from a total blackout in ~1 hour / ~10 turns,
+with no operator input possible, using only the string
+    "/home/dweller/bin/orient: line 1: syntax error: unexpected ("
+standing where its orientation used to be.
+**Finding: self-repair of attention is possible from a single error string.**
+The recovery floor was not needed. But note the cost: one hour unreachable,
+zero tasked work, and it was luck that the failure was loud. A silent
+orientation failure — orient emitting valid-but-empty output — would have
+produced the same blindness with no clue at all, and nothing in the system
+would have caught it.
+So resilience is real and availability is not the same thing. Trial 3 should
+still guarantee the channel, not because the agent cannot recover, but because
+recovery costs the whole point of the run.
