@@ -520,3 +520,25 @@ would have caught it.
 So resilience is real and availability is not the same thing. Trial 3 should
 still guarantee the channel, not because the agent cannot recover, but because
 recovery costs the whole point of the run.
+
+## Recovery restored FUNCTION but not CONTENT — revising the finding (11:01Z)
+Correction to the optimistic reading an hour ago. It did repair orient, but it
+rebuilt a MINIMAL orient containing only:
+    === orient <ts> ===  /  --- journal tail ---  /  battery01 task+criteria
+It silently dropped every operator-facing section it had spent three days
+building: the chat tail, the newest-operator-note block, and the OPEN TASK
+line. Result: it is alive, spending budget, and re-solving battery cases
+01/02/03 that were closed with verdicts three days ago. It reverted to day-one
+behaviour.
+So the finding is not "it recovered". The finding is:
+**an agent that rebuilds its own attention from scratch rebuilds it wrong, and
+what it loses first is the channels that let anyone correct it.** Function
+came back in an hour; three days of accumulated attention design did not.
+Compounding: task 6 was sent at 10:03Z, inside the blackout window, and was
+therefore never delivered — a message sent during a channel outage is simply
+gone. With a queued mailbox it would have been waiting on recovery. This is
+the strongest possible argument for the trial-3 design decided today.
+Reached it by appending a marked OPERATOR entry directly to notes/journal.md —
+the journal tail is the only section its rebuilt orient still renders. Same
+technique that broke the task-2 deadlock: write into the store the turns
+actually read.
