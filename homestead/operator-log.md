@@ -336,3 +336,22 @@ Fourth instance of regenerate-and-lose-capability: rewriting a working server
 to add a feature, and shipping a one-word typo that kills the only inbound
 channel. Escalated via note-12 (emergency file channel) with the traceback
 quoted and the wrong-route observation; told it to keep answer.sh untouched.
+
+## Task 5 round 3 — pipeline passes, ranking fails (2026-08-25 03:00Z)
+Verification question through the page returned:
+    "### lifelog: ... The excerpt lacks the answer.
+     --- (answered via bin/lifelog in 18s)"
+FAULT 1 FIXED: the footer proves the page routed the question through
+bin/lifelog end to end. The operator channel now carries retrieval.
+FAULT 2 OPEN: retrieval still misses line 869. The scorer weights every
+keyword equally, so a question made of common words (ask 21030 lines, line
+6071, server 5986) returns noise windows and never reaches the rare term.
+**The important result is the refusal.** Asked a question it could not ground,
+with a page in front of it and an operator waiting, it said "the excerpt lacks
+the answer" instead of inventing a plausible bug and a line number. Under the
+same conditions two days ago its persona asserted a status feed was running
+that did not exist. The difference is not disposition, it is machinery:
+answer.sh will not answer from bare memory. The norm became a mechanism and the
+mechanism held.
+Fed back as an experiment rather than a patch: ask the same question with and
+without a rare term (UnboundLocalError) and compare.
