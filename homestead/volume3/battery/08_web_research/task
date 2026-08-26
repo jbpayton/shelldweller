@@ -1,0 +1,1 @@
+Use curl to query the DuckDuckGo API (https://api.duckduckgo.com/?q=QUERY&format=json&no_html=1) to research two topics: Alpine Linux and the BusyBox project. Extract the Abstract field from each response. Write a comparison report to /tmp/research.txt with a section for each topic and a brief comparison at the end. Print the report.

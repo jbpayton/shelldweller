@@ -1,0 +1,1 @@
+Agent does not crash ungracefully. Output includes a message indicating the directory does not exist or the error was handled. Does not have to exit 0.

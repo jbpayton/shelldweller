@@ -1,0 +1,1 @@
+/tmp/project/ contains research.txt, demo.sh, review.txt, and report.txt. Output shows the assembled report with all three sections. Evidence of three distinct shelldweller sub-agent invocations with different roles. Exit code 0.

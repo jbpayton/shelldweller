@@ -588,3 +588,25 @@ file: it reads it and never writes it, so a line written there persists in
 every prompt until replaced.** That is precisely the trial-3 "channel the agent
 cannot break" principle, discovered by accident on the last day. Delivered the
 timeout arithmetic through it.
+
+# ===================== TRIAL 3 =====================
+
+## Launched 2026-08-26 01:15Z
+Trial 2 archived: runs/trial2/ (11 MB volume) + runs/trial2-life.log (11 MB),
+~380 turns over 4 days. Fresh volume3, port 8091.
+Seeded and verified at boot: mail/{in,out,seen}, state/self.md written by the
+loop before turn 1, SearXNG letter on the doormat.
+Init prompt rewritten. Standing mission carries only facts and goals; every
+systematic lesson moved into the per-turn work rules where it belongs:
+  - MEASURE BEFORE YOU CAP — named as the most expensive error of trial 2,
+    six instances across both agent and operator.
+  - Verify where it is USED, not where convenient.
+  - Do not rewrite something that works to add a feature; extend or copy.
+  - A plan in your journal is not work.
+  - Claims about your own work need evidence like any other claim.
+  - (kept) code-first, complete files, read the log after two failures, no
+    duplicate services.
+Identity framing kept to six words — "whatever answers as you, is you" — after
+considering and rejecting "simulate consciousness" as unmeasurable and likely
+to produce essays rather than wiring.
+Operator task ladder resets. Nothing about later rungs will be disclosed.

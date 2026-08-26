@@ -1,0 +1,1 @@
+The server responded to a POST /task request with valid JSON containing a "result" field. The result contains evidence the task was actually executed (e.g. a file listing, a computed value). The server stayed running until stopped.

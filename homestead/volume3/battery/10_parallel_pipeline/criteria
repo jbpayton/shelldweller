@@ -1,0 +1,1 @@
+Output shows results from all three sub-tasks: a file count for /etc, a list of large /usr/bin files, and a prime count (there are 95 primes up to 500). The results are combined into a coherent report. Evidence of parallel execution (background jobs or similar). Exit code 0.

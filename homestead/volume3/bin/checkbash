@@ -1,0 +1,3 @@
+#!/bin/sh
+# checkbash — validate a bash script's syntax without executing it.
+bash -n "$1" 2>&1 && echo "ok"
