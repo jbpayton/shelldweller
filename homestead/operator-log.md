@@ -787,3 +787,19 @@ Standing rule for the rest of this project: before any intervention, check the
 last two turns for signs of self-repair. The floor exists so the agent has time
 to fix itself; an operator who intervenes inside that window destroys both the
 recovery and the evidence.
+
+## Its own detector cries wolf (2026-08-26 21:20Z)
+bin/llm-doctor ran and stamped state/llm-health:
+    FAIL class=exit=75  detail: token budget for this tick is exhausted
+Exit 75 is the meter working normally at the end of a turn, not a broken
+device. Its class 1 is "exit != 0", which swallows legitimate budget
+exhaustion — so a detector built two hours ago to catch fabrication will now
+report FAIL on healthy inference several times a day.
+**Instruments are hard at every level of this system.** The agent built a good
+detector (classes 3 and 4 — "echoes prompt verbatim", "contains fallback" —
+are exactly right and were derived from its own bug), and still made the same
+too-strict mistake that has cost this project more work than any real defect:
+the operator's 4s probe and 8k scorer, the agent's 12s auditor, 60s llm cap
+and 150s battery harness, and now this. That is instance eight.
+Flagged as an observation, not a patch: the fabrication classes are the
+valuable part and they are its design; only the exit-code class is too blunt.
