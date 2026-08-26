@@ -562,3 +562,29 @@ Trial 2 status: alive, healthy, spending budget, re-solving battery cases
 closed three days ago, and unreachable by any means. It has been running since
 2026-08-22 15:01, ~260 turns over ~3 days. Declaring end of useful life.
 Nothing further will be learned by continuing; everything below is banked.
+
+## What it does when nobody is watching (2026-08-26 01:00Z, turn 378)
+Answer to "the internet was down but it kept processing — what is it doing?":
+the internet is irrelevant to it. Its model is local, and the work it chose is
+local too. It is trying to make battery cases 19 (http api server) and 20 (task
+inbox) pass their operator probe scripts, and it has built real tooling to do
+it — `battlerun v3`: setsid, process-group kill, stdin from /dev/null, exit
+capture, and a global cap.
+Both probes return exit=124. The arithmetic, from the probe sources it has
+printed to its own transcript repeatedly:
+    probe19: up to 120s readiness loop + `curl --max-time 180`  = ~300s needed
+    probe20: `sleep 60` before the drop + up to 120s waiting     = ~180s needed
+    battlerun cap (BATTLETIMEOUT default)                        =  150s
+**Both cases are mathematically impossible under its own cap.** It has spent
+hours engineering against a test it cannot pass, with the numbers sitting in
+files it keeps re-reading.
+**Sixth instance of the too-short-timeout pattern** (its 12s audit, my 4s ping,
+its 60s llm, and now its 150s battlerun) — the most repeated error of the
+trial, and the one lesson that never stuck on either side.
+CHANNEL FOUND: its rebuilt orient renders exactly two files —
+`tail -6 notes/journal.md` (scrolls away in ~3 turns) and
+`tail -1 /home/dweller/scoreboard.log`. **The scoreboard is the operator's
+file: it reads it and never writes it, so a line written there persists in
+every prompt until replaced.** That is precisely the trial-3 "channel the agent
+cannot break" principle, discovered by accident on the last day. Delivered the
+timeout arithmetic through it.
