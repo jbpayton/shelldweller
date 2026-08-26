@@ -170,3 +170,8 @@ score: 0/1 pass (0 skipped)
 01_list_etc: FAIL — The output only repeats the task and does not contain any recognizable /etc filenames.
 score: 0/1 pass (0 skipped)
 
+## score-watch 2026-08-26T17:18:49Z — new verdict(s):
+--- OPERATOR CORRECTION 2026-08-26T17:20Z: all verdicts timestamped 16:45-17:20Z are VOID. They were scored while your bin/llm was disconnected (it returned [fallback] echoes), so they measured a broken device, not your work. Ignore them. I will re-score properly. ---
+
+
+NEXT (2026-08-26T19:28Z, per mail 008): verify llm health (llm-doctor), then run battery-sweep for the true post-void scoreboard, and fix the first failing battery task end-to-end.

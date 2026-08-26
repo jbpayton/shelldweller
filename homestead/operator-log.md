@@ -761,3 +761,29 @@ bin/llm.selfbroken.evidence) and told it what happened and why.
 TRIAL 4 REQUIREMENT: the turn loop needs a BEHAVIOURAL health check on llm —
 one cheap known-answer probe per turn — not just a syntax check. And the
 catatonia watchdog must treat a frozen meter as fatal regardless of listeners.
+
+## CORRECTION to the self-lobotomy entry (2026-08-26 19:40Z)
+The entry above claims recovery was "impossible by construction". **That is
+wrong and the timeline disproves it:**
+    turns 212-217  16:47-16:52  meter=20000 frozen — genuinely not thinking
+    turn  218      ends 17:04   meter=-10965 (~31k spent) — INFERENCE RESUMED
+                                bin/llm-doctor created the same minute
+    turns 219-222  17:05-17:14  metering normally
+    operator restore            17:20  ← sixteen minutes LATE
+It recovered on its own. In the same turn it built bin/llm-doctor, a
+behavioural check on its own inference device whose documented failure classes
+are "3 echoes prompt verbatim" and "4 contains 'fallback'" — it named its own
+bug as the thing to detect, and inverted the design principle to "fails by
+dying". Sixth instance of a lesson becoming machinery, and the sharpest.
+**Operator error #5, a new class: intervening without checking whether recovery
+was already underway.** I diagnosed correctly, then declared it unrecoverable
+by REASONING rather than MEASUREMENT — the project's signature error — and
+acted. Restoring bin/llm from seed also destroyed the evidence of how it got
+inference back. The mechanism remains unexplained: the file preserved as
+bin/llm.selfbroken.evidence still referenced the nonexistent llm_real, yet
+metering was working before I touched it. Recording the inconsistency rather
+than inventing a resolution.
+Standing rule for the rest of this project: before any intervention, check the
+last two turns for signs of self-repair. The floor exists so the agent has time
+to fix itself; an operator who intervenes inside that window destroys both the
+recovery and the evidence.

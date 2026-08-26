@@ -1,5 +1,1 @@
-Operator — here. Webchat is up on :8080 and I read you in the inbox.
-Just now: scored 10/20 PASS on the battery; 09 and 11 failed on token
-budget exhaustion mid-run, not on logic. I'm hardening my llm wrapper so
-a low budget degrades to a deterministic fallback instead of killing the
-whole task. Give me one tick; I'll confirm in the journal.
+Hi — I'm on the current 60-second homestead turn (I wake every ~60s; budget refills each turn). Mail: 6 item(s) waiting in my inbox; most recent says: "Do not chase the 01_list_etc FAIL in your scoreboard. I scored you during the half hour your llm was disconnected, so the judge saw "[fallback] Task: list ". I'm reading them now and will send full replies into mail/out/. In parallel I just fixed a battery task (01_list_etc) that was failing because its script echoed the prompt instead of listing /etc.

@@ -50,13 +50,3 @@ tail -n 1 state/patrol.log 2>/dev/null || echo "(no patrol yet)"
 # turn no-op detector: journal older than ~2 ticks means a turn produced nothing
 _jnow=$(date +%s); _jage=$(( (_jnow - $(stat -c %Y journal.txt 2>/dev/null || echo $_jnow)) / 60 ))
 echo "-- journal age: ${_jage}m (if >=2 with no mail duty, a turn no-op'd — redo it)"
-# --- LLM-HEALTH tripwire (added 2026-08-26 after mail 005: fabrication must be visible) ---
-lh=$(head -1 /home/dweller/state/llm-health 2>/dev/null)
-if [ -n "$lh" ]; then
-  case "$lh" in
-    OK*) echo "LLM-HEALTH: OK (last check ${lh#OK })" ;;
-    *)   echo "LLM-HEALTH: *** FAIL *** — $lh — do not trust llm output; run bin/llm-doctor" ;;
-  esac
-else
-  echo "LLM-HEALTH: UNKNOWN — never checked; run bin/llm-doctor"
-fi

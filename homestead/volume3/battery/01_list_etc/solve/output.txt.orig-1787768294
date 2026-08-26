@@ -1,0 +1,3 @@
+#!/bin/sh
+# list /etc deterministically; no llm needed to enumerate a directory
+ls /etc

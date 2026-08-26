@@ -2,7 +2,7 @@
 # score-watch: append newly-arrived scoreboard verdicts to the journal.
 # usage: score-watch [logfile] [journal] [seenfile] [lockfile]
 LOG="${1:-/home/dweller/scoreboard.log}"
-JOURNAL="${2:-/home/dweller/notes/journal.md}"
+JOURNAL="${2:-/home/dweller/notes/verdicts.md}"
 SEEN="${3:-/home/dweller/state/score-seen}"
 LOCK="${4:-/home/dweller/.score-watch.lock}"
 exec 9>"$LOCK"

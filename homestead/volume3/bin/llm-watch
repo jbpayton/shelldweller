@@ -1,0 +1,8 @@
+#!/bin/bash
+# periodic llm health (10 min). The state stamp is what orient reads every turn.
+while true; do
+  /home/dweller/bin/llm-doctor >> /home/dweller/notes/llm-watch.log 2>&1
+  sz=$(wc -c < /home/dweller/notes/llm-watch.log 2>/dev/null || echo 0)
+  [ "$sz" -gt 100000 ] && { tail -50 /home/dweller/notes/llm-watch.log > /tmp/lwl && mv /tmp/lwl /home/dweller/notes/llm-watch.log; }
+  sleep 600
+done
