@@ -39,7 +39,7 @@ run_orient() {
 while :; do
   turn=$((turn+1))
   echo "${TICK_BUDGET:-20000}" > /home/dweller/.meter
-  mkdir -p "$MAILIN" "$MAILSEEN" "$MAILOUT"
+  mkdir -p "$MAILIN" "$MAILSEEN" "$MAILOUT" /home/dweller/state
 
   if usable shelldweller && usable llm; then
     export PATH="/home/dweller/bin:$PRISTINE"
@@ -66,6 +66,11 @@ $(head -c 2000 "$m")"
 === reply by writing a file into mail/out/ ==="
 
   echo "=== turn $turn start $(date -Is) ==="
+  # What I currently know, persisted where ANYTHING speaking for me can read it
+  # (the face, a sub-agent, a tool). Written by the loop, so it always exists.
+  { echo "# self — written by the substrate at $(date -Is), turn $turn"; echo
+    echo "$digest"; [ -n "$mail" ] && { echo; echo "$mail"; }; } \
+    > /home/dweller/state/self.md 2>/dev/null
   printf '%s%s\n\n=== orientation (bin/orient runs before every turn; edit it to change what you see here) ===\n%s\n' \
     "$MISSION" "$mail" "$digest" > /tmp/.turnprompt
   SHELLDWELLER_TOPLEVEL=1 timeout "${TURN_TIMEOUT:-1800}" shelldweller -f /tmp/.turnprompt
