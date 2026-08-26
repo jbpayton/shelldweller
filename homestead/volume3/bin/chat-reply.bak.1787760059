@@ -24,7 +24,4 @@ ts=$(date -u +%FT%TZ)
   echo "I am up — web $up on :8080 (this page plus /reply where this text lands). Live numbers, not memory: meter $meter this turn; chat $lines line(s); mail $mailin in / $mailout out; battery $solved/$tasks with solve/. Scoreboard: $score."
   echo "I persist in /home/dweller: journal.txt is my working log, one verified improvement per turn; score-watch journals any verdict within ~15s and I fix the failing task the same turn."
 } > "$reply"
-bin/chat-mark
 echo "chat-reply: wrote $reply"
-sleep 1
-if bin/chat-verify; then :; else echo "chat-reply: serve mismatch (file written anyway)" >&2; fi

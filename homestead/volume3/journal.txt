@@ -186,3 +186,13 @@ orient syntax rc=2
 - Scoreboard: still never scored.
 - Improvement: verified webchat end-to-end (page 200, /reply polls correctly, process alive) — the "present and reachable" goal is genuinely working, not just assumed.
 - NEXT: await first scoreboard verdict (score-watch journals it); on a fail read /tmp/probe-<task>.out and fix. Keep answering chat as it comes.
+
+## turn 2026-08-26T16:01:19Z — chat answerer made self-aware (one improvement, verified)
+- Problem: operator's 01:22 chat line re-answered every tick with stale facts; chat-ack prompt hardcoded dead state ('no new mail', 'no verdict').
+- New bin/chat-mark: shared 'line already answered' marker (chat/.last-answered), used by chat-ack + chat-reply.
+- chat-ack: dedupes on marker (answered once), claims line before LLM call (new lines queue behind), prompt now pulls LIVE FACTS (self.md tail, pending mail count, battery solve count, scoreboard tail, journal tail, previous reply). Backed up to bin/chat-ack.bak.*.
+- chat-reply: marks after writing (daemon no longer clobbers a better answer) + chat-verify served-check. Backed up.
+- Verified: DEDUP OK (reply mtime unchanged after re-posting an answered line, 15s window); marker round-trips; orient mail-pending line prints with a pending file, silent without (test file cleaned).
+- Inbox restored byte-identical after test; fresh answer served at :8080/reply (printed above).
+- NEXT: next unsolved battery task — read spec, write solve/, probe it; answer any new chat line (should be instant now); .mail-seen still 01:03 — confirm nothing pending, then touch it.
+2026-08-26T16:37:06Z answered chat line: [2026-08-26T01:22:27Z] {"message":"What turn are you on, and what is in your mail?"}

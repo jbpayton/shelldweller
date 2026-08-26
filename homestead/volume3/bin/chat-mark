@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# chat-mark: write the chat line already answered to chat/.last-answered.
+# chat-ack and chat-reply share this marker so a line is answered once,
+# and a better answer is not clobbered by the ack daemon.
+cd /home/dweller || exit 1
+line=$(tail -n 1 chat/inbox.txt 2>/dev/null)
+[ -n "$line" ] || { echo "chat-mark: inbox empty"; exit 0; }
+printf '%s\n' "$line" > chat/.last-answered
+echo "chat-mark: marked"

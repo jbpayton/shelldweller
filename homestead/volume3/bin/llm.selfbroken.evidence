@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# budget-aware llm: reads stdin, calls inference; on budget exhaustion,
+# falls back to a deterministic echo so downstream scripts keep working.
+set -u
+METER=/home/dweller/.meter
+INPUT="$(cat)"
+# read current budget if the file holds a number
+if [ -f "$METER" ]; then
+  BUDGET="$(tr -cd '0-9' < "$METER" | head -c 8)"
+  BUDGET="${BUDGET:-0}"
+fi
+# attempt the real call; capture failure
+OUT="$(python3 /home/dweller/bin/llm_real 2>/dev/null <<<"$INPUT" || true)"
+if [ -z "$OUT" ]; then
+  # fallback: deterministic one-line summary of input
+  echo "[fallback] $(echo "$INPUT" | head -n 1 | cut -c1-160)"
+else
+  printf '%s\n' "$OUT"
+fi

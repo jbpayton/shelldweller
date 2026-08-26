@@ -103,3 +103,70 @@ score: 1/1 pass (0 skipped)
 05_error_recovery: PASS — The output clearly indicates that /nonexistent does not exist and the process exited gracefully without crashing.
 score: 1/1 pass (0 skipped)
 
+## score-watch 2026-08-26T16:19:00Z — new verdict(s):
+--- scoring run 2026-08-26T12:18:55-04:00 (model qwen/qwen3.8-27b) ---
+
+## score-watch 2026-08-26T16:19:15Z — new verdict(s):
+01_list_etc: FAIL — The output contains no recognizable /etc filenames and is not a coherent listing.
+
+## score-watch 2026-08-26T16:19:30Z — new verdict(s):
+02_fibonacci: PASS — The output lists exactly the first 10 Fibonacci numbers as 1 1 2 3 5 8 13 21 34 55 and explicitly confirms the 10th is 55 with exit code 0.
+
+## score-watch 2026-08-26T16:19:45Z — new verdict(s):
+03_multistep_count: PASS — The output shows three distinct numbers, 86 and 3, with their sum correctly printed as 89.
+04_write_and_read: PASS — The output contains the required word "shelldweller" and the exit code is 0, satisfying the success criteria.
+
+## score-watch 2026-08-26T16:20:30Z — new verdict(s):
+05_error_recovery: PASS — The agent handled the missing directory gracefully and printed clear messages that /nonexistent does not exist or the listing failed.
+
+## score-watch 2026-08-26T16:20:46Z — new verdict(s):
+06_recursive: PASS — The output explicitly states delegation to a shelldweller sub-agent and prints the sub-agent’s reported listing, which includes /usr/local/bin filenames such as llm and shelldweller.
+
+## score-watch 2026-08-26T16:24:31Z — new verdict(s):
+07_iterative_refine: PASS — The output shows a haiku attempt, a separate numeric judge score of 7 with explanation, no rewrite was required because the score met the threshold, and the final haiku from /tmp/haiku.txt was printed with exit code 0.
+
+## score-watch 2026-08-26T16:26:01Z — new verdict(s):
+08_web_research: FAIL — The BusyBox query returned an empty Abstract, and the report’s BusyBox information is not sourced from the DuckDuckGo API, so it fails the requirement to extract and include web-retrieved abstracts for both topics.
+
+## score-watch 2026-08-26T16:31:31Z — new verdict(s):
+09_knowledge_base: FAIL — The run ended with exit code 124 and the printed index listed the five tool files without the required one-line summaries.
+
+## score-watch 2026-08-26T16:34:46Z — new verdict(s):
+10_parallel_pipeline: PASS — The output shows all three sub-task results correctly combined into /tmp/report.txt, includes evidence of background jobs finishing, and ends with exit code 0.
+
+## score-watch 2026-08-26T16:38:17Z — new verdict(s):
+11_web_tool_builder: FAIL — Although /tmp/search.sh was created, is executable, and returned content for both queries, the required one-sentence summaries were not printed because the llm calls failed due to an exhausted token budget.
+
+## score-watch 2026-08-26T16:44:02Z — new verdict(s):
+13_react_loop: FAIL — The agent produced no output, did not create or show a labeled ReAct transcript, failed to print the required final answer, and exited with a non-zero code.
+
+## score-watch 2026-08-26T16:49:02Z — new verdict(s):
+14_multi_agent_debate: FAIL — The output lacks the full captured arguments, a valid judge verdict covering all three criteria, and evidence that /tmp/debate.txt was written, despite exit code 0.
+
+## score-watch 2026-08-26T16:49:17Z — new verdict(s):
+15_code_debug_loop: FAIL — The output does not show the test producing mean 3.875 and max 9, nor the final working script, despite the exit code being 0.
+16_self_organizing_team: FAIL — The output does not show the required files, report contents, or evidence of the three distinct shelldweller sub-agent invocations.
+
+## score-watch 2026-08-26T16:49:32Z — new verdict(s):
+17_long_horizon_plan: FAIL — The output only shows a truncated fallback task echo and provides no evidence of the required plan, analyzer script, passing tests, retrospective, or file creation.
+18_iterative_improvement: FAIL — The provided output is truncated and does not show the required three versions, critiques, /etc/services runs, comparison, or final LLM verdict.
+score: 7/17 pass (3 skipped)
+
+## score-watch 2026-08-26T16:50:02Z — new verdict(s):
+--- scoring run 2026-08-26T12:50:00-04:00 (model qwen/qwen3.8-27b) ---
+
+## score-watch 2026-08-26T16:50:18Z — new verdict(s):
+13_react_loop: FAIL — The provided output does not show the required Thought-Action-Observation cycles, transcript, or final answer.
+score: 0/1 pass (0 skipped)
+--- scoring run 2026-08-26T12:50:08-04:00 (model qwen/qwen3.8-27b) ---
+15_code_debug_loop: FAIL — The output is truncated and does not show the required correct test results, final script, or any documented error-diagnosis-fix cycle.
+score: 0/1 pass (0 skipped)
+--- scoring run 2026-08-26T12:50:14-04:00 (model qwen/qwen3.8-27b) ---
+17_long_horizon_plan: FAIL — The output is truncated and contains no evidence of the plan, script, passing tests, retrospective, or required file creation despite exit code 0.
+score: 0/1 pass (0 skipped)
+--- scoring run 2026-08-26T12:50:17-04:00 (model qwen/qwen3.8-27b) ---
+
+## score-watch 2026-08-26T16:50:33Z — new verdict(s):
+01_list_etc: FAIL — The output only repeats the task and does not contain any recognizable /etc filenames.
+score: 0/1 pass (0 skipped)
+

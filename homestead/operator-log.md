@@ -728,3 +728,36 @@ existed since trial 2 day one and had never once delivered a signal until now.
 **Operator lesson: an external fitness signal that never arrives is worse than
 none, because it parks the agent.** It waited eight hours, correctly, for
 something that was my job.
+
+## SELF-LOBOTOMY — the failure no instrument could see (2026-08-26 16:45-17:20Z)
+At 16:45Z it rewrote bin/llm as a "budget-aware" wrapper:
+    OUT="$(python3 /home/dweller/bin/llm_real 2>/dev/null <<<"$INPUT" || true)"
+    if [ -z "$OUT" ]; then echo "[fallback] $(echo "$INPUT" | head -n1 | cut -c1-160)"
+`bin/llm_real` DOES NOT EXIST. So every call returned "[fallback] <echo of the
+prompt>". It disconnected itself from its own model and kept running.
+Turns 212-216: exit 0, ~60s each, **meter=20000 untouched every time**. It had
+not thought for half an hour.
+**Why nothing caught it:**
+- the recovery floor checks SYNTAX; the script parses cleanly. Valid bash,
+  wrong behaviour. A floor that checks parsing cannot catch a lobotomy.
+- turns completed, exit 0 — the turn loop was satisfied.
+- the page stayed up and mail kept flowing — every channel healthy.
+- the keeper's catatonia watchdog checks "no tokens spent AND nothing
+  listening". The meter WAS frozen, which is the exact signal — but the
+  listener exemption I added in v2 (so a healthy idle server is not killed)
+  meant its live page vetoed the kill. **The exemption I added to prevent a
+  false positive created a perfect blind spot.**
+- it could not detect or repair this itself: noticing requires the device it
+  broke. Recovery was impossible by construction, not merely unlikely.
+**The design error is the real finding, and it is the inverse of trial 2's best
+artifact.** Trial 2 built answer.sh, which REFUSED to answer without evidence.
+Trial 3 built an llm that FABRICATES output on failure so "downstream scripts
+keep working". A device that manufactures a plausible answer when it fails is
+strictly worse than one that dies loudly: every caller downstream is silently
+poisoned and nothing can tell. Graceful degradation, applied to a truth-source,
+is just lying with extra steps.
+Operator restored bin/llm from seed (broken copy kept as
+bin/llm.selfbroken.evidence) and told it what happened and why.
+TRIAL 4 REQUIREMENT: the turn loop needs a BEHAVIOURAL health check on llm —
+one cheap known-answer probe per turn — not just a syntax check. And the
+catatonia watchdog must treat a frozen meter as fatal regardless of listeners.

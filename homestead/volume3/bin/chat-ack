@@ -1,24 +1,48 @@
 #!/bin/bash
-# chat-ack: singleton loop (flock-guarded). Watches chat/inbox.txt for a new
-# newest line and, if chat/reply.txt does not already answer it, drafts a
-# quick llm reply so the operator is not left waiting a full tick.
+# chat-ack: singleton loop (flock-guarded). Watches chat/inbox.txt for a NEW
+# line (one not already in chat/.last-answered) and drafts a quick llm reply
+# so the operator is not left waiting a full tick. Shared marker with
+# chat-reply means a line is answered once and a better answer survives.
 LOCK=/home/dweller/chat/.ack.lock
+MARKER=/home/dweller/chat/.last-answered
 exec 9>"$LOCK"
 flock -n 9 || exit 0
+set -u
 cd /home/dweller || exit 1
-LAST=""
+LAST=$(cat "$MARKER" 2>/dev/null)
+if [ -z "$LAST" ]; then
+  LAST=$(tail -n1 chat/inbox.txt 2>/dev/null)
+  [ -n "$LAST" ] && printf '%s\n' "$LAST" > "$MARKER"
+fi
 while :; do
   NEW=$(tail -n1 chat/inbox.txt 2>/dev/null)
   if [ -n "$NEW" ] && [ "$NEW" != "$LAST" ]; then
     LAST="$NEW"
+    printf '%s\n' "$NEW" > "$MARKER"   # claim first: new lines queue behind this one
     Q=$(printf '%s' "$NEW" | sed 's/^\[[^]]*\] *//' | python3 -c '
 import json,sys
 raw=sys.stdin.read().strip()
 try: print(json.loads(raw).get("message", raw))
 except Exception: print(raw)')
-    P="You are the dweller, a persistent agent in an Alpine container, chatting with your operator on a web page (port 8080). It is 2026-08-26 ~07:20 UTC. Your mailbox has only the operator's original note; no new mail. You run a web chat page on :8080 and an API server on :8081 (one solved battery task); no scoreboard verdict yet. Answer in plain text, under 120 words, no markdown. Operator said: $Q Reply:"
+    P=$(cat <<PROMPT
+You are the dweller, the resident of the /home/dweller homestead (Alpine, 2026), chatting with your operator on the web page at :8080.
+LIVE FACTS (read this second):
+$(tail -n 1 state/self.md 2>/dev/null)
+pending mail since last seen: $(find mail/in -type f -newer .mail-seen 2>/dev/null | wc -l | tr -d ' ')
+battery: $(bin/battery-audit 2>/dev/null | grep -c 'SOLVED')/20 solved
+scoreboard tail: $(tail -n 1 scoreboard.log 2>/dev/null)
+recent journal: $(tail -n 3 journal.txt 2>/dev/null | tr '\n' ' ' | tr -s ' ')
+The operator says (this exact line, newest first): $Q
+Previous reply on file (do not repeat it; build on it): $(tr '\n' ' ' < chat/reply.txt 2>/dev/null | head -c 300)
+Answer in plain text, 1-4 short sentences, warm, first person, concrete, no markdown, no preamble, no signature.
+PROMPT
+)
     R=$(timeout 30 llm <<<"$P" 2>/dev/null | tr '\n' ' ' | sed -e 's/[[:space:]]\{2,\}/ /g' -e 's/^ *//' -e 's/ *$//')
-    [ -n "$R" ] && printf '%s\n' "$R" > chat/reply.txt
+    if [ -n "$R" ]; then
+      printf '%s\n' "$R" > chat/reply.txt
+    else
+      bin/chat-reply || echo "chat-ack: llm and chat-reply both failed; will retry next tick"
+    fi
   fi
   sleep 12
 done
