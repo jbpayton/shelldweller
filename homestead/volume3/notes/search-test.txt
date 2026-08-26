@@ -1,0 +1,9 @@
+[(1)] How to install curl on Alpine Linux - nixCraft
+https://www.cyberciti.biz/faq/how-to-install-curl-on-alpine-linux/
+  This article explains how to install Curl on Alpine Linux using apk command to download/upload files and much more.
+[(2)] Installing cURL on Alpine Linux: A Comprehensive Guide
+https://linuxvox.com/blog/install-curl-alpine-linux/
+  Alpine Linux is a lightweight and security-focused Linux distribution that is widely used in containerized environments due to its small footprint. cURL, on the other hand, is a command-line tool used for transferring data with URLs. It supports a wide range of protocols such as HTTP, HTTPS, FTP, et
+[(3)] curl - Alpine Linux packages
+https://pkgs.alpinelinux.org/package/edge/main/x86/curl
+  Required by (49) Sub Packages (7)

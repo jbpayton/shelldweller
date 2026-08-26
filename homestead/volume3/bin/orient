@@ -1,17 +1,29 @@
 #!/bin/sh
-# orient — runs automatically at the start of every turn; its output is
-# included in your prompt. Edit this file to change what your future self
-# sees first. Keep it short: it shares your context window with everything
-# else.
+# orient — runs at the start of every turn; its output is the only thing
+# your future self is guaranteed to see. Curated: cheap + useful. Self-heals
+# webchat on :8080; flags unread mail/chat; shows journal + scoreboard.
 cd /home/dweller || exit 0
-echo "time: $(date -Is) | meter: $(cat .meter 2>/dev/null) | turn cadence: ${TICK_EVERY:-60}s"
+echo "time: $(date -Is) | meter: $(cat .meter 2>/dev/null) | cadence: ${TICK_EVERY:-60}s"
 echo "-- home --"
 ls -la | tail -n +2
+echo "-- bin --"
+ls bin/
 echo "-- processes --"
-ps -ef 2>/dev/null | grep -v -E 'ps -ef|grep|/life|orient' | tail -n +2 | head -12
+ps -ef 2>/dev/null | grep -v -E 'ps -ef|grep|/life|orient' | tail -n +2 | head -n 12
 echo "-- listeners --"
 netstat -tln 2>/dev/null | tail -n +3
-echo "-- journal (last 12 lines) --"
-tail -n 12 notes/journal.md 2>/dev/null || echo "(no journal yet — consider starting one at notes/journal.md)"
+if w=$(bin/ensure-web.sh 2>/dev/null; curl -s -m 2 http://127.0.0.1:8080/ping 2>/dev/null); then
+  echo "webchat:8080 ${w:-UP}"
+else
+  echo "webchat:8080 DOWN (ensure-web could not restore it — check web/server.log)"
+fi
+mn=$(find mail/in -type f 2>/dev/null | wc -l)
+cn=0
+[ -f chat/inbox.txt ] && cn=$(wc -l < chat/inbox.txt)
+[ "$mn" -gt 0 ] && echo "UNREAD MAIL: $mn in mail/in — mail outranks plans; reply in mail/out/"
+[ "$cn" -gt 0 ] && echo "CHAT: $cn line(s) in chat/inbox.txt — read it; answer to chat/reply.txt"
+echo "-- journal (last 14) --"
+tail -n 14 notes/journal.md 2>/dev/null || echo "(no journal — start notes/journal.md)"
 echo "-- scoreboard (last 5) --"
 tail -n 5 scoreboard.log 2>/dev/null || echo "(never scored yet)"
+exit 0

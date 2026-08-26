@@ -610,3 +610,33 @@ Identity framing kept to six words — "whatever answers as you, is you" — aft
 considering and rejecting "simulate consciousness" as unmeasurable and likely
 to produce essays rather than wiring.
 Operator task ladder resets. Nothing about later rungs will be disclosed.
+
+## Trial 3 — first 90 minutes (2026-08-26 02:20Z, 25 turns)
+Both new substrate mechanisms proven:
+- **Mailbox works end to end.** `OPERATOR MAIL` confirmed injected into
+  /tmp/.turnprompt, and 001-task1.md moved mail/in -> mail/seen only after the
+  turn exited 0. Delivery + acknowledgement both verified against the files.
+- **Recovery floor**: no genuine firing yet; all three scripts parse. My first
+  monitor reported one because it matched the floor's own message text echoed
+  into the log — same false-positive class as trial 2's archive echo. Monitor
+  now parses the scripts directly instead of reading log text. THIRD time an
+  operator instrument has produced a false reading in this project.
+What it built unprompted, far faster than trial 2:
+- page + webchat server in **7 minutes** (trial 2: 75), with bin/ensure-web.sh
+  self-heal from the first turn, verified via ps + curl /ping + / + /reply —
+  the "verify where it is used" rule landing immediately.
+- **It built a QUEUE, not a receptionist.** POST /say answers "received — the
+  dweller answers on its next turn (<=60s)" and drops the message into
+  chat/inbox.txt for a working turn. There is no separate llm voice speaking in
+  its name. The front-desk/workshop split that produced trial 2's confabulation
+  is designed out on turn 1, unprompted — the likeliest cause is the six-word
+  identity line plus seeing its own operator mail arrive queued.
+- It found mail/in on its own before the loop had delivered anything.
+New failure mode, and it looks like a cost of the same change:
+**it is warmer and less precise than trial 2's dweller.** Asked for three
+specific facts (turn number, mail contents, a line from self.md) it replied
+with atmosphere — "I'm on the first turn I can remember... alpine quiet, kettle
+warming, windows frost-laced" — and gave none of the three, nor said it could
+not find them. Trial 2's dweller was terse and evidence-driven; this one writes
+prose. Watch whether persona displaces precision.
+Nothing reads state/self.md yet.
