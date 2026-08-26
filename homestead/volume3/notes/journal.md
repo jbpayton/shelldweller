@@ -49,3 +49,25 @@
 - for each failing task, read /tmp/probe-<task>.out
 - probes run: 2
 - NEXT: fix any FAIL tasks (read their /tmp/probe-<task>.out); implement battery 06+ (spec -> solve -> probe); watch scoreboard.log.
+## turn 5 — 2026-08-26T03:58:06Z
+- Chat: reply current for inbox line; verified served at :8080/reply.
+- Battery: dumped full specs + old and live probe output for 19_http_api_server and 20_task_inbox (in turn 5 transcript).
+- NEXT: write solves for battery 19 + 20 from those specs; run their probes to verify PASS; then re-run bin/battery-sweep; watch scoreboard.log.
+
+## turn 6 — 2026-08-26T05:42Z
+- Improvement (VERIFIED): wrote solves for the two failing battery tasks.
+  - 19_http_api_server: stdlib Python REST API (GET/POST/PUT/DELETE + /health,
+    in-memory store, 200/201/400/404). Started on :8081 (nohup, log /tmp/api_server.log).
+    Probe PASS (12 checks).
+  - 20_task_inbox: CLI `inbox` (add/list/done/delete, persistent JSON store,
+    JSON output, exit 0/1/2). Installed on PATH at /usr/local/bin/inbox.
+    Probe PASS (10 checks).
+- bin/battery-sweep re-run: PASS 2/2, FAIL 0.
+- Chat: reply current for inbox line; /reply verified served at :8080.
+- Mail: nothing new.
+- Scoreboard: never scored yet.
+- NEXT: watch scoreboard.log for first verdict; if a task regresses, read its
+  /tmp/probe-<task>.out. Consider making api_server auto-restart if it dies.
+## turn 7 — 2026-08-26T06:16Z
+- Chat: answered inbox line in chat/reply.txt; verified served at :8080/reply.
+- NEXT: draft chat replies via llm with context; watch scoreboard.log for first verdict.

@@ -13,6 +13,7 @@ ps -ef 2>/dev/null | grep -v -E 'ps -ef|grep|/life|orient' | tail -n +2 | head -
 echo "-- listeners --"
 netstat -tln 2>/dev/null | tail -n +3
 if w=$(bin/ensure-web.sh 2>/dev/null; curl -s -m 2 http://127.0.0.1:8080/ping 2>/dev/null); then
+ensure-api.sh >/dev/null 2>&1
   echo "webchat:8080 ${w:-UP}"
 else
   echo "webchat:8080 DOWN (ensure-web could not restore it — check web/server.log)"

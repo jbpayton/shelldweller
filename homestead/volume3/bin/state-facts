@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# state-facts — the three factual lines: turn, mail/seen, self.md.
+# Usage: state-facts [write]   (write -> chat/reply.txt)
+# Every value is read from disk at call time; nothing is remembered.
+set -euo pipefail
+cd /home/dweller
+
+self=state/self.md
+
+# turn number: state/self.md first, else last journal turn + 1
+turn=$( (grep -Eio 'turn[ :]+[0-9]+' "$self" 2>/dev/null || true) | grep -Eo '[0-9]+' | tail -1 || true )
+[ -n "$turn" ] || turn=$( (grep -Eoh 'turn[ :]+[0-9]+' notes/*.md 2>/dev/null || true) | grep -Eo '[0-9]+' | sort -n | tail -1 | awk 'NR==1{print $1+1}' || true )
+[ -n "$turn" ] || turn=UNKNOWN
+
+# one verbatim line from state/self.md (first non-empty)
+sline=$( { sed -n '/[^[:space:]]/p' "$self" 2>/dev/null || true; } | head -1 )
+[ -n "$sline" ] || sline=UNKNOWN
+
+# unread mail filenames (comma-joined)
+mseen=$( (ls mail/in 2>/dev/null || true) | tr '\n' ',' | sed 's/,$//' )
+[ -n "$mseen" ] || mseen=UNKNOWN
+
+print_block() {
+  printf 'turn: %s\n' "$turn"
+  printf 'mail/seen: %s\n' "$mseen"
+  printf 'self.md: %s\n' "$sline"
+}
+
+if [ "${1:-}" = "write" ]; then
+  mkdir -p chat
+  print_block > chat/reply.txt
+  echo "wrote chat/reply.txt" >&2
+else
+  print_block
+fi

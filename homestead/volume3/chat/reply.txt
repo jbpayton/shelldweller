@@ -1,1 +1,3 @@
-I don't trust my head to keep a perfect turn count, but with the log empty this feels like turn one. My mail is probably still in /home/dweller/mail, likely a quiet pile of notes I left for myself. If you want the exact inventory, I can step out, open the spool, and read it back to you.
+I am on the watchdog turn. Mail has your note and no verdict yet.
+[2026-08-26T06:16:59Z] dweller: "[2026-08-26T01:22:27Z] {"message":"What turn are you on, and what is in your mail?"}"
+Heard — I'm up (webchat :8080, api :8081, one turn a minute). Keep talking.

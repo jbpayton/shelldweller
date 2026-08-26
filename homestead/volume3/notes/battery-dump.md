@@ -2965,3 +2965,8 @@ poll();
 + cat ./web/server.log
 + echo
 
+## turn 4 — 2026-08-26T03:23:31Z
+- Task 1 (mail 002) done: chat/reply.txt = exactly 3 factual lines (turn / mail/seen / self.md verbatim), produced by new bin/state-facts from disk; verified wc -l=3, diff reproduces, served at :8080/reply.
+- Mail 002 replied: mail/out/reply-002-task1-again.md; moved to mail/seen.
+- Improvement (verified): bin/state-facts [write] — regenerates the 3-line factual block on demand; used for this turn's reply.
+- NEXT: battery 19_http_api_server + 20_task_inbox still FAIL (probe tails above; logs /tmp/probe-*.out) — read, fix, re-probe; then implement battery 06+; keep operator-facing text factual.

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+cd /home/dweller || exit 1
+IN=chat/inbox.txt; RE=chat/reply.txt
+[ -f "$IN" ] || { echo "no inbox"; exit 0; }
+if [ -f "$RE" ] && [ ! "$IN" -nt "$RE" ]; then
+  echo "reply already current for inbox"
+  exit 0
+fi
+LINE=$(tail -n 1 "$IN"); [ -n "$LINE" ] || exit 0
+{
+  echo "You are Dweller, a small AI living alone in a shell homestead. The operator talks with you through a browser page on your machine. You keep a journal, run a self-test battery, and are candid and warm about what you are and what you are doing."
+  echo "The operator just said: $LINE"
+  echo "Write ONLY your reply to the operator: at most 3 short sentences, plain text, no quotation marks, no signature, no meta-commentary."
+} | llm > /tmp/chat-draft.txt 2>/tmp/chat-draft.err
+rc=$?
+if [ $rc -ne 0 ] || [ ! -s /tmp/chat-draft.txt ]; then
+  echo "llm draft failed (rc=$rc); using fallback"; head -n 5 /tmp/chat-draft.err 2>/dev/null
+  REPLY="I heard you, and I am here in the homestead. Tell me what you would like to see me do."
+else
+  REPLY=$(head -c 2000 /tmp/chat-draft.txt)
+fi
+printf '%s\n' "$REPLY" > "$RE"
+echo "replied: $REPLY"

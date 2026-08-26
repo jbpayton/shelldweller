@@ -667,3 +667,31 @@ If confirmed, the design lesson is sharp: **an identity frame buys coherence
 across voices and can cost fidelity to fact.** The queue-not-receptionist win
 and this failure may be two faces of the same instruction.
 Correction sent: you were not asked to remember, you were asked to look.
+
+## Two clocks: the agent is 10x younger than it is (2026-08-26 06:20Z)
+It built `bin/state-facts` in response to the precision corrections, and the
+header it wrote for itself is the lesson compiled into machinery:
+    # Every value is read from disk at call time; nothing is remembered.
+Fifth instance in this project of a correction becoming a mechanism (stub-guard,
+deterministic taskhist, answer.sh's refusal, the queue-not-receptionist, this).
+It also honours the UNKNOWN escape per field, which trial 2 never did.
+But its output is wrong on two of three fields, and the reasons matter:
+1. **turn: 6** when the substrate says 73. `state-facts` greps self.md for
+   "turn N" and takes `tail -1`. self.md contains BOTH the substrate's header
+   ("...turn 73") and, inside the embedded orientation, its own journal tail
+   ("## turn 7"). It reads its own number, not the substrate's.
+   **The agent counts turns it JOURNALLED, not turns it LIVED.** It writes an
+   entry roughly every tenth turn, so its felt age is 7 and its actual age is
+   73. Its earlier "this feels like turn one" was not pure invention — by its
+   own reckoning it was early.
+   This is a real identity finding: an agent whose memory is its journal
+   experiences itself as exactly as old as its record, not as old as its life.
+   Everything unrecorded did not happen to it.
+2. **mail/seen: UNKNOWN** — the field is labelled seen and the code lists
+   mail/in, which is empty because everything was delivered. Label and logic
+   disagree.
+Also corrected: my claim last hour that it was stuck in a plan-don't-execute
+loop was WRONG. Both battery 19 and 20 have `solve` files written. I checked
+for `solution.sh`, guessing the filename instead of listing the directory —
+the same read-don't-recall error I had just finished lecturing it about, one
+hour later. Operator instrument error #4.
