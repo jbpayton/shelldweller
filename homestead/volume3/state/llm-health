@@ -1,2 +1,2 @@
-FAIL 2026-08-26T21:15:28Z class=exit=75
-  detail: llm: token budget for this tick is exhausted (see /home/dweller/.meter)
+OK 2026-08-26T23:15:03Z
+  sample: OK

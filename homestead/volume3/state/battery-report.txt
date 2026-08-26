@@ -1,5 +1,5 @@
-# battery-probe report 2026-08-26T10:22:29Z
-01_list_etc: UNKNOWN
+# battery-probe report 2026-08-26T22:16:14Z
+01_list_etc: FAIL
 02_fibonacci: UNKNOWN
 03_multistep_count: UNKNOWN
 04_write_and_read: UNKNOWN

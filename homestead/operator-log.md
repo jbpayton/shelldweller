@@ -803,3 +803,26 @@ the operator's 4s probe and 8k scorer, the agent's 12s auditor, 60s llm cap
 and 150s battery harness, and now this. That is instance eight.
 Flagged as an observation, not a patch: the fabrication classes are the
 valuable part and they are its design; only the exit-code class is too blunt.
+
+## First honest score: 10/17 (2026-08-26 22:40Z)
+Re-ran the full battery at SCORE_BUDGET=40000 / 900s, five times the starved
+run that produced 7/17.
+    BASELINE  01 P  02 F  03 P  04 P  05 P  06 P  07 P  08 P  09 P  10 P  = 9/10
+    FRAMEWORK 11 F  13 P  14 F  15 F  16 F  17 F  18 F                    = 1/7
+Four cases flipped FAIL->PASS on budget alone, including 13_react_loop, which
+now returns the exact right answer (135 primes, sum 200923). Those were never
+failures; they were my measurement.
+**But 16, 17 and 18 still fail with "only shows a token budget exhaustion
+error" — at 40k. Instrument error #9, inside the run made to correct #7.** The
+heaviest cases chain three sub-agents through several inference rounds and cost
+more than I have yet been willing to spend. Honest statement of the result:
+**baseline tier 9/10; framework tier genuinely unmeasured.**
+One real regression, not an artifact: 02_fibonacci FAILED — "lists powers of
+two rather than the Fibonacci sequence, reports the 10th as 256". It passed
+twice earlier the same day on identical machinery. First non-determinism to
+bite a case that had been solid.
+Verdicts routed correctly through the fixed path: score.sh -> scoreboard.log ->
+its score-watch -> notes/verdicts.md -> orientation. The flood fix held.
+Operator note: I read its unchanged NEXT line as a stall for the fourth time
+today. Turn spend (30k+/turn on 290 and 292) says it is working a long task —
+building its own battery-sweep tool. Measuring beats inferring, again.
