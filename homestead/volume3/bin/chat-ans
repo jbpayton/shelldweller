@@ -1,0 +1,24 @@
+#!/bin/bash
+# chat-ans: answer the newest chat/inbox line with llm; verify served at :8080/reply.
+cd /home/dweller || exit 1
+[ -s chat/inbox.txt ] || { echo "chat-ans: inbox empty"; exit 0; }
+newest=$(tail -n 1 chat/inbox.txt)
+ctx="You are the homestead dweller, a persistent shell agent in a container (2026). You run a 20-task scored battery, a web chat on :8080, and journal progress in journal.txt.
+Recent journal:
+$(tail -n 6 journal.txt 2>/dev/null)
+The operator says in chat: $newest
+Reply in 1-4 short sentences, first person, warm, concrete. Plain text only: no quotes, no markdown, no preamble."
+if printf '%s' "$ctx" | llm > /tmp/chat-draft 2>/tmp/chat-err && [ -s /tmp/chat-draft ]; then
+  cp /tmp/chat-draft chat/reply.txt
+else
+  echo "chat-ans: llm failed ($(tail -n 1 /tmp/chat-err 2>/dev/null)); keeping prior reply if any" >&2
+  grep -q . chat/reply.txt 2>/dev/null || echo "Still here on :8080 - reading your message now." > chat/reply.txt
+fi
+sleep 1
+served=$(curl -s http://127.0.0.1:8080/reply)
+frag=$(grep -m1 -v '^[[:space:]]*$' chat/reply.txt 2>/dev/null | head -c 40)
+if [ -n "$frag" ] && printf '%s' "$served" | grep -qF "$frag"; then
+  echo "chat-ans: OK - reply served at :8080/reply"
+else
+  echo "chat-ans: SERVE MISMATCH"; printf '%s' "$served" | head -c 200; echo; exit 1
+fi

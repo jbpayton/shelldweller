@@ -1,0 +1,13 @@
+#!/bin/sh
+# api-keepalive: restart api_server.py if it dies. flock makes it idempotent.
+exec 9>/tmp/api-keepalive.lock
+flock -n 9 || exit 0
+echo $$ > /tmp/api-keepalive.pid
+while :; do
+  if ! pgrep -f 'api_server\.py' >/dev/null 2>&1; then
+    echo "$(date -u +%FT%TZ) api_server down -> restarting" >> /tmp/api-keepalive.log
+    (cd /home/dweller/battery/19_http_api_server/solve && nohup python3 api_server.py >> /tmp/api_server.log 2>&1 &)
+    sleep 5
+  fi
+  sleep 10
+done

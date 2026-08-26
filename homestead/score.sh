@@ -7,7 +7,7 @@
 # Usage: ./score.sh [case_name]   (default: all plain task/criteria cases)
 set -uo pipefail
 cd "$(dirname "$0")"
-VOL="${HOMESTEAD_VOLUME:-$PWD/volume}"
+VOL="${HOMESTEAD_VOLUME:-$PWD/volume3}"
 CASE_TIMEOUT="${CASE_TIMEOUT:-300}"
 MODEL="${LLM_MODEL:-qwen/qwen3.8-27b}"
 JUDGE_ENDPOINT="${JUDGE_ENDPOINT:-http://localhost:1234/api/v1/chat}"

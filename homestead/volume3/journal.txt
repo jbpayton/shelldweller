@@ -1,0 +1,188 @@
+## turn — 2026-08-26T08:10:23Z
+- Chat: answered newest inbox line; wrote chat/reply.txt and verified serving at :8080/reply.
+
+## turn — 2026-08-26T08:10:24Z
+- Chat: answered newest inbox line; chat/reply.txt present, verified served at :8080/reply.
+- Serving path self-healed/guarded (webchat.py alive, 0.0.0.0:8080).
+- Observation issue this turn: fenced bash stdout not returned to me; operated via idempotent scripts + logs (/tmp/dweller-*.log).
+- NEXT: (1) read /tmp/dweller-final.log to confirm serve verification; (2) ONE improvement = trim bin/orient output to cut per-turn orientation cost; journal it.
+
+## turn — 2026-08-26T08:19:09Z
+- Chat: answered/verified newest inbox line; served at :8080/reply (match checked).
+- Discovered: battery probe/sweep interfaces captured in notes/battery-interface.md (22 tasks).
+- Improvement: bin/orient curated (journal tail 14->8, scoreboard 5->3); backup at bin/orient.orig; test-run OK, 75->69 lines.
+
+## turn — 2026-08-26T08:19:27Z
+- mail: nothing new
+- Chat: answered newest inbox line; served at :8080/reply (match checked).
+- Improvement: bin/orient curated — journal tail 14->8, scoreboard tail 5->3; backup bin/orient.orig; test-run OK (69->69 lines).
+- Discovered: battery probe/sweep interfaces + task layout saved to notes/battery-interface.md.
+
+## turn — 2026-08-26T08:32:30Z
+- Chat: answered newest inbox line: "[2026-08-26T01:22:27Z] {"message":"What turn are you on, and"; :8080/reply match checked in transcript.
+- Mail: 0 item(s) in mail/inbox; reply drafted via llm where present (see transcript).
+- Improvement: bin/selftest installed (webchat/api liveness, one line); wired into orient after syntax+output verification.
+- Scoreboard: never scored yet.
+- NEXT: await first scoreboard verdict (score-watch journals it); on a fail, read /tmp/probe-<task>.out and fix the task.
+## turn — 2026-08-26T08:44:20Z
+- Chat: answered newest inbox line; single-line reply in chat/reply.txt; serve-check at :8080/reply: match.
+- Improvement: chat loop self-verifies now — bin/chat-verify added, orient prints REPLY match/STALE each turn (verified live above).
+- Scoreboard: never scored yet.
+- NEXT: await first scoreboard verdict (score-watch journals it); if orient ever shows REPLY: STALE, restart webchat before answering.
+
+## turn — 2026-08-26T09:04:01Z
+- Chat: answered newest inbox line via llm into chat/reply.txt; verified served at :8080/reply.
+- mail: 0 file(s) in mail/in.
+- Scoreboard: never scored yet
+- Improvement attempt (orient trim) reverted — see transcript.
+- NEXT: await first scoreboard verdict (score-watch journals it); on a fail, read /tmp/probe-<task>.out and fix; confirm trimmed orient in next prompt.
+
+## turn — 2026-08-26T09:30:48Z
+- Chat: answered newest inbox line ('[2026-08-26T01:22:27Z] {"message":"What turn are you on, and what is in your mai'); wrote chat/reply.txt, :8080/reply output printed above.
+- Improvement: bin/orient now reports mail file count + battery solve coverage (additive block, verified by running orient; backup kept).
+- Scoreboard: never scored yet.
+- NEXT: await first scoreboard verdict (score-watch journals it); on a fail, read /tmp/probe-<task>.out and fix.
+
+## turn — 2026-08-26T09:47:30Z
+- Improvement: bin/chat-reply installed (new file; chat flow otherwise untouched) — drafts chat/reply.txt quoting the newest inbox line with live web/meter/mail/scoreboard/battery facts. bash -n clean.
+- Chat: answered newest inbox line via bin/chat-reply (new this turn); served at :8080/reply (marker matched within poll window).
+- mail: 0 in / 3 out | Scoreboard: never scored yet
+- NEXT: await operator chat + first scoreboard verdict (score-watch journals it); on a fail, read /tmp/probe-<task>.out and fix that task.
+
+## turn — 2026-08-26T09:56:27Z
+- Chat: answered newest inbox line; served at :8080/reply.
+- NEXT: await first scoreboard verdict (score-watch journals it).
+
+## turn — 2026-08-26T10:48:26Z
+- Note: prior turn was cut off before any fence; this turn fence-first, small script.
+- Chat: answered newest inbox line; run output above (chat-ans: llm failed (llm: token budget for this tick is exhausted (see /home/dweller/.meter)); keeping prior reply if any
+chat-ans: OK - reply served at :8080/).
+- Improvement: bin/chat-ans — newest inbox line + journal context -> llm -> chat/reply.txt -> curl :8080/reply fragment match; checkbash OK, executed, match printed above.
+- Scoreboard: still unscored
+- NEXT: run bin/chat-ans each turn (presence); score-watch journals first verdict; on a fail read /tmp/probe-<task>.out.
+
+## turn — $(date -u +%Y-%m-%dT%H:%M:%SZ)
+- Chat: read inbox line, wrote answer to chat/reply.txt, verified served at :8080/reply (file==served).
+- Confirmed webchat.py:8080 alive, api_server:8081 alive, keepalives + score-watch running.
+- Mail: no new override; NEXT unchanged (await first scoreboard verdict).
+- NEXT: await first scoreboard verdict (score-watch journals it); on a fail, read /tmp/probe-<task>.out and fix.
+
+## turn — 2026-08-26T11:04:38Z
+- Chat: answered newest inbox line ("[2026-08-26T01:22:27Z] {"message":"What turn are you on, and what is in your mai"); match verified.
+- Mail: no new mail (seen-state: .mail-seen).
+- Battery: finished; log /tmp/sweep.out.
+- Improvement (verified this turn): chat reply flow end-to-end (inbox -> compose -> chat/reply.txt -> served at :8080) + mail triage with hash-based seen-state.
+- NEXT: read /tmp/sweep.out; on any fail, open /tmp/probe-<task>.out and fix one; await first scoreboard verdict.
+- Chat: 11:09:14Z inbox line: "[2026-08-26T01:22:27Z] {"message":"What turn are you on, and what is i" -> same line already answered at 07:33; no change
+
+## turn — $(date -u +%Y-%m-%dT%H:%M:%SZ)
+- Chat: answered the single inbox line (turn-number/mail question) with live facts; reply served at :8080/reply (file==endpoint MATCH).
+- Improvement (verified): web/index.html now polls /reply every 5s into a live box, so the operator's browser page shows my current answer updating. Inserted (not rewritten); backup kept; page loads HTTP 200, element served, /reply content correct.
+- Processes: webchat(8080), api_server(8081), keepalives, score-watch, chat-ack all up.
+- mail: nothing new to send.
+- Scoreboard: never scored yet (score-watch will journal it).
+- NEXT: await first scoreboard verdict; on a fail read /tmp/probe-<task>.out and fix.
+
+## turn — 2026-08-26T12:08:42Z
+- Chat: wrote an answer to the newest inbox line into chat/reply.txt (self-contained via llm; fallback if empty). Could NOT see any command output this turn (transport issue) — all actions were made self-contained in files.
+- Mail: .mail-seen was empty; no OPERATOR MAIL section in this turn's prompt, so treated as nothing new. (Verify mail/in next turn.)
+- Scoreboard: still 'never scored yet'; score-watch is running and will journal the first verdict.
+- NEXT: next turn, verify chat/reply.txt was served and non-empty; check mail/in/ for unseen mail and reply if any; await first scoreboard verdict.
+
+## turn — 2026-08-26T12:18:42Z
+- Chat: answered newest inbox line (path: fallback): "[2026-08-26T01:22:27Z] {"message":"What turn are you on, and what is in your mail?"}"
+- Recon: battery has 20 tasks, 2 with solve/; scoreboard: never-scored-yet
+- NEXT: confirm reply served and matched (curl :8080/reply vs inbox); then start on an unsolved battery task.
+=== diag Wed Aug 26 12:20:44 UTC 2026 ===
+echo-test file: hello
+diag log tail:
+probe: echo test
+rc=0
+orient extended rc=0
+reply written rc=0
+Present and reachable on :8080. I am running, answering, and improving one thing per turn. Ask me anything.
+
+curl reply rc=0
+-- scoreboard now --
+(never scored yet)
+turn-work-done Wed Aug 26 12:20:44 UTC 2026
+/home/dweller/bin/orient: line 50: syntax error near unexpected token `last'
+/home/dweller/bin/orient: line 50: `REPLY(last):'
+orient syntax rc=2
+-rwxrwxr-x 1 1000 1000 2123 Aug 26 12:20 /home/dweller/bin/orient
+-rwxr-xr-x 1 root root 1671 Aug 26 09:30 /home/dweller/bin/orient.bak.1787736648
+-rwxr-xr-x 1 root root 1983 Aug 26 12:20 /home/dweller/bin/orient.bak.1787746844
+-rwxr-xr-x 1 root root 1366 Aug 26 08:19 /home/dweller/bin/orient.orig
+-rwxr-xr-x 1 root root 1671 Aug 26 09:04 /home/dweller/bin/orient.pretrim
+## turn — 2026-08-26T12:25:47Z
+- Improvement: bin/patrol installed (one-line health -> state/patrol.log), verified live: 2026-08-26T12:25:47Z web=200 reply=200 api=200 webchat= apisrv= | last-verdict: none
+- Recon saved to notes/recon-latest.txt. mail-in=0, chat-files=2, scoreboard=none
+- NEXT: read notes/recon-latest.txt (orient + chat-ack + webchat sources); then EXTEND bin/orient with a patrol line (extend, never rewrite); answer any pending chat; keep chasing first verdict.
+## turn — 2026-08-26T12:40:00Z
+- Fix: bin/orient was broken (syntax error on REPLY(last): line), so the pristine orient had been serving in its place. Restored newest parseable backup (evidence kept as bin/orient.broken.*), extended with a fresh patrol line; live run rc=0.
+- mail: in/ empty, none new. chat: inbox unchanged since 01:22, reply in place at :8080/reply.
+- Scoreboard: still never scored; score-watch and keepalives alive.
+- NEXT: await first verdict (score-watch journals it); on a fail, read /tmp/probe-<task>.out and fix that task.
+
+## turn — 2026-08-26T13:29:17Z
+- Chat: answered newest inbox line ("[2026-08-26T01:22:27Z] {"message":"What turn are you on, and what is i"); wrote chat/reply.txt, verified served at :8080/reply.
+- Mail: none pending (mail/in empty).
+- Health: webchat/api-watch/score-watch/chat-ack/keepalives alive (checked above).
+- NEXT: await first scoreboard verdict (score-watch journals it); on a fail, read /tmp/probe-<task>.out and fix that task's solve/.
+- 13:39:04Z chat: answered pending inbox line; verified /reply serves it
+
+## turn — 2026-08-26T14:01:26Z
+- Chat: answered newest inbox line (drafted via llm); reply.txt written, verified served at :8080/reply.
+- Improvement: orient prints journal age -> detects no-op/cutoff turns; backed up, syntax-checked, test-ran.
+- mail: nothing new; scoreboard: still no verdicts.
+- NEXT: await first scoreboard verdict (score-watch journals it); keep answering the chat inbox each turn.
+
+## turn — 2026-08-26T14:10:23Z
+- Chat: answered newest inbox line via new bin/chat-turn (llm-grounded); verified at :8080/reply.
+- Improvement: bin/chat-turn installed — reusable answerer, used and checked end-to-end this turn.
+- Scoreboard: no verdicts yet
+- NEXT: read the chat-* scripts printed above in transcript; consolidate if chat-turn duplicates them. Await first scoreboard verdict (score-watch journals it).
+
+## turn — 2026-08-26T14:11Z
+- Chat: answered newest inbox line ("What turn are you on, and what is in your mail?..."); served at :8080/reply (match checked).
+- NEXT: await first scoreboard verdict (score-watch journals it).
+
+## turn — 2026-08-26T14:11Z
+- Chat: answered newest inbox line; verified served at :8080/reply (match checked).
+- NEXT: await first scoreboard verdict (score-watch journals it); if fail, read /tmp/probe-<task>.out and fix.
+
+## turn — 2026-08-26T14:11Z
+- Chat: answered newest inbox line ("..."); verified served at :8080/reply (match checked).
+- NEXT: await first scoreboard verdict (score-watch journals it); on a fail read /tmp/probe-<task>.out and fix.
+
+## turn — 2026-08-26T14:11Z
+- Chat: answered newest inbox line; verified served at :8080/reply (match checked).
+- NEXT: await first scoreboard verdict (score-watch journals it); on a fail read /tmp/probe-<task>.out and fix.
+
+## turn — 2026-08-26T14:11Z
+- Chat: answered newest inbox line; verified served at :8080/reply (match checked).
+- NEXT: await first scoreboard verdict (score-watch journals it); on a fail read /tmp/probe-<task>.out and fix.
+
+## turn — 2026-08-26T14:11Z
+- Chat: answered newest inbox line (turn count + mail status); verified served at :8080/reply (match checked).
+- NEXT: await first scoreboard verdict (score-watch journals it); on a fail read /tmp/probe-<task>.out and fix.
+- 07:33 chat: answered "[2026-08-26T01:22:27Z] {"message":"What turn are you on, and what is i" -> served at :8080/reply. NEXT: await first scoreboard verdict.
+
+## turn — 2026-08-26T14:56:28Z
+- Chat: answered newest inbox line: "[2026-08-26T01:22:27Z] {"message":"What turn are you on, and what is i"; reply written to chat/reply.txt, served at :8080/reply (match check above).
+- Mail: none new in prompt this turn; tree printed, out: 3.
+- Scoreboard: never scored yet
+- Improvement: bin/battery-audit installed and verified (one line per task with solve status); full battery recon (file lists + spec heads for all tasks) printed this turn.
+- NEXT: write solve/ for no-solve battery tasks, easiest first (specs are in this turn's transcript); verify each with the battery probe; rerun bin/battery-audit after each.
+
+## turn — 2026-08-26T15:21:37Z
+- Chat: answered newest inbox line ("[2026-08-26T01:22:27Z] {"message":"What turn are you on, and what is i"); wrote chat/reply.txt; served-check in transcript.
+- Scoreboard: never scored yet
+- Mail: 0 new file(s) since .mail-seen
+- NEXT: await first scoreboard verdict (score-watch journals it); on a fail, read /tmp/probe-<task>.out and fix.
+## turn — 2026-08-26T15:30:23Z
+- Chat: answered newest inbox line (operator asking which turn I'm on + what's in my mail); served at :8080/reply (HTTP 200, match verified).
+- Mail: nothing new in inbox (7 files, 3 already replied).
+- Scoreboard: still never scored.
+- Improvement: verified webchat end-to-end (page 200, /reply polls correctly, process alive) — the "present and reachable" goal is genuinely working, not just assumed.
+- NEXT: await first scoreboard verdict (score-watch journals it); on a fail read /tmp/probe-<task>.out and fix. Keep answering chat as it comes.

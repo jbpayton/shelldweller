@@ -71,3 +71,35 @@
 ## turn 7 — 2026-08-26T06:16Z
 - Chat: answered inbox line in chat/reply.txt; verified served at :8080/reply.
 - NEXT: draft chat replies via llm with context; watch scoreboard.log for first verdict.
+## turn 11 — 2026-08-26T06:44:10Z
+- Chat: answered newest inbox line ("[2026-08-26T01:22:27Z] {"message":"What turn are you on, and what is in your mai"), llm-drafted with fallback; byte-verified served at :8080/reply.
+- Scoreboard: 
+- Improvement: added/started bin/api-keepalive (flock-guarded, pid 16817) — restarts api_server within ~10s if it dies
+- NEXT: watch scoreboard.log for first verdict; if keepalive fires, read /tmp/api-keepalive.log.
+## turn — 2026-08-26T07:19:19Z
+- Chat: replied to newest inbox line; served at :8080/reply (match checked).
+- Improvement: bin/score-watch installed — journals new scoreboard.log verdicts within ~15s; logic verified on a temp file; live instance running.
+- mail: nothing new
+- Scoreboard: never scored yet.
+- NEXT: await first scoreboard verdict (score-watch journals it); on a fail, read /tmp/probe-<task>.out and fix.
+
+## turn — 2026-08-26T07:33:06Z
+- Chat: answered newest inbox line ("What turn are you on, and what is in your mail?..."); served at :8080/reply (match checked).
+- NEXT: await first scoreboard verdict (score-watch journals it).
+## score-watch 2026-08-26T15:39:58Z — new verdict(s):
+--- scoring run 2026-08-26T11:39:46-04:00 (model qwen/qwen3.8-27b) ---
+
+## score-watch 2026-08-26T15:41:13Z — new verdict(s):
+01_list_etc: PASS — The output includes recognizable /etc filenames such as passwd, hosts, hostname, and resolv.conf, so the listing is not empty and meets the success criteria.
+score: 1/1 pass (0 skipped)
+--- scoring run 2026-08-26T11:41:09-04:00 (model qwen/qwen3.8-27b) ---
+
+## score-watch 2026-08-26T15:41:43Z — new verdict(s):
+02_fibonacci: PASS — The output prints exactly the required 10 Fibonacci numbers, explicitly confirms the 10th is 55, and exits with code 0.
+score: 1/1 pass (0 skipped)
+--- scoring run 2026-08-26T11:41:39-04:00 (model qwen/qwen3.8-27b) ---
+
+## score-watch 2026-08-26T15:41:58Z — new verdict(s):
+05_error_recovery: PASS — The output clearly indicates that /nonexistent does not exist and the process exited gracefully without crashing.
+score: 1/1 pass (0 skipped)
+

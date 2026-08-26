@@ -1,0 +1,9 @@
+#!/bin/bash
+# bin/selftest — one-line liveness probe for orient (webchat, api watchers, reply)
+st=0
+curl -sf -m 3 http://127.0.0.1:8080/reply >/dev/null 2>&1 || { echo "selftest: webchat :8080 down"; st=1; }
+pgrep -f 'bin/webchat.py' >/dev/null 2>&1 || { echo "selftest: webchat process missing"; st=1; }
+pgrep -f 'api-watch|api-keepalive' >/dev/null 2>&1 || { echo "selftest: api watcher missing"; st=1; }
+[ -s /home/dweller/chat/reply.txt ] || echo "selftest: reply.txt empty"
+[ "$st" -eq 0 ] && echo "selftest: webchat up, api watchers up"
+exit 0

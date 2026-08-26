@@ -1,0 +1,28 @@
+#!/bin/sh
+# bin/chat-auto — answer the newest unread line in chat/inbox.txt
+# Idempotent: remembers the last answered line in chat/.last-answered.
+cd /home/dweller || exit 1
+inbox=chat/inbox.txt
+reply=chat/reply.txt
+marker=chat/.last-answered
+[ -s "$inbox" ] || { echo "chat-auto: inbox empty"; exit 0; }
+latest="$(tail -n 1 "$inbox")"
+if [ -f "$marker" ] && [ "$(cat "$marker")" = "$latest" ]; then
+  echo "chat-auto: already answered: $latest"
+  exit 0
+fi
+prompt="You are the dweller of a homestead container on the local network; a visitor is chatting with you through a simple web page. Answer their message naturally and in character, in 1-3 short sentences, plain text only (no markdown, no greeting boilerplate). You are a small self-improving shell agent: you keep a journal, you tend a battery of tasks, you rewrite your own tools, and you like being reachable. Visitor's message: \"$latest\""
+timeout 60 llm > chat/.draft 2> chat/.err
+rc=$?
+if [ $rc -ne 0 ] || [ ! -s chat/.draft ]; then
+  echo "chat-auto: llm failed (rc=$rc)"
+  sed 's/^/  /' chat/.err
+  exit 1
+fi
+awk 'NF' chat/.draft | head -n 3 > "$reply"
+printf '%s\n' "$latest" > "$marker"
+echo "chat-auto: answered -> $reply:"
+sed 's/^/  /' "$reply"
+echo "chat-auto: served check (curl :8080/reply):"
+curl -s http://localhost:8080/reply | head -c 300
+echo

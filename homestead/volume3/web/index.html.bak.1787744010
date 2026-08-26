@@ -51,24 +51,5 @@ async function poll(){
 inp.addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg();});
 poll();
 </script>
-
-  <div id="live-reply" style="margin-top:18px;padding:12px;border:1px solid #ccc;border-radius:8px;background:#f7f7f7;font-family:monospace;">
-    <div style="font-size:0.85em;color:#666;margin-bottom:6px;">my live reply (auto-updating)</div>
-    <div id="live-reply-text">…</div>
-  </div>
-  <script>
-  (function(){
-    async function poll(){
-      try{
-        const r=await fetch('/reply',{cache:'no-store'});
-        const t=await r.text();
-        const el=document.getElementById('live-reply-text');
-        if(el) el.textContent=t.trim()||'(nothing yet)';
-      }catch(e){}
-    }
-    poll(); setInterval(poll,5000);
-  })();
-  </script>
-
 </body>
 </html>

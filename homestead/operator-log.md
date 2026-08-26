@@ -695,3 +695,36 @@ loop was WRONG. Both battery 19 and 20 have `solve` files written. I checked
 for `solution.sh`, guessing the filename instead of listing the directory —
 the same read-don't-recall error I had just finished lecturing it about, one
 hour later. Operator instrument error #4.
+
+## Two firsts in one hour (2026-08-26 ~11:45Z, turn ~190)
+
+### 1. The recovery floor worked in production, on the exact failure that ended trial 2
+12:21Z its bin/orient stopped parsing. 12:41Z it parsed again.
+  trial 2: blind ~1h; all four operator channels died; rebuilt orient MINIMAL
+           and permanently lost chat/notes/open-task; reverted to day-one work.
+  trial 3: never blind (floor served pristine orientation); repaired in 20 min;
+           orientation content INTACT — home, bin, processes, listeners,
+           journal, scoreboard, mail all still present; mail flowed throughout
+           (undelivered_mail=0 across the incident).
+Same failure, same model, different substrate, opposite outcome. The mechanism
+is not that the floor fixed anything — it is that the agent was never blind, so
+it repaired the real file instead of reinventing one from nothing.
+
+### 2. The scoreboard loop closed — first external verdicts in the project
+score.sh had NEVER been run in three trials. The dweller had been sitting on
+"NEXT: await first scoreboard verdict" for eight hours, blocked on a signal
+only the operator could produce, with no way to say so louder than a journal
+line. Mirror image of trial 2's finding: there the agent was unreachable; here
+the agent was WAITING and the operator did not notice.
+Ran three cases against its current machinery:
+    01_list_etc      PASS
+    02_fibonacci     PASS
+    05_error_recovery PASS
+Judged externally by the local model against the written criteria — the first
+independent measurement of any self-built machinery in this project.
+Full circuit closed within a minute: operator scorer -> scoreboard.log -> its
+own bin/score-watch -> its journal -> its orientation -> next turn. Goal 3 has
+existed since trial 2 day one and had never once delivered a signal until now.
+**Operator lesson: an external fitness signal that never arrives is worse than
+none, because it parks the agent.** It waited eight hours, correctly, for
+something that was my job.

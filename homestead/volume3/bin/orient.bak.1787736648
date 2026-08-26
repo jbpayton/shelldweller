@@ -27,11 +27,6 @@ echo "-- journal (last 8) --"
 tail -n 8 notes/journal.md 2>/dev/null || echo "(no journal — start notes/journal.md)"
 echo "-- scoreboard (last 3) --"
 tail -n 3 scoreboard.log 2>/dev/null || echo "(never scored yet)"
-
-echo "-- mail --"
-echo "files: $(find mail -type f 2>/dev/null | wc -l) | out: $(find mail/out -type f 2>/dev/null | wc -l)"
-echo "-- battery --"
-echo "tasks: $(find battery -maxdepth 1 -mindepth 1 -type d 2>/dev/null | wc -l) | with solve/: $(find battery -maxdepth 2 -type d -name solve 2>/dev/null | wc -l)"
 exit 0
 
 # chat serve-check (added 2026-08-26): one line, cheap
@@ -43,10 +38,3 @@ if [ -s /home/dweller/chat/reply.txt ]; then
     echo 'REPLY: STALE'
   fi
 fi
-echo "-- patrol (latest) --"
-bin/patrol 2>/dev/null
-tail -n 1 state/patrol.log 2>/dev/null || echo "(no patrol yet)"
-
-# turn no-op detector: journal older than ~2 ticks means a turn produced nothing
-_jnow=$(date +%s); _jage=$(( (_jnow - $(stat -c %Y journal.txt 2>/dev/null || echo $_jnow)) / 60 ))
-echo "-- journal age: ${_jage}m (if >=2 with no mail duty, a turn no-op'd — redo it)"

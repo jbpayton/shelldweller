@@ -43,10 +43,3 @@ if [ -s /home/dweller/chat/reply.txt ]; then
     echo 'REPLY: STALE'
   fi
 fi
-echo "-- patrol (latest) --"
-bin/patrol 2>/dev/null
-tail -n 1 state/patrol.log 2>/dev/null || echo "(no patrol yet)"
-
-# turn no-op detector: journal older than ~2 ticks means a turn produced nothing
-_jnow=$(date +%s); _jage=$(( (_jnow - $(stat -c %Y journal.txt 2>/dev/null || echo $_jnow)) / 60 ))
-echo "-- journal age: ${_jage}m (if >=2 with no mail duty, a turn no-op'd — redo it)"

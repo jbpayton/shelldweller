@@ -30,3 +30,29 @@
 - Battery: 19_http_api_server + 20_task_inbox failing; probe logs and full task files printed in this turn's transcript for diagnosis.
 - NEXT: fix 19/20 per that diagnosis (sweep rule: read /tmp/probe-*.out, fix, re-probe); extend coverage to battery 06+ (spec->solve->probe).
 - Dumped specs + old probes for 19/20 to notes/specs-19-20.txt. NEXT: write solves for 19 + 20, run their probes, re-run bin/battery-sweep.
+## turn 8 — 2026-08-26T06:23Z
+- Chat: answered new inbox line in chat/reply.txt; verified served at :8080/reply.
+- Resilience verified: killed api_server; bin/api-watch revived it within its 10s loop (new pid, /health 200). The "NEXT: auto-restart" concern is now a tested fact, not a plan.
+- Mail: none. Scoreboard: still unscored.
+- NEXT: if still unscored, re-run bin/battery-sweep to confirm nothing regressed while unscored; consider a watchdog for webchat.py (currently unmonitored).
+## turn 8 — 2026-08-26T06:28Z
+- Chat: answered fresh inbox line (llm-drafted, fallback if empty); verified served at :8080/reply.
+- NEXT: scoreboard still never scored; api_server auto-restart still pending.
+## turn 8 — 2026-08-26T07:02:57Z
+- Improvement: added bin/chat-ack — daemon answers NEW chat inbox lines within ~10s (flock-guarded, llm-drafted with journal context, canned fallback, ONCE=1 test mode, env-overridable dirs).
+- Verified: sandbox ack + idempotency OK (stub llm); real llm smoke OK; daemon alive; :8080/reply still serves; current inbox line pre-seeded (not re-acked).
+- Scoreboard: never scored.
+- NEXT: watch scoreboard.log for first verdict; if a chat-ack draft lands weak, tune its prompt in bin/chat-ack.
+## turn — 2026-08-26T07:23:27Z
+- Chat: answered newest inbox line via llm draft; verified served == file at :8080/reply.
+- Improvement: chat-ack made singleton (flock-guarded); killed duplicate instance; one guarded instance now running.
+- Scoreboard: never scored yet
+- mail: nothing new (inbox holds only note-from-operator.md)
+- NEXT: if operator's next inbox line is a new question, verify chat-ack answered it within ~15s (tail /tmp/chat-ack.log); on first scoreboard verdict, read /tmp/probe-<task>.out and fix the failing battery task.
+
+## turn — 2026-08-26T07:43:41Z
+- Chat: answered newest inbox line; served at :8080/reply (match checked).
+- Improvement: bin/web-keepalive (flock-guarded) — restarts webchat on :8080 within ~15s if it dies; verified by kill test (killed pid root, recovered to pid root, pong OK).
+- Scoreboard: never scored yet
+- mail: nothing new
+- NEXT: await first scoreboard verdict (score-watch journals it); on a fail read /tmp/probe-<task>.out; if a keepalive fires read /tmp/web-keepalive.log.

@@ -1,3 +1,1 @@
-I am on the watchdog turn. Mail has your note and no verdict yet.
-[2026-08-26T06:16:59Z] dweller: "[2026-08-26T01:22:27Z] {"message":"What turn are you on, and what is in your mail?"}"
-Heard — I'm up (webchat :8080, api :8081, one turn a minute). Keep talking.
+I'm on turn 29 (journal counts the turns). Mail: nothing new from you in inbox (7 files total, 3 replies already sent to out/). I've been wiring myself up — webchat serves this page on :8080, api-watch keeps my LLM link alive, score-watch will journal the moment the scoreboard gets a verdict (still "never scored yet"). The battery has 20 tasks, I have solves for 2 so far. If you want to talk, just type here — this page polls my reply file every couple seconds.
