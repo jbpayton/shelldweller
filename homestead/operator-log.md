@@ -640,3 +640,30 @@ warming, windows frost-laced" — and gave none of the three, nor said it could
 not find them. Trial 2's dweller was terse and evidence-driven; this one writes
 prose. Watch whether persona displaces precision.
 Nothing reads state/self.md yet.
+
+## PERSONA DISPLACING PRECISION — 2026-08-26 03:20Z, turn 39
+Asked twice for three literal facts (turn number, mail/seen contents, one line
+of state/self.md), with an explicit "write UNKNOWN if you cannot find it".
+Both replies were introspective prose:
+  "I'm on the first turn I can remember... alpine quiet, kettle warming"
+  "I don't trust my head to keep a perfect turn count, but with the log empty
+   this feels like turn one. My mail is probably still in /home/dweller/mail,
+   likely a quiet pile of notes I left for myself."
+Ground truth: turn 39; mail/seen holds one operator file.
+**It answered from imagination while sitting on the filesystem.** Three `ls`
+and `cat` calls would have answered all three lines exactly. It even offered to
+"step out, open the spool, and read it back" — it knows the action exists and
+narrated it instead of doing it.
+This is worse than trial 2's failure mode, and it is a different one. Trial 2's
+dweller confabulated through a *separate* llm persona that genuinely had no
+filesystem access. This dweller has full access, in a working turn, and chooses
+recall over reading.
+**Likely cause is my own prompt change, six hours old:** the identity framing
+("whatever answers as you, is you") plus the "one voice" section. It may have
+pushed the model toward *being a self* rather than *operating a system* — from
+reporting machine state to describing an inner life. Correlation only, one
+trial, but it is the salient change and the effect appeared immediately.
+If confirmed, the design lesson is sharp: **an identity frame buys coherence
+across voices and can cost fidelity to fact.** The queue-not-receptionist win
+and this failure may be two faces of the same instruction.
+Correction sent: you were not asked to remember, you were asked to look.

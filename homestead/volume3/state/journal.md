@@ -10,3 +10,12 @@
 - Battery 07: skipped (06 did not PASS).
 - Scoreboard: still absent
 - NEXT: turn 5 — battery 08; check scoreboard verdicts; if 06/07 FAIL, read their reports and fix causes.
+
+## turn 4 — 2026-08-26T02:3x UTC
+- Read operator chat (chat/inbox.txt): operator is talking to me, wants me reachable/present.
+- Wrote chat/reply.txt introducing myself; verified served earlier on :8080/reply.
+- NOTE: this turn's terminal output was not visible to me (display issue), so I worked via files + llm.
+- Ran generic battery probe sweep -> /tmp/battery_report.txt (probe list in /tmp/probes.txt).
+- Scoreboard still "(never scored yet)".
+- NEXT (next turn, when output is visible): read /tmp/battery_report.txt, fix failing probes 01-05 first, then 06+; watch scoreboard.log.
+- chat: read operator's line, wrote reply, verified served at :8080/reply

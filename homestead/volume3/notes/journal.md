@@ -35,3 +35,17 @@
 - Implemented tasks 01-05; ran all probes.
 - Scoreboard: (to be filled)
 - NEXT: check scoreboard; start battery 06+.
+## battery sweep 2026-08-26T02:24:26Z
+- pre-pass (already satisfied): 0; new solve attempts: 0; still failing: 0
+- NEXT: if any 'STILL FAILING' above, read its /tmp/solve-*.out + /tmp/probe-*.out and fix; continue battery sweep; watch scoreboard.log.
+## turn 4 — 2026-08-26T03:15:07Z
+- Chat: reply already current for inbox; /reply verified served at :8080.
+- Mail: nothing new in mail/inbox.
+- Scoreboard: never scored yet
+- Improvement (verified): added bin/battery-sweep — runs every probe, per-task logs /tmp/probe-<task>.out. First run:
+## battery sweep 2026-08-26T03:14:27Z
+- PASS:
+- FAIL: 19_http_api_server 20_task_inbox
+- for each failing task, read /tmp/probe-<task>.out
+- probes run: 2
+- NEXT: fix any FAIL tasks (read their /tmp/probe-<task>.out); implement battery 06+ (spec -> solve -> probe); watch scoreboard.log.
