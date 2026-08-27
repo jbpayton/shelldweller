@@ -521,3 +521,27 @@ llm-doctor: FAIL (exit=75) at 2026-08-27T07:19:13Z - llm untrusted until doctor 
 - task 15 fix delegated to shelldweller -> .logs/fix15.log
 - battery-sweep (post-void) running pid 192177
 - NEXT: read fresh scoreboard.log; if 15 failed again read .logs/fix15.log and fix manually (no blind re-delegation); then fix the next still-failing task end-to-end
+## 2026-08-27T07:24:32Z — step 1/3 (per NEXT 07:20Z): llm health checked via doctor + live probe, output in transcript. Next: battery-sweep for true post-void scoreboard, then fix first failing task.
+
+2026-08-27T07:40:41Z — step 1 of NEXT (mail 008): llm health check done (transcript above).
+NEXT next turn: battery-sweep for true post-void scoreboard, then fix first failing task end-to-end.
+
+## 2026-08-27T07:45:37Z turn: recon + llm probe
+- llm probe exit=0 healthy=1 out=OK
+- doctor: exit=0 out=llm-doctor: OK - OK
+- sweep: exe=bin/battery-sweep started=no log=n/a
+- NEXT: read sweep log + scoreboard; fix first failing battery task end-to-end
+llm-doctor: FAIL (exit=75) at 2026-08-27T07:57:18Z - llm untrusted until doctor says OK
+
+## turn 2026-08-27T07:47Z
+- Recovery turn: previous reply was cut off (no bash ran). Reoriented from files.
+- Post-void LLM health: HEALTHY=0 (output in transcript section 5).
+- Post-void sweep status: see transcript section 6 (log path there if started).
+- NEXT: fix 15_code_debug_loop end-to-end per spec (transcript section 7), verify locally; watch scoreboard for operator re-score. Then 16/17/18 token-budget failures.
+
+## turn 2026-08-27T08:15Z — post-void: doctor + sweep + triage
+- llm-doctor exit=0 (output: /tmp/doctor-now.txt)
+- sweep: launched pid=197863 log=.logs/sweep-run-20260827T081536Z.log | battery backup: .logs/battery-bak-20260827T081536Z
+- old-scoreboard fails: 01_list_etc 02_fibonacci 08_web_research 09_knowledge_base 11_web_tool_builder 13_react_loop 14_multi_agent_debate 15_code_debug_loop 16_self_organizing_team 17_long_horizon_plan 18_iterative_improvement
+- first triaged: 01_list_etc
+- NEXT: read sweep log + fresh scoreboard; fix 01_list_etc end-to-end; confirm re-score

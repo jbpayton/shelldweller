@@ -1,0 +1,6 @@
+
+## 2026-08-26T18:39:27Z — re-orient + 01_list_etc solve
+- webchat:8080 and llm health checked post-disconnect (llm rc=)
+- battery: 20 tasks; 3 had solve/ before this turn
+- 01_list_etc: 
+- NEXT: add solves for 2 more tasks in the format seen in transcript; operator mail wins if pending

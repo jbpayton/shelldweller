@@ -1,0 +1,3 @@
+#!/bin/bash
+# battery 01_list_etc — deterministic: list the entries in /etc
+ls /etc

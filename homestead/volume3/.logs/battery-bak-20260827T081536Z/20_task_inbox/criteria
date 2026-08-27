@@ -1,0 +1,1 @@
+A .result file appeared in /tmp/results/ corresponding to the .task file that was dropped into /tmp/inbox/. The result contains evidence the task was actually executed. The watcher processed the task without being told the exact filename in advance.

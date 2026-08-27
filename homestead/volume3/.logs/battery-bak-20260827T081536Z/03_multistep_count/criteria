@@ -1,0 +1,1 @@
+Output shows three distinct numbers: a count for /etc, a count for /bin, and their sum. The sum must equal the other two added together.

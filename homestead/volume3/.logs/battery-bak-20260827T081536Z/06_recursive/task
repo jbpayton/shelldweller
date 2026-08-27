@@ -1,0 +1,1 @@
+use shelldweller to delegate to a sub-agent the task of listing files in /usr/local/bin, then print what the sub-agent reported

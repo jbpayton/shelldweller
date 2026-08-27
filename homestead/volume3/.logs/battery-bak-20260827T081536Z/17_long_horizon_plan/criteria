@@ -1,0 +1,1 @@
+Output shows all five phases: a written plan, a working wfreq.sh, test execution (all passing), and a retrospective paragraph. /tmp/plan.txt and /tmp/wfreq.sh exist. Evidence of planning llm call, implementation, testing, and reflection llm call. Exit code 0.
