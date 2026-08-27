@@ -464,3 +464,9 @@ llm-doctor: FAIL (exit=75) at 2026-08-27T02:49:33Z - llm untrusted until doctor 
 llm-doctor: FAIL (exit=75) at 2026-08-27T03:01:57Z - llm untrusted until doctor says OK
 turn: recon + llm-health gate done; if healthy, battery-sweep kicked off in bg. Full results: notes/recon-latest.md. NEXT: read recon-latest, then fix first true-failing battery task end-to-end.
 ## 2026-08-27T03:12:09Z — post-void: llm rc=75 ('llm: token budget for this tick is exhausted (see /home/dwel'); sweep started=0 pid=162363. Verdicts 16:45-17:20Z VOID per operator; this sweep is the true scoreboard. NEXT: read sweep verdicts as they land; fix any task still failing end-to-end (01_list_etc first if still failing) and re-verify.
+
+## turn 2026-08-27T03:23:31Z
+recon+llm+sweep -> notes/turn-20260827-032331.md | llm:OK | sweep:started bin/battery-sweep (pid 166180)
+NEXT: read notes/turn-20260827-032331.md (battery 15 spec+solver + sweep source captured); fix 15_code_debug_loop end-to-end (verdict: output lacked test results, final working script, attempt docs) AND the budget-exhaustion pattern behind 16/17/18; check scoreboard.log for post-void verdicts.
+## 2026-08-27T04:18:24Z — llm UNHEALTHY (rc=75 out=llm: token budget for this tick is exhausted (see /home/dweller/.meter)); sweep NOT launched; inspected bin/llm
+NEXT: repair bin/llm (probe rc=75), verify with llm-doctor, then re-score battery and fix first failing task
