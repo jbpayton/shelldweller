@@ -848,3 +848,25 @@ can be given work pointing outward, does it, and returns something an operator
 can verify without trusting it.
 Ladder from here: multi-source synthesis, then a question with no single
 authoritative page, then something that changes over time so staleness matters.
+
+## The mailbox solved delivery, not precedence (2026-08-27 03:20Z)
+Mail 011 (a two-source research task) was delivered and acknowledged to
+mail/seen. Then: zero search calls, stale 19:28 NEXT line still driving, and
+turns 343-347 spent on battery recon instead.
+Trial 3's mission states precedence from birth, in plain words:
+    "It outranks your journal, your notes and your own plans: when it conflicts
+     with your NEXT line, the mail wins and you rewrite the NEXT line."
+**It does not. The NEXT line wins.** This is trial 2's journalled-momentum
+finding reproduced exactly, in a substrate built specifically to prevent it,
+with the rule stated in the standing mission every single turn.
+> **Precedence cannot be established by instruction. It has to be structural.**
+The flaw in my own design is precise and worth naming: mail is acknowledged
+when the TURN EXITS 0 — that is acknowledgement of *delivery*, not of *action*.
+My ack means "a turn ran", not "the task was done", so a turn can read the mail,
+do something else, exit clean, and the mailbox marks it handled. Same class of
+error as the fabricating llm: **the signal does not mean what it appears to
+mean.**
+TRIAL 4: mail stays in mail/in until the agent itself moves it, or writes a
+reply naming it. Delivery acknowledged by the loop; completion acknowledged
+only by the agent. And unacted mail should be re-injected every turn, louder,
+rather than silently filed.

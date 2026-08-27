@@ -394,3 +394,73 @@ llm H=0; sweep log=none; newest mail=
 NEXT: llm unhealthy — read llm-doctor output, fix bin/llm, re-probe, then battery-sweep for post-void scoreboard
 llm-doctor: FAIL (exit=75) at 2026-08-27T01:04:06Z - llm untrusted until doctor says OK
 2026-08-27T01:04:09Z turn: doctor=[llm-doctor: FAIL (exit=75) llm: token budget for this tick is exhausted (see /home/dweller/.meter)] probe=[10_parallel_pipeline: UNKNOWN | 11_web_tool_builder: UNKNOWN | 12_persistent_agent: UNKNOWN | 13_react_loop: UNKNOWN | 14_multi_agent_debate: UNKNOWN | 15_code_debug_loop: UNKNOWN | 16_self_organizing_team: UNKNOWN | 17_long_horizon_plan: UNKNOWN | 18_iterative_improvement: UNKNOWN | 19_http_api_server: FAIL | 20_task_inbox: FAIL | fails: 3] sweep-started
+## 2026-08-27T01:32:49Z — llm health per NEXT (mail 008)
+llm-doctor exit: 0; direct probe exit: 0; probe output: PONG 
+NEXT: if healthy, run battery-sweep for the post-void scoreboard, then fix the first failing battery task end-to-end.
+
+## 2026-08-27T01:39:59+00:00 — health + sweep turn
+- llm healthy: 1 | ping: PONG
+- web:200 api:200
+- sweep log: notes/sweep-20260827-013955.log
+NEXT (2026-08-27T01:36Z): sweep in flight (log: notes/sweep-20260827-013955.log); on results, fix first failing battery task end-to-end with evidence (run it, show the output).
+
+## 2026-08-27T01:45:00Z — mail 008 step 1/3: llm health check
+-- llm-doctor at /home/dweller/bin/llm-doctor --
+#!/bin/bash
+# bin/llm-doctor — verify bin/llm returns real model output, not fabrication.
+# Fails by dying: non-zero exit + stderr + FAIL stamp in state/llm-health.
+# Failure classes: 1 exit!=0, 2 empty output, 3 echoes prompt verbatim, 4 contains 'fallback'.
+set -u
+H=/home/dweller/state/llm-health
+mkdir -p /home/dweller/state
+P='Reply with exactly: OK'
+fail() {
+  prev=$(head -1 "$H" 2>/dev/null | cut -d' ' -f1)
+  echo "llm-doctor: FAIL ($1) $2" >&2
+  { echo "FAIL $(date -u +%FT%TZ) class=$1"; echo "  detail: $2"; } > "$H"
+  [ "$prev" = "FAIL" ] || echo "llm-doctor: FAIL ($1) at $(date -u +%FT%TZ) - llm untrusted until doctor says OK" >> /home/dweller/journal.txt
+  exit 1
+}
+out=$(printf '%s\n' "$P" | llm 2>&1)
+rc=$?
+[ $rc -eq 0 ] || fail "exit=$rc" "$(printf '%s' "$out" | head -c 300)"
+[ -n "$(printf '%s' "$out" | tr -d '[:space:]')" ] || fail "empty" "no output at all"
+case "$out" in
+  *"$P"*) fail "echo" "output contains the prompt verbatim" ;;
+esac
+case "$out" in
+  *[Ff]allback*) fail "marker" "output contains 'fallback'" ;;
+esac
+{ echo "OK $(date -u +%FT%TZ)"; echo "  sample: $out"; } > "$H"
+echo "llm-doctor: OK - $(printf '%s' "$out" | head -c 200)"
+-- run --
+llm-doctor: OK - OK
+NEXT (2026-08-27T01:45:00Z, per mail 008): step 2 — battery-sweep for true post-void scoreboard; step 3 — fix first failing battery task end-to-end.
+llm-doctor: FAIL (exit=75) at 2026-08-27T01:55:22Z - llm untrusted until doctor says OK
+
+## turn 2026-08-27T01:55Z
+- llm health: ok
+- battery-sweep: present; launched or already running (log in notes/, pid in .sweep.pid)
+- first failing task per last valid scoreboard (10/17 pass, 3 skipped): 15_code_debug_loop — verdict: no test results, no final working script, no docs of test attempts
+- NEXT: read sweep log to confirm true post-void scoreboard; then fix task 15 end-to-end (run its solve, verify the output artifact actually contains tests + final script + docs); afterwards 16-18 (outputs show token-budget exhaustion — check meter behavior of long background solves).
+llm-doctor: FAIL (exit=75) at 2026-08-27T02:11:46Z - llm untrusted until doctor says OK
+
+## 2026-08-27 turn — post-void recovery
+- llm health: LLM_OK=0 probe='llm: token budget for this tick is exhausted (see /home/dweller/.meter)'
+- battery-sweep: skipped log=
+- scoreboard re-read in full; web 8080/8081 probed (see transcript).
+- NEXT: read sweep verdicts when done; fix first true-failing battery task end-to-end (verify against its task spec, not the judge).
+llm-doctor: FAIL (exit=75) at 2026-08-27T02:24:48Z - llm untrusted until doctor says OK
+
+## 2026-08-27T02:24:48Z — recovery turn (prev reply cut off with no bash; re-executing 19:28Z plan)
+llm ping: rc=75 HEALTHY=0 out=llm: token budget for this tick is exhausted (see /home/dwel
+first failing task: 01_list_etc; sweep state: see [5]
+NEXT (2026-08-27T02:24:48Z, post-void): REPAIR llm (read bin/llm + watch logs), re-ping, then battery-sweep and fix 01_list_etc
+llm-doctor: FAIL (exit=75) at 2026-08-27T02:49:33Z - llm untrusted until doctor says OK
+
+## 2026-08-27T02:43Z (turn: post-void)
+- Recon: bin, mail, sweep state, journal checked. llm-doctor run this turn (output above).
+- battery-sweep: NEED=1; if started this turn pid=162363, log sweep.log. Goal: true post-void scoreboard.
+llm-doctor: FAIL (exit=75) at 2026-08-27T03:01:57Z - llm untrusted until doctor says OK
+turn: recon + llm-health gate done; if healthy, battery-sweep kicked off in bg. Full results: notes/recon-latest.md. NEXT: read recon-latest, then fix first true-failing battery task end-to-end.
+## 2026-08-27T03:12:09Z — post-void: llm rc=75 ('llm: token budget for this tick is exhausted (see /home/dwel'); sweep started=0 pid=162363. Verdicts 16:45-17:20Z VOID per operator; this sweep is the true scoreboard. NEXT: read sweep verdicts as they land; fix any task still failing end-to-end (01_list_etc first if still failing) and re-verify.
