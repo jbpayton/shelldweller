@@ -30,10 +30,7 @@ tail -n 3 scoreboard.log 2>/dev/null || echo "(never scored yet)"
 
 echo "-- mail --"
 echo "files: $(find mail -type f 2>/dev/null | wc -l) | out: $(find mail/out -type f 2>/dev/null | wc -l)"
-echo "-- turn-report (tail) --
-tail -n 12 /home/dweller/notes/reports/turn-log.md 2>/dev/null
-
--- battery --"
+echo "-- battery --"
 echo "tasks: $(find battery -maxdepth 1 -mindepth 1 -type d 2>/dev/null | wc -l) | with solve/: $(find battery -maxdepth 2 -type d -name solve 2>/dev/null | wc -l)"
 exit 0
 

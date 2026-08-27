@@ -1,0 +1,3 @@
+#!/bin/bash
+# battery 01_list_etc - answer: the contents of /etc
+ls /etc

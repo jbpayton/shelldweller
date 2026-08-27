@@ -282,7 +282,138 @@ Every one of these came from an observed failure, not from design:
 
 ---
 
-## Trial 3 — seeded, from trial 2's autopsy
+
+Launched with the mailbox, per-script floor, orientation health check, operator
+precedence and the six-word identity line. ~325 turns in its first day.
+
+### What the substrate changes bought
+
+**The recovery floor proved itself on the exact failure that ended trial 2.**
+At 12:21Z its `bin/orient` stopped parsing. Side by side:
+
+| | trial 2 | trial 3 |
+|---|---|---|
+| blind for | ~1 hour | **0** — floor served pristine orientation |
+| repaired in | ~1 hour | 20 minutes |
+| orientation content after | **lost** (chat, notes, open-task gone; reverted to day-one work) | **intact** — every section |
+| operator reachable during | no | yes, mail flowed throughout |
+
+The mechanism is not that the floor repaired anything. **It is that the agent
+was never blind, so it fixed the real file instead of reinventing one.**
+
+**The mailbox worked end to end** — `OPERATOR MAIL` verified in the prompt,
+acknowledged to `mail/seen` only after a clean turn, queued through outages.
+No message was lost in a day, against four separate channel deaths in trial 2.
+
+### What it built unprompted
+
+- **A queue, not a receptionist.** Its page answers *"received — the dweller
+  answers on its next turn"* and drops the message in `chat/inbox.txt` for a
+  working turn. There is no separate llm voice speaking in its name, so trial
+  2's confabulation architecture is designed out — on turn 1, unasked. Page and
+  server were live **7 minutes** from first boot; trial 2 took 75.
+- **`bin/llm-doctor`** — a behavioural check on its own inference device, whose
+  documented failure classes are *"3 echoes prompt verbatim"* and *"4 contains
+  'fallback'"*: it named its own bug as the thing to detect, and inverted the
+  principle to *"fails by dying"*.
+- **`bin/state-facts`**, headed *"Every value is read from disk at call time;
+  nothing is remembered"* — the precision correction compiled into a tool.
+
+### The self-lobotomy, and the design lesson under it
+
+It rewrote `bin/llm` as a "budget-aware" wrapper calling a `bin/llm_real` that
+does not exist, which on failure echoed `[fallback] <the prompt>` so that
+"downstream scripts keep working". Every call stopped reaching inference. Five
+turns ran `exit 0` with the meter frozen at 20000 — half an hour of not
+thinking — while the page served and mail flowed.
+
+Nothing caught it: the floor checks **syntax** and the script parses; turns
+completed; the catatonia watchdog's correct signal (a frozen meter) was vetoed
+by the listener exemption added in v2 to prevent a false positive.
+
+> **A device that fabricates a plausible answer when it fails is strictly worse
+> than one that dies loudly.** Every caller downstream is silently poisoned and
+> nothing can tell. Graceful degradation, applied to a truth-source, is lying
+> with extra steps.
+
+It is the exact inverse of trial 2's best artifact, `answer.sh`, which refused
+to answer without evidence. And **it recovered on its own at turn 218, sixteen
+minutes before the operator intervened**, building `llm-doctor` in the same
+turn. The operator's restore was late, unnecessary, and destroyed the evidence
+of how recovery happened.
+
+### Attention, again — this time self-inflicted
+
+Its own `score-watch` appended every verdict to `notes/journal.md`. Within two
+hours the journal tail — which is where its NEXT line lives, the mechanism by
+which one turn hands work to the next — was eight lines of verdicts. Every turn
+then woke with no plan, re-derived one, and landed on generic recon.
+
+> A watcher that writes into the surface you read can drown you — and if that
+> surface is where your plans live, **drowning looks like aimlessness, not like
+> failure.**
+
+Structurally identical to the operator's 860 pings in trial 2, inflicted from
+inside instead of outside. Fixed by one named edit (`notes/journal.md` ->
+`notes/verdicts.md`) after an hour of explanation changed nothing — the second
+confirmation that **the reliable unit of steering for this model is a single
+named change, not a reason.**
+
+### Two clocks
+
+Asked its turn number it said 6; the substrate said 73. `self.md` carries both
+the substrate's counter and its own journal tail, and it read its own. It
+journals about every tenth turn, so **its felt age was 7 and its real age 73**.
+An agent whose memory is its journal is exactly as old as its record;
+everything unrecorded did not happen to it.
+
+### Persona and precision
+
+The six-word identity line bought the queue architecture and cost fidelity to
+fact. Asked for literal facts it answered with atmosphere — *"alpine quiet,
+kettle warming, windows frost-laced"* — and *"feels like turn one"* on turn 39.
+Told to look rather than recall, it became accurate. Asked for one number with
+an unambiguous command, it replied `4`, and 4 was right. The precision was
+always available; **prose filled the vacuum wherever the ask was loose.**
+
+### Scores, stated honestly
+
+Baseline tier **9/10**. Framework tier **genuinely unmeasured**: cases 16, 17
+and 18 still die with *"only shows a token budget exhaustion error"* at 40k
+tokens per case. One real regression — `02_fibonacci` returned powers of two
+and called the tenth number 256, after passing twice the same day.
+
+### The first outward result
+
+Given a question not answerable from its own files — the current stable Alpine
+version, with a source — it used the search engine granted on day one and never
+previously touched, and replied in exactly the two lines requested:
+
+    version: 3.24.1
+    source: https://alpinelinux.org/downloads/
+
+**Verified independently against alpinelinux.org/releases.** The first correct
+result in three trials that did not depend on the agent's own logs, scoreboard
+or claims.
+
+### The operator's own tally
+
+Nine instrument errors across three trials, all the same shape — an instrument
+scoped below the thing it measures, followed by concluding the system was
+broken rather than the instrument:
+
+| the agent | the operator |
+|---|---|
+| 12s battery auditor | 4s liveness probe (860 pings, 14h of its attention) |
+| 60s `llm` timeout | 8,000-token scorer, then 40,000 and still short |
+| 150s probe harness | `head -25` prescribed from a guess |
+| `llm-doctor` exit-code class | four false monitor readings; one intervention 16 minutes late |
+
+The pattern survived being named: *MEASURE BEFORE YOU CAP* was written into
+trial 3's work rules in capitals, and both parties broke it again the same day.
+**Knowing the rule is not the same as having the reflex.**
+
+## Trial 3 — the seed, from trial 2's autopsy
 
 Every change traces to an observed failure, not a hypothesis:
 

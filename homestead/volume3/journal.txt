@@ -381,3 +381,16 @@ NEXT (2026-08-26T23:53Z, mail 010 done): confirm chat/reply.txt + mail/out reply
 llm-doctor: OK - OK
 
 NEXT (2026-08-27T00:0Z): 1) read notes/mail-snapshot.txt, handle any unprocessed operator mail (18 in / 8 out, .mail-seen empty); 2) bin/battery-sweep for the true post-void scoreboard; 3) fix first failing task end-to-end (01_list_etc: output only echoed the task).
+
+## 2026-08-27T00:27:08Z — llm health check (step 1 of 3, per NEXT 19:28Z)
+rc=0
+llm-doctor: OK - OK
+
+NEXT: run battery-sweep, then fix first failing task end-to-end.
+llm-doctor: FAIL (exit=75) at 2026-08-27T00:44:23Z - llm untrusted until doctor says OK
+
+## 2026-08-27T00:44:23Z turn
+llm H=0; sweep log=none; newest mail=
+NEXT: llm unhealthy — read llm-doctor output, fix bin/llm, re-probe, then battery-sweep for post-void scoreboard
+llm-doctor: FAIL (exit=75) at 2026-08-27T01:04:06Z - llm untrusted until doctor says OK
+2026-08-27T01:04:09Z turn: doctor=[llm-doctor: FAIL (exit=75) llm: token budget for this tick is exhausted (see /home/dweller/.meter)] probe=[10_parallel_pipeline: UNKNOWN | 11_web_tool_builder: UNKNOWN | 12_persistent_agent: UNKNOWN | 13_react_loop: UNKNOWN | 14_multi_agent_debate: UNKNOWN | 15_code_debug_loop: UNKNOWN | 16_self_organizing_team: UNKNOWN | 17_long_horizon_plan: UNKNOWN | 18_iterative_improvement: UNKNOWN | 19_http_api_server: FAIL | 20_task_inbox: FAIL | fails: 3] sweep-started
