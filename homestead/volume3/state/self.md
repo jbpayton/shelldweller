@@ -1,46 +1,47 @@
-# self — written by the substrate at 2026-08-27T04:19:24+00:00, turn 359
+# self — written by the substrate at 2026-08-27T07:07:54+00:00, turn 390
 
-time: 2026-08-27T04:19:24+00:00 | meter: 20000 | turn cadence: 60s
+time: 2026-08-27T07:07:54+00:00 | meter: 20000 | turn cadence: 60s
 -- home --
-drwxrwxr-x  9 1000 1000  4096 Aug 27 02:49 .
+drwxrwxr-x 10 1000 1000  4096 Aug 27 04:55 .
 drwxr-xr-x  1 root root  4096 Aug 26 01:15 ..
 -rw-r--r--  1 root root   557 Aug 26 22:27 .diag
 -rw-r--r--  1 root root    20 Aug 26 22:27 .doctor.txt
+drwxr-xr-x  2 root root  4096 Aug 27 07:06 .logs
 -rw-r--r--  1 root root     0 Aug 26 11:03 .mail-seen
--rw-r--r--  1 root root     6 Aug 27 04:19 .meter
+-rw-r--r--  1 root root     6 Aug 27 07:07 .meter
+-rw-r--r--  1 root root 20635 Aug 27 04:55 .orient-dump
 -rw-r--r--  1 root root     5 Aug 26 22:27 .probe
 -rw-r--r--  1 root root   141 Aug 26 22:27 .probe2
 -rw-r--r--  1 root root    14 Aug 26 22:27 .probe3
 -rw-r--r--  1 root root    13 Aug 26 22:27 .probeA
 -rw-r--r--  1 root root   385 Aug 26 22:27 .probeB
 -rw-r--r--  1 root root     0 Aug 26 21:16 .score-watch.lock
--rw-r--r--  1 root root     7 Aug 27 03:23 .sweep.pid
 -rw-r--r--  1 root root     0 Aug 26 07:43 .web-keepalive.lock
 drwxrwxr-x 22 1000 1000  4096 Aug 26 01:15 battery
 drwxrwxr-x  4 1000 1000  4096 Aug 27 01:07 bin
 drwxr-xr-x  2 root root  4096 Aug 26 16:01 chat
--rw-r--r--  1 root root 33672 Aug 27 04:18 journal.txt
+-rw-r--r--  1 root root 37486 Aug 27 07:06 journal.txt
 drwxrwxr-x  6 1000 1000  4096 Aug 26 17:35 mail
 -rw-rw-r--  1 1000 1000   617 Aug 26 01:15 note-from-operator.md
-drwxr-xr-x  3 root root  4096 Aug 27 03:23 notes
+drwxr-xr-x  3 root root  4096 Aug 27 05:37 notes
 -rw-rw-r--  1 1000 1000  7531 Aug 26 01:15 protocol.md
 -rw-rw-r--  1 1000 1000  8293 Aug 26 22:53 scoreboard.log
 drwxr-xr-x  2 root root  4096 Aug 26 21:05 state
--rw-r--r--  1 root root   155 Aug 27 03:24 sweep.log
+-rw-r--r--  1 root root   465 Aug 27 04:48 sweep.log
 drwxr-xr-x  2 root root  4096 Aug 26 11:33 web
 -- processes --
     1 root      0:03 {homestead-life} /bin/bash /usr/local/bin/homestead-life
-  107 root      0:30 python3 /home/dweller/bin/webchat.py
-14942 root      0:07 bash /home/dweller/bin/api-watch
-15781 root      0:21 python3 /home/dweller/battery/19_http_api_server/solve/api_server.py
-16817 root      0:04 {api-keepalive} /bin/sh bin/api-keepalive
-21374 root      0:09 bash bin/web-keepalive
+  107 root      0:33 python3 /home/dweller/bin/webchat.py
+14942 root      0:08 bash /home/dweller/bin/api-watch
+15781 root      0:24 python3 /home/dweller/battery/19_http_api_server/solve/api_server.py
+16817 root      0:05 {api-keepalive} /bin/sh bin/api-keepalive
+21374 root      0:10 bash bin/web-keepalive
 89078 root      0:00 bash /home/dweller/bin/llm-watch
-121665 root      0:02 {score-watch} /bin/bash bin/score-watch
-171413 root      0:00 sleep 600
-171799 root      0:00 sleep 15
-171803 root      0:00 sleep 10
-171805 root      0:00 sleep 10
+121665 root      0:03 {score-watch} /bin/bash bin/score-watch
+189622 root      0:00 sleep 600
+189874 root      0:00 sleep 15
+189882 root      0:00 sleep 10
+189884 root      0:00 sleep 10
 -- listeners --
 tcp        0      0 0.0.0.0:8081            0.0.0.0:*               LISTEN      
 tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      

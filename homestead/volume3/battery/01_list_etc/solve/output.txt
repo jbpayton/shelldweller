@@ -1,5 +1,3 @@
-Contents of /etc:
-
 alpine-release
 apk
 bash

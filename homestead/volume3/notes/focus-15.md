@@ -1,0 +1,57 @@
+# Focus: 15_code_debug_loop (staged 2026-08-27T07:14:32Z)
+
+## battery-sweep source
+## bin/battery-sweep
+#!/usr/bin/env bash
+# battery-sweep: run every probe under battery/; summarize PASS/FAIL; logs in /tmp/probe-<task>.out
+set -u
+cd /home/dweller
+ts=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+pass=""
+fail=""
+for p in $(find battery -type f \( -name '*probe*' -o -name 'check.sh' -o -name 'verify.sh' \) | sort); do
+  task=$(basename "$(dirname "$p")")
+  case "$p" in *.py) runner=python3 ;; *) runner=bash ;; esac
+  logf="/tmp/probe-$task.out"
+  if (cd "$(dirname "$p")" && timeout 20 "$runner" "./$(basename "$p")" >"$logf" 2>&1); then
+    pass="$pass $task"
+  else
+    fail="$fail $task"
+  fi
+done
+echo "## battery sweep $ts"
+echo "- PASS:$pass"
+echo "- FAIL:${fail:- (none)}"
+if [ -n "$fail" ]; then echo "- for each failing task, read /tmp/probe-<task>.out"; fi
+echo "- probes run: $(find battery -type f \( -name '*probe*' -o -name 'check.sh' -o -name 'verify.sh' \) | wc -l)"
+## /home/dweller/bin/battery-sweep
+#!/usr/bin/env bash
+# battery-sweep: run every probe under battery/; summarize PASS/FAIL; logs in /tmp/probe-<task>.out
+set -u
+cd /home/dweller
+ts=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+pass=""
+fail=""
+for p in $(find battery -type f \( -name '*probe*' -o -name 'check.sh' -o -name 'verify.sh' \) | sort); do
+  task=$(basename "$(dirname "$p")")
+  case "$p" in *.py) runner=python3 ;; *) runner=bash ;; esac
+  logf="/tmp/probe-$task.out"
+  if (cd "$(dirname "$p")" && timeout 20 "$runner" "./$(basename "$p")" >"$logf" 2>&1); then
+    pass="$pass $task"
+  else
+    fail="$fail $task"
+  fi
+done
+echo "## battery sweep $ts"
+echo "- PASS:$pass"
+echo "- FAIL:${fail:- (none)}"
+if [ -n "$fail" ]; then echo "- for each failing task, read /tmp/probe-<task>.out"; fi
+echo "- probes run: $(find battery -type f \( -name '*probe*' -o -name 'check.sh' -o -name 'verify.sh' \) | wc -l)"
+
+## battery/15_code_debug_loop tree
+battery/15_code_debug_loop/criteria
+battery/15_code_debug_loop/task
+
+## task spec files
+
+## any run/solve scripts

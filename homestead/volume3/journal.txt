@@ -470,3 +470,54 @@ recon+llm+sweep -> notes/turn-20260827-032331.md | llm:OK | sweep:started bin/ba
 NEXT: read notes/turn-20260827-032331.md (battery 15 spec+solver + sweep source captured); fix 15_code_debug_loop end-to-end (verdict: output lacked test results, final working script, attempt docs) AND the budget-exhaustion pattern behind 16/17/18; check scoreboard.log for post-void verdicts.
 ## 2026-08-27T04:18:24Z — llm UNHEALTHY (rc=75 out=llm: token budget for this tick is exhausted (see /home/dweller/.meter)); sweep NOT launched; inspected bin/llm
 NEXT: repair bin/llm (probe rc=75), verify with llm-doctor, then re-score battery and fix first failing task
+2026-08-27T04:21Z mail 013: filled an empty template slot with invented Debian year 2028 using four Alpine-only sources; comparison then followed the invention. Rule: unfetched field = UNKNOWN; sources must cover the field they certify; comparisons only over fetched facts. Reply: mail/out/reply-013.md. NEXT stands: llm-doctor -> battery-sweep -> fix first failing task.
+llm-doctor: FAIL (exit=75) at 2026-08-27T04:38:56Z - llm untrusted until doctor says OK
+
+## 2026-08-27T04:39Z — NEXT items: health, sweep, fix 01
+- llm probe: llm: token budget for this tick is exhausted (see /home/dweller/.meter)
+- doctor: llm-doctor: OK - OK
+- sweep: started pid=173752
+- 01_list_etc: deterministic solve written (run.sh -> list_etc.sh -> solve/output.txt); artifact 40 lines; old run.sh backed up as run.sh.bak.*
+- task.md and battery-sweep source printed in this turn's output — re-read before further changes.
+NEXT: confirm task.md (printed above) needs only filenames — extend list_etc.sh if more required; watch sweep.log + scoreboard.log for 01 re-score; if sweep double-started the 19 api_server, kill the duplicate and confirm keepalive restored.
+## 2026-08-27T04:48Z — turn
+- llm probe: LLM_OK=1 out=[apple]
+- sweep: sweep STARTED at 04:48Z (pid 174831)
+- failing tasks (scoreboard): 01_list_etc 02_fibonacci 08_web_research 09_knowledge_base 11_web_tool_builder 13_react_loop 14_multi_agent_debate 15_code_debug_loop 16_self_organizing_team 17_long_horizon_plan 18_iterative_improvement 
+- NEXT: watch sweep (tail sweep.log). When verdicts land, fix the first failing battery task end-to-end.
+
+## 2026-08-27T05:37:36Z — turn: llm OK; evidence at notes/turn-15.md; checkpoint to implement battery-15 fix
+llm-doctor: FAIL (exit=75) at 2026-08-27T06:06:10Z - llm untrusted until doctor says OK
+
+## 2026-08-27T06:06:10Z — post-void re-score
+- llm smoke: llm: token budget for this tick is exhausted (see /home/dweller/.meter)
+- sweep: not running (see log)
+- NEXT: collect sweep verdicts via score-watch; fix first truly-failing battery task end-to-end; keep 8080 chat page live.
+## 2026-08-27T06:19:16Z recon after ~11h gap (first turn back)
+printed: mail, sweep.log, scoreboard.log, journal tail, state/, .diag, llm script+doctor+live test, web 8080/8081, battery layout, bin, orient, sweep script, specs+solves for 15-18, .logs tails
+
+## 2026-08-27T06:24:02Z — mail 015 (run-this-now) took priority: exact curl|grep printed 2 line(s). Verbatim output + URL written to chat/reply.txt and mail/out/015-run-this-now-reply.md. No date taken from memory. Battery paused this turn per mail.
+NEXT (2026-08-27T06:20Z): mail 015 done. Resume mail-008 plan next turn: llm-doctor -> battery-sweep (true post-void scoreboard) -> fix first failing battery task end-to-end.
+llm-doctor: FAIL (exit=75) at 2026-08-27T06:43:16Z - llm untrusted until doctor says OK
+
+## 2026-08-27T06:56:46Z turn — health check + scoreboard triage (no operator mail this turn)
+- llm ping: PONG 
+- doctor: llm-doctor: OK - OK 
+- last scoring run: 2026-08-26T18:18:21-04:00 (pre-void? 0); sweep running: 0
+- action: scoreboard is post-void; no sweep started
+- first failing (post-void): 02_fibonacci
+NEXT (06:56Z, triage): fix battery/02_fibonacci end-to-end (write complete solve artifacts, run+verify locally), then re-run battery-sweep and confirm the verdict flips to PASS.
+
+## 2026-08-27T07:06:54Z — health + post-void sweep
+- llm probe exit + doctor/diag printed above
+- web 8080 + api 8081 probed; keepalives/watchers alive per ps
+- full scoreboard printed; sweep running in background -> .logs/sweep-*.log
+- task15 (code_debug_loop) recon printed
+NEXT: when sweep log settles, read verdicts; fix the first FAIL task end-to-end (produce the exact artifacts its task text requires, verify by running them, re-sweep that task).
+llm-doctor: FAIL (exit=75) at 2026-08-27T07:19:13Z - llm untrusted until doctor says OK
+
+## 2026-08-27T07:19:16Z — post-void recovery turn
+- llm probe LLMOK=0 (raw: .logs/llm-probe.log)
+- task 15 fix delegated to shelldweller -> .logs/fix15.log
+- battery-sweep (post-void) running pid 192177
+- NEXT: read fresh scoreboard.log; if 15 failed again read .logs/fix15.log and fix manually (no blind re-delegation); then fix the next still-failing task end-to-end
