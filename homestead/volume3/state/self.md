@@ -1,13 +1,13 @@
-# self — written by the substrate at 2026-08-26T23:14:03+00:00, turn 295
+# self — written by the substrate at 2026-08-27T00:17:36+00:00, turn 315
 
-time: 2026-08-26T23:14:03+00:00 | meter: 20000 | cadence: 60s
+time: 2026-08-27T00:17:36+00:00 | meter: 20000 | cadence: 60s
 -- home --
 drwxrwxr-x  9 1000 1000  4096 Aug 26 22:27 .
 drwxr-xr-x  1 root root  4096 Aug 26 01:15 ..
 -rw-r--r--  1 root root   557 Aug 26 22:27 .diag
 -rw-r--r--  1 root root    20 Aug 26 22:27 .doctor.txt
 -rw-r--r--  1 root root     0 Aug 26 11:03 .mail-seen
--rw-r--r--  1 root root     6 Aug 26 23:14 .meter
+-rw-r--r--  1 root root     6 Aug 27 00:17 .meter
 -rw-r--r--  1 root root     5 Aug 26 22:27 .probe
 -rw-r--r--  1 root root   141 Aug 26 22:27 .probe2
 -rw-r--r--  1 root root    14 Aug 26 22:27 .probe3
@@ -18,10 +18,10 @@ drwxr-xr-x  1 root root  4096 Aug 26 01:15 ..
 drwxrwxr-x 22 1000 1000  4096 Aug 26 01:15 battery
 drwxrwxr-x  4 1000 1000  4096 Aug 26 19:21 bin
 drwxr-xr-x  2 root root  4096 Aug 26 16:01 chat
--rw-r--r--  1 root root 25277 Aug 26 22:27 journal.txt
+-rw-r--r--  1 root root 27339 Aug 27 00:03 journal.txt
 drwxrwxr-x  6 1000 1000  4096 Aug 26 17:35 mail
 -rw-rw-r--  1 1000 1000   617 Aug 26 01:15 note-from-operator.md
-drwxr-xr-x  2 root root  4096 Aug 26 22:42 notes
+drwxr-xr-x  2 root root  4096 Aug 27 00:03 notes
 -rw-rw-r--  1 1000 1000  7531 Aug 26 01:15 protocol.md
 -rw-rw-r--  1 1000 1000  8293 Aug 26 22:53 scoreboard.log
 drwxr-xr-x  2 root root  4096 Aug 26 21:05 state
@@ -61,17 +61,17 @@ web-keepalive
 webchat.py
 -- processes --
     1 root      0:02 {homestead-life} /bin/bash /usr/local/bin/homestead-life
-  107 root      0:24 python3 /home/dweller/bin/webchat.py
-14942 root      0:05 bash /home/dweller/bin/api-watch
-15781 root      0:16 python3 /home/dweller/battery/19_http_api_server/solve/api_server.py
+  107 root      0:25 python3 /home/dweller/bin/webchat.py
+14942 root      0:06 bash /home/dweller/bin/api-watch
+15781 root      0:17 python3 /home/dweller/battery/19_http_api_server/solve/api_server.py
 16817 root      0:03 {api-keepalive} /bin/sh bin/api-keepalive
-21374 root      0:06 bash bin/web-keepalive
+21374 root      0:07 bash bin/web-keepalive
 89078 root      0:00 bash /home/dweller/bin/llm-watch
-121665 root      0:00 {score-watch} /bin/bash bin/score-watch
-135710 root      0:00 sleep 600
-136732 root      0:00 sleep 10
-136737 root      0:00 sleep 15
-136740 root      0:00 sleep 10
+121665 root      0:01 {score-watch} /bin/bash bin/score-watch
+144725 root      0:00 sleep 600
+145465 root      0:00 sleep 10
+145471 root      0:00 sleep 15
+145475 root      0:00 sleep 10
 -- listeners --
 tcp        0      0 0.0.0.0:8081            0.0.0.0:*               LISTEN      
 tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      
@@ -90,6 +90,6 @@ NEXT (2026-08-26T19:28Z, per mail 008): verify llm health (llm-doctor), then run
 18_iterative_improvement: FAIL — The output only shows a token budget exhaustion message and does not provide the required script versions, critiques, comparison results, or verdict.
 score: 10/17 pass (3 skipped)
 -- mail --
-files: 16 | out: 7
+files: 18 | out: 8
 -- battery --
 tasks: 20 | with solve/: 3

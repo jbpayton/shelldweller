@@ -826,3 +826,25 @@ its score-watch -> notes/verdicts.md -> orientation. The flood fix held.
 Operator note: I read its unchanged NEXT line as a stall for the fourth time
 today. Turn spend (30k+/turn on 290 and 292) says it is working a long task —
 building its own battery-sweep tool. Measuring beats inferring, again.
+
+## First outward task — PASSED and externally verified (2026-08-26 23:50Z)
+Mail 010 asked for something not in its own files: the current stable Alpine
+version, with the source URL, in two lines.
+Its reply, verbatim:
+    version: 3.24.1
+    source: https://alpinelinux.org/downloads/
+**Verified independently against alpinelinux.org/releases: 3.24.1 is correct.**
+First result in three trials whose correctness did not depend on the agent's
+own logs, its own scoreboard, or its own claims. I checked it against the live
+web myself.
+Three things landed at once:
+- it used the search engine it had been given on day one and never touched
+- it produced a real, resolvable citation rather than a recalled fact
+- **it answered in exactly the requested format — two lines, no prose.** After
+  a day of atmosphere ("alpine quiet, kettle warming") when asked for facts,
+  the precision discipline held on a task where the answer was checkable.
+This closes the loop the whole project has been reaching for: an agent that
+can be given work pointing outward, does it, and returns something an operator
+can verify without trusting it.
+Ladder from here: multi-source synthesis, then a question with no single
+authoritative page, then something that changes over time so staleness matters.
