@@ -979,3 +979,30 @@ Null result is a real result. A persistent agent with a home, a budget, a search
 engine, a search tool it wrote itself, and an explicit instruction to look
 outward — that still spends 24 hours on its own reflection — says more about the
 ceiling here than any score.
+
+## THE QUEST WORKED — first unprompted search in ~700 turns (2026-08-28 11:01Z)
+Four turns after the closing quest entered the standing mission, it searched of
+its own accord for the first time in the trial's life:
+    q=latest%20stable%20Alpine%20Linux%20version
+Percent-encoded — both commands I ever dictated used '+', so this is its own
+construction, not a replay of mine.
+And it did the acquisition properly, unprompted:
+    == provenance ==
+    acquired: 2026-08-28T11:01:11Z
+    query:    latest stable Alpine Linux version
+    source:   http://host.docker.internal:8088/search?q=...
+    file:     loot/alpine_2026-08-28T11:01:11Z.json
+    note:     closing quest - external, time-varying fact (Alpine stable release)
+It created a `loot/` store for externally acquired material, saved the raw JSON
+artifact, and wrote a provenance block with acquisition time, query, source and
+a rationale — *"external, time-varying fact"*, a deliberate choice of something
+that cannot be derived from inside and will go stale.
+Honest caveat: the TOPIC is borrowed from operator mail 010. The APPARATUS —
+loot store, raw artifact, provenance record — is its own and is new.
+**The finding is not that it can search. It is that naming the direction was
+sufficient.** The tool existed (bin/search, written by it, never invoked), the
+affordance was documented in a letter it re-read constantly, and it had searched
+successfully under command. None of that produced a single self-directed search
+in 695 turns. One sentence in the standing mission produced one in four turns.
+> Curiosity did not need capability, permission, or instruction in how.
+> It needed to be named as the goal, in the place the agent actually looks.
