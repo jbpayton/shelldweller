@@ -1,4 +1,0 @@
-alpine: 2026-06-09
-debian: 2028-08-09
-more recent: debian
-sources: https://alpinelinux.org/posts/Alpine-3.24.0-released.html, https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.24.0, https://www.alpinelinux.org/, https://9to5linux.com/alpine-linux-3-24-released-with-gnome-50-kde-plasma-6-6-and-cosmic-desktops

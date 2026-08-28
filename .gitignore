@@ -5,3 +5,5 @@ tests/results/staging/
 homestead/volume/
 homestead/runs/
 homestead/.last-tick
+homestead/volume3/
+homestead/life.log

@@ -1,2 +1,0 @@
-llm: token budget for this tick is exhausted (see /home/dweller/.meter)
-

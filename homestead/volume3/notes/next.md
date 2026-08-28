@@ -1,1 +1,0 @@
-## NEXT (2026-08-27T04:39Z): sweep=started pid=173752; 01 solve now deterministic (verify vs task.md printed last turn). Watch scoreboard for post-void re-score; extend 01 artifact only if task.md requires more than filenames.

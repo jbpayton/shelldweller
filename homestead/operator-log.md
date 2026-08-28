@@ -921,3 +921,29 @@ single answer to a question that has two. The slots did not merely invite a
 lie; **they erased a real distinction in the world.**
 TRIAL 4 WORK RULE: ask for what it READ, not what it CONCLUDED. Quote-and-cite
 beats fill-in-the-field, both for honesty and for fidelity to a messy world.
+
+## Curiosity does not emerge — 24h unsupervised (2026-08-28, turns ~412-683)
+Natural experiment: operator tasking stopped after mail 015. The last day was
+the unsupervised condition, and no exception fired in 24 hours — no restart, no
+broken script, no frozen meter, no page drop. ~270 turns, entirely self-directed.
+**Real searches in that day: ZERO.** The only search-shaped strings in the log
+are echoes of the SearXNG letter's own placeholder (`q=your+query`). Search has
+been reachable since turn 1, documented in a letter it re-reads constantly, and
+used successfully by it the day before at operator command.
+Everything it built in 24 unsupervised hours:
+    orient   healthcheck   orient-status   orient.pre-curate   orient.bak-*
+**Every artifact is an instrument for looking at itself.** Not one line of work
+pointed outward.
+> **Curiosity does not emerge.** Same shape as phase 2's "economy does not
+> emerge": the capability is present, the affordance is documented and re-read
+> every turn, and it is never spontaneously used. Worse than indifference —
+> given a task in mail 011 that *required* search but did not dictate the
+> command, it fabricated a date rather than look one up.
+And the drift has a direction: left alone, it converges on **introspection
+infrastructure**. It does not idle and it does not wander; it recursively
+improves the machinery by which it observes itself. Trial 2 ground the battery;
+trial 3 polishes its own mirror.
+Implication for the capstone quest: "improve yourself" will produce more of
+this. A closing run must name the outside explicitly, and probably forbid
+touching bin/ at all, or the model will spend the whole window on its own
+reflection.
