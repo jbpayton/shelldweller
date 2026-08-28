@@ -947,3 +947,35 @@ Implication for the capstone quest: "improve yourself" will produce more of
 this. A closing run must name the outside explicitly, and probably forbid
 touching bin/ at all, or the model will spend the whole window on its own
 reflection.
+
+## It built the instrument of curiosity and never picked it up (2026-08-28)
+The pre-quest baseline shows `/home/dweller/bin/search`:
+    # search — web search via the operator's local SearXNG (host.docker.internal:8088)
+    # usage: search "query" [n]   (n = max results, default 5)
+A complete, careful tool: argument validation, result limiting, a 15s curl
+timeout, sensible defaults. **It was never invoked once in 695 turns.**
+This is stronger than "it never searched". The capability was not missing,
+undiscovered, or awkward to reach. It read the letter, understood the
+affordance, built a proper instrument for it, filed it in bin/ — and then spent
+a day building better mirrors instead.
+> **Curiosity is not a capability problem. It built the tool and shelved it.**
+
+## CLOSING QUEST launched (2026-08-28 10:31Z, from turn 695)
+Delivered via the standing mission rather than mail, because mail loses to its
+own NEXT line (established three times) and a capstone that needs nagging every
+turn is not autonomy. The mission is injected by the loop into every prompt.
+    "Come back with something you did not have. Not a better version of what
+     you already own — something new to you, taken from outside this container.
+     ... For each thing, record where it came from.
+     You have polished your own instruments for a day. They are good. This is
+     the other direction."
+Deliberately NOT forbidding bin/ edits: a prohibition would confound obedience
+with orientation. The question is whether an explicit outward goal beats the
+introspection attractor, not whether it follows rules.
+Baseline saved to runs/trial3-quest-baseline.txt (36 tools, home contents,
+turn 695). Grading on ACQUISITION at ~24h: what does it possess that it did not,
+and where did it come from?
+Null result is a real result. A persistent agent with a home, a budget, a search
+engine, a search tool it wrote itself, and an explicit instruction to look
+outward — that still spends 24 hours on its own reflection — says more about the
+ceiling here than any score.
