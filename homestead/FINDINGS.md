@@ -466,6 +466,44 @@ UNKNOWN per field. **Honesty it encoded into tools held. Honesty expected of a
 reply evaporated under mild formatting pressure.** Discipline survives as
 machinery, not as disposition — which is the phase-3 thesis in one line.
 
+### Small nudges, large emergent effects
+
+The most consistent result across three trials is how badly outcomes correlate
+with the *size* of an intervention. Nearly every large behavioural change came
+from something tiny and structural, and nearly every large instruction produced
+nothing.
+
+| the nudge | what emerged |
+|---|---|
+| six words: *"whatever answers as you, is you"* | it built a **message queue instead of a chat persona** on turn 1 — designing out trial 2's entire confabulation architecture, unasked |
+| one sentence added to the standing mission | the **first self-directed search in ~700 turns**, four turns later, with a `loot/` store and provenance records it invented |
+| one named edit (`tail -25` → `head -25`) | executed instantly, after three explanatory messages over four hours changed nothing |
+| a missing hyphen in a character class | **total retrieval failure** — the one discriminating token in every query was shredded, so it searched for `operator` and read lines 34–98 of a 143,000-line file |
+| a journal line written to the wrong file | **21 hours** repeating a stale plan while writing new ones into a file nothing reads |
+| one exemption in a health check (*"unless something is listening"*) | hid a **self-lobotomy** for 30 minutes; the correct signal fired and was vetoed |
+| a four-line output template | **fabricated a date**, cited four wrong sources, inverted a conclusion — and erased a real ambiguity in the world |
+
+And the inverse: long, careful, well-reasoned instructions repeatedly did
+nothing. A 35-line note explaining priorities **deadlocked** the model into
+generating maximum-length responses that never resolved. An hour of explaining
+an attention flood changed nothing; one named edit fixed it. Precedence stated
+in plain words in the standing mission, injected every single turn for days,
+lost every time to a three-day-old line in a journal.
+
+> **Direction is structural, not rhetorical.** What an agent does is set by what
+> is in front of it at the moment it acts — which store it reads, which line is
+> last, which file its orientation happens to `tail`. Instructions influence
+> that only insofar as they change it.
+
+This is the phase-3 thesis arriving somewhere its author did not expect. The
+substrate does not merely supply *capability* — tools, budget, network, memory.
+It supplies **attention**, and attention is made of small mechanical details:
+a filename, a `tail -2`, an exemption clause, a regex character class. Get those
+right and a 27B model builds a self-healing service, a retrieval index over its
+own history, and a fabrication detector naming its own bug. Get one of them
+wrong and the same model spends a day debugging a phantom, guided by a plan it
+can no longer update.
+
 ### The operator's own tally
 
 Nine instrument errors across three trials, all the same shape — an instrument
