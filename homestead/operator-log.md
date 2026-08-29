@@ -1038,3 +1038,35 @@ TRIAL 4, the single most important requirement: **the turn loop must force the
 standing goal into the NEXT line** — either by writing it there itself, or by
 requiring each turn to restate NEXT from the mission before it may do anything
 else. Direction that is only injected is direction that decays.
+
+## CORRECTION + the real mechanism: it is planning into a file it cannot see
+## (2026-08-29 16:05Z, turn 1124)
+My 24h grading measured "quest never reached the journal" against
+notes/journal.md — **the wrong file.** Operator instrument error #10, and the
+same error class as all nine before it. The conclusion survives, in a sharper
+and more interesting form.
+There are THREE journals, and they have come apart:
+    journal.txt        63 KB   last written Aug 28 18:27   <- orient reads this
+    journal.md         14 KB   last written Aug 29 15:39   <- it writes plans here
+    notes/journal.md   12 KB   last written Aug 28 17:19   <- abandoned
+`bin/orient` does `tail -2 journal.txt`. That file has been frozen for 21 hours,
+so every turn is shown the same stale line:
+    NEXT (2026-08-28T18:27:57Z): solve battery 18_iterative_improvement...
+Meanwhile it is actively journalling to journal.md — planning, hypothesising,
+recording — into a file its own orientation never reads.
+> **Its intentions are written to one store; its attention reads another.**
+> It has been repeating a 21-hour-old plan while writing new ones into the dark.
+This is multi-store drift in its terminal form, and it completes the arc: trial
+2 had a pointer disagreeing with a journal; trial 3 has a journal disagreeing
+with itself across three files, one of which is the only one that matters and
+none of which is the one being written.
+It also fully explains the quest decay. The quest never had to be "ignored" —
+every turn simply saw "fix battery 18" and did that.
+**And the task it is trapped on is mine.** Battery 18's FAIL verdict says
+"token budget exhaustion", which came from MY under-budgeted sweep. Its
+hypothesis, repeated in journal.md across many turns, is exactly right:
+    "task18 makes multiple llm calls; cumulative cost exceeds the per-turn
+     meter cap; llm then emits the exhaustion message"
+Correct diagnosis, of an operator instrument error, that it cannot fix because
+the cap lives outside its container. **It has spent a day carefully debugging
+my mistake, and got the answer right.**
