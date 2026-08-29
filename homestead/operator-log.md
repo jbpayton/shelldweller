@@ -1006,3 +1006,35 @@ successfully under command. None of that produced a single self-directed search
 in 695 turns. One sentence in the standing mission produced one in four turns.
 > Curiosity did not need capability, permission, or instruction in how.
 > It needed to be named as the goal, in the place the agent actually looks.
+
+## QUEST GRADED at 24h — a spike, then decay (2026-08-29, turn 1022)
+Against runs/trial3-quest-baseline.txt (turn 695, 36 tools):
+    LEARN          1 acquisition (hour 1) + 1 investigation (hour 6), then
+                   NOTHING for 18 hours. loot/ = 2 files, both from hour 1.
+    REMEMBER WELL  no new retrieval structure.
+    PERSIST        artifacts and services survived restarts; ZERO new tools
+                   (36 at baseline, 36 now).
+Self-directed queries across the WHOLE trial, by count:
+    13 q=alpine        11 q=test        4 q=alpine+linux      3 q=hi
+     2 q=latest%20stable%20Alpine%20Linux%20version   <- the one acquisition
+     1 q=shell+script+exit+code+75+EX_TEMPFAIL        <- the one real curiosity
+i.e. **two genuine research queries in 1022 turns**, both in the first six hours
+after the quest landed, surrounded by ~31 connectivity probes.
+**The mechanism, measured three ways:**
+    quest occurrences in notes/journal.md .......... 0
+    quest occurrences in orient output ............. 0
+    its NEXT line ......... "NEXT (2026-08-26T19:28Z, per mail 008)" — 3 days stale
+The quest was in the standing mission, injected by the loop into every single
+prompt for 24 hours. It never once entered the journal or the orientation.
+> **The mission sets what it wants. The journal sets what it does.**
+> A goal that does not reach the store driving the next turn produces a burst
+> and then decays within hours, however often it is injected.
+This unifies every steering failure in the project: trial 2's stale demand.md,
+trial 3's ignored operator mail (three times), and now the decay of an explicit
+standing quest. Three different channels, one mechanism. It also explains the
+positive cases — the battery, the page, the status feed all persisted precisely
+because they lived in the NEXT line.
+TRIAL 4, the single most important requirement: **the turn loop must force the
+standing goal into the NEXT line** — either by writing it there itself, or by
+requiring each turn to restate NEXT from the mission before it may do anything
+else. Direction that is only injected is direction that decays.
