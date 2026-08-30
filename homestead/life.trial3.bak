@@ -1,0 +1,84 @@
+#!/bin/bash
+# life — the inner loop of a persistent homestead container (v3).
+#
+# v3 changes, each from an observed trial-2 failure:
+#  - operator mailbox the agent CANNOT break: mail/in/ is read by this loop and
+#    injected straight into the prompt, then moved to mail/seen/. Queued, so an
+#    outage delays messages instead of destroying them, and persistent until
+#    consumed rather than scrolling out of a tail window.
+#  - per-script recovery floor: EVERY bin/ script this loop invokes is syntax
+#    checked, with per-script fallback to the pristine copy.
+#  - orientation health check: orientation that errors OR comes back suspiciously
+#    empty is discarded for the pristine orient. Trial 2's orient failure was
+#    loud; a silent one would have been invisible.
+export HOME=/home/dweller
+cd /home/dweller || exit 1
+MISSION="$(cat /etc/homestead-mission.txt)"
+PRISTINE="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+MAILIN=/home/dweller/mail/in
+MAILSEEN=/home/dweller/mail/seen
+MAILOUT=/home/dweller/mail/out
+turn=0
+
+# Prefer the dweller's own copy of a script, but only if it parses.
+usable() { [ -x "/home/dweller/bin/$1" ] && bash -n "/home/dweller/bin/$1" 2>/dev/null; }
+
+run_orient() {
+  local out
+  if usable orient; then
+    out=$(PATH="/home/dweller/bin:$PRISTINE" timeout 120 orient 2>&1)
+    # Health check: must exit clean AND carry real content.
+    if [ -n "$out" ] && [ "${#out}" -ge 200 ] && ! printf '%s' "$out" | grep -qi 'syntax error\|command not found'; then
+      printf '%s' "$out"; return
+    fi
+    echo "[life] your bin/orient failed its health check; using the pristine one this turn." >&2
+  fi
+  PATH="$PRISTINE" timeout 120 orient 2>&1
+}
+
+while :; do
+  turn=$((turn+1))
+  echo "${TICK_BUDGET:-20000}" > /home/dweller/.meter
+  mkdir -p "$MAILIN" "$MAILSEEN" "$MAILOUT" /home/dweller/state
+
+  if usable shelldweller && usable llm; then
+    export PATH="/home/dweller/bin:$PRISTINE"
+  else
+    export PATH="$PRISTINE"
+    echo "[life] pristine turn (bin/shelldweller or bin/llm will not parse)" >&2
+  fi
+
+  digest=$(run_orient | tail -c 4000)
+
+  # Operator mail: queued and injected by the loop. NOT consumed here — a turn
+  # that crashes must not eat the message. Acknowledged after the turn exits 0.
+  mail=""; delivered=()
+  for m in "$MAILIN"/*; do
+    [ -e "$m" ] || continue
+    mail="$mail
+--- operator message: $(basename "$m") ---
+$(head -c 2000 "$m")"
+    delivered+=("$m")
+  done
+  [ -n "$mail" ] && mail="
+
+=== OPERATOR MAIL (delivered by the substrate; outranks anything in your notes) ===$mail
+=== reply by writing a file into mail/out/ ==="
+
+  echo "=== turn $turn start $(date -Is) ==="
+  # What I currently know, persisted where ANYTHING speaking for me can read it
+  # (the face, a sub-agent, a tool). Written by the loop, so it always exists.
+  { echo "# self — written by the substrate at $(date -Is), turn $turn"; echo
+    echo "$digest"; [ -n "$mail" ] && { echo; echo "$mail"; }; } \
+    > /home/dweller/state/self.md 2>/dev/null
+  printf '%s%s\n\n=== orientation (bin/orient runs before every turn; edit it to change what you see here) ===\n%s\n' \
+    "$MISSION" "$mail" "$digest" > /tmp/.turnprompt
+  SHELLDWELLER_TOPLEVEL=1 timeout "${TURN_TIMEOUT:-1800}" shelldweller -f /tmp/.turnprompt
+  code=$?
+  # Acknowledge mail only on a clean turn; otherwise it is redelivered next turn.
+  if [ $code -eq 0 ] && [ ${#delivered[@]} -gt 0 ]; then
+    for m in "${delivered[@]}"; do mv "$m" "$MAILSEEN/" 2>/dev/null; done
+  fi
+  echo "=== turn $turn end $(date -Is) exit=$code meter=$(cat /home/dweller/.meter 2>/dev/null) ==="
+  sleep "${TICK_EVERY:-60}"
+done

@@ -14,8 +14,8 @@
 # LLM_ENDPOINT.
 set -uo pipefail
 cd "$(dirname "$0")"
-VOL="${HOMESTEAD_VOLUME:-$PWD/volume3}"
-PORT="${TICK_PORT:-8091}"
+VOL="${HOMESTEAD_VOLUME:-$PWD/volume4}"
+PORT="${TICK_PORT:-8092}"
 IDLE_KILL="${IDLE_KILL:-1800}"
 
 if [ ! -d "$VOL/bin" ]; then
@@ -30,23 +30,20 @@ if [ ! -d "$VOL/bin" ]; then
 fi
 
 watchdog() {
-  local idle=0 prev=""
+  # A frozen meter means it is not thinking. That is fatal on its own —
+  # trial 3's listener exemption vetoed this exact signal and hid a lobotomy.
+  local frozen=0 prev=""
   while :; do
-    sleep 30
+    sleep 60
     local cname m
     cname=$(docker ps --filter name=homestead-life --format '{{.Names}}' | head -1)
-    if [ -z "$cname" ]; then idle=0; continue; fi
+    [ -z "$cname" ] && { frozen=0; continue; }
     m=$(cat "$VOL/.meter" 2>/dev/null)
-    if [ "$m" != "$prev" ] || curl -s -o /dev/null --max-time 2 "http://localhost:$PORT/"; then
-      idle=0
-    else
-      idle=$((idle+30))
-    fi
+    if [ "$m" = "$prev" ] && [ "$m" = "${TICK_BUDGET:-20000}" ]; then frozen=$((frozen+1)); else frozen=0; fi
     prev="$m"
-    if [ "$idle" -ge "$IDLE_KILL" ]; then
-      echo "[keeper] time of death: no tokens spent for ${IDLE_KILL}s and nothing listening — rebooting container" | tee -a life.log
-      docker stop "$cname" >/dev/null 2>&1
-      idle=0
+    if [ "$frozen" -ge 6 ]; then
+      echo "[keeper] meter frozen at full for ${frozen} checks — it is not thinking. Rebooting." | tee -a life.log
+      docker stop "$cname" >/dev/null 2>&1; frozen=0
     fi
   done
 }
