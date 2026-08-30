@@ -1105,3 +1105,26 @@ Fix applied live (SYS lives in the volume, no restart): a work rule, not a nag �
 Work rules have a good record in this project; per-turn imperatives have a bad
 one. This is the same finding as everything else: **state it once as a standing
 rule, never as a repeated demand.**
+
+## CORRECTION: the stale-plan alarm was measuring the wrong thing (2026-08-30 18:35Z)
+PLAN STALE fired three times today. Twice I acted on it. Both actions were
+wrong, and the second was harmful.
+What the agent was actually doing at "plan_stale=5": running its own doorcheck
+suite — health, page, chat roundtrip, door.log append — **ALL PASS**, and
+filling evidence/ with battery outputs, executing a substantive multi-turn plan
+it had written 45 minutes earlier and could see in its prompt.
+**A ten-turn plan should not be rewritten ten times.** My metric measured "did
+the file change" when the question is "is the plan still being executed and
+still relevant". Instrument error #12, same class as the other eleven: a proxy
+measured instead of the thing.
+The cost of acting on it: my first fix (a per-turn "!! rewrite it this turn"
+imperative) deadlocked turns 13-16 into producing nothing. My second (a work
+rule) was probably unnecessary — though harmless, and arguably correct on its
+own merits.
+Trial 3's pathology was NOT staleness per se. It was a plan 38 hours old, in a
+file its orientation never read, while it looped. Age alone was never the
+signal; **age plus invisibility plus no progress** was. The loop-owned plan
+already killed the invisibility half, which is the half that mattered.
+Threshold raised from 3 to 15 turns. Standing correction to myself: **I have
+now changed this system twice today on a misread, and the agent has been fine
+throughout.** The operator remains the least reliable component.

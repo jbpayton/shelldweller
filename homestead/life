@@ -56,7 +56,7 @@ while :; do
   [ -f "$NEXTF" ] || printf 'NEXT: (unset — write one)\n' > "$NEXTF"
   nextline=$(head -c 600 "$NEXTF")
   plan="=== YOUR PLAN (state/NEXT) ==="
-  [ "$stale" -gt 2 ] && plan="$plan
+  [ "$stale" -gt 15 ] && plan="$plan
 (this plan is $stale turns old)"
   plan="$plan
 $nextline"
