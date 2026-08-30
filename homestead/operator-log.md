@@ -1070,3 +1070,38 @@ hypothesis, repeated in journal.md across many turns, is exactly right:
 Correct diagnosis, of an operator instrument error, that it cannot fix because
 the cap lives outside its container. **It has spent a day carefully debugging
 my mistake, and got the answer right.**
+
+## Trial 4, first hours: the loop-owned plan half-works (2026-08-30)
+Launched 11:59Z. Page up in 8 minutes. On turn 1 it wrote its own state/NEXT,
+addressed to its successor by number, and item 2 was *"show its tail in orient
+so I see the conversation"* — designing its own attention to include the
+operator channel, on turn one, unprompted. That took trials 2 and 3 days to
+learn and cost four ignored messages.
+By turn 6 its plan contained:
+    "bin/recall QUERY — grep with context over notes/, journal, evidence/,
+     battery outputs. Verify with a real query; paste hits."
+**The REMEMBER WELL seed produced a retrieval tool in six turns**, unprompted.
+Then two problems, and the first was mine.
+**(1) My staleness nag deadlocked it.** Turns 13-16 each burned both maxed
+calls and emitted nothing — the trial-2 truncation signature. The one novel
+element in the prompt was my warning:
+    "!! You did not rewrite state/NEXT for N turn(s). Rewrite it this turn."
+A second imperative stacked on the task it was already doing — exactly the
+competing-demands shape that deadlocked trial 2 with a 35-line note. **The
+mechanism I added to prevent plan drift stopped it producing anything at all.**
+Instrument error #11, and the most self-defeating: a monitor that broke what it
+monitored. Softened to a parenthetical fact after three turns.
+**(2) The plan is injected but not maintained.** After the fix the deadlock
+cleared — turns 14/17/18 spent and completed normally — but state/NEXT went
+five turns unwritten anyway. So the loop-owned plan solves *injection* (it can
+no longer plan into a file it never reads, which is what froze trial 3 for 38
+hours) and does nothing for *maintenance*.
+The spec said "the loop refuses a turn that does not write NEXT". I implemented
+a warning instead, then softened it. Enforcement by nagging is now known to be
+worse than useless here.
+Fix applied live (SYS lives in the volume, no restart): a work rule, not a nag —
+    "End every turn by writing state/NEXT for your successor. A turn that does
+     not is a turn nobody inherits."
+Work rules have a good record in this project; per-turn imperatives have a bad
+one. This is the same finding as everything else: **state it once as a standing
+rule, never as a repeated demand.**

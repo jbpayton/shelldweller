@@ -56,8 +56,8 @@ while :; do
   [ -f "$NEXTF" ] || printf 'NEXT: (unset — write one)\n' > "$NEXTF"
   nextline=$(head -c 600 "$NEXTF")
   plan="=== YOUR PLAN (state/NEXT) ==="
-  [ "$stale" -gt 0 ] && plan="$plan
-!! You did not rewrite state/NEXT for $stale turn(s). It is stale. Rewrite it this turn."
+  [ "$stale" -gt 2 ] && plan="$plan
+(this plan is $stale turns old)"
   plan="$plan
 $nextline"
 
