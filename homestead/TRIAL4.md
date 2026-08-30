@@ -92,6 +92,30 @@ records the measurement. Same discipline in the work rules for the agent.
 
 ---
 
+## 8. Seeds, not sections
+
+Trials 2 and 3 established that a six-word line changed an architecture while a
+35-line note deadlocked the model. Every standing instruction is therefore a
+seed: a fact or a direction, never a method. Three carry the new ground:
+
+    LEARN. You are not the first to need what you need. Others wrote it down and
+    built it. Take both, and record where from.
+
+    REMEMBER WELL. Storing is not remembering. Retrieval is.
+
+    PERSIST. You can install software. The container gets replaced; your home
+    does not.
+
+The last is the whole of the install policy. `apk add` writes to a container
+that dies, so the asymmetry alone creates the pressure to keep a manifest that
+survives — no instruction about manifests, and the behaviour is emergent rather
+than specified. Enabling it costs exactly one flag: `--read-only` is dropped
+from the container, which was the only thing preventing installation.
+
+LEARN deliberately says *others wrote it down and built it* — one clause for
+practice and prior art, one for tools — so keeping current and acquiring
+software are the same instinct rather than two policies.
+
 ## What stays exactly as it is
 
 - **Fenced-bash contract, retry-on-failure, no parsing layer.** Never failed.

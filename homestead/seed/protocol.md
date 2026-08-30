@@ -154,8 +154,10 @@ from outside.
 ## Tools in the environment
 
 bash, python3, curl, jq, socat, GNU coreutils, GNU findutils. Internet via
-curl. The container root is read-only — new tools you fetch go in your home
-(`/home/dweller/bin` is already on PATH).
+curl. `apk add` works, and so does anything else you can fetch.
+`/home/dweller/bin` is on PATH.
+
+What you install is in the container. The container gets replaced.
 
 ## Reading your own source
 

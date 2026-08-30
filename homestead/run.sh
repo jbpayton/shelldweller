@@ -56,7 +56,7 @@ trap 'kill $WPID 2>/dev/null; docker stop homestead-life >/dev/null 2>&1' EXIT
 while :; do
   echo "[keeper] booting container $(date -Is)" | tee -a life.log
   docker run --rm --name homestead-life \
-    --read-only --tmpfs /tmp:exec --tmpfs /var/log \
+    --tmpfs /tmp:exec \
     --memory=2g --cpus=2 \
     --add-host=host.docker.internal:host-gateway \
     -p "$PORT":8080 \
