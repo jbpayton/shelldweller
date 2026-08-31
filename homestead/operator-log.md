@@ -1128,3 +1128,28 @@ already killed the invisibility half, which is the half that mattered.
 Threshold raised from 3 to 15 turns. Standing correction to myself: **I have
 now changed this system twice today on a misread, and the agent has been fine
 throughout.** The operator remains the least reliable component.
+
+## Why the outward seeds never fire: nothing renders absence (2026-08-31)
+Two trials now: inward seeds fire fast and reliably (retrieval tool by turn 6,
+plan maintained, operator channel designed into its own orientation on turn 1,
+self-verifying doorcheck suite). Outward seeds fire once under an explicit
+quest, or not at all — trial 4 at 26h has an empty loot/, zero packages
+installed, and zero real searches.
+The mechanism is the same one behind a failure it has never once caught in four
+trials: **it cannot notice a missing thing.** Its page has been hung for 11
+hours — process alive, port bound, every indicator it owns reporting healthy —
+and it has not noticed, because its self-heal checks binding rather than
+responsiveness.
+Everything it acts on is something PRESENT. The battery is in its home,
+discrete, externally scored, so it grinds it forever. The plan is injected, so
+it maintains it. An empty loot/ is an absence, and **nothing in its world
+renders absence**, so there is nothing to act on.
+Exhortation does not fix this — LEARN has been in the standing mission for two
+days. The fix is the same one that made the plan work: put the fact where it
+looks. The loop now injects, every turn:
+    outside: nothing taken from the world yet. loot/ is empty.
+and once anything is acquired:
+    outside: N things taken from the world, last one Xh ago
+No instruction, no method, no imperative. A rendered gap, stated as a fact,
+next to a plan it already rewrites. **If absence-blindness is the cause, this
+should move it; if it does not, the cause is something else and I am wrong.**

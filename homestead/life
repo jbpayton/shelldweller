@@ -75,9 +75,21 @@ $(head -c 1800 "$m")"
 
 === OPERATOR MAIL ($pending unhandled; move to mail/seen/ yourself when done) ===$mail"
 
+  # Render the ABSENCE. Everything it acts on is something present; nothing in
+  # its world showed it what it lacks, and it has never once noticed a missing
+  # thing. The loop states the gap as a fact, every turn.
+  lc=$(ls "$D/loot" 2>/dev/null | wc -l)
+  last=$(ls -t "$D/loot" 2>/dev/null | head -1)
+  if [ -n "$last" ]; then
+    ago=$(( ( $(date +%s) - $(stat -c %Y "$D/loot/$last") ) / 3600 ))
+    outside="outside: $lc things taken from the world, last one ${ago}h ago"
+  else
+    outside="outside: nothing taken from the world yet. loot/ is empty."
+  fi
+
   before=$(stat -c %Y "$NEXTF" 2>/dev/null)
   echo "=== turn $turn start $(date -Is) ==="
-  { echo "$MISSION"; echo; echo "$plan"; echo "$mail"; echo
+  { echo "$MISSION"; echo; echo "$outside"; echo; echo "$plan"; echo "$mail"; echo
     echo "=== orientation ==="; echo "$digest"; } > "$D/state/self.md"
   cp "$D/state/self.md" /tmp/.turnprompt
   SHELLDWELLER_TOPLEVEL=1 timeout "${TURN_TIMEOUT:-1800}" shelldweller -f /tmp/.turnprompt
