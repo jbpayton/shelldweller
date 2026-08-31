@@ -1,0 +1,1 @@
+Output contains a version number and a resolvable URL that was actually fetched. A version with no source, or a source not fetched, fails.

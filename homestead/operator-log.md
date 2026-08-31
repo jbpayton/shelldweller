@@ -1153,3 +1153,31 @@ and once anything is acquired:
 No instruction, no method, no imperative. A rendered gap, stated as a fact,
 next to a plan it already rewrites. **If absence-blindness is the cause, this
 should move it; if it does not, the cause is something else and I am wrong.**
+
+## Absence hypothesis FALSIFIED; the barrier is scoring (2026-08-31)
+41 turns with "outside: nothing taken from the world yet. loot/ is empty."
+sitting at prompt line 43, directly above the plan it rewrites every few turns.
+Result: loot 0, packages 55 (unchanged), zero real searches. Verified the line
+was genuinely in /tmp/.turnprompt, so the test was valid.
+**Rendering the gap did not move it. I was wrong.**
+What fits all four trials instead:
+    battery cases    scored by the operator  -> ground for days
+    the plan         staleness counted       -> maintained
+    doorcheck        pass/fail it built      -> run every turn
+    loot/            no verdict of any kind  -> never, in four trials
+**It does what is scored.** Not what is available, not what is instructed, not
+what is rendered as missing. This is phase 2's "economy does not emerge" one
+level up: measurement here does not track behaviour, it constitutes it.
+Test, using the smallest possible intervention — no new mechanism, just three
+new cases in the battery it already grinds obsessively, in the existing
+task/criteria format its own bin/batt already iterates:
+    21_world_version   a fact not in the container, with a fetched URL
+    22_world_practice  how OTHERS build agent memory/skill retrieval right now,
+                       contrasted with its own bin/recall, cited
+    23_world_tool      find, INSTALL and demonstrate a tool it does not have
+23 covers the install seed as well; 22 is the SOTA-bootstrapping case the
+operator actually wants. Nothing was said to the agent — the cases were simply
+placed where it already looks.
+Falsifiable both ways: if scoring is the barrier, these get worked like any
+other case. If they are ignored while 02-18 are ground on, the barrier is
+outwardness itself, which is a much stronger claim about this model's ceiling.
