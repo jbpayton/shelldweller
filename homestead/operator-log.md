@@ -1247,3 +1247,17 @@ OPERATOR ACTION: none. The recovery floor covers bin/ only; web/ is on its own,
 so this is the first genuine test of unassisted self-repair. Watching turns 207+
 for doorcheck FAIL -> restore. Prior operator error #6 (intervened 16 min early,
 destroyed the evidence of an unassisted recovery) is the reason for holding.
+
+## Operator error #13 — caught before it cost anything (2026-09-01 16:45Z)
+The watch armed to catch the repair could not have reported it. Status capture was
+    s_chat=$(curl ... -w '%{http_code}' || echo 000)
+and curl exits non-zero *after* printing the code, so the fallback appends
+instead of replacing: the baseline read `chat=404000`. A restored channel would
+have read `200000`, and the `= 200` test would have stayed silent through the
+exact event the monitor existed to catch.
+Same shape as the agent's doorcheck bug being investigated in the same hour: a
+check that reads a signal adjacent to the one it claims to read, and reports
+health either way. Fixed by dropping the `||` and defaulting empty to 000.
+Baseline at 16:45Z: root=500 chat=404 mail_in=1 mail_out=2 pkgs=55 bin=28.
+mail_out=2 confirms the reply path has been used before, so the channel the mail
+asks it to answer on is one it has already exercised.
