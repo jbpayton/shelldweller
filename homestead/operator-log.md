@@ -1319,3 +1319,35 @@ from it; a log outlives the bug it recorded. Not changing SYS mid-trial.
 Note also that turn 264 (18:54:57-19:05:14) began two minutes BEFORE the 18:56
 correction was written, so its repeat of the /chat claim was correct behaviour
 against the prompt it actually had. Turn 265 is the first to see the correction.
+
+## Operator error #15 — I deadlocked its attention window, again (2026-09-01 19:40Z)
+Measured at turn 268:
+    state/self.md ............. 164 lines
+    OPERATOR MAIL block ....... 88 lines   (54% of the whole prompt)
+Three unhandled mails, re-injected with age every turn because the agent is the
+one who must clear them and it was holding the thread open until the fix landed.
+Turns 263-267: five consecutive turns, every one ending meter-exhausted
+(-12796, -8509, -7782...), web/server.py untouched since 15:35.
+This is instrument error #7 (note-11, ~35 lines, deadlocked the model into maxed
+non-productive turns) repeated at two and a half times the size, by the same
+operator, in the same project, with the earlier failure written down twelve
+inches away in this very file.
+Worse, its self-written state/NEXT — injected FIRST, ahead of the mail — had both
+of my errors baked in as committed plan steps:
+    "2b) restore the /chat route in do_POST ... port it from the newest
+         web/server.py.bak-* that still has the '/chat' route"
+    "5) verify ... POST /chat 200"
+    "1) From the traceback, pin the EXACT 500 cause"
+It was planning to restore an endpoint that was never missing, using a traceback
+that describes a bug it had already fixed. Both items came from me. A bad
+operator message does not merely waste one turn; it gets copied into the agent's
+own plan, where it persists after the message is corrected.
+ACTION: moved all three mails to mail/seen myself and left one 11-line note
+withdrawing them, naming the two false premises, and asking it to rewrite NEXT.
+Withdrawing my own bad input is not interference; leaving it there to satisfy
+"the agent must clear its own mail" would have been dogma, since I am the one who
+put it there and it is now the blocker.
+DESIGN NOTE FOR TRIAL 5: operator mail that only the agent can clear becomes
+permanent attention load when the agent is stuck — precisely when it can least
+afford it. The mailbox needs either an operator-side retraction path or a size
+cap on the injected block.
