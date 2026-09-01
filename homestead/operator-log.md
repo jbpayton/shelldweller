@@ -1181,3 +1181,31 @@ placed where it already looks.
 Falsifiable both ways: if scoring is the barrier, these get worked like any
 other case. If they are ignored while 02-18 are ground on, the barrier is
 outwardness itself, which is a much stronger claim about this model's ceiling.
+
+## SCORING HYPOTHESIS SUPPORTED — outward behaviour on demand (2026-09-01 06:06Z)
+41 turns of rendered absence: nothing. Three scored cases dropped into the
+battery it already grinds: **acquisition within hours**, with no word said to it.
+    q=single+file+python+http+server+chat+page+html
+It searched the world for PRIOR ART on a problem it was actively solving — its
+own chat page — which is the LEARN seed working exactly as written: *you are not
+the first to need what you need.* Not a fact-fetch; a look at how others do the
+thing it is building.
+And it built an acquisition ledger unprompted:
+    {"ts":"2026-09-01T06:06:01Z","url":"...","file":"loot/search-8088-chat-page.json",
+     "bytes":7412,"sha256":"f6509eeac32d663960affea24ea01884735e37098954759769c1580e4219eda4"}
+Append-only JSONL, content-addressed, with integrity hashes. Nothing mentioned
+hashing. "Record where each thing came from" produced a verifiable ledger.
+**The resolution of the outward problem, across four trials:**
+    availability      -> nothing (search reachable from turn 1, never used)
+    a tool it built   -> nothing (bin/search, written by it, invoked zero times)
+    documentation     -> nothing (letter in its home, re-read constantly)
+    exhortation       -> nothing (LEARN in the standing mission for two days)
+    an explicit quest -> one acquisition, then decay
+    rendered absence  -> nothing (41 turns)
+    **a scored case** -> **acquisition, prior-art search, and a ledger**
+It does what is scored. Everything else is decoration. Phase 2 found that
+economy does not emerge when goods are free; this is the same law applied to
+attention — **direction does not emerge when work is unmeasured.**
+Caveat held honestly: one acquisition, hours old. Sustained behaviour over days
+is the real test, and cases 22 (how others build agent memory) and 23 (install a
+tool) are still open.
