@@ -1294,3 +1294,28 @@ bodies, so it reports PASS. Battery case 24_status_truth, written two hours
 before this was found and without knowledge of it, targets exactly this.
 Correction mail sent 18:56Z retracting the /chat claim and giving the full
 status/body table. The diagnosis itself was left to the agent.
+
+## It is diagnosing a corpse (2026-09-01 19:10Z)
+Three "the fix lands next turn" replies (17:02, 18:45, 19:05) with web/server.py
+untouched since 15:35. The stall has a cause, and it is not laziness.
+    last Traceback in web/server.log ....... line 399
+    last request logged before it .......... 15:10:31
+    lines 400-863 .......................... requests only, zero exceptions
+All 18 tracebacks predate its OWN 15:35 fix. They describe
+`TypeError: H() takes no arguments` — the missing base class it already repaired.
+So it holds real, pasted, correctly-quoted evidence for a bug that no longer
+exists, and cannot reconcile it with a class definition that now reads fine. The
+current 500 is not thrown at all; it is *sent*, from `code = 500` defaulting
+through every branch that forgets to set a status. No exception will ever appear
+for it.
+This is a general failure of the evidence rule, not a one-off. "Answer with what
+you READ, paste the line and the source" is a good rule that goes silently wrong
+when the log spans a fix: the newest traceback is not the same as a CURRENT
+traceback, and nothing in the work rules says to check whether evidence is still
+live. Its discipline is intact and pointed at a dead target.
+Sent the fact (line numbers and timestamps, not the fix) at 19:10Z.
+FOR TRIAL 5: add one work rule — check the age of your evidence before reasoning
+from it; a log outlives the bug it recorded. Not changing SYS mid-trial.
+Note also that turn 264 (18:54:57-19:05:14) began two minutes BEFORE the 18:56
+correction was written, so its repeat of the /chat claim was correct behaviour
+against the prompt it actually had. Turn 265 is the first to see the correction.
