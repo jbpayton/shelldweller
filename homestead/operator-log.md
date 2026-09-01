@@ -1209,3 +1209,22 @@ attention — **direction does not emerge when work is unmeasured.**
 Caveat held honestly: one acquisition, hours old. Sustained behaviour over days
 is the real test, and cases 22 (how others build agent memory) and 23 (install a
 tool) are still open.
+
+## Sustained outward behaviour, and it is prior-art seeking (2026-09-01 11:22Z)
+Second acquisition, five hours after the first, unprompted:
+    q=command-line+scored+keyword+search+line+ranking  -> loot/recall-refs.json
+It is researching **how others do scored keyword search and ranking, in order to
+improve its own bin/recall.** The first acquisition was how others build
+single-file python chat servers, while it was building its page.
+Both are the same shape: **prior art for the problem currently in front of it.**
+That is precisely the LEARN seed as written — *you are not the first to need what
+you need* — and precisely the bootstrapping-toward-current-practice the operator
+asked for. Not trivia fetching; competence acquisition.
+It has also produced evidence files for all three world cases (21, 22, 23), so
+the scored cases are being worked as ordinary battery items, which was the
+prediction.
+Honest caveat recorded: the manifest may not yet include the second item, so its
+ledger discipline is not proven consistent — one acquisition logged with sha256,
+the second possibly not. Consistency over days is still unproven, and cases 22
+and 23 are not yet answered (23 requires an actual install, which has not
+happened: packages still 55).
