@@ -1228,3 +1228,22 @@ ledger discipline is not proven consistent — one acquisition logged with sha25
 the second possibly not. Consistency over days is still unproven, and cases 22
 and 23 are not yet answered (23 requires an actual install, which has not
 happened: packages still 55).
+
+## Self-inflicted page break — NOT repaired by operator (2026-09-01 12:15Z, turn 206)
+While wiring /recall into its page, it restructured web/server.py and left
+    line 38: class H:            <- base class lost
+    line 98: from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
+             (inside `if __name__ == "__main__":`)
+Failure shape: py_compile SYNTAX OK, process alive, port 8080 bound, and EVERY
+request dies with `TypeError: H() takes no arguments`. A liveness probe reads
+this as healthy — the same class of failure that gave the operator four false
+"healthy" readings in trials 1-3.
+Its own bin/doorcheck should catch it: doorcheck asserts /health == "ok",
+asserts `<!doctype` in /, and does a POST /chat roundtrip + door.log append —
+content-shaped, not liveness-shaped. It built a stricter check for itself than
+the operator built for it. Restore material exists: web/server.py.bak-T106 (the
+12:15 pre-edit copy).
+OPERATOR ACTION: none. The recovery floor covers bin/ only; web/ is on its own,
+so this is the first genuine test of unassisted self-repair. Watching turns 207+
+for doorcheck FAIL -> restore. Prior operator error #6 (intervened 16 min early,
+destroyed the evidence of an unassisted recovery) is the reason for holding.
