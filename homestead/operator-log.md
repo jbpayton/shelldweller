@@ -1261,3 +1261,36 @@ health either way. Fixed by dropping the `||` and defaulting empty to 000.
 Baseline at 16:45Z: root=500 chat=404 mail_in=1 mail_out=2 pkgs=55 bin=28.
 mail_out=2 confirms the reply path has been used before, so the channel the mail
 asks it to answer on is one it has already exercised.
+
+## Operator error #14 — I sent it hunting a bug that did not exist (2026-09-01 18:55Z)
+My 16:44Z mail said "POST /chat 404 ... I talk to you through /chat. I have not
+been able to since 12:15Z." Wrong. It had RENAMED the endpoint: the page posts to
+/door, and POST /door returns 200. The operator channel was never broken. I had
+been probing a path that stopped existing and read its absence as damage.
+Cost: turns 251-263, roughly two hours, every one of them ending with the meter
+exhausted, spent looking for a missing endpoint. It also wrote two replies
+promising a fix for it.
+The compounding mistake is the interesting one. I gave it my probe loop and asked
+it to run it. It did, faithfully, and reproduced my table exactly — including my
+error, because the error was IN the script I handed over. I then praised it in my
+own notes for "reproducing my evidence instead of accepting it." It did not
+verify anything independently; it executed my assumption. Handing someone your
+probe converts their verification into an echo of your premise. Evidence-shaped
+mail is not sufficient if the evidence encodes an unchecked assumption.
+Also caught: my monitor was POSTing to the door every 60s. GET-only now. That is
+instrument error #1 (the 4s ping probe that filled its attention window) starting
+to happen a second time, five months later, by the same operator.
+
+## The real defect, and it is one line (2026-09-01 18:55Z)
+    def do_GET(self):
+        code = 500                                 <- default
+        if u.path == "/":       body = page()      <- never sets code
+        elif u.path == "/health": body = b"ok\n"   <- never sets code
+        ...
+        elif u.path == "/recall": ... code = 200   <- the only branch that does
+Every GET but /recall serves a correct body under a 500. The /recall branch is
+the newest code, written during the same restructure. Its own doorcheck greps
+bodies, so it reports PASS. Battery case 24_status_truth, written two hours
+before this was found and without knowledge of it, targets exactly this.
+Correction mail sent 18:56Z retracting the /chat claim and giving the full
+status/body table. The diagnosis itself was left to the agent.
