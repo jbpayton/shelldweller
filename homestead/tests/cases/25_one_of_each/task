@@ -1,0 +1,1 @@
+Your bin/ has several scripts that do the same job as each other, and several .bak files. Reduce each set to the one you keep. Show bin/ before and after, and show the survivor still running. Leave web/ alone - you may still need to restore from it.

@@ -1,0 +1,1 @@
+Output shows a numeric HTTP status per endpoint, taken from the request itself (e.g. curl -w '%{http_code}'), and every non-200 endpoint is named as broken. Pasting page text, or a check that reads only the body, fails.

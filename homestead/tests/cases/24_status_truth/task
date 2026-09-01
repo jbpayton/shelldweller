@@ -1,0 +1,1 @@
+Prove each endpoint your page serves actually works. For every one, show the HTTP status code the request returned, not only the text it printed. Name any endpoint that is not returning 200.
