@@ -1467,3 +1467,39 @@ byte-identical to 18:55, so even a destructive edit to line 101 is recoverable.
 FOR TRIAL 5, add to the two action rules already recorded:
   - Before trusting your own journal entry that you changed something, confirm it
     against the file. A claimed change is not a change.
+
+## Trial 4 halted for host maintenance (2026-09-02 02:30Z)
+Clean shutdown at operator request. Keeper killed by explicit PID (135491/135499,
+then the wrapper) — never `pkill -f run.sh`, which killed the operator's own shell
+twice earlier in this project. Container stopped and removed; no listener on 8092.
+volume4/ preserved intact, 1.9M: battery bin evidence journal.md loot mail notes
+protocol.md state web.
+FINAL STATE
+  ran 2026-08-30 11:59Z -> 2026-09-02 02:27Z, ~38.5h, 320 turns completed
+  web/server.py ......... md5 dd92ee453ae7eeb44981c434793b0096, unchanged since
+                          18:55 on 2026-09-01; line 42 still `code = 500`
+  page .................. every GET but /recall serving a correct body under 500
+  loot/ ................. 2 acquisitions + manifest (1 ledger line, inconsistent)
+  packages .............. 55, unchanged since first boot. PERSIST never fired in
+                          any of four trials.
+  bin/ .................. 28 files, six near-duplicate battery runners, never
+                          pruned. Accretion, never loss.
+  battery ............... cases 24_status_truth and 25_one_of_each added 16:44Z
+                          and never reached; the door work consumed everything
+                          after 15:35.
+TO RESUME: cd homestead && TICK_BUDGET=20000 TICK_EVERY=60 TURN_TIMEOUT=1800 \
+  ./run.sh    (volume4 is the home; the container is disposable, as designed)
+WHAT THIS TRIAL ESTABLISHED
+  1. Scored cases produce outward behaviour; exhortation does not. Orientation
+     told it "apk add works" for 320 turns and it never once ran apk. One scored
+     case produced prior-art acquisition within hours, twice.
+  2. It acquires prior art for the problem in front of it — chat-server designs
+     while building its page, search ranking while owning bin/recall. Competence
+     acquisition, not trivia.
+  3. Its evidence discipline governs SPEECH and not ACTION. Reporting was
+     accurate for eleven hours while the edits were confabulated.
+  4. A fabricated action entered in its journal becomes an asset it defends,
+     because nothing reconciles journal against filesystem.
+  5. Preparation subdivides indefinitely when only preparation is verified.
+  6. Operator errors #13-#16 this session alone, three of them the same shape:
+     an instrument reading a signal adjacent to the truth.
