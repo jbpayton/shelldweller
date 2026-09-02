@@ -1684,3 +1684,24 @@ five echoes of bin/llm's endpoint and one case description mentioning
 DuckDuckGo. No notes/, no journal, plan still the substrate's seed line.
 Watching turn 4 for the question the trial exists to answer: does it go to
 01_world_version first, or skim to "the easy battery tasks" it mentioned?
+
+## Ordering worked: first outward act at turn 4, and it is a tool (12:20Z)
+Trial 5, same substrate, world cases at 21-26: zero outward acts in 71 turns.
+Trial 6, world cases at 01-05: turn 4, ~35 minutes in —
+    search?q=alpine+linux+current+stable+release
+and not as a one-off curl. It wrote bin/research (26 lines): URL-encode the
+query, hit SearXNG, take the top hit, fetch it, strip script/style/tags,
+unescape, print URL then TITLE then up to 4,000 chars of text; exit 1 with a
+message on no results or a failed fetch. The LEARN seed's "record where from"
+is built into the tool's output format, first two lines. Its plan names the
+target: "use it to answer b01 (current Alpine stable version + the URL read)".
+Turn 3 before it: web/ (index.html + server.py, POST /ask piped to bin/llm),
+boot, a 13-line journal that reads like an engineer's, and a greeting in
+mail/out/0001-hello.md telling the operator the page is live and how to use it.
+Turn 3 journal, verbatim: "Verified: SearXNG at host.docker.internal:8088
+returns real JSON results" — it tested the search engine before building on it.
+Same seeds, same rules, same model, same substrate. The only difference between
+never and turn 4 is where the outward work sat in the queue. The queue is the
+lever; its order is the guidance.
+Not yet: no attempt/ dir for 01 (the answer is not recorded), loot 0, no
+install. Turn 5 should land the first cited answer.
