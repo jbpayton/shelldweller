@@ -1503,3 +1503,18 @@ WHAT THIS TRIAL ESTABLISHED
   5. Preparation subdivides indefinitely when only preparation is verified.
   6. Operator errors #13-#16 this session alone, three of them the same shape:
      an instrument reading a signal adjacent to the truth.
+
+## Trial 5 launched (2026-09-02 02:44Z) — after a two-minute false start
+First boot at 02:42Z: `[life] git initialised in the home`, then every git call
+after `init` failed silently — `fatal: detected dubious ownership`. The volume is
+uid 1000 and the container runs as root; I had verified `git --version` in the
+image and never a commit in a foreign-owned directory. The ground-truth
+mechanism, the whole point of trial 5, was dead on arrival. Fixed with
+`git -c safe.directory='*'` in life's G(), image rebuilt, volume wiped, relaunched
+clean at 02:44Z so turn 1 starts from a seed commit. Cost: two minutes.
+Operator error #17 (instrument): the trial-5 monitor hard-coded the trial-4
+package baseline (55). The new image carries git and its dependencies, so 58 is
+the fresh baseline; the first tick fired INSTALLED and GIT GONE, both false.
+Baseline now measured at boot rather than assumed.
+The prompt was right on the first boot: WHAT CHANGED block present, `outside:`
+gone, both new facts in, 75 lines, 26 cases seeded, SearXNG letter waiting.

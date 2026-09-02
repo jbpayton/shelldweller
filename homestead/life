@@ -9,7 +9,7 @@ D=/home/dweller
 NEXTF=$D/state/NEXT
 MAILIN=$D/mail/in; MAILSEEN=$D/mail/seen; MAILOUT=$D/mail/out
 turn=0; stale=0
-G() { git -C "$D" "$@"; }
+G() { git -c safe.directory='*' -C "$D" "$@"; }
 
 usable() { [ -x "$D/bin/$1" ] && bash -n "$D/bin/$1" 2>/dev/null; }
 
