@@ -1898,3 +1898,19 @@ as a static binary in the volume — a better method than the .apk, and one my
 package count cannot see. boot correctly skipped the install. Operator error
 #18: "packages: 58" read as "persistence failed" when the tool was on its PATH
 the whole time. The turn-2 apk reinstall was redundant, not a recovery.
+
+## v6.3, three turns: the stall breaks (19:20Z)
+Turns 1-3 of container 4: 3, 3 and 6 rounds; every turn committed; NEXT
+rewritten at turns 2 and 3 (plan_stale 0) and now points at 06; journal
+resumed ("Lesson: a fence holds bash that WRITES files, not the file's
+markdown itself"). 04_world_tool.md rewritten — PASS: ripgrep, source
+recorded, and a real measured demonstration on its own files (rg 14 relevant
+lines vs grep 87 with .git noise), full output in state/evidence/04_demo.txt.
+05_status_truth.md — PASS: endpoints enumerated from server.py, every status
+taken with curl -w '%{http_code}', verbatim table in state/evidence/05_status.txt,
+404/400 paths named as not-served-by-design. Verified from the host: / 200,
+/status 200, POST /ask 200 with body "OK".
+Twenty-odd turns across three containers could not rewrite one file. One turn
+of one-fence-per-reply did, and the next turn did the following case. The
+contract the model re-derived in its own narration was the right one.
+Five world cases passed. Trial 6 moves to the original battery at 06.

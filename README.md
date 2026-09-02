@@ -19,11 +19,12 @@ behaviour was a change to its **environment**. No change to its
 | Rule: *claims about your own work need evidence* | prose | held for what it **said**; its edits changed no bytes and every gate downstream reported success |
 | Put the home under git; the loop shows the diff every turn | environment | it read *"nothing changed"* and named the stall; it caught fabricated text in its own notes by comparing file ages |
 | Seed: *the container gets replaced; your home does not* — plus `apk add works` in every prompt | prose | five trials, zero installs |
-| Put the install case at queue position 04 | environment | `ripgrep` installed at turn 15 — the first package in six trials |
+| Put the install case at queue position 04 | environment | `ripgrep` installed at turn 15 — the first package in six trials; case passed with a measured demonstration on its own files |
 | Replaced the container, as the seed says happens | environment | fzf survived — it had copied the static binary into its home; ripgrep, never recorded anywhere it reads, did not. It then cached the `.apk` too, and built a claim checker that re-fetches every quoted source |
 | A `boot` file the loop runs when a container starts | environment | written at turn 3, unprompted; the door restored through four replacements |
 | Rule: *write the whole workflow, not an interactive plan* | prose | five straight turns of looking around, waiting for output that never came |
 | Gave it the observe-then-act loop it was trained on, with a transcript of the turn | environment | the case it had stalled on for six turns, done in one |
+| Ran only the first fenced block per reply — the contract it had re-derived itself after catching its own fabricated outputs | environment | a twenty-turn stall on one file broke on the first turn; two cases passed in three turns; the journal and plan resumed |
 
 The full record, including every operator mistake, is in
 [`homestead/operator-log.md`](homestead/operator-log.md). The trial specs —
