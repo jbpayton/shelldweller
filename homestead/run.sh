@@ -14,7 +14,7 @@
 # LLM_ENDPOINT.
 set -uo pipefail
 cd "$(dirname "$0")"
-VOL="${HOMESTEAD_VOLUME:-$PWD/volume5}"
+VOL="${HOMESTEAD_VOLUME:-$PWD/volume6}"
 PORT="${TICK_PORT:-8092}"
 IDLE_KILL="${IDLE_KILL:-1800}"
 
@@ -23,7 +23,15 @@ if [ ! -d "$VOL/bin" ]; then
   mkdir -p "$VOL"
   cp -r seed/bin "$VOL/bin"
   cp seed/protocol.md "$VOL/protocol.md"
-  cp -r ../tests/cases "$VOL/battery"
+  # The queue is ordered by order.txt: listed cases first, in that order, then
+  # every unlisted case in tests/cases order. A case's number in the home is
+  # its position in the queue. Trial 5 worked the battery strictly in numeric
+  # order and never reached the outward cases at 21-26; order is the lever.
+  mkdir -p "$VOL/battery"; i=0
+  for c in $( { [ -f order.txt ] && grep -v '^#' order.txt; ls ../tests/cases; } | awk 'NF && !seen[$0]++' ); do
+    [ -d "../tests/cases/$c" ] || continue
+    i=$((i+1)); cp -r "../tests/cases/$c" "$VOL/battery/$(printf '%02d' "$i")_${c#[0-9][0-9]_}"
+  done
   # Operator mail: letters waiting in the home on the first turn. To send later,
   # drop a file in $VOL/mail/in; to WITHDRAW one, move it out again — the loop
   # shows only the newest message in full, so a mistake is cheap to retract.

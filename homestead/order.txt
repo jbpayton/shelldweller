@@ -1,0 +1,8 @@
+# Queue order for a fresh home. Listed cases come first, in this order; every
+# unlisted case follows in tests/cases order. The number a case wears in the
+# home is its queue position, not its name here.
+21_world_version
+22_world_practice
+26_adopt
+23_world_tool
+24_status_truth

@@ -1649,3 +1649,17 @@ and spawns a sub-agent, and the SYS rule "end every turn by writing state/NEXT"
 applies to sub-agents too, so it obeyed in its cwd. A rule written for the
 top-level turn, followed faithfully one level down. Harmless; noted for the
 SYS rules in trial 6 (scope "turn" rules to the top level, or say so).
+
+## Trial 5 closed, trial 6 launched: guided evolution by task ordering (11:30Z)
+Trial 5 final: 71 turns over ~11h (four container replacements, three of them
+substrate iterations). Cases 01-07 done in strict numeric order. LEARN: zero
+outward acts — the only search URLs in the log were the mission's placeholder
+echoed back. REMEMBER: a 78-line index and a curated 608-byte orient; no
+retrieval tool. PERSIST: boot, real and proven four times; installs, none.
+Unprompted highlights: caught fabricated text in its own index by comparing
+file mtimes and rebuilt case 04; wired boot into orient ("chat:8080 DOWN — run
+/home/dweller/boot"); acked the substrate-change mail and filed it.
+Operator's reading: the queue is the lever and the queue put every outward case
+at the end. Operator's proposal, accepted by Joey: reroll with the outward and
+self-directed cases first — "guided evolution via task ordering."
+Trial 6 = trial 5 substrate unchanged + order.txt. Archived volume5 -> runs/trial5.
