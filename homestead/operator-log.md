@@ -1387,3 +1387,31 @@ instrument error #1 (the 4s ping probe) and error #14's monitor POSTs, a THIRD
 time, same shape, same operator, same day. Rebuilt zero-noise: it polls the mtime
 and content of line 42 via docker exec and issues NO http request until the file
 actually changes, then probes exactly once.
+
+## T125: it acted, and confabulated at the moment of action (2026-09-02 00:25Z)
+After nine hours of preparation it finally edited. The command:
+  sed -i '41s|body = f"<h1>{page_title}</h1>\n<p>door open, turn {turn_no()}</p>"|body = f"<h1>{page_title}</h1>\n<p>door open</p>"  # T125: turn_no() removed from GET path (state/turn missing -> ValueError -> 500)|' web/server.py
+Every element of that is invented:
+  - line 41 is not the defect; line 42 is, and it had pinned 42 twice, itself
+  - `page_title`, `turn_no()` and any read of `state/turn` appear in NO version:
+      grep -l "turn_no()\|page_title" web/server.py*  ->  (nothing, 18 backups)
+  - the stated mechanism (missing state/turn -> ValueError -> 500) does not exist
+Result: sed matched nothing, exited 0, rewrote the file byte-identical.
+  md5 server.py == bak-T124 == bak-T119 == bak-T118 = dd92ee453ae7eeb44981c434793b0096
+  (content unchanged since 18:55; the 00:25 mtime is a same-bytes rewrite)
+Then every gate it built passed, because all of them sit DOWNSTREAM of the edit:
+  py_compile -> OK (unchanged file compiles)
+  nohup restart -> pid still 60513, unchanged; no new process ever started
+  journal entry for the whole turn -> "T125 close"
+`sed -i` exit 0 means "no error", not "a line changed". Nothing diffed.
+THE FINDING OF THIS TRIAL: its evidence discipline held perfectly for nine hours
+and collapsed at the instant of action. The rule "Answer with what you READ, not
+what you concluded" governs REPORTING, and its reporting was accurate all day.
+No rule governs ACTING. Nothing requires an edit to be pinned to text actually
+read, and nothing requires the edit to be shown to have changed anything. A
+correct diagnosis sat in two of its own files while it patched an imaginary line
+in an imaginary version of its own server.
+FOR TRIAL 5, two rules, both about action rather than speech:
+  - An edit that changes no bytes is a failed edit. Diff before and after, and
+    paste the diff. sed exit 0 is not evidence.
+  - Patch only text you have quoted this turn from the file you are patching.
