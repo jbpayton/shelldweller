@@ -1518,3 +1518,35 @@ the fresh baseline; the first tick fired INSTALLED and GIT GONE, both false.
 Baseline now measured at boot rather than assumed.
 The prompt was right on the first boot: WHAT CHANGED block present, `outside:`
 gone, both new facts in, 75 lines, 26 cases seeded, SearXNG letter waiting.
+
+## Trial 5, hour 2: the idle streak, diagnosed from the model's own mouth (04:40Z)
+Turns 22-26 changed no file. Four were cheap (500-5,000 tokens): one recon fence
+(cat NEXT, cat notes, cat task, ps, cat .meter), exit 0, turn over. One (24)
+spent 17k and also changed nothing. The plan said "write+run attempt1 THIS TURN"
+all five turns. Each of the five saw the substrate's line "nothing. No file in
+your home changed during turn N." in its prompt.
+Reproduced offline: same prompt, same SYS, straight to LM Studio (not through
+its meter). Without SYS the reply ended in a literal `<tool_call><function=bash>`
+block. With SYS it wrote two recon fences and then ~5,000 tokens of visible
+deliberation about the contract itself:
+  "I can't see the output of blocks 1 and 2 yet — they were queued."
+  "On success I presumably see the output appended."
+  "Given the hard constraint that I can't see output mid-turn, the ONLY way to
+   both (a) read the task and (b) act on it this turn is to make the script
+   itself do the reading and delegate the solving to the llm devices."
+It then designed that script and was cut off before finishing it.
+So: it READ the ground-truth line and named it ("Turn 26 changed nothing — I
+stalled"). The git mechanism works as perception. What it cannot do is act
+across the one-shot contract: its native loop is call -> observe -> act, and
+Contract B ends the turn on the first exit 0. The SYS rule states the failure
+path ("if it exits non-zero you are re-invoked") and is SILENT on the success
+path; the model fills the silence with the tool loop it was trained on. Trial 4
+found this too, the hard way — "exiting 1 by design" was the agent hacking a
+continuation out of the failure path.
+Decision: give the model the loop it expects. Contract C: after ANY exit, the
+bridle re-invokes with the script's output appended; a reply with no fence after
+at least one executed script ends the turn. The meter and TURN_TIMEOUT bound it,
+as they always did. This is the operator's own instruction applied — "don't
+fight the model and how it works" — and it is five lines in the bridle, not a
+change to what the habitat contains. SYS will state the success path truthfully.
+Reversible in one commit if the operator disagrees.

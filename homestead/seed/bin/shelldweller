@@ -4,7 +4,7 @@
 # (retry-on-failure). This file is the pristine seed — the live copy is
 # /home/dweller/bin/shelldweller, which the dweller may rewrite. If the live
 # copy won't parse, the turn falls back to this one.
-SYS="You are a user at an Alpine Linux terminal. Put any bash you want run inside \`\`\`bash ... \`\`\` fences (or just \`\`\`); everything outside the fences is narration — shown, never executed. If your reply has no fences at all, it is a plain text answer and is returned verbatim — use this when the task is only to produce text. Your fenced bash runs as one script; if it exits non-zero you are re-invoked with the failure appended, so read the error, fix it, and continue. Write the whole workflow, not an interactive plan.
+SYS="You are a user at an Alpine Linux terminal. Put any bash you want run inside \`\`\`bash ... \`\`\` fences (or just \`\`\`); everything outside the fences is narration — shown, never executed. If your reply has no fences at all, it is a plain text answer and is returned verbatim — use this when the task is only to produce text. Your fenced bash runs as one script; you are then shown its output and may continue with more fenced bash, as many rounds as you need. A reply with no fence ends the turn. A failure comes back the same way: read it, fix it, continue.
 
 You are the homestead dweller, living in a persistent container. /home/dweller persists forever. Between your turns, processes you left running keep running — check what is already alive before starting anything. Inference is metered per turn (/home/dweller/.meter). Everything in /home/dweller/bin — llm, this bridle, orient — runs in place of the originals; edit it to change yourself (a copy that will not parse is skipped for the pristine one that turn).
 
@@ -38,14 +38,22 @@ if [ "${1:-}" = "-f" ]; then task=$(cat "$2"); else task="$*"; fi
 # treating it as an answer silently wastes the turn. Sub-agent calls keep
 # the verbatim-text path (that is how prose tasks return prose).
 TOP="${SHELLDWELLER_TOPLEVEL:-0}"; export SHELLDWELLER_TOPLEVEL=0
-context="Task: $task"; code=0
-for attempt in 0 $(seq 1 ${SHELLDWELLER_MAX_RETRIES:-2}); do
+# Contract C (trial 5): every script's output comes back to the model with an
+# invitation to continue; a fence-less reply after at least one script ends the
+# turn. The meter and TURN_TIMEOUT bound it. Contract B ended the turn on the
+# first exit 0, and the model's native loop is call -> observe -> act: it spent
+# five straight turns looking around, waiting for output that never came.
+context="Task: $task"; code=0; steps=0; retries=0
+clip() { n=${1:-6000}; s=$(cat); if [ ${#s} -gt "$n" ]; then printf '(earlier output cut; last %s chars follow)\n' "$n"; printf '%s' "$s" | tail -c "$n"; else printf '%s' "$s"; fi; }
+while :; do
   response=$(printf '%s' "$context" | LLM_SYSTEM="$SYS" llm)
-  # No fenced bash to run? For a sub-agent that is the answer (a text task
-  # returns prose). For a top-level turn it is a wasted reply — retry.
   if ! printf '%s\n' "$response" | grep -q '^```'; then
+    # No fence. After a script has run, this ends the turn (or is the
+    # sub-agent's answer). Before any script it is a cut-off or pure
+    # narration: retry a couple of times, then give up.
     printf '%s\n' "$response"
-    [ "$TOP" != "1" ] && exit 0
+    { [ "$steps" -gt 0 ] || [ "$TOP" != "1" ]; } && exit $code
+    retries=$((retries+1)); [ "$retries" -gt "${SHELLDWELLER_MAX_RETRIES:-2}" ] && exit 1
     context="Task: $task
 
 === Your previous reply contained no fenced bash — nothing was executed ===
@@ -56,24 +64,28 @@ It may have been cut off at the token limit. Reply again: fenced \`\`\`bash FIRS
   # fence — running the half-script harms more than it helps. Retry instead.
   if [ $(( $(printf '%s\n' "$response" | grep -c '^```') % 2 )) -ne 0 ]; then
     printf '%s\n' "$response"
+    retries=$((retries+1)); [ "$retries" -gt "${SHELLDWELLER_MAX_RETRIES:-2}" ] && exit 1
     context="Task: $task
 
 === Your previous reply was CUT OFF mid-fence — nothing was executed ===
-Resend ONLY the fenced bash, smaller: one step this turn, the rest next turn."
+Resend ONLY the fenced bash, smaller. You can continue after it runs."
     continue
   fi
+  # At top level, what it SAID goes to the log next to what it RAN.
+  [ "$TOP" = "1" ] && printf '%s\n' "$response" | awk '/^```/{f=!f; next} !f && NF' | sed 's/^/| /'
   script=$(printf '%s\n' "$response" | extract-bash)
-  [ -z "$(printf '%s' "$script" | tr -d '[:space:]')" ] && break
+  [ -z "$(printf '%s' "$script" | tr -d '[:space:]')" ] && exit $code
   output=$(echo "$script" | bash 2>&1); code=$?
   printf '%s\n' "$output"
-  [ $code -eq 0 ] && exit 0
+  steps=$((steps+1))
+  if [ $code -eq 0 ]; then verdict="ran (exit 0)"; ask="Continue with more fenced bash, or reply with no fence to end the turn."
+  else verdict="failed (exit $code)"; ask="Read the error, then continue with corrected fenced bash — or reply with no fence to end the turn."; fi
   context="Task: $task
 
-=== Your previous attempt failed (exit $code) ===
-Script you ran:
-$script
-Output:
-$output
-=== Read the error above, then write a corrected workflow. ==="
+=== Step $steps $verdict. Script:
+$(printf '%s' "$script" | clip 3000)
+=== Its output:
+$(printf '%s' "$output" | clip 6000)
+=== $ask ==="
 done
 exit $code
