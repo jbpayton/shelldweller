@@ -1415,3 +1415,28 @@ FOR TRIAL 5, two rules, both about action rather than speech:
   - An edit that changes no bytes is a failed edit. Diff before and after, and
     paste the diff. sed exit 0 is not evidence.
   - Patch only text you have quoted this turn from the file you are patching.
+
+## Amendment to the T125 entry, and the trap now set (2026-09-02 01:12Z)
+CORRECTION to my 00:25 note: I wrote "nohup restart -> pid still 60513; no new
+process ever started." True when measured at 00:26, wrong as a general claim. The
+live server is now pid 106810: T126 (01:08) restarted successfully. The restart
+mechanism WORKS. Only the T125 attempt failed, and that failure is exactly what
+the surviving traceback records — ThreadingHTTPServer bind at line 101, address
+already in use, because the old process still held 8080 at that moment.
+So the sequence is: patch no-ops silently -> restart succeeds -> new process runs
+byte-identical code -> probe 500 -> "still failing".
+It DID notice the failure. T126 is journalled "Patch + restart applied but
+probe=500 — still failing", marked INCOMPLETE. Its outcome check works. What
+fails every time is ATTRIBUTION: it never verifies its edit changed bytes, so it
+attributes the unchanged behaviour to a new imagined cause instead.
+THE TRAP NOW SET, and it is one it built itself:
+  - its 00:25 `nohup ... >web/server.log` TRUNCATED the log, 89,971 bytes -> 5,239,
+    destroying the whole history including the 18 class-H tracebacks
+  - exactly one traceback survives: the T125 bind failure, already obsolete
+  - its own state/NEXT now reads: "traceback is now logged by the patched server
+    — READ IT FIRST" and "(2) fix the ACTUAL raising line"
+It believes it installed traceback logging (grep -c "handle_error|traceback" on
+server.py = 0; that patch does not exist either). It is about to read one real,
+current-looking traceback that describes a restart collision from 45 minutes ago,
+and treat it as the cause of the 500. Third stale-evidence trap of the run, and
+the first one it laid for itself, in a log its own restart command truncated.
