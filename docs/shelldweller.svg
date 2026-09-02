@@ -1,92 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" font-family="'JetBrains Mono','Fira Code',ui-monospace,Menlo,Consolas,monospace">
-  <defs>
-    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#4ade80"/>
-    </marker>
-    <marker id="arrdim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#8fa898"/>
-    </marker>
-  </defs>
-
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 1200 630" font-family="'JetBrains Mono','Fira Code',ui-monospace,Menlo,Consolas,monospace">
   <rect width="1200" height="630" fill="#0b0f0d"/>
 
   <!-- title -->
-  <text x="60" y="98" font-size="54" font-weight="bold">
-    <tspan fill="#4ade80">$</tspan><tspan x="112" fill="#e9e7e2">shelldweller</tspan>
-  </text>
-  <text x="62" y="138" font-size="20" fill="#22c55e">the LLM is a Unix device.</text>
-  <text x="62" y="164" font-size="20" fill="#22c55e">the agent dwells in the shell.</text>
+  <text x="60" y="72" fill="#e6efe9" font-size="34" font-weight="700">shelldweller</text>
+  <text x="60" y="112" fill="#4ade80" font-size="26">the harness is not the moat.</text>
+  <text x="60" y="146" fill="#8fa898" font-size="17">same 27B model · same rules · same seeds · same substrate · one variable</text>
 
-  <line x1="60" y1="192" x2="700" y2="192" stroke="#2c4534" stroke-width="1"/>
+  <!-- panel frames -->
+  <rect x="60" y="176" width="520" height="390" rx="10" fill="#101713" fill-opacity="0.5" stroke="#243029" stroke-width="1.5"/>
+  <rect x="620" y="176" width="520" height="390" rx="10" fill="#101713" fill-opacity="0.5" stroke="#2f6b45" stroke-width="1.5"/>
 
-  <!-- contract flow -->
-  <rect x="60" y="225" width="90" height="54" rx="6" fill="#111713" stroke="#2c4534"/>
-  <text x="105" y="257" font-size="15" fill="#e9e7e2" text-anchor="middle">task</text>
+  <!-- panel headers -->
+  <text x="88" y="214" fill="#8fa898" font-size="20" font-weight="700">trial 5</text>
+  <text x="648" y="214" fill="#4ade80" font-size="20" font-weight="700">trial 6</text>
 
-  <line x1="150" y1="252" x2="176" y2="252" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- identical lines, both panels -->
+  <g fill="#8fa898" font-size="16">
+    <text x="88" y="252">model      qwen3.8-27b · 32k · one GPU</text>
+    <text x="88" y="278">rules      identical</text>
+    <text x="88" y="304">seeds      LEARN · REMEMBER · PERSIST</text>
+    <text x="88" y="330">substrate  git · meter · boot · door</text>
+    <text x="648" y="252">model      qwen3.8-27b · 32k · one GPU</text>
+    <text x="648" y="278">rules      identical</text>
+    <text x="648" y="304">seeds      LEARN · REMEMBER · PERSIST</text>
+    <text x="648" y="330">substrate  git · meter · boot · door</text>
+  </g>
 
-  <rect x="180" y="215" width="190" height="74" rx="6" fill="#111713" stroke="#2c4534"/>
-  <text x="275" y="245" font-size="15" fill="#e9e7e2" text-anchor="middle">bridle</text>
-  <text x="275" y="268" font-size="13" fill="#8fa898" text-anchor="middle">extracts ``` fences</text>
+  <!-- the one variable -->
+  <text x="88" y="368" fill="#e6efe9" font-size="16">queue      01–20 the basics</text>
+  <text x="88" y="392" fill="#e6efe9" font-size="16">           21–26 the world</text>
+  <text x="648" y="368" fill="#e6efe9" font-size="16">queue      01–05 the world</text>
+  <text x="648" y="392" fill="#e6efe9" font-size="16">           06–25 the basics</text>
 
-  <line x1="370" y1="252" x2="396" y2="252" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- divider -->
+  <line x1="88" y1="416" x2="552" y2="416" stroke="#243029" stroke-width="1"/>
+  <line x1="648" y1="416" x2="1112" y2="416" stroke="#2f6b45" stroke-width="1"/>
 
-  <rect x="400" y="215" width="170" height="74" rx="6" fill="#111713" stroke="#2c4534"/>
-  <text x="485" y="245" font-size="15" fill="#e9e7e2" text-anchor="middle">llm device</text>
-  <text x="485" y="268" font-size="13" fill="#8fa898" text-anchor="middle">text in, text out</text>
+  <!-- outcomes -->
+  <g fill="#8fa898" font-size="16">
+    <text x="88" y="452">71 turns</text>
+    <text x="88" y="480">cases 01–07 done, in order</text>
+    <text x="88" y="508" fill="#c9a24a">0 outward acts</text>
+    <text x="88" y="536">never reached the world</text>
+  </g>
+  <g fill="#4ade80" font-size="16">
+    <text x="648" y="452">turn 4    builds a search tool, cites sources</text>
+    <text x="648" y="480">hour 1    two answers, fetched, verified</text>
+    <text x="648" y="508">hour 2    a memory tier from a fetched paper</text>
+    <text x="648" y="536">2.5 hours three world cases passed</text>
+  </g>
 
-  <line x1="275" y1="289" x2="275" y2="326" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arr)"/>
-
-  <rect x="180" y="330" width="250" height="54" rx="6" fill="#111713" stroke="#2c4534"/>
-  <text x="305" y="362" font-size="14" fill="#e9e7e2" text-anchor="middle">bash runs the fenced script</text>
-
-  <path d="M430 357 C 520 357, 487 330, 486 295" fill="none" stroke="#8fa898" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrdim)"/>
-  <text x="508" y="345" font-size="12" fill="#8fa898">non-zero exit?</text>
-  <text x="508" y="361" font-size="12" fill="#8fa898">failure fed back</text>
-
-  <text x="60" y="416" font-size="13" fill="#8fa898">a handful of small scripts — the model reads its own source</text>
-
-  <line x1="60" y1="436" x2="700" y2="436" stroke="#2c4534" stroke-width="1"/>
-
-  <!-- phase 3: homestead -->
-  <text x="60" y="462" font-size="13" fill="#fbbf24" letter-spacing="3">PHASE 3 · HOMESTEAD</text>
-
-  <!-- one persistent container, turns inside it -->
-  <rect x="60" y="470" width="560" height="60" rx="6" fill="#0f1512" stroke="#5a4a1e" stroke-dasharray="5 3"/>
-  <text x="70" y="486" font-size="11" fill="#fbbf24">one container, stays up</text>
-
-  <rect x="74" y="492" width="80" height="30" rx="5" fill="#111713" stroke="#2c4534"/>
-  <text x="114" y="512" font-size="12" fill="#e9e7e2" text-anchor="middle">turn n</text>
-  <line x1="154" y1="507" x2="176" y2="507" stroke="#4ade80" stroke-width="1.4" marker-end="url(#arr)"/>
-  <rect x="180" y="492" width="80" height="30" rx="5" fill="#111713" stroke="#2c4534"/>
-  <text x="220" y="512" font-size="12" fill="#e9e7e2" text-anchor="middle">turn n+1</text>
-  <line x1="260" y1="507" x2="282" y2="507" stroke="#4ade80" stroke-width="1.4" marker-end="url(#arr)"/>
-  <rect x="286" y="492" width="80" height="30" rx="5" fill="#111713" stroke="#2c4534"/>
-  <text x="326" y="512" font-size="12" fill="#e9e7e2" text-anchor="middle">turn n+2</text>
-  <text x="378" y="512" font-size="14" fill="#8fa898">…</text>
-
-  <rect x="400" y="492" width="208" height="30" rx="5" fill="#111713" stroke="#2c4534"/>
-  <text x="504" y="505" font-size="10" fill="#4ade80" text-anchor="middle">services keep running between turns</text>
-  <text x="504" y="517" font-size="9" fill="#8fa898" text-anchor="middle">web page on :8080 · watchers · meter</text>
-
-  <line x1="114" y1="530" x2="114" y2="548" stroke="#8fa898" stroke-width="1" marker-end="url(#arrdim)"/>
-  <line x1="326" y1="530" x2="326" y2="548" stroke="#8fa898" stroke-width="1" marker-end="url(#arrdim)"/>
-  <line x1="504" y1="530" x2="504" y2="548" stroke="#8fa898" stroke-width="1" marker-end="url(#arrdim)"/>
-
-  <rect x="60" y="552" width="560" height="42" rx="6" fill="#111713" stroke="#22c55e"/>
-  <text x="340" y="571" font-size="14" fill="#4ade80" text-anchor="middle">/home/dweller — survives turns, restarts, reboots</text>
-  <text x="340" y="587" font-size="11" fill="#8fa898" text-anchor="middle">journal · orientation · tools · the dweller rewrites its own machinery</text>
-
-  <!-- shell spiral -->
-  <path d="M1060 380 A144 144 0 0 0 916 236 A89 89 0 0 0 827 325 A55 55 0 0 0 882 380 A34 34 0 0 0 916 346 A21 21 0 0 0 895 325 A13 13 0 0 0 882 338 A8 8 0 0 0 890 346"
-        fill="none" stroke="#4ade80" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
-  <rect x="886" y="339" width="7" height="12" fill="#4ade80"/>
-
-  <!-- heartbeat trace -->
-  <polyline points="790,470 880,470 900,470 912,442 928,492 940,458 952,470 1110,470"
-            fill="none" stroke="#fbbf24" stroke-width="2" stroke-linejoin="round" opacity="0.85"/>
-  <text x="950" y="508" font-size="12" fill="#8fa898" text-anchor="middle">the heartbeat · a turn at a time</text>
-
-  <!-- badges -->
-  <text x="600" y="614" font-size="15" fill="#8fa898" text-anchor="middle">pure shell · no framework · fences are the contract · metered inference · persistent home · self-rewriting</text>
+  <!-- footer -->
+  <text x="60" y="596" fill="#8fa898" font-size="15">the model brings the control structure. the environment has to bring the economy and the truth.</text>
+  <text x="60" y="618" fill="#8fa898" font-size="15">the operator's instrument is the queue.</text>
 </svg>

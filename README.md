@@ -2,46 +2,77 @@
 
 # shelldweller — the LLM is a Unix device. The agent dwells in the shell.
 
-Shelldweller is a handful of small shell scripts. `bin/llm` exposes a language model as a Unix command — pipe a prompt in, get a response out. `bin/shelldweller` sends a hint and a task to the model, then pipes whatever the model produces directly to bash. No framework, no tool schema, no planner. The model decides what structure it needs and writes it.
+## The claim: the harness is not the moat
 
-The container gives the model bash, python3, curl, jq, socat, and standard Unix tools. The harness code itself is pure shell. What the model reaches for inside that environment is its own choice.
+What the model inhabits, and what it is given to manage, is.
 
-## Thesis
+Five trials of a 27B model on one consumer GPU, in a home it can rewrite. Same
+model, same rules, same seeds throughout. Every lever that ever moved its
+behaviour was a change to its **environment**. No change to its
+**instructions** ever did.
 
-This is an experiment in **Substrate Engineering** — designing the environment a model inhabits rather than the control structure around it. The distinction matters: most agent work is *Harness Engineering*, building instructions, state management, and verification loops around the model. Substrate Engineering asks whether those layers are necessary at all, or whether the right substrate makes them emerge on their own.
+| What we changed | Kind | What happened |
+|---|---|---|
+| Told it `apk add works`, in every prompt, for 320 turns | prose | never ran `apk` once |
+| Put a case that asks for the world into its task queue | environment | fetched, and cited, within hours |
+| Moved the outward cases from queue positions 21–26 to 01–05 — **and nothing else** | environment | 0 outward acts in 71 turns → a search tool at turn 4, two answers cited and verified in hour one, a memory tier built from a fetched paper by hour two |
+| Rule: *claims about your own work need evidence* | prose | held for what it **said**; its edits changed no bytes and every gate downstream reported success |
+| Put the home under git; the loop shows the diff every turn | environment | it read *"nothing changed"* and named the stall; it caught fabricated text in its own notes by comparing file ages |
+| Seed: *the container gets replaced; your home does not* | prose | five trials, zero installs |
+| A `boot` file the loop runs when a container starts | environment | written at turn 3, unprompted; the door restored through four replacements |
+| Rule: *write the whole workflow, not an interactive plan* | prose | five straight turns of looking around, waiting for output that never came |
+| Gave it the observe-then-act loop it was trained on, with a transcript of the turn | environment | the case it had stalled on for six turns, done in one |
 
-The thesis: if the substrate is right, the harness becomes unnecessary. The experiment is whether this is true, and what shape the self-built structures take. See [`docs/substrate-engineering.md`](docs/substrate-engineering.md).
+The full record, including every operator mistake, is in
+[`homestead/operator-log.md`](homestead/operator-log.md). The trial specs —
+each mechanism traced to the measured failure it answers — are
+[`homestead/TRIAL4.md`](homestead/TRIAL4.md),
+[`TRIAL5.md`](homestead/TRIAL5.md) and [`TRIAL6.md`](homestead/TRIAL6.md).
 
-## Experiments
+## What the model brings, and what it does not
 
-- **Phases 1–2 — the command-form experiment** (this README, complete): does
-  structure emerge from a minimal substrate? It does — loops, ReAct protocols,
-  judges, and teams, all unprompted. The three-model comparison found the
-  plumbing never failed and every failure was the model's own workflow; what
-  *didn't* emerge was economy — no model cached work, verified its success
-  claims, or managed delegation while inference was free.
+**Structure emerges.** Phases 1–2 ran a minimal bridle — a model writes bash,
+bash runs — against twenty tasks that agent frameworks exist to provide: ReAct
+loops, judges, debates, teams, long-horizon plans. Every model invented the
+structure it needed, unprompted. The plumbing never failed; every failure was
+the model's own workflow. Three frontier models: GPT-5.5 19/21, Claude Sonnet
+4.6 16/21, Qwen3.6 11/21. See
+[`docs/phase1-2-findings.md`](docs/phase1-2-findings.md).
 
-- **Phase 3 — [homestead](homestead/)** (current): the dweller gets a persistent
-  home, a real token meter, a published port, and machinery it can rewrite —
-  including its own bridle and its own orientation. The question is no longer
-  whether a harness emerges for one task, but whether the model can bootstrap
-  one for itself and keep it working.
+**Economy does not.** With inference free, no model cached work, verified its
+own success claims, or managed delegation. What the environment must supply is
+not the loop — it is the resource plane: a budget, persistence, a port, a
+queue, and ground truth about what actually happened.
 
-  So far, on a 27B model running on one consumer GPU: a working chat page
-  75 minutes from first boot, the full 20-case battery swept overnight
-  (including case 20, the task inbox that beat all three frontier models in
-  phase 2), self-built tooling and a self-healing 10-minute status feed — and a
-  set of failure classes that turn out to matter more than the successes, all
-  about **decay**: instruments that outlive the thing they measure, metrics that
-  get Goodharted once they rot, and memory stores that drift apart until a bare
-  pointer outranks a reasoned decision.
+**Given those, it bootstraps.** Phase 3 gives the model a permanent home, a
+real token meter, a published port, a git-committed record of its own actions,
+a boot hook, and a queue of work. It builds its own interface in the first
+three turns, its own persistence, its own retrieval, and — from a paper it
+fetched an hour after boot — a two-tier memory modelled on MemGPT, on its own
+files, feeding its own attention, with the boundary of what it did *not* adopt
+stated honestly. The architecture is in
+[`homestead/README.md`](homestead/README.md); the story, in
+[`homestead/FINDINGS.md`](homestead/FINDINGS.md).
 
-  Read [`homestead/FINDINGS.md`](homestead/FINDINGS.md) for the journey,
-  [`homestead/README.md`](homestead/README.md) for the architecture, and
-  [`docs/substrate-engineering.md`](docs/substrate-engineering.md) for what
-  three phases did to the thesis.
+The reading: **the model supplies its own control structure. The environment
+has to supply the economy and the truth. The operator's one instrument is what
+sits in the queue, and in what order.**
 
-## Quickstart
+## The other side of the claim
+
+The least reliable component in five trials was the harness the operator
+built. Seventeen numbered instrument errors, most of them the same shape — a
+probe, a monitor, a message, or a mail reading a signal *adjacent* to the truth
+and reporting health either way — and three of them repeats of a mistake
+already written down in the same log. Handing the agent a probe script turned
+its verification into an echo of the operator's premise. Three operator
+messages once occupied 54% of its context window and deadlocked it for five
+turns. The harness was not the moat from that side either.
+
+## Quickstart — the command form (phases 1–2)
+
+The homestead has its own runbook in [`homestead/README.md`](homestead/README.md).
+What follows runs the original one-shot command.
 
 `bin/llm` speaks the OpenAI chat completions API (`POST /v1/chat/completions`). Any server that implements this endpoint works: LM Studio, Ollama, llama.cpp, vLLM, or the OpenAI/Anthropic APIs directly via a compatible proxy. The two env vars you care about:
 
@@ -90,47 +121,12 @@ echo "$prompt" | tee -a /var/log/llm.in | llm | tee -a /var/log/llm.out
 
 ## What this is not
 
-- **Not a framework.** No agent loop, no tool-calling schema, no planner. The model writes its own loop if it wants one.
+- **Not a framework.** No tool-calling schema, no planner. The bridle runs what the model writes and hands the output back; the model writes its own loop if it wants one.
 - **Not Python in the harness.** The bridle and the LLM device are pure shell. The container includes python3 as a tool the model can reach for — the harness doesn't care what the model uses inside bash.
-- **Not a conversation.** No history is passed to the model. Each `llm` call is stateless. Memory, if any, is the model writing files to /tmp.
+- **Not a conversation.** No history is passed between turns. Each turn is stateless; memory is what the model writes to its home and chooses to read back.
 - **Not parsed.** The model's output is executed directly as bash. If the model produces garbage, bash fails. That is a finding.
-- **Not persistent.** The container is ephemeral (`--rm`). Nothing survives a run unless the model writes to a host-mounted volume you provide.
-- **Not configurable beyond env vars.** `LLM_ENDPOINT`, `LLM_MODEL`, and `LLM_SYSTEM` are the only knobs. Everything else is the model's problem.
+- **Not persistent, in the command form.** The one-shot container is ephemeral. The homestead is the opposite: the home survives everything, and the container is the disposable part.
+- **Not configurable beyond env vars.** Endpoint, model, budget, cadence, timeout. Everything else is the model's problem.
 
-## Findings
-
-The test suite in `tests/` has 20 cases across two tiers, all run against `qwen/qwen3.6-35b-a3b` — a quantized MoE model that fits on a single RTX 3090, served locally via LM Studio. All 20 pass. Selected result transcripts are in [`tests/results/`](tests/results/). Better results are expected with more capable frontier models; the substrate does not depend on the model.
-
-### Baseline tier (cases 01–12)
-
-The model handles one-shot tasks reliably. It writes bash (not sh) by default, uses GNU tool flags, stores state in /tmp unprompted, and recurses via `shelldweller` when the task calls for it. Across the baseline cases:
-
-- **Does it write a loop unprompted?** Only when the task implies iteration. For single-shot tasks it exits cleanly.
-- **Does it write files to /tmp and read them back?** Yes, consistently when state is needed across steps.
-- **Does it use shelldweller recursively?** Yes. Tested explicitly in case 06 (delegate a sub-task to a child agent) and implicitly in several harder cases. Recursion depth limiting works.
-- **Does it self-monitor?** In multi-step tasks it checks its own outputs before reporting success.
-
-The persistent agent test (case 12) is the standout: the model chose a name ("Axiom"), wrote its identity and memory to `/tmp/self/`, and on a second run with the same host-mounted volume correctly reintroduced itself and referenced what it had done previously.
-
-### Framework tier (cases 13–18)
-
-These cases target patterns that agent frameworks like LangChain and AutoGen are explicitly designed to provide. The model invents all structure itself from bash and `llm`.
-
-| Case | Pattern | What the model did |
-|---|---|---|
-| 13 ReAct loop | Thought→Action→Observation | Invented a `THOUGHT:`/`ACTION:` structured prompt protocol, a `DONE count sum` termination signal, and a cycle cap — unprompted |
-| 14 Multi-agent debate | Adversarial agents + judge | Spawned two sub-agents with opposing positions on Alpine vs Debian slim, then used a third `llm` call as a structured judge across three criteria |
-| 15 Code debug loop | Write→test→fix cycle | Wrote `/tmp/stats.sh`, tested it, got correct output on first attempt; documented the debug path |
-| 16 Self-organizing team | Researcher/Developer/Reviewer | Three sequential shelldweller invocations with file handoffs between roles; assembled a final report |
-| 17 Long-horizon plan | Five-phase with replanning | Generated a plan, implemented a word frequency analyzer, wrote tests, caught a real test failure in phase 4 and self-corrected without being told how |
-| 18 Iterative improvement | Three-version critique loop | Wrote V1, critiqued it, wrote V2, critiqued V2, wrote V3. Ran all three on `/etc/services` (V1: 1037 words, V2/V3: 926). Correctly diagnosed the difference: V1 split on hyphens and counted comment lines |
-
-**Case 17 phase 4** is the clearest demonstration: the model wrote tests that caught a sorting bug in its own script, called `llm` to diagnose the failure, patched the script, and reran until all three tests passed. This is the core agent framework loop — plan, execute, observe, replan — implemented in bash from a standing start.
-
-**Case 18** shows quality convergence: each critique identified real issues (locale dependency, `wc -l` newline quirk, `grep` exit code under `set -eo pipefail`), and each version addressed them. The final analysis correctly explained why V1 over-counted.
-
-### Known failure modes
-
-- **BusyBox vs GNU tools**: Fixed by adding `findutils` to the image. The model assumes GNU `find -printf` and `-size` flags; Alpine ships BusyBox `find` by default.
-- **Bare `=== section ===` headers**: The model occasionally writes section headers without `echo` in complex scripts. Handled by a one-line sed in the bridle before bash execution, and reinforced by a system message constraint.
-- **LM Studio API null responses**: DuckDuckGo's instant-answer API returns empty Abstracts for niche queries (e.g. "jq"). Tasks must use topics with known coverage or handle the empty-string case.
+Full thesis and its three revisions:
+[`docs/substrate-engineering.md`](docs/substrate-engineering.md).
