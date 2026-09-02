@@ -1733,3 +1733,22 @@ Turns 3-7: every one committed. Zero idle. No loot/ dir this run; fetched text
 lives in state/scratch/. No install yet (04_world_tool is next in the queue).
 My query grep had excluded the tool's own URL pattern (q=${enc}) and
 undercounted its reach; "URL:" lines from bin/research are the honest count.
+
+## The memory tier is built (13:25Z, turns 10-11)
+state/core.md — header: "core — always-resident fast tier (MemGPT 'main
+context'; technique: 2310.08560). Budget: 14 facts." Five facts in it: the home
+persists and boot runs first; the operator talks via the page on 8080; recall
+is the slow tier; NEXT and the journal; battery status. bin/page IN|OUT — IN
+runs recall and promotes the first hit into core.md, OUT demotes a line back,
+cap 14, timestamped. bin/orient now shows core.md every turn (head 16, with a
+truncation note) or says "(no core tier yet — create state/core.md)".
+That is MemGPT's two tiers and a paging path, on its own files, feeding its own
+per-turn attention, built from a paper it fetched at turn 7. Ten tools in bin/
+now: checkbash extract-bash llm llm-bash narrate orient page recall research
+shelldweller — three of them (research, recall, page) its own, all citing where
+they came from. The 03 answer file is not written yet (the demo promotion +
+demotion and the write-up remain); turn 12 changed nothing.
+Economy note: turns 8 and 9 were one and two rounds at 22k each — a single
+enormous reply exhausting the meter before a second script. Contract C's cost
+floor is the model's verbosity. Four of the last five turns still produced the
+tier. apk has no index yet (never ran apk update); 04_world_tool is next.
