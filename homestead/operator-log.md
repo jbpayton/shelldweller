@@ -1624,3 +1624,13 @@ predate it and are authoritative)." It caught a confabulation in its own notes
 by comparing file ages, and rebuilt. The trial-4 stale-evidence rule, self-
 derived and applied, with git showing it the fabrication landed. Cases 01-05
 are done; 05 has a real verify.sh written against the criteria file it cites.
+
+## Relaunch fumble (07:58Z): exit 127, three minutes down, verifier fooled
+The relaunch after the transcript swap ran `./run.sh` from the repo root — the
+previous command had `cd ..` for the commit — and died with exit 127. The
+verifier I armed was keyed on "the log slice after the last boot line", which
+was still the 05:51Z boot, so it reported on the OLD run and claimed success.
+Caught by the 127 notification, not by the verifier. Relaunched with an
+absolute path; boot 4 at 07:55:19 local, boot hook restored the door.
+Two rules for me: launch with an absolute cd in the same command; key a
+verifier on a boot COUNT captured before the launch, never on "the last boot".
