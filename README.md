@@ -20,7 +20,7 @@ behaviour was a change to its **environment**. No change to its
 | Put the home under git; the loop shows the diff every turn | environment | it read *"nothing changed"* and named the stall; it caught fabricated text in its own notes by comparing file ages |
 | Seed: *the container gets replaced; your home does not* — plus `apk add works` in every prompt | prose | five trials, zero installs |
 | Put the install case at queue position 04 | environment | `ripgrep` installed at turn 15 — the first package in six trials |
-| Replaced the container, as the seed says happens | environment | its installs vanished; it found the cached `.apk` in its home, reinstalled in one turn, and its `boot` now restores it without the network — then built a claim checker that re-fetches every quoted source |
+| Replaced the container, as the seed says happens | environment | fzf survived — it had copied the static binary into its home; ripgrep, never recorded anywhere it reads, did not. It then cached the `.apk` too, and built a claim checker that re-fetches every quoted source |
 | A `boot` file the loop runs when a container starts | environment | written at turn 3, unprompted; the door restored through four replacements |
 | Rule: *write the whole workflow, not an interactive plan* | prose | five straight turns of looking around, waiting for output that never came |
 | Gave it the observe-then-act loop it was trained on, with a transcript of the turn | environment | the case it had stalled on for six turns, done in one |
