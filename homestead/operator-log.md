@@ -1550,3 +1550,40 @@ as they always did. This is the operator's own instruction applied — "don't
 fight the model and how it works" — and it is five lines in the bridle, not a
 change to what the habitat contains. SYS will state the success path truthfully.
 Reversible in one commit if the operator disagrees.
+
+## Contract C, first hour, measured (05:50Z) — and one more dialect fix
+Seven turns under Contract C (turn numbering restarted at the 04:46Z boot):
+    turn  rounds  spent   changed
+    1     3       23,430  yes (plan, notes)
+    2     0       16,539  no
+    3     2       20,444  yes (state/NEXT, 19 lines)
+    4     3       26,934  yes (battery/03 attempt1.sh + attempt1.txt)
+    5     3       20,267  no
+    6     2       20,362  no
+    7     3       22,845  no
+Two facts. First: turn 4 wrote the attempt the plan had promised for ten turns
+under Contract B — the loop does let it act. Second: every turn now ends by
+meter exhaustion, not by choice; 2-3 rounds of ~8k tokens each, narration-heavy.
+Under B the idle turns were cheap (500-5,000 tokens); under C they cost the full
+budget. Per turn, C is better; per token, unclear.
+The waste has a shape, from turn 7's narration:
+    | <tool_call>
+    | <function=bash>
+    | echo "DIAG-OK $(date -u +%H:%M:%S)"
+    ...
+    | Hmm, I realize I've now emitted the fence twice in narration confusion.
+It emits Qwen's native tool-call syntax OUTSIDE any fence, the bridle ignores it
+as narration, a round is spent on the "no fenced bash — reply again" retry, and
+it then doubts whether the earlier block ran. It also re-read the case criteria
+because the 6,000-char output clip had cut them.
+Fix (bridle only, no prose): a reply with no real fence but with
+<function=bash><parameter=command> blocks is converted to fences; a reply with
+real fences runs only those (never both, never double-run). Output clip 12,000,
+script clip 4,000. A "--- round N ---" marker at top level so rounds are
+countable without guessing. POSIX-checked under ash and dash.
+The mail about the contract change is still in mail/in after seven turns, but
+turn 7's first act was `cat "$(command -v shelldweller)"` — it read the bridle.
+The mail did its job even unfiled.
+Its own bin/shelldweller: commits "seed" and "turn 1" (my swap) only — untouched
+by it, so swapped again at the restart. Third container replacement of the day;
+its boot hook has brought the door back within seconds each time.

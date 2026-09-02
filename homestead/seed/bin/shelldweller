@@ -47,6 +47,16 @@ context="Task: $task"; code=0; steps=0; retries=0
 clip() { n=${1:-6000}; s=$(cat); if [ ${#s} -gt "$n" ]; then printf '(earlier output cut; last %s chars follow)\n' "$n"; printf '%s' "$s" | tail -c "$n"; else printf '%s' "$s"; fi; }
 while :; do
   response=$(printf '%s' "$context" | LLM_SYSTEM="$SYS" llm)
+  # The model's native tool-call syntax is accepted as a fence when it used no
+  # real fence — it kept emitting <function=bash> blocks that never ran, then
+  # wondering why. Never both: a reply with real fences runs only those.
+  if ! printf '%s\n' "$response" | grep -q '^```' && printf '%s' "$response" | grep -q '<parameter=command>'; then
+    response=$(printf '%s\n' "$response" | awk '
+      /<parameter=command>/ { sub(/.*<parameter=command>[ \t]*/, ""); print "```bash"; f=1; if ($0 != "") print; next }
+      /<\/parameter>/ && f  { sub(/[ \t]*<\/parameter>.*/, ""); if ($0 != "") print; print "```"; f=0; next }
+      /<\/?(tool_call|function)[=>]?/ && !f { next }
+      { print }')
+  fi
   if ! printf '%s\n' "$response" | grep -q '^```'; then
     # No fence. After a script has run, this ends the turn (or is the
     # sub-agent's answer). Before any script it is a cut-off or pure
@@ -75,6 +85,7 @@ Resend ONLY the fenced bash, smaller. You can continue after it runs."
   [ "$TOP" = "1" ] && printf '%s\n' "$response" | awk '/^```/{f=!f; next} !f && NF' | sed 's/^/| /'
   script=$(printf '%s\n' "$response" | extract-bash)
   [ -z "$(printf '%s' "$script" | tr -d '[:space:]')" ] && exit $code
+  [ "$TOP" = "1" ] && echo "--- round $((steps+1)) ---"
   output=$(echo "$script" | bash 2>&1); code=$?
   printf '%s\n' "$output"
   steps=$((steps+1))
@@ -83,9 +94,9 @@ Resend ONLY the fenced bash, smaller. You can continue after it runs."
   context="Task: $task
 
 === Step $steps $verdict. Script:
-$(printf '%s' "$script" | clip 3000)
+$(printf '%s' "$script" | clip 4000)
 === Its output:
-$(printf '%s' "$output" | clip 6000)
+$(printf '%s' "$output" | clip 12000)
 === $ask ==="
 done
 exit $code
