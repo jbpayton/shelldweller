@@ -1351,3 +1351,39 @@ DESIGN NOTE FOR TRIAL 5: operator mail that only the agent can clear becomes
 permanent attention load when the agent is stuck — precisely when it can least
 afford it. The mailbox needs either an operator-side retraction path or a size
 cap on the injected block.
+
+## It has the answer and will not act (2026-09-02 00:04Z)
+web/server.py untouched since 15:35 — 8.5 hours. It has pinned the exact line
+TWICE, in two separate evidence files it wrote itself:
+    evidence/t121-500lines.txt (22:33)   42:        code = 500
+    evidence/t123-phase1.txt   (23:43)   "E. server.py lines containing 500" -> 42
+and its current NEXT still opens: "(1) in prose FIRST, name the exact line
+sending 500 on the GET success path". That plan has been rewritten in substance
+every turn since 21:46 and executed zero times.
+ORIGIN OF THE BUG, from its own T122 journal entry:
+    "Fix (extend, not rewrite): inserted one line 'code = 500' as first statement
+     of do_GET (detected body indent); branches 58/63/65/67 still override it"
+After the class-H restructure, `code` was unbound on paths that never set it — a
+NameError. It fixed that crash by giving `code` a fail-closed default of 500 and
+did not check that the SUCCESS branches never assign it. The whole day traces to
+one defensible defensive edit.
+THE STRUCTURAL PART: its self-authored plan overrides the substrate rules meant
+to prevent exactly this. SYS says "Fenced bash FIRST, notes after" and "A plan in
+your journal is not work." Its NEXT says "in prose FIRST." state/NEXT is injected
+AHEAD of SYS-derived orientation, so the plan it writes each turn out-prioritises
+the rule that would break the loop. A plan-first agent can author its way out of
+its own work rules, one turn at a time.
+It also stopped journaling at 21:51. Work now goes into growing evidence/*.txt
+dumps (6.5KB this turn, full 103-line source re-listed) that re-derive facts it
+already holds. Preparing has become the work.
+CORRECTION TO MY OWN EARLIER NOTE: I called the 22:34 deferral "discipline."
+Nine hours and two pinned line numbers later, it is not discipline; it is a loop
+that mistakes preparing for doing.
+
+## Operator error #16 — my watch was writing into the surface it watches
+web/server.log showed my probes from 172.17.0.1 every 60s: ~2 lines/minute into
+a file the agent reads by tail, pushing real content out of its window. That is
+instrument error #1 (the 4s ping probe) and error #14's monitor POSTs, a THIRD
+time, same shape, same operator, same day. Rebuilt zero-noise: it polls the mtime
+and content of line 42 via docker exec and issues NO http request until the file
+actually changes, then probes exactly once.
