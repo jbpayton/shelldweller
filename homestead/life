@@ -132,6 +132,8 @@ $(head -c 1800 "$MAILIN/$newest")"
   # at turn 30 was choosing a third tool because the first two were "already
   # present". The package list is ground truth too.
   world1=$(sort /etc/apk/world 2>/dev/null)
+  # apk writes name><hash for packages installed from a local file; show the name
+  world0=$(printf '%s\n' "$world0" | sed 's/[<>=~].*//' | sort -u); world1=$(printf '%s\n' "$world1" | sed 's/[<>=~].*//' | sort -u)
   added=$(comm -13 <(printf '%s\n' "$world0") <(printf '%s\n' "$world1") | tr '\n' ' ')
   removed=$(comm -23 <(printf '%s\n' "$world0") <(printf '%s\n' "$world1") | tr '\n' ' ')
   [ -n "$added" ] && lastdiff="$lastdiff

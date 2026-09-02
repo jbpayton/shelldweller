@@ -1836,3 +1836,27 @@ block; every continuation round carries the meter balance; the plan-age note
 fires at >5 turns. The restart this needs is also the honest PERSIST test —
 fzf and ripgrep vanish with the container, and boot's silent apk add has no
 index to add from. TRIAL6.md and docs/architecture.svg updated in step.
+
+## The PERSIST test, and what it built in response (17:15Z, v6.1 turns 1-2)
+Container replaced at 16:53Z. Result: packages 65 -> 58. ripgrep gone, fzf
+gone, boot silent (its apk add had no index). The door came back — the half of
+boot that works. Then, turn 1: it found the fzf .apk it had fetched at turn 23
+sitting in the home's ROOT (apk fetch writes to cwd — that is why the cp from
+/var/cache/apk failed), moved it to apk/, and reinstalled from it. The new
+WHAT CHANGED block recorded both: the file move under git, and "packages
+installed during turn 1 (... do NOT survive a container replacement unless
+boot reinstalls them): fzf". boot's cached-apk branch is now real: the next
+replacement will restore fzf without the network. ripgrep is lost for good —
+never journalled, never in boot, not in its memory.
+CORRECTION to my 17:10Z note: "it edited its own bridle by three lines" — no.
+The three lines are my meter-balance change, committed by the loop at turn 1
+as I said it would be. Its bridle is untouched by it.
+Turn 2 built two tools I did not expect: bin/world QUESTION -> JSON of up to
+five {source, quote} pairs from fetched pages, emitting only quotes actually
+present in the page; bin/checkworld CLAIMFILE -> PASS/FAIL only if every quote
+is verbatim in its re-fetched source. That is the work rule "a quote cannot be
+invented without inventing the fetch" turned into machinery — a claim checker
+that re-fetches. It built the instrument for the exact failure I graded on 04
+(asserted, not shown), one container replacement later.
+The packages line printed apk's pin format ("fzf><Q1+44..."); stripped in the
+seed, takes effect next restart. No restart for a cosmetic.
