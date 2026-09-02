@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 1200 780" font-family="'JetBrains Mono','Fira Code',ui-monospace,Menlo,Consolas,monospace">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#4ade80"/></marker>
+    <marker id="d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8fa898"/></marker>
+  </defs>
+  <rect width="1200" height="780" fill="#0b0f0d"/>
+  <text x="40" y="50" fill="#e6efe9" font-size="26" font-weight="700">shelldweller homestead — architecture, trial 6</text>
+  <text x="40" y="76" fill="#8fa898" font-size="15">three parts: a host that keeps it alive, a container that is thrown away, a home that is not</text>
+
+  <!-- ===== HOST ===== -->
+  <rect x="40" y="100" width="300" height="640" rx="10" fill="#101713" fill-opacity="0.5" stroke="#243029"/>
+  <text x="60" y="130" fill="#8fa898" font-size="17" font-weight="700">HOST</text>
+  <rect x="60" y="146" width="260" height="118" rx="6" fill="#0b0f0d" stroke="#2f6b45"/>
+  <text x="74" y="170" fill="#4ade80" font-size="15" font-weight="700">keeper  run.sh</text>
+  <text x="74" y="192" fill="#e6efe9" font-size="13">boots the container</text>
+  <text x="74" y="210" fill="#e6efe9" font-size="13">seeds the home once, queue</text>
+  <text x="74" y="228" fill="#e6efe9" font-size="13">ordered by order.txt</text>
+  <text x="74" y="246" fill="#e6efe9" font-size="13">reboots on death · watchdog</text>
+
+  <rect x="60" y="284" width="260" height="66" rx="6" fill="#0b0f0d" stroke="#243029"/>
+  <text x="74" y="308" fill="#e6efe9" font-size="15" font-weight="700">LM Studio  :1234</text>
+  <text x="74" y="330" fill="#8fa898" font-size="13">qwen3.8-27b · 32k · one GPU</text>
+
+  <rect x="60" y="370" width="260" height="46" rx="6" fill="#0b0f0d" stroke="#243029"/>
+  <text x="74" y="398" fill="#e6efe9" font-size="15" font-weight="700">SearXNG  :8088</text>
+
+  <rect x="60" y="436" width="260" height="46" rx="6" fill="#0b0f0d" stroke="#243029"/>
+  <text x="74" y="464" fill="#e6efe9" font-size="15" font-weight="700">browser  →  :8092</text>
+
+  <rect x="60" y="502" width="260" height="96" rx="6" fill="#0b0f0d" stroke="#243029"/>
+  <text x="74" y="526" fill="#e6efe9" font-size="15" font-weight="700">operator</text>
+  <text x="74" y="548" fill="#8fa898" font-size="13">writes mail/in  ·  reads mail/out</text>
+  <text x="74" y="566" fill="#8fa898" font-size="13">sets order.txt  ·  reads the git log</text>
+  <text x="74" y="584" fill="#8fa898" font-size="13">never edits the home while it runs</text>
+
+  <text x="60" y="640" fill="#8fa898" font-size="12">nothing here is on the model's PATH.</text>
+  <text x="60" y="658" fill="#8fa898" font-size="12">the host supplies economy and truth;</text>
+  <text x="60" y="676" fill="#8fa898" font-size="12">it never supplies structure.</text>
+
+  <!-- ===== CONTAINER ===== -->
+  <rect x="380" y="100" width="400" height="640" rx="10" fill="#101713" fill-opacity="0.5" stroke="#243029"/>
+  <text x="400" y="130" fill="#8fa898" font-size="17" font-weight="700">CONTAINER   alpine · disposable</text>
+
+  <rect x="400" y="146" width="360" height="252" rx="6" fill="#0b0f0d" stroke="#2f6b45"/>
+  <text x="414" y="170" fill="#4ade80" font-size="15" font-weight="700">life  — one turn, every 60 s</text>
+  <text x="414" y="194" fill="#e6efe9" font-size="13">1  run home/boot (first turn only)</text>
+  <text x="414" y="212" fill="#e6efe9" font-size="13">2  refill the meter: 20k output tokens</text>
+  <text x="414" y="230" fill="#e6efe9" font-size="13">3  run bin/orient  → its digest</text>
+  <text x="414" y="248" fill="#e6efe9" font-size="13">4  compose the prompt:</text>
+  <text x="414" y="266" fill="#8fa898" font-size="13">     mission · state/NEXT ·</text>
+  <text x="414" y="284" fill="#8fa898" font-size="13">     WHAT CHANGED LAST TURN (git) ·</text>
+  <text x="414" y="302" fill="#8fa898" font-size="13">     newest mail · orientation</text>
+  <text x="414" y="320" fill="#e6efe9" font-size="13">5  bridle runs the turn (below)</text>
+  <text x="414" y="338" fill="#e6efe9" font-size="13">6  git commit; diffstat → next prompt</text>
+  <text x="414" y="362" fill="#8fa898" font-size="12">recovery floor: a bin/ script that will not</text>
+  <text x="414" y="380" fill="#8fa898" font-size="12">parse is replaced by the pristine copy, one turn</text>
+
+  <rect x="400" y="418" width="360" height="190" rx="6" fill="#0b0f0d" stroke="#2f6b45"/>
+  <text x="414" y="442" fill="#4ade80" font-size="15" font-weight="700">bridle  shelldweller — Contract C</text>
+  <text x="414" y="466" fill="#e6efe9" font-size="13">model writes prose + ```bash fences</text>
+  <text x="414" y="484" fill="#e6efe9" font-size="13">(or its native &lt;tool_call&gt; form)</text>
+  <text x="414" y="502" fill="#e6efe9" font-size="13">fences → bash → output → back to model,</text>
+  <text x="414" y="520" fill="#e6efe9" font-size="13">with the turn's transcript so far</text>
+  <text x="414" y="538" fill="#e6efe9" font-size="13">… until a reply with no fence ends the turn</text>
+  <text x="414" y="562" fill="#8fa898" font-size="12">bounded by the meter and TURN_TIMEOUT.</text>
+  <text x="414" y="580" fill="#8fa898" font-size="12">llm is a Unix command: prompt in, text out.</text>
+  <text x="414" y="598" fill="#8fa898" font-size="12">sub-agents: result=$(shelldweller "task")</text>
+
+  <text x="400" y="640" fill="#8fa898" font-size="12">the container is replaced freely. everything</text>
+  <text x="400" y="658" fill="#8fa898" font-size="12">it runs comes from the home first; the image</text>
+  <text x="400" y="676" fill="#8fa898" font-size="12">only holds the pristine fallbacks.</text>
+
+  <!-- ===== HOME ===== -->
+  <rect x="820" y="100" width="340" height="640" rx="10" fill="#101713" fill-opacity="0.5" stroke="#2f6b45" stroke-width="1.5"/>
+  <text x="840" y="130" fill="#4ade80" font-size="17" font-weight="700">HOME  /home/dweller</text>
+  <text x="840" y="150" fill="#8fa898" font-size="12">persistent volume · a git repo · the self</text>
+
+  <g font-size="13">
+    <text x="840" y="180" fill="#e6efe9">bin/</text>
+    <text x="840" y="198" fill="#8fa898">  llm shelldweller orient   (seeded)</text>
+    <text x="840" y="216" fill="#4ade80">  research recall page      (its own)</text>
+    <text x="840" y="242" fill="#e6efe9">boot        runs first in a new container</text>
+    <text x="840" y="268" fill="#e6efe9">battery/    the queue, 01 → 26</text>
+    <text x="840" y="286" fill="#8fa898">  01 world_version … 04 world_tool …</text>
+    <text x="840" y="304" fill="#8fa898">  each: task + criteria, nothing else</text>
+    <text x="840" y="330" fill="#e6efe9">state/</text>
+    <text x="840" y="348" fill="#8fa898">  NEXT       its plan, injected first</text>
+    <text x="840" y="366" fill="#4ade80">  core.md    always-resident memory tier</text>
+    <text x="840" y="384" fill="#8fa898">  answers/   NN_case.md with sources</text>
+    <text x="840" y="402" fill="#8fa898">  self.md    what it saw this turn</text>
+    <text x="840" y="428" fill="#e6efe9">notes/journal.md   slow tier (recall)</text>
+    <text x="840" y="454" fill="#e6efe9">mail/  in  out  seen</text>
+    <text x="840" y="480" fill="#e6efe9">web/server.py      the door, :8080</text>
+    <text x="840" y="506" fill="#e6efe9">.git               one commit per turn</text>
+  </g>
+  <text x="840" y="548" fill="#8fa898" font-size="12">what the loop owns: NEXT is injected,</text>
+  <text x="840" y="566" fill="#8fa898" font-size="12">the diff is recorded, mail is delivered.</text>
+  <text x="840" y="584" fill="#8fa898" font-size="12">what it owns: everything else, including</text>
+  <text x="840" y="602" fill="#8fa898" font-size="12">the scripts the loop runs on its behalf.</text>
+  <text x="840" y="640" fill="#4ade80" font-size="12">memory tier (MemGPT, adopted turn 15):</text>
+  <text x="840" y="658" fill="#8fa898" font-size="12">core.md shown by orient every turn;</text>
+  <text x="840" y="676" fill="#8fa898" font-size="12">page IN|OUT moves lines to/from the journal.</text>
+
+  <!-- ===== ARROWS ===== -->
+  <!-- keeper -> container -->
+  <line x1="320" y1="205" x2="380" y2="205" stroke="#4ade80" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="326" y="198" fill="#4ade80" font-size="10">boot</text>
+  <!-- container <-> home (mount) -->
+  <line x1="780" y1="205" x2="820" y2="205" stroke="#4ade80" stroke-width="1.5" marker-end="url(#a)" marker-start="url(#a)"/>
+  <text x="784" y="198" fill="#4ade80" font-size="10">mount</text>
+  <!-- llm -> LM Studio -->
+  <line x1="400" y1="317" x2="320" y2="317" stroke="#8fa898" stroke-width="1.2" marker-end="url(#d)"/>
+  <text x="326" y="310" fill="#8fa898" font-size="10">llm</text>
+  <!-- research -> SearXNG -->
+  <line x1="400" y1="393" x2="320" y2="393" stroke="#8fa898" stroke-width="1.2" marker-end="url(#d)"/>
+  <text x="326" y="386" fill="#8fa898" font-size="10">research</text>
+  <!-- door -> browser -->
+  <line x1="400" y1="459" x2="320" y2="459" stroke="#8fa898" stroke-width="1.2" marker-end="url(#d)"/>
+  <text x="326" y="452" fill="#8fa898" font-size="10">:8080→:8092</text>
+  <!-- operator -> home mail -->
+  <line x1="320" y1="520" x2="380" y2="520" stroke="#8fa898" stroke-width="1.2" marker-end="url(#d)"/>
+  <text x="326" y="513" fill="#8fa898" font-size="10">mail</text>
+
+  <text x="40" y="766" fill="#8fa898" font-size="12">docs/architecture.svg · updated with each substrate change · see homestead/TRIAL6.md for what each part answers</text>
+</svg>

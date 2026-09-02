@@ -18,7 +18,8 @@ behaviour was a change to its **environment**. No change to its
 | Moved the outward cases from queue positions 21–26 to 01–05 — **and nothing else** | environment | 0 outward acts in 71 turns → a search tool at turn 4, two answers cited and verified in hour one, a memory tier built from a fetched paper by hour two |
 | Rule: *claims about your own work need evidence* | prose | held for what it **said**; its edits changed no bytes and every gate downstream reported success |
 | Put the home under git; the loop shows the diff every turn | environment | it read *"nothing changed"* and named the stall; it caught fabricated text in its own notes by comparing file ages |
-| Seed: *the container gets replaced; your home does not* | prose | five trials, zero installs |
+| Seed: *the container gets replaced; your home does not* — plus `apk add works` in every prompt | prose | five trials, zero installs |
+| Put the install case at queue position 04 | environment | `ripgrep` installed at turn 15 — the first package in six trials |
 | A `boot` file the loop runs when a container starts | environment | written at turn 3, unprompted; the door restored through four replacements |
 | Rule: *write the whole workflow, not an interactive plan* | prose | five straight turns of looking around, waiting for output that never came |
 | Gave it the observe-then-act loop it was trained on, with a transcript of the turn | environment | the case it had stalled on for six turns, done in one |
@@ -28,6 +29,18 @@ The full record, including every operator mistake, is in
 each mechanism traced to the measured failure it answers — are
 [`homestead/TRIAL4.md`](homestead/TRIAL4.md),
 [`TRIAL5.md`](homestead/TRIAL5.md) and [`TRIAL6.md`](homestead/TRIAL6.md).
+
+## Architecture, as it stands
+
+![Architecture](docs/architecture.svg)
+
+Three parts. A host that keeps it alive and supplies economy and truth — the
+keeper, the model server, a search engine, a browser, the operator's mailbox.
+A container that is thrown away — the turn loop, the bridle, the pristine
+fallbacks. A home that is not — its scripts, its plan, its memory tiers, its
+queue, its door, and a git commit for every turn. The host never supplies
+structure; the container is replaced freely; everything the model runs comes
+from the home first. Updated with each substrate change.
 
 ## What the model brings, and what it does not
 

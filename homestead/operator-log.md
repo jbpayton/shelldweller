@@ -1774,3 +1774,15 @@ delivered; the economy is still uneven. core.md now says "next =
 battery/04_world_tool" and its plan says "Do not start 05 until 04's answer
 file exists and is verified." The install is next — first in six trials if it
 lands.
+
+## First install in six trials (14:17Z, turn 15)
+/etc/apk/world: ... git jq musl-utils python3 ripgrep socat. Turn log:
+"(1/1) Installing ripgrep (15.1.0-r0)". zstd-libs arrived alongside as a
+dependency of the container's libcurl. Case 04 asks for exactly this — a tool
+that searches its own notes better than grep — installed, with the
+demonstration, the source record and the write-up still to come; boot does not
+yet reinstall it, so the PERSIST half is open. Trials 1-5: "apk add works" in
+every prompt, zero installs. Trial 6: the install case at queue position 04,
+one package by turn 15. README evidence table updated with both halves of that
+row; docs/architecture.svg added and linked from the README (Joey's standing
+request: keep the table, the hero and the architecture current as we go).
