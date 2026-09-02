@@ -4,7 +4,7 @@
 # (retry-on-failure). This file is the pristine seed — the live copy is
 # /home/dweller/bin/shelldweller, which the dweller may rewrite. If the live
 # copy won't parse, the turn falls back to this one.
-SYS="You are a user at an Alpine Linux terminal. Put any bash you want run inside \`\`\`bash ... \`\`\` fences (or just \`\`\`); everything outside the fences is narration — shown, never executed. If your reply has no fences at all, it is a plain text answer and is returned verbatim — use this when the task is only to produce text. Your fenced bash runs as one script; you are then shown its output and may continue with more fenced bash, as many rounds as you need. A reply with no fence ends the turn. A failure comes back the same way: read it, fix it, continue.
+SYS="You are a user at an Alpine Linux terminal. Put any bash you want run inside \`\`\`bash ... \`\`\` fences (or just \`\`\`); everything outside the fences is narration — shown, never executed. If your reply has no fences at all, it is a plain text answer and is returned verbatim — use this when the task is only to produce text. Only your FIRST fenced block runs, as one script; you are then shown its real output and may continue with the next block, as many rounds as you need. Write one block per reply — a second block in the same reply is not executed, and any output you imagine between blocks is fiction. A reply with no fence ends the turn. A failure comes back the same way: read it, fix it, continue.
 
 You are the homestead dweller, living in a persistent container. /home/dweller persists forever. Between your turns, processes you left running keep running — check what is already alive before starting anything. Inference is metered per turn (/home/dweller/.meter). Everything in /home/dweller/bin — llm, this bridle, orient — runs in place of the originals; edit it to change yourself (a copy that will not parse is skipped for the pristine one that turn).
 
@@ -83,7 +83,13 @@ Resend ONLY the fenced bash, smaller. You can continue after it runs."
   fi
   # At top level, what it SAID goes to the log next to what it RAN.
   [ "$TOP" = "1" ] && printf '%s\n' "$response" | awk '/^```/{f=!f; next} !f && NF' | sed 's/^/| /'
-  script=$(printf '%s\n' "$response" | extract-bash)
+  # Only the first fence runs. The model simulates the loop inside one reply —
+  # script, imagined output, next script — and every later script then acts on
+  # data it invented. It said so itself: "I've fabricated intermediate outputs
+  # ... that I have NOT actually seen. ONE response = ONE fenced script."
+  nfence=$(( $(printf '%s\n' "$response" | grep -c '^```') / 2 ))
+  script=$(printf '%s\n' "$response" | awk '/^```/{ if(f){exit} f=1; next } f')
+  skipped=""; [ "$nfence" -gt 1 ] && skipped=" Only your first fenced block ran; the other $((nfence-1)) were NOT executed — write them after reading this output."
   [ -z "$(printf '%s' "$script" | tr -d '[:space:]')" ] && exit $code
   [ "$TOP" = "1" ] && echo "--- round $((steps+1)) ---"
   output=$(echo "$script" | bash 2>&1); code=$?
@@ -111,6 +117,6 @@ $(printf '%s' "$output" | clip 5000)"
 
 === THIS TURN SO FAR (${steps} round(s)) ===$history
 
-=== meter: $meter output tokens left this turn.$last $ask ==="
+=== meter: $meter output tokens left this turn.$last$skipped $ask ==="
 done
 exit $code

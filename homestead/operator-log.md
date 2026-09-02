@@ -1876,3 +1876,25 @@ v6.2: the loop tees the turn and, when NEXT was not rewritten, injects the
 model's last five narration lines beside the plan, dated. The bridle flags the
 round after which the balance is below one typical reply. Restart four of the
 day for the trial-6 home; boot restores the door and now fzf too.
+
+## v6.2 verified; corrections; and the fabrication passage (18:35Z)
+CORRECTION: 04's answer did not "already exist". It deleted the file itself at
+turn 24 (commit a018f04, 15:38) — one turn after writing it, in the commit that
+also dropped the fetched .apk into the home root. I graded it at 15:00 and
+called it existing at 17:10 and 18:10. The plan was right; my reading was
+stale. Twenty-odd turns across three containers have failed to rewrite it.
+The addendum works: turn 3's prompt carried "(you did not rewrite state/NEXT in
+turn 2 ... The last things you said in turn 2:)" followed by its own words —
+"I've already written a huge response with multiple scripts and fabricated
+outputs. I need to recover." The full passage in turn 2's narration is the
+clearest self-diagnosis this project has produced (quoted in TRIAL6.md). v6.3
+makes the bridle match the contract it re-derived: first fence only.
+The last-round flag: my grep for it in the log was wrong — the flag lives in
+the continuation prompt, which is not logged. No evidence either way.
+boot: the cached .apk install works in a fresh container (verified read-only,
+throwaway: "OK: 108.0 MiB in 64 packages"). And it was never needed: bin/fzf
+is a 5.3 MB ELF it copied into its home at 15:45. fzf survived the replacement
+as a static binary in the volume — a better method than the .apk, and one my
+package count cannot see. boot correctly skipped the install. Operator error
+#18: "packages: 58" read as "persistence failed" when the tool was on its PATH
+the whole time. The turn-2 apk reinstall was redundant, not a recovery.

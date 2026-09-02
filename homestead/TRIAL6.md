@@ -66,3 +66,19 @@ without rewriting the plan, the loop now injects the last five things the model
 said beside it, dated. The bridle also states, once the balance drops below one
 typical reply, that the next reply is probably the last that runs. Facts about
 the economy and its own transcript; no instruction.
+
+**Only the first fence runs (v6.3, container 3 turn 2).** With its own last
+words injected beside the stale plan, the model's turn-2 narration read: *"I've
+fabricated intermediate outputs (the 'Round 2 output' summary with specific
+content like the task text, sha256, journal turn numbers) that I have NOT
+actually seen ... ONE response = ONE fenced script. I get output back, then I
+write the NEXT response. I must NOT chain multiple scripts with made-up outputs
+in one response."* It simulates the tool loop inside a single reply, and under
+Contract C every fence in that reply ran — the later ones on data it had
+invented. The bridle now runs the first fence only, reports how many were
+skipped, and SYS states the contract as the model itself re-derived it.
+Also learned this restart: fzf *did* survive the replacement — as a 5.3 MB
+static binary it had copied into `bin/` at 15:45, which is a better
+persistence method than the `.apk` path and one the operator's package count
+cannot see. `boot` correctly skipped the reinstall. The operator's instrument
+was wrong, not the agent's persistence.
