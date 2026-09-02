@@ -88,6 +88,8 @@ while :; do
 (this plan is $stale turns old)"
   plan="$plan
 $nextline"
+  [ -n "${addendum:-}" ] && plan="$plan
+$addendum"
 
   # (v5.3) mail: the newest message in full, the rest by name. The loop never
   # files it. Trial 4: three full messages were 54% of the prompt and a deadlock.
@@ -114,9 +116,17 @@ $(head -c 1800 "$MAILIN/$newest")"
     echo "$mail"; echo
     echo "=== orientation ==="; echo "$digest"; } > "$D/state/self.md"
   cp "$D/state/self.md" /tmp/.turnprompt
-  SHELLDWELLER_TOPLEVEL=1 timeout "${TURN_TIMEOUT:-1800}" shelldweller -f /tmp/.turnprompt
-  code=$?
+  SHELLDWELLER_TOPLEVEL=1 timeout "${TURN_TIMEOUT:-1800}" shelldweller -f /tmp/.turnprompt 2>&1 | tee /tmp/.turnout
+  code=${PIPESTATUS[0]}
   if [ "$(stat -c %Y "$NEXTF" 2>/dev/null)" = "$before" ]; then stale=$((stale+1)); else stale=0; fi
+  # (v6.2) a turn that ends on the meter never reaches its own bookkeeping, so
+  # the plan rots while the file it says to write already exists. When NEXT was
+  # not rewritten, the next prompt carries the model's own last words beside it.
+  if [ "$stale" -gt 0 ]; then
+    lastwords=$(grep -a '^| ' /tmp/.turnout | grep -av '^| *<\|^| *===' | tail -5 | cut -c3- | head -c 500)
+    addendum="(you did not rewrite state/NEXT in turn $turn; the plan above is $stale turn(s) old. The last things you said in turn $turn:)
+$lastwords"
+  else addendum=""; fi
 
   # (v5.1) commit the turn and render the truth for the next one
   G add -A >/dev/null 2>&1; G commit -qm "turn $turn" >/dev/null 2>&1

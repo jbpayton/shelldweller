@@ -1860,3 +1860,19 @@ that re-fetches. It built the instrument for the exact failure I graded on 04
 (asserted, not shown), one container replacement later.
 The packages line printed apk's pin format ("fzf><Q1+44..."); stripped in the
 seed, takes effect next restart. No restart for a cosmetic.
+
+## Second idle streak on 04, with the meter line in view (18:10Z, container 2 turns 3-7)
+Turns 3-7: 2-4 rounds each, 21-26k, nothing changed. Every round "Round N —
+recon before installing: confirm rg is absent at image build, check apk/ and
+boot, look at my previous answer's format". The meter line appears in its
+narration only as an echo of the prompt. NEXT: identical to turn 23 of the
+previous container. No journal entry since turn 15 of the previous container.
+The plan tells it to write an answer file that already exists, and its own
+clause "do not start 05 until 04's answer file exists and is verified" has no
+definition of verified. Structural cause: under Contract C the turn ends on
+the meter, never on its choice, so the bookkeeping round never runs and the
+plan never moves.
+v6.2: the loop tees the turn and, when NEXT was not rewritten, injects the
+model's last five narration lines beside the plan, dated. The bridle flags the
+round after which the balance is below one typical reply. Restart four of the
+day for the trial-6 home; boot restores the door and now fzf too.

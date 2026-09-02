@@ -56,3 +56,13 @@ economy was always the substrate's to supply; now it is visible mid-turn.
 **The plan-age note fires at 5 turns, not 15.** Trial 4's harm came from an
 alarm that demanded action; a factual note about age is different, and 15 was
 too late to matter.
+
+**A stale plan carries the model's own last words (v6.2, container 2 turn 7).**
+Five more idle turns on case 04 with the meter line in every round: it echoed
+the line and kept going. The turn still ends on the meter, never on a choice,
+so `state/NEXT` had not been rewritten since turn 23 of the previous container
+while the answer file it says to write already existed. When a turn ends
+without rewriting the plan, the loop now injects the last five things the model
+said beside it, dated. The bridle also states, once the balance drops below one
+typical reply, that the next reply is probably the last that runs. Facts about
+the economy and its own transcript; no instruction.

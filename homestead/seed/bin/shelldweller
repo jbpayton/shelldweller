@@ -106,10 +106,11 @@ output:
 $(printf '%s' "$output" | clip 5000)"
   history=$(printf '%s' "$history" | clip 22000)
   meter=$(cat /home/dweller/.meter 2>/dev/null || echo '?')
+  last=""; [ "$meter" -lt 8000 ] 2>/dev/null && last=" That is less than one of your replies has cost this turn: the next reply is probably the last that runs."
   context="Task: $task
 
 === THIS TURN SO FAR (${steps} round(s)) ===$history
 
-=== meter: $meter output tokens left this turn. $ask ==="
+=== meter: $meter output tokens left this turn.$last $ask ==="
 done
 exit $code
