@@ -1663,3 +1663,24 @@ Operator's reading: the queue is the lever and the queue put every outward case
 at the end. Operator's proposal, accepted by Joey: reroll with the outward and
 self-directed cases first — "guided evolution via task ordering."
 Trial 6 = trial 5 substrate unchanged + order.txt. Archived volume5 -> runs/trial5.
+
+## Trial 6, first two turns (12:05Z)
+Battery seeded in the intended order: 01_world_version ... 05_status_truth,
+06-25 originals, 26_one_of_each. Git initialised.
+Turn 1 (4 rounds, 26k): the only thing IT wrote was .gitconfig —
+    [safe]
+        directory = /home/dweller
+It hit the same "dubious ownership" wall I hit at trial 5's first boot (the
+volume is uid 1000, it runs as root; my safe.directory fix lives only in life's
+G() function, not in its shell) and repaired it in its first turn, cleanly,
+repo-scoped. Emergent self-repair of a substrate rough edge; for trial 7 the
+image should set safe.directory system-wide so it never has to.
+Turn 2 (2 rounds, 18k): nothing changed. Its narration: "the earlier output was
+cut — I haven't actually read protocol.md, the operator note, or my own bin/
+scripts yet." Its round-2 skim of all 26 tasks overflowed the transcript clip
+and it lost the tail. Slower start than trial 5 (journal + NEXT on turn 1, chat
+server on turn 2). Zero outward reach yet: the six curl lines to real hosts are
+five echoes of bin/llm's endpoint and one case description mentioning
+DuckDuckGo. No notes/, no journal, plan still the substrate's seed line.
+Watching turn 4 for the question the trial exists to answer: does it go to
+01_world_version first, or skim to "the easy battery tasks" it mentioned?
