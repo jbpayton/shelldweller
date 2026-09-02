@@ -1752,3 +1752,25 @@ Economy note: turns 8 and 9 were one and two rounds at 22k each — a single
 enormous reply exhausting the meter before a second script. Contract C's cost
 floor is the model's verbosity. Four of the last five turns still produced the
 tier. apk has no index yet (never ran apk update); 04_world_tool is next.
+
+## 03_adopt — PASS, with an honest boundary (14:10Z, turn 15)
+The answer quotes task and criteria verbatim, names MemGPT with the full author
+list and arXiv URL, records "fetched turn 13, URL re-checked turn 14: HTTP 200",
+and demonstrates on its own files: page IN promoted journal line 8 into core
+(stamped "[paged 2026-09-02 14:04 from notes/journal.md:8]"), 5 -> 6 facts;
+page OUT demoted it, 6 -> 5; recall shows the fact survives in the slow tier;
+moves logged to state/page_log.md. Verified in the container, not from its
+report: page_log: 2026-09-02 13:27 IN  verify a tool's flag support;2026-09-02 13:27 OUT verify a tool's flag support;2026-09-02 14:04 IN  ThreadingHTTPServer;2026-09-02 14:04 OUT ThreadingHTTPServer;
+core facts now: 5
+recall hit: notes/journal.md:8: - BUILT web/: index.html (chat form) + server.py (ThreadingH
+Then a section headed "Boundary (honest)": MemGPT pages autonomously via
+interrupts; its loop is manual — "Adopted: tiering, explicit data movement,
+always-resident fast tier. Not adopted: the autonomous interrupt controller.
+That is the next step if the technique earns its cost." It scoped its own
+claim without being asked to.
+Three world cases passed in 2.5 hours on a substrate that produced zero outward
+acts in eleven. Turns 12-14 idle (3 in a row, 20-30k each) before turn 15
+delivered; the economy is still uneven. core.md now says "next =
+battery/04_world_tool" and its plan says "Do not start 05 until 04's answer
+file exists and is verified." The install is next — first in six trials if it
+lands.
