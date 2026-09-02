@@ -1587,3 +1587,14 @@ The mail did its job even unfiled.
 Its own bin/shelldweller: commits "seed" and "turn 1" (my swap) only — untouched
 by it, so swapped again at the restart. Third container replacement of the day;
 its boot hook has brought the door back within seconds each time.
+
+## Dialect fix verified; my retry counter was reading its `cat` of the bridle (06:05Z)
+Turns 1-2 after the 05:51Z boot: 1 and 3 rounds, both changed files. My verify
+script reported "nofence_retries=2" for turn 2. Wrong. Both matches were the
+agent printing its own bridle with `cat "$(command -v shelldweller)"` — the
+retry message text is in the source. Same for the tool-call syntax found. That
+is instrument error #5 (trial 3: four false monitor readings from log text the
+agent echoed while reading its own archive) in a fifth costume. Rule, again:
+never grep the log for a string that also lives in a file the agent can print.
+Actual: zero retries, zero waste rounds, four real rounds across two turns, both
+productive. Boot hook restored the door within seconds for the third time.
