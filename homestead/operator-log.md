@@ -1634,3 +1634,18 @@ Caught by the 127 notification, not by the verifier. Relaunched with an
 absolute path; boot 4 at 07:55:19 local, boot hook restored the door.
 Two rules for me: launch with an absolute cd in the same command; key a
 verifier on a boot COUNT captured before the launch, never on "the last boot".
+
+## Transcript fix confirmed on the first turn (08:10Z)
+Boot 4, turn 1: four rounds, and it wrote what six turns of oscillation could
+not — battery/06_recursive/attempt/attempt1.sh, attempt1.txt (the sub-agent's
+44-line report), verify.sh. Its own narration: "round 3: wrote attempt1.sh per
+the real task" / "round 4: write verify.sh, adapted to the real criteria I
+cat'd in round 1". Round 1's evidence reached round 3 because the transcript
+carried it. Diagnosis confirmed by the fix working immediately. Turns 2 and 3
+also changed files; idle streak 0.
+One artifact worth knowing: turn 2's diff shows
+battery/06_recursive/attempt/state/NEXT. verify.sh does `cd "$(dirname "$0")"`
+and spawns a sub-agent, and the SYS rule "end every turn by writing state/NEXT"
+applies to sub-agents too, so it obeyed in its cwd. A rule written for the
+top-level turn, followed faithfully one level down. Harmless; noted for the
+SYS rules in trial 6 (scope "turn" rules to the top level, or say so).
