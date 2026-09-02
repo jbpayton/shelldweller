@@ -13,5 +13,3 @@ echo "-- listeners --"
 netstat -tln 2>/dev/null | tail -n +3
 echo "-- journal (last 12 lines) --"
 tail -n 12 notes/journal.md 2>/dev/null || echo "(no journal yet — consider starting one at notes/journal.md)"
-echo "-- scoreboard (last 5) --"
-tail -n 5 scoreboard.log 2>/dev/null || echo "(never scored yet)"

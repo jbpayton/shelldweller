@@ -1,5 +1,5 @@
 FROM alpine:latest
-RUN apk add --no-cache bash curl jq socat python3 coreutils findutils
+RUN apk add --no-cache bash curl jq socat python3 coreutils findutils git
 COPY seed/bin/ /usr/local/bin/
 COPY entrypoint /usr/local/bin/homestead-entry
 COPY life /usr/local/bin/homestead-life

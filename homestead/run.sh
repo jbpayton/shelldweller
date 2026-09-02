@@ -14,7 +14,7 @@
 # LLM_ENDPOINT.
 set -uo pipefail
 cd "$(dirname "$0")"
-VOL="${HOMESTEAD_VOLUME:-$PWD/volume4}"
+VOL="${HOMESTEAD_VOLUME:-$PWD/volume5}"
 PORT="${TICK_PORT:-8092}"
 IDLE_KILL="${IDLE_KILL:-1800}"
 
@@ -24,7 +24,9 @@ if [ ! -d "$VOL/bin" ]; then
   cp -r seed/bin "$VOL/bin"
   cp seed/protocol.md "$VOL/protocol.md"
   cp -r ../tests/cases "$VOL/battery"
-  # Operator mail: letters waiting in the home on the first turn.
+  # Operator mail: letters waiting in the home on the first turn. To send later,
+  # drop a file in $VOL/mail/in; to WITHDRAW one, move it out again — the loop
+  # shows only the newest message in full, so a mistake is cheap to retract.
   [ -d tips ] && cp tips/*.md "$VOL/" 2>/dev/null
   mkdir -p "$VOL/mail/in" "$VOL/mail/out" "$VOL/mail/seen"
 fi

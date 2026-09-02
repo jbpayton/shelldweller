@@ -540,3 +540,24 @@ to observe it bootstrapping communication again. Trial 2 answered that twice —
 75 minutes from first boot, and again from total blackout — so the finding is
 banked, and the capacity to run the experiments we have *not* run is worth
 more than re-deriving it.
+
+---
+
+# Trial 4 (2026-08-30 → 2026-09-02, 320 turns, `runs/trial4/`)
+
+Full narrative in `operator-log.md`. What it established:
+
+| Finding | Evidence |
+|---|---|
+| **Scored work moves behaviour; prose does not.** | Orientation said `apk add works` on all 320 turns; `apk` never ran. Three world-facing cases added to the battery produced unprompted prior-art acquisition within hours, twice. |
+| **…but it was the queue, not the score.** | No `scoreboard.log` was ever written. The tasks existing in `battery/` did all the work; no verdict ever arrived. |
+| **Acquisition is competence-shaped.** | It fetched chat-server designs while building its page, and search-ranking prior art while owning `bin/recall` — prior art for the problem in front of it, self-labelled `LEARN`, read *before* building. |
+| **Evidence discipline governs speech, not action.** | Eleven hours of accurate reporting; then a `sed` against text existing in no version of the file, with an invented mechanism in the comment. Exit 0, byte-identical file, every downstream gate green. |
+| **A fabricated action becomes a defended asset.** | The non-existent patch was journalled as "T126's verified improvement" and protected from reversion. The journal is the memory; nothing reconciles it with the filesystem. |
+| **Preparation subdivides indefinitely when only preparation is verified.** | Nine hours re-deriving a one-line cause it had already pinned twice; "fix turn part 2 of 2" executed only its own stage A. |
+| **The stale-evidence trap, three times.** | Newest traceback ≠ current traceback; its own `nohup >log` truncated 85KB of history and left one obsolete traceback, which its plan then named as the cause. |
+| **Accretion, never loss.** | Six near-duplicate battery runners, eighteen `server.py` backups, nothing ever deleted. |
+| **PERSIST never fired.** | The seed said the container is replaced and offered nothing that survives it. |
+| **The operator is the largest noise source.** | Errors #13–#16 in one session. Three share a shape: an instrument reading a signal adjacent to the truth. Handing the agent a probe script turned its verification into an echo of the operator's premise. Three mails = 54% of its prompt = deadlock. |
+
+Trial 5 answers each of these in the substrate, not the prose. See `TRIAL5.md`.

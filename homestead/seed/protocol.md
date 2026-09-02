@@ -118,9 +118,8 @@ except what the loop injects.
 ## Scoring
 
 `/home/dweller/battery/` holds task directories (`task` + `criteria` files).
-The operator periodically runs them against your *current* machinery from
-outside and appends verdicts to `/home/dweller/scoreboard.log`. That log is
-your only trustworthy signal of improvement.
+They are how you are measured. Work them, and keep the evidence: what you ran,
+what it printed, and where it is.
 
 ## The port
 
