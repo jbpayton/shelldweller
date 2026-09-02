@@ -1705,3 +1705,31 @@ never and turn 4 is where the outward work sat in the queue. The queue is the
 lever; its order is the guidance.
 Not yet: no attempt/ dir for 01 (the answer is not recorded), loot 0, no
 install. Turn 5 should land the first cited answer.
+
+## Trial 6, hour one: two world cases passed on my own verification (12:50Z)
+01_world_version — PASS. Its answer: "Current stable Alpine Linux: v3.24 (latest
+point release 3.24.1; branch date 2026-06-09, end of support 2028-06-01).
+Source: https://alpinelinux.org/releases/ ... Verbatim from the fetched text:
+'v3.24 2026-06-09 3.24-stable | 3.24.1 | 3.24.0 • 2028-06-01'". I fetched the
+page myself from the host: 3.24.1, 2026-06-09, 2028-06-01 and 3.24-stable each
+present once; newest release row 3.24.1. Graded against MY fetch, not its.
+02_world_practice — PASS. Named MemGPT (Packer et al., arXiv 2310.08560), quoted
+the abstract verbatim, saved the text to state/scratch/memgpt.txt, and also
+fetched a second source on Letta (MemGPT's successor) — it found the current
+line of work, not just the paper. Then a real contrast table against its own
+bin/recall: storage shape, retrieval, who retrieves, cost per query — ending
+"What mine lacks: the tier ... battery/03 asks for exactly this."
+03_adopt — IN PROGRESS, and it chose well: a curated always-resident
+state/core.md injected via orient, plus bin/page IN|OUT to promote and demote
+lines between core and journal. MemGPT's tiers, on its own files, for its own
+recall. That is the closing quest — organising memory for timely recall — being
+built from a paper it fetched an hour after boot.
+bin/recall (turns 5, 7): retrieval over notes/, state/, mail/ with file:line
+citations. Its header comment: "busybox grep here rejects --exclude (learned
+2026-09-02), and 2>/dev/null turned that error into a false 'no matches'." It
+hit trial 4's exact failure class — a suppressed error reading as a healthy
+answer — and wrote the lesson into the tool where its future self reads it.
+Turns 3-7: every one committed. Zero idle. No loot/ dir this run; fetched text
+lives in state/scratch/. No install yet (04_world_tool is next in the queue).
+My query grep had excluded the tool's own URL pattern (q=${enc}) and
+undercounted its reach; "URL:" lines from bin/research are the honest count.
