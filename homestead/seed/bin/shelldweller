@@ -43,7 +43,7 @@ TOP="${SHELLDWELLER_TOPLEVEL:-0}"; export SHELLDWELLER_TOPLEVEL=0
 # turn. The meter and TURN_TIMEOUT bound it. Contract B ended the turn on the
 # first exit 0, and the model's native loop is call -> observe -> act: it spent
 # five straight turns looking around, waiting for output that never came.
-context="Task: $task"; code=0; steps=0; retries=0
+context="Task: $task"; code=0; steps=0; retries=0; history=""
 clip() { n=${1:-6000}; s=$(cat); if [ ${#s} -gt "$n" ]; then printf '(earlier output cut; last %s chars follow)\n' "$n"; printf '%s' "$s" | tail -c "$n"; else printf '%s' "$s"; fi; }
 while :; do
   response=$(printf '%s' "$context" | LLM_SYSTEM="$SYS" llm)
@@ -91,12 +91,24 @@ Resend ONLY the fenced bash, smaller. You can continue after it runs."
   steps=$((steps+1))
   if [ $code -eq 0 ]; then verdict="ran (exit 0)"; ask="Continue with more fenced bash, or reply with no fence to end the turn."
   else verdict="failed (exit $code)"; ask="Read the error, then continue with corrected fenced bash — or reply with no fence to end the turn."; fi
+  # The turn's own transcript comes back, not just the last step: with only
+  # the last output in view, its rule "paste the real lines before claiming
+  # them" made it re-read the task, then the pattern, then the task again —
+  # eight rounds, nothing written. Oldest rounds fall off the front.
+  said=$(printf '%s\n' "$response" | awk '/^```/{f=!f; next} !f && NF' | head -c 600)
+  history="$history
+
+=== round $steps $verdict ===
+you said: $said
+script:
+$(printf '%s' "$script" | clip 2500)
+output:
+$(printf '%s' "$output" | clip 5000)"
+  history=$(printf '%s' "$history" | clip 22000)
   context="Task: $task
 
-=== Step $steps $verdict. Script:
-$(printf '%s' "$script" | clip 4000)
-=== Its output:
-$(printf '%s' "$output" | clip 12000)
+=== THIS TURN SO FAR (${steps} round(s)) ===$history
+
 === $ask ==="
 done
 exit $code

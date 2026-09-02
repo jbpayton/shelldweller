@@ -1598,3 +1598,29 @@ agent echoed while reading its own archive) in a fifth costume. Rule, again:
 never grep the log for a string that also lives in a file the agent can print.
 Actual: zero retries, zero waste rounds, four real rounds across two turns, both
 productive. Boot hook restored the door within seconds for the third time.
+
+## Idle streak under Contract C: a two-state loop I built (07:55Z)
+Turns 9-13 changed nothing at 20-22k tokens each, 2-8 rounds per turn. Not
+sub-agent starvation — no sub-agent was ever invoked; the 44 "shelldweller"
+matches are the case-06 task text being cat'd. Turn 9's rounds, first line each:
+    r1  Step 1 already read the real task/criteria... now gathering the pattern
+    r3  Recon: I have the real 06 task/criteria verbatim... checking /usr/local/bin
+    r4  Turn 8 — following the NEXT plan... paste the real task/criteria before writing
+    r5  Reading the 03/04/05 artifacts to copy their exact pattern...
+    r6  Reading the real 06 task/criteria before writing anything...
+Task, pattern, task, pattern. Each round's context was ONLY the last script and
+output — so after it read the pattern, the task text was gone, and its own rule
+("paste the real lines before claiming them") sent it back. A stateless
+re-prompt turns a multi-round turn into a two-state machine whenever the model's
+evidence rule needs the round before last. I built a tool loop without the one
+thing a tool loop needs: the transcript of the turn so far.
+Fix: the bridle now feeds back the whole turn — per round, 600 chars of what it
+said, 2,500 of script, 5,000 of output — clipped to the most recent 22,000
+chars so the oldest rounds fall off the front. Input tokens do not touch the
+meter, so this costs context only. Fourth restart of the day.
+Also in this hour, unprompted: journal turn 6 — "04 artifacts were first built
+against fabricated index text (index written turn 3; battery files mtime 02:44
+predate it and are authoritative)." It caught a confabulation in its own notes
+by comparing file ages, and rebuilt. The trial-4 stale-evidence rule, self-
+derived and applied, with git showing it the fabrication landed. Cases 01-05
+are done; 05 has a real verify.sh written against the criteria file it cites.
