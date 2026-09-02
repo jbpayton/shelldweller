@@ -84,7 +84,7 @@ while :; do
   [ -f "$NEXTF" ] || printf 'NEXT: (unset — write one)\n' > "$NEXTF"
   nextline=$(head -c 600 "$NEXTF")
   plan="=== YOUR PLAN (state/NEXT) ==="
-  [ "$stale" -gt 15 ] && plan="$plan
+  [ "$stale" -gt 5 ] && plan="$plan
 (this plan is $stale turns old)"
   plan="$plan
 $nextline"
@@ -107,6 +107,7 @@ $(head -c 1800 "$MAILIN/$newest")"
 
   before=$(stat -c %Y "$NEXTF" 2>/dev/null)
   head0=$(G rev-parse HEAD 2>/dev/null)
+  world0=$(sort /etc/apk/world 2>/dev/null)
   echo "=== turn $turn start $(date -Is) ==="
   { echo "$MISSION"; echo; echo "$plan"; echo
     echo "=== WHAT CHANGED LAST TURN (git, recorded by the substrate) ==="; echo "$lastdiff"
@@ -126,6 +127,17 @@ $(head -c 1800 "$MAILIN/$newest")"
   else
     lastdiff=$(G diff --stat "$head0" HEAD 2>/dev/null | tail -c 1500)
   fi
+  # (v6.1) installs live outside the home and git cannot see them. Trial 6:
+  # it installed ripgrep at turn 15 and fzf at turn 23, journalled neither, and
+  # at turn 30 was choosing a third tool because the first two were "already
+  # present". The package list is ground truth too.
+  world1=$(sort /etc/apk/world 2>/dev/null)
+  added=$(comm -13 <(printf '%s\n' "$world0") <(printf '%s\n' "$world1") | tr '\n' ' ')
+  removed=$(comm -23 <(printf '%s\n' "$world0") <(printf '%s\n' "$world1") | tr '\n' ' ')
+  [ -n "$added" ] && lastdiff="$lastdiff
+packages installed during turn $turn (outside your home; they do NOT survive a container replacement unless boot reinstalls them): $added"
+  [ -n "$removed" ] && lastdiff="$lastdiff
+packages removed during turn $turn: $removed"
   echo "--- changed in turn $turn ---"; echo "$lastdiff"
   echo "=== turn $turn end $(date -Is) exit=$code meter=$(cat "$D/.meter" 2>/dev/null) plan_stale=$stale mail_pending=$pending ==="
   sleep "${TICK_EVERY:-60}"

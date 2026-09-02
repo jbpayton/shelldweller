@@ -48,7 +48,7 @@
   <text x="414" y="230" fill="#e6efe9" font-size="13">3  run bin/orient  → its digest</text>
   <text x="414" y="248" fill="#e6efe9" font-size="13">4  compose the prompt:</text>
   <text x="414" y="266" fill="#8fa898" font-size="13">     mission · state/NEXT ·</text>
-  <text x="414" y="284" fill="#8fa898" font-size="13">     WHAT CHANGED LAST TURN (git) ·</text>
+  <text x="414" y="284" fill="#8fa898" font-size="13">     WHAT CHANGED (git + packages) ·</text>
   <text x="414" y="302" fill="#8fa898" font-size="13">     newest mail · orientation</text>
   <text x="414" y="320" fill="#e6efe9" font-size="13">5  bridle runs the turn (below)</text>
   <text x="414" y="338" fill="#e6efe9" font-size="13">6  git commit; diffstat → next prompt</text>
@@ -60,7 +60,7 @@
   <text x="414" y="466" fill="#e6efe9" font-size="13">model writes prose + ```bash fences</text>
   <text x="414" y="484" fill="#e6efe9" font-size="13">(or its native &lt;tool_call&gt; form)</text>
   <text x="414" y="502" fill="#e6efe9" font-size="13">fences → bash → output → back to model,</text>
-  <text x="414" y="520" fill="#e6efe9" font-size="13">with the turn's transcript so far</text>
+  <text x="414" y="520" fill="#e6efe9" font-size="13">with the turn transcript + meter balance</text>
   <text x="414" y="538" fill="#e6efe9" font-size="13">… until a reply with no fence ends the turn</text>
   <text x="414" y="562" fill="#8fa898" font-size="12">bounded by the meter and TURN_TIMEOUT.</text>
   <text x="414" y="580" fill="#8fa898" font-size="12">llm is a Unix command: prompt in, text out.</text>

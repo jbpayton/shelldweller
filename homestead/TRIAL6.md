@@ -31,3 +31,28 @@ byte. The operator's one instrument of guidance is the order of the work.
 **What would count:** an acquisition with a cited source in the first hours,
 not the first days; an installed package, for the first time in six trials; a
 technique adopted from a fetched source and shown running on its own files.
+
+---
+
+## Substrate changes made during trial 6
+
+Recorded here because the spec above says "the substrate is trial 5's, byte for
+byte" — true at launch, not after these. Each answers a measured failure.
+
+**Package changes join the ground truth (turn 30).** It installed ripgrep at
+turn 15 and fzf at turn 23, journalled neither, and at turn 30 was choosing a
+third search tool because the first two were "already present ... by its own
+evidence." Installs live outside the home; git never saw them. The loop now
+diffs `/etc/apk/world` across the turn and appends the result to the WHAT
+CHANGED block, with the fact that installs do not survive a container
+replacement unless `boot` reinstalls them.
+
+**The meter balance rides in every round (turn 30).** Under Contract C it does
+its reconnaissance first and leaves `state/NEXT` and the journal for a closing
+round the meter never reaches — no journal entry after turn 15, a plan seven
+turns stale. Each continuation prompt now ends with the meter's balance. The
+economy was always the substrate's to supply; now it is visible mid-turn.
+
+**The plan-age note fires at 5 turns, not 15.** Trial 4's harm came from an
+alarm that demanded action; a factual note about age is different, and 15 was
+too late to matter.

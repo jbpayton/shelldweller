@@ -105,10 +105,11 @@ $(printf '%s' "$script" | clip 2500)
 output:
 $(printf '%s' "$output" | clip 5000)"
   history=$(printf '%s' "$history" | clip 22000)
+  meter=$(cat /home/dweller/.meter 2>/dev/null || echo '?')
   context="Task: $task
 
 === THIS TURN SO FAR (${steps} round(s)) ===$history
 
-=== $ask ==="
+=== meter: $meter output tokens left this turn. $ask ==="
 done
 exit $code

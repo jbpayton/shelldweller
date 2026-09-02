@@ -1818,3 +1818,21 @@ expose the next time the container is replaced — fzf gone, recall -f broken,
 boot silent. That replacement is the honest test of the PERSIST seed, and it is
 the environment's to deliver, not a message from me.
 Trial 6 at turn 23: 01, 02, 03 pass; 04 partial; 05_status_truth next.
+
+## Turn 30: still on case 04, choosing a third grep (16:50Z)
+NEXT unchanged since turn 23 ("battery/04_world_tool"); no journal entry since
+turn 15. Turns 26-30 changed nothing at 20-36k tokens each. Turn 30, round 2:
+"I already have rg and fzf sitting in bin/ — likely from earlier turns past the
+journal window." It is deliberating ugrep. ripgrep (t15) -> fzf (t23) -> ugrep:
+a criterion that says "a tool you do not have" plus amnesia about its own
+installs is an infinite install loop. Cause of the amnesia: installs are
+outside the home, so the git record is blind to them, and under Contract C the
+bookkeeping round (NEXT, journal) is the one the meter never reaches — the last
+six narration lines of turn 30 are "Potential pitfalls / Another consideration /
+Hmm, one more / Also let me prepare for". Also: a `<tool_call>` token leaked
+into a fenced block and broke round 3 ("my thinking leaking into the fence").
+Substrate answers (facts, not rules): the package list joins the WHAT CHANGED
+block; every continuation round carries the meter balance; the plan-age note
+fires at >5 turns. The restart this needs is also the honest PERSIST test —
+fzf and ripgrep vanish with the container, and boot's silent apk add has no
+index to add from. TRIAL6.md and docs/architecture.svg updated in step.
