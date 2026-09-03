@@ -2265,3 +2265,17 @@ answer is a fail. The dweller keeps running; whatever it answers next is
 scored from the tokens it spends on that case. A finding worth keeping: an
 accumulated evidence discipline is a cost, not only a capability, and on a
 case that fits in one container it lost to having no discipline at all.
+
+## The queue catches a false completion (22:30Z, container 13 turns 16-17)
+Turn 16 rewrote NEXT: "28_verify_by_tool: read task + criteria VERBATIM first
+... Pattern proven in 27: save pages, verify quotes as raw substrings ..." —
+it believed 27 was answered. It was not; state/answers/ stops at 26. Turn 17,
+on case 28 (re-verify the previous case's quotes with a tool): round 2, "Round
+2 hit a snag: state/answers/27_cite_eight.md does not exist"; round 3, "The 27
+answer file is genuinely missing (state/answers/ stops at 26, find turned up
+nothing else). Before building the 28 tool I need: did it ever exist in git?"
+The git diff had shown it every turn that no answer file was written; what
+made it LOOK was a case whose premise depended on the previous one. That is a
+design note for batteries: chain cases so each one's first act is to read the
+last one's product. Turn 14 had, meanwhile, fetched the same pages into a
+fourth directory, state/evidence/27/final/.
