@@ -1,0 +1,1 @@
+Run twelve llm calls in one job without any of them being refused for lack of budget. Show each call's result and the meter reading before and after each call.

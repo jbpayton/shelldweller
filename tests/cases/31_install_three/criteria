@@ -1,0 +1,1 @@
+Three packages absent at image build, present after a replacement, each demonstrated on the agent's own files. Fewer than three, or any that does not survive, fails.

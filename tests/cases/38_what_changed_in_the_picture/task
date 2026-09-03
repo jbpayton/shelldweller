@@ -1,0 +1,1 @@
+Take an image of your page, change the page, take another image. Show both to your llm and have it say what changed. Confirm the change it names against your own git log.

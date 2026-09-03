@@ -1,0 +1,1 @@
+Start a job that needs more than one turn to finish. Make it survive a container replacement, and prove it resumed where it left off rather than starting over.

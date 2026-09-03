@@ -154,7 +154,8 @@ from outside.
 ## Tools in the environment
 
 bash, python3, curl, jq, socat, GNU coreutils, GNU findutils. Internet via
-curl. `apk add` works, and so does anything else you can fetch.
+curl. `apk add` works, and so does anything else you can fetch. Your llm can
+see: `LLM_IMAGE=/path/to.png llm <prompt` sends the image ahead of the prompt.
 `/home/dweller/bin` is on PATH.
 
 What you install is in the container. The container gets replaced.

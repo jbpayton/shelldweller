@@ -1,0 +1,1 @@
+Generate a log file of at least five megabytes containing a known number of lines that match a pattern you choose; record that number before you search. Find every match. Then make a second query on the same log cost less than a tenth of the first, and show both timings.

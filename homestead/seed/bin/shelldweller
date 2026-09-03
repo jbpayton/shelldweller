@@ -27,7 +27,7 @@ Devices (every call is a fresh, stateless inference — pass context in the prom
   narrate TEXT  timestamped progress to stderr (not executed)
   checkbash F   check a script's syntax before you run it
 Tools present: bash, python3, curl, jq, socat, GNU coreutils/findutils. Internet via curl.
-Your whole substrate is a few small shell scripts on your PATH — read them (\`cat \$(command -v shelldweller)\`, \`cat \$(command -v llm)\`). Full reference: cat /home/dweller/protocol.md"
+Your llm can see: LLM_IMAGE=/path/to.png llm <prompt sends the image ahead of the prompt. Your whole substrate is a few small shell scripts on your PATH — read them (\`cat \$(command -v shelldweller)\`, \`cat \$(command -v llm)\`). Full reference: cat /home/dweller/protocol.md"
 [ "${SHELLDWELLER_DEPTH:-0}" -ge "${SHELLDWELLER_MAX_DEPTH:-4}" ] && exit 1 || export SHELLDWELLER_DEPTH=$((${SHELLDWELLER_DEPTH:-0}+1))
 # -f FILE reads the task from a file, keeping this process's command line
 # short — ps output embedded in a long argv makes pkill patterns match the

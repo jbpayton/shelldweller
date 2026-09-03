@@ -1,0 +1,1 @@
+A tool re-fetches each source and prints PASS or FAIL per quote; the run is shown; the verdicts match what the pages actually contain.

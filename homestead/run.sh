@@ -39,6 +39,16 @@ if [ ! -d "$VOL/bin" ]; then
   mkdir -p "$VOL/mail/in" "$VOL/mail/out" "$VOL/mail/seen"
 fi
 
+# Cases added to order.txt or tests/cases after first boot are appended to the
+# home's battery on the next boot, at their queue position; existing cases keep
+# their numbers. The queue is the operator's instrument; this is how it grows.
+i=0
+for c in $( { [ -f order.txt ] && grep -v '^#' order.txt; ls ../tests/cases; } | awk 'NF && !seen[$0]++' ); do
+  [ -d "../tests/cases/$c" ] || continue
+  i=$((i+1)); dst="$VOL/battery/$(printf '%02d' "$i")_${c#[0-9][0-9]_}"
+  [ -d "$dst" ] || { cp -r "../tests/cases/$c" "$dst"; echo "[keeper] queue += $(basename "$dst")"; }
+done
+
 watchdog() {
   # A frozen meter means it is not thinking. That is fatal on its own —
   # trial 3's listener exemption vetoed this exact signal and hid a lobotomy.

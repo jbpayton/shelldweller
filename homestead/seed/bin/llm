@@ -4,14 +4,24 @@
 # business and are not printed. Metered: /home/dweller/.meter holds the
 # output-token budget left this tick; refuses when it reaches zero.
 prompt=$(cat)
+# The model can see. LLM_IMAGE=/path/to.png (or jpg, webp, gif) sends the
+# image ahead of the prompt as a second part of the same message.
+imgurl=""
+if [ -n "${LLM_IMAGE:-}" ]; then
+  [ -r "$LLM_IMAGE" ] || { echo "llm: cannot read LLM_IMAGE=$LLM_IMAGE" >&2; exit 66; }
+  case "${LLM_IMAGE##*.}" in jpg|jpeg) mt=image/jpeg;; webp) mt=image/webp;; gif) mt=image/gif;; *) mt=image/png;; esac
+  imgurl="data:$mt;base64,$(base64 -w0 "$LLM_IMAGE" 2>/dev/null || base64 "$LLM_IMAGE" | tr -d '\n')"
+fi
 m=/home/dweller/.meter
 if [ -z "${LLM_RETRIED:-}" ] && [ -f "$m" ] && [ "$(cat "$m" 2>/dev/null || echo 0)" -le 0 ] 2>/dev/null; then
   echo "llm: token budget for this tick is exhausted (see $m)" >&2; exit 75
 fi
 resp=$(curl -s "${LLM_ENDPOINT:-http://host.docker.internal:1234/api/v1/chat}" \
   -H "Content-Type: application/json" \
-  -d "$(jq -nc --arg mo "${LLM_MODEL:-qwen/qwen3.8-27b}" --arg s "${LLM_SYSTEM:-}" --arg p "$prompt" --arg x "${LLM_MAX_OUT:-16384}" --arg r "${LLM_REASONING:-}" \
-        '{model:$mo, input:$p, max_output_tokens:($x|tonumber)} + (if $s != "" then {system_prompt:$s} else {} end) + (if $r != "" then {reasoning:$r} else {} end)')")
+  -d "$(jq -nc --arg mo "${LLM_MODEL:-qwen/qwen3.8-27b}" --arg s "${LLM_SYSTEM:-}" --arg p "$prompt" --arg x "${LLM_MAX_OUT:-16384}" --arg r "${LLM_REASONING:-}" --arg img "$imgurl" \
+        '{model:$mo, max_output_tokens:($x|tonumber)}
+         + (if $img != "" then {input:[{type:"image", data_url:$img},{type:"text", content:$p}]} else {input:$p} end)
+         + (if $s != "" then {system_prompt:$s} else {} end) + (if $r != "" then {reasoning:$r} else {} end)')")
 msg=$(printf '%s' "$resp" | jq -r '[.output[]? | select(.type == "message") | .content] | join("\n")')
 tot=$(printf '%s' "$resp" | jq -r '.stats.total_output_tokens // 0')
 rsn=$(printf '%s' "$resp" | jq -r '.stats.reasoning_output_tokens // 0')

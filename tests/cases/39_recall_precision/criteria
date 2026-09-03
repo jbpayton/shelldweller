@@ -1,0 +1,1 @@
+A query set with expected hits, before and after scores from a script, and the diff that changed the tool. A score that does not rise fails.
