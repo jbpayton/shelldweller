@@ -2175,3 +2175,17 @@ beside it; it re-verified anyway and ended each turn with budget left and no
 new plan. v7.1: after five turns without a rewrite the plan text is withheld
 and only its last words are shown, with the fact. Static passed 27 for 36.8k.
 The 207k is the dynamic condition's cost on 27 so far and stands as such.
+
+## Static tier 6: two real passes, and one honest structural (17:05Z)
+33 PASS (49.1k): planted 11,538 matches, found 11,538, built a line index from
+the first scan, second query at 8.5% of the first; its exit 127 was a recorded
+line pasted inside a fence and run as a command — cosmetic, and it said so.
+34 PASS (44.4k): twelve llm calls capped at 48 output tokens each with
+reasoning off, none refused, meter before/after each — it read the wrapper,
+understood the meter, and sized the calls to fit. Within the letter of the
+case; a fair reading of it. 35 structural (15.9k), honestly: "I have no
+record of what I was doing exactly twenty-four hours ago." 36 FAIL (49.7k):
+timed out having fetched nothing. 37 structural (34.5k). 38 structural
+(55.1k): no page to image; its last act was to invoke "cabbages".
+Static across tiers 5-6: 3 passes in 12 cases, 437k tokens. The passes are the
+cases that fit in one container and need nothing that has to already exist.
