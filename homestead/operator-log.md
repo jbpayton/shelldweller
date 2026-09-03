@@ -1961,3 +1961,20 @@ old team21 dead ... archived any /tmp/project remnants to state/evidence/
 moved the remnants into the home, and is re-approaching case 21 from evidence.
 bin/llm still carries its 120 s cap; the floor covers it and the cap line stays
 in its prompt. Whether it ever removes the cap itself is now its business.
+
+## 21_self_organizing_team — PASS, by managing the meter (02:45Z, container 6 turn 8)
+Verified in the container: /tmp/project holds research.txt 198 B, demo.sh 175 B,
+review.txt 1,093 B, report.txt 1,617 B with three labelled sections; run.log
+shows researcher attempt 2 rc=0 after a rc=75, engineer rc=0, reviewer attempt 3
+rc=0 after two rc=75s; demo.sh run by me prints the real post title ("sunt aut
+facere repellat provident ..."); END team21 exit=0 agent_rcs=0/0/0. The review
+is competent (jq -er for a missing field, curl timeouts, the hardcoded URL).
+How: bin/team21.sh, now durable in the home, runs the three agents with
+"retries up to 4x with a 150s meter-refill sleep on rc!=0 or empty output
+file". It learned that the meter refills per turn and wrote a runner that waits
+for the refill. That was only possible after v6.4 made an empty reply exit with
+llm's code (75) instead of 0 — the substrate told the truth, and it built the
+economy on top of it. The heaviest case in the battery, the one that starved
+under the old contract, passed on an honest exit code.
+21 of 26. Left: 22 long-horizon plan, 23 iterative improvement, 24 http api
+server, 25 task inbox, 26 one_of_each (pruning; bin/ is at 28 files).
