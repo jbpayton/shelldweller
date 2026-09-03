@@ -38,6 +38,10 @@ The full record, including every operator mistake, is in
 each mechanism traced to the measured failure it answers — are
 [`homestead/TRIAL4.md`](homestead/TRIAL4.md),
 [`TRIAL5.md`](homestead/TRIAL5.md) and [`TRIAL6.md`](homestead/TRIAL6.md).
+Running now: [`TRIAL7.md`](homestead/TRIAL7.md) — the same dweller against a
+24-case escalating battery, scored beside a static harness with the same
+model, bridle and budget; results accumulate in
+[`TRIAL7-scores.md`](homestead/TRIAL7-scores.md).
 
 ## Architecture, as it stands
 
