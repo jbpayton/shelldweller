@@ -2015,3 +2015,14 @@ fail=0, retrospective llm call, END plan22 exit=0), durable copies in
 state/evidence/22_project/. 22 of 26. Case 23 is running detached with its pid
 and log in state/evidence/ — it learned that /tmp does not persist and puts the
 evidence in the home now.
+
+## Case 23 finished on fallbacks; the retry belongs in the device (07:05Z, v6.8)
+The detached 23 job ended "END improve23 exit=0" with "Fallback verdict: v3 is
+most correct ..." — canned text its own script prints when llm returns nothing.
+Its llm calls hit rc=70 (reasoning-only); the bridle's reasoning-off retry
+covers only the bridle's own rounds. It caught it itself, turn 16: "the tail
+shows the verdict (and probably the critiques) ran on fallbacks — the final
+print had empty V1 CRITIQUE", and its plan reads the stderr line verbatim. Five
+turns since have been reading logs and planning the re-issue. v6.8: the retry
+lives in bin/llm (once, reasoning off, only when the caller set no level and
+the meter allows; stderr says so). Tenth restart of the trial-6 home.

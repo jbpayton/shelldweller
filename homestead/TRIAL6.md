@@ -124,3 +124,11 @@ message; `reasoning: "off"`, a message at once. The API exposes that knob
 and the bridle sets it to `off` for the one retry after an exit-70, saying so.
 Normal replies are untouched — the model thinks as it likes until it proves,
 on that prompt, that thinking alone will not answer.
+
+**The reasoning-off retry moves into `llm` itself (v6.8).** Case 23's script
+called `llm` directly for its critiques and verdict; those calls overflowed
+(exit 70) and the script printed canned fallbacks — which it then caught in its
+own log: *"the verdict ran on fallbacks."* The bridle's retry never applied to
+calls its scripts make. `bin/llm` now retries once with reasoning off whenever
+a reply is all reasoning and the caller chose no level, and says so on stderr.
+The loop's rounds and its own scripts get the same recovery.
