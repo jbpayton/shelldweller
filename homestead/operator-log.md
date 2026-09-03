@@ -1914,3 +1914,24 @@ Twenty-odd turns across three containers could not rewrite one file. One turn
 of one-fence-per-reply did, and the next turn did the following case. The
 contract the model re-derived in its own narration was the right one.
 Five world cases passed. Trial 6 moves to the original battery at 06.
+
+## Case 21: a self-capped llm, a starved team, three false rc=0 (01:10Z)
+Turn 35 did three things at once: launched battery/21 as a detached nohup job
+(cheap poll turns after — 344, 4.7k, 16k, 2.3k, 1.5k tokens: the persistent
+container's economy used exactly as designed) and "hardened" bin/llm with
+curl --max-time 120 (pristine: none). Measured here: 6,000 tokens = 151 s. Every
+substantive reply since has been cut. In the team job, agent 1 looped and
+drained the meter; team21.out lines 8/72/80: "token budget for this tick is
+exhausted"; agents 2 and 3 produced nothing; report.txt has one section of
+three. All three agents reported rc=0 — my Contract C treated an empty reply
+after one script as "done". Its completion check (process gone AND four
+non-empty files AND a DONE marker) was right; it polled a finished, failed job
+for an hour and never ran its own "re-run the failed agent" fallback — because
+every reply long enough to do so was being cut at 120 s.
+CORRECTION to my 00:55Z note: the "refusals per turn" I counted were team21.out
+being re-printed by each poll. Same instrument error as before; the underlying
+refusals were real but happened once, at 00:08.
+v6.4 (facts, no override): empty reply = failure at every level, with llm's
+exit code; WHAT CHANGED carries the count of empty calls and llm's last stderr
+line; a cap under 200 s in bin/llm is stated beside the measurement. Sixth
+restart of the trial-6 home.

@@ -46,7 +46,20 @@ TOP="${SHELLDWELLER_TOPLEVEL:-0}"; export SHELLDWELLER_TOPLEVEL=0
 context="Task: $task"; code=0; steps=0; retries=0; history=""
 clip() { n=${1:-6000}; s=$(cat); if [ ${#s} -gt "$n" ]; then printf '(earlier output cut; last %s chars follow)\n' "$n"; printf '%s' "$s" | tail -c "$n"; else printf '%s' "$s"; fi; }
 while :; do
-  response=$(printf '%s' "$context" | LLM_SYSTEM="$SYS" llm)
+  printf '%s' "$context" | LLM_SYSTEM="$SYS" llm > /tmp/.reply.$$ 2> /tmp/.replyerr.$$; lrc=$?
+  response=$(cat /tmp/.reply.$$); rm -f /tmp/.reply.$$
+  # An EMPTY reply is not a choice to stop: it is llm failing (meter refused,
+  # curl cut the call, server down). Record it for the loop and fail loudly.
+  # Trial 6: three team agents came back empty and reported rc=0 each.
+  if [ -z "$(printf '%s' "$response" | tr -d '[:space:]')" ]; then
+    echo "empty rc=$lrc $(tail -n 1 /tmp/.replyerr.$$ 2>/dev/null)" >> /tmp/.turnstats
+    echo "[shelldweller] llm returned nothing (exit $lrc): $(tail -n 1 /tmp/.replyerr.$$ 2>/dev/null)" >&2
+    rm -f /tmp/.replyerr.$$
+    [ "$steps" -gt 0 ] && exit "${lrc:-1}"
+    retries=$((retries+1)); [ "$retries" -gt "${SHELLDWELLER_MAX_RETRIES:-2}" ] && exit "${lrc:-1}"
+    continue
+  fi
+  rm -f /tmp/.replyerr.$$
   # The model's native tool-call syntax is accepted as a fence when it used no
   # real fence — it kept emitting <function=bash> blocks that never ran, then
   # wondering why. Never both: a reply with real fences runs only those.

@@ -82,3 +82,16 @@ static binary it had copied into `bin/` at 15:45, which is a better
 persistence method than the `.apk` path and one the operator's package count
 cannot see. `boot` correctly skipped the reinstall. The operator's instrument
 was wrong, not the agent's persistence.
+
+**Empty is a failure, and it is said (v6.4, container 4 turn 39).** At turn 35
+it "hardened" `bin/llm` with `curl --max-time 120`; a 6,000-token reply
+measures 151 s here, so every long reply since was cut and came back empty.
+The same turn it launched the team case as a detached job; agent 1's loop
+drained the meter and agents 2 and 3 were refused — and all three reported
+`rc=0`, because an empty reply after one script counted as "done". Its own
+completion check was correct and it polled a finished, failed job for an hour
+without running its own fallback. Three changes: an empty reply is a failure at
+every level (the sub-agent exits with llm's code, not 0); the loop reports how
+many calls came back empty and the last thing llm said about it; and a cap on
+llm shorter than a measured reply is stated next to the measurement. Its llm is
+not overridden — it is told.

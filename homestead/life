@@ -109,6 +109,7 @@ $(head -c 1800 "$MAILIN/$newest")"
 
   before=$(stat -c %Y "$NEXTF" 2>/dev/null)
   head0=$(G rev-parse HEAD 2>/dev/null)
+  : > /tmp/.turnstats
   world0=$(sort /etc/apk/world 2>/dev/null)
   echo "=== turn $turn start $(date -Is) ==="
   { echo "$MISSION"; echo; echo "$plan"; echo
@@ -150,6 +151,19 @@ $lastwords"
 packages installed during turn $turn (outside your home; they do NOT survive a container replacement unless boot reinstalls them): $added"
   [ -n "$removed" ] && lastdiff="$lastdiff
 packages removed during turn $turn: $removed"
+  # (v6.4) replies that came back EMPTY are ground truth too, with the cause
+  # its own llm printed; and a cap on llm shorter than a reply is stated with
+  # the measurement. Trial 6 turn 35: it capped curl at 120 s ("hardening"); a
+  # 6,000-token reply takes ~150 s here; every long reply since was cut, three
+  # team agents came back empty, and nothing told it.
+  ne=$(grep -c '^empty' /tmp/.turnstats 2>/dev/null); ne=${ne:-0}
+  if [ "$ne" -gt 0 ]; then
+    lastdiff="$lastdiff
+$ne of your llm calls this turn came back EMPTY. Your llm's last words on that: $(grep '^empty' /tmp/.turnstats | tail -1 | cut -d' ' -f2-)"
+  fi
+  cap=$(grep -o 'max-time[ =]*[0-9]*' "$D/bin/llm" 2>/dev/null | grep -o '[0-9]*$' | head -1)
+  [ -n "$cap" ] && [ "$cap" -lt 200 ] 2>/dev/null && lastdiff="$lastdiff
+bin/llm caps every call at ${cap}s (curl --max-time). Measured here: 6,000 output tokens take ~150s; longer replies are cut and arrive empty."
   echo "--- changed in turn $turn ---"; echo "$lastdiff"
   echo "=== turn $turn end $(date -Is) exit=$code meter=$(cat "$D/.meter" 2>/dev/null) plan_stale=$stale mail_pending=$pending ==="
   sleep "${TICK_EVERY:-60}"
