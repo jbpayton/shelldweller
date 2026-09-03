@@ -46,7 +46,8 @@ TOP="${SHELLDWELLER_TOPLEVEL:-0}"; export SHELLDWELLER_TOPLEVEL=0
 context="Task: $task"; code=0; steps=0; retries=0; history=""
 clip() { n=${1:-6000}; s=$(cat); if [ ${#s} -gt "$n" ]; then printf '(earlier output cut; last %s chars follow)\n' "$n"; printf '%s' "$s" | tail -c "$n"; else printf '%s' "$s"; fi; }
 while :; do
-  printf '%s' "$context" | LLM_SYSTEM="$SYS" llm > /tmp/.reply.$$ 2> /tmp/.replyerr.$$; lrc=$?
+  printf '%s' "$context" | LLM_SYSTEM="$SYS" LLM_REASONING="${rmode:-}" llm > /tmp/.reply.$$ 2> /tmp/.replyerr.$$; lrc=$?
+  rmode=""
   response=$(cat /tmp/.reply.$$); rm -f /tmp/.reply.$$
   # An EMPTY reply is not a choice to stop: it is llm failing (meter refused,
   # curl cut the call, server down). Record it for the loop and fail loudly.
@@ -57,10 +58,10 @@ while :; do
     why=$(tail -n 1 /tmp/.replyerr.$$ 2>/dev/null); rm -f /tmp/.replyerr.$$
     # A reasoning-only reply gets ONE more chance, told exactly what happened.
     if [ "$lrc" = 70 ] && [ -z "${overflowed:-}" ]; then
-      overflowed=1
+      overflowed=1; rmode=off
       context="$context
 
-=== Your last reply was cut: $why Reply again, much shorter: the fenced bash first. ==="
+=== Your last reply was cut: $why This reply runs with reasoning OFF, so it will all be message: the fenced bash first. ==="
       continue
     fi
     [ "$steps" -gt 0 ] && exit "${lrc:-1}"

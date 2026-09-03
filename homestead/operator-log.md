@@ -1992,3 +1992,14 @@ response, 71 empty message); the bridle retries a 70 once with that sentence
 appended; LLM_MAX_OUT=10000 from the keeper. Not lowered further: the trial-2
 lesson was that a cap under the model's reasoning need yields empties, and the
 measured normal reply is 6-9k. Eighth restart of the trial-6 home.
+
+## The model thinks past any cap on a plan; the retry now turns thinking off (04:00Z, v6.7)
+v6.6, container 7, turns 1-4: "the model spent 10000 tokens reasoning and wrote
+no message" x3, seven overflow retries, all overflowed. Host probe with the
+case-22 shape ("plan in five phases..."): thinking on -> 1500/1500 reasoning,
+empty message; "/no_think" suffix -> 134 reasoning, a message; the API's own
+error on a boolean revealed the real knob: reasoning: off|low|medium|high|
+xhigh|on. bin/llm passes LLM_REASONING; the bridle's single retry after a 70
+sets it off and says so. Not a global change — "don't fight the model and how
+it works with reasoning" — a recovery for the reply after thinking demonstrably
+ate the whole reply. Ninth restart of the trial-6 home.

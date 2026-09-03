@@ -113,3 +113,14 @@ you"* — exit 70, distinct from a refused meter (75) and a dead server (69).
 The bridle gives a reasoning-only reply one more chance, quoting that line. The
 per-reply limit is 10,000 from the keeper, so one overflow costs half a turn.
 Measured: ordinary replies run 6–9k; the overflows ran 16k+.
+
+**After a reasoning-only reply, the retry runs with reasoning off (v6.7).**
+Under v6.6 the truth line read *"the model spent 10000 tokens reasoning and
+wrote no message"* three times in four turns, and the retry overflowed every
+time: on a planning prompt this model thinks past any cap. Measured from the
+host with the same prompt: thinking on, 1,500 of 1,500 tokens reasoning, no
+message; `reasoning: "off"`, a message at once. The API exposes that knob
+(`off|low|medium|high|xhigh|on`); `bin/llm` passes `LLM_REASONING` through,
+and the bridle sets it to `off` for the one retry after an exit-70, saying so.
+Normal replies are untouched — the model thinks as it likes until it proves,
+on that prompt, that thinking alone will not answer.
