@@ -131,8 +131,8 @@ you said: $said
 script:
 $(printf '%s' "$script" | clip 2500)
 output:
-$(printf '%s' "$output" | clip 5000)"
-  history=$(printf '%s' "$history" | clip 22000)
+$(printf '%s' "$output" | clip 12000)"
+  history=$(printf '%s' "$history" | clip 40000)
   meter=$(cat /home/dweller/.meter 2>/dev/null || echo '?')
   last=""; [ "$meter" -lt 8000 ] 2>/dev/null && last=" That is less than one of your replies has cost this turn: the next reply is probably the last that runs."
   context="Task: $task

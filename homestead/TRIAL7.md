@@ -64,3 +64,14 @@ text still won by being there. Now, after five turns without a rewrite, the
 loop shows only the fact and the model's last words. The file is untouched.
 Recorded as a cost against the dynamic condition: the 207k stands in the
 scores.
+
+**The turn transcript nearly doubles (v7.2, container 12 turn 9).** Case 27
+asks for eight quotes from eight pages held in view together. The bridle kept
+only the last 5,000 characters of each round's output and 22,000 of the turn;
+turn 9, round 2: *"Round 2 output was cut to its last 5000 chars, so I still
+don't have the verbatim task/criteria."* It re-read in smaller pieces every
+turn and fetched the same pages four times across two containers. The window
+was nowhere near full — 32k tokens, the prompt under 3k — so the clip was the
+constraint, not the context. Per-round output 12,000, turn transcript 40,000;
+scripts unchanged. Both conditions get the new bridle from here; static tier 7
+was already running on the old one and is marked so.

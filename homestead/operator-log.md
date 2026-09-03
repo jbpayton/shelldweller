@@ -2197,3 +2197,17 @@ Turn 2: 20.8k, NEXT rewritten (plan_stale 0) — "GOAL 4 DONE + verified ...
 Battery 01-26 answered; next task:" — the first plan rewrite in fourteen
 turns, closing the item that had cost a round every turn. Turn 3 changed files.
 27 not yet answered; no use of its own reach tools yet.
+
+## 27, container 12, nine turns: the output clip is the wall (19:30Z)
+Turns 1-9: ~137k tokens, the pages fetched again (turn 5: twelve files into
+state/evidence/27_pages/), no answer. Every turn: "Recon before quoting
+anything" -> "Round 2 output was cut to its last 5000 chars, so I still don't
+have the verbatim task/criteria or the recorded urls.tsv" -> re-read in
+pieces -> out of rounds. It has now spent ~344k tokens on case 27 across two
+containers against the static harness's 36.8k pass. The plan is fresh (v7.1
+worked: it names 27 and its own meterwait pattern); the reads are what die.
+The clip was set for trial 5's small cases; this case needs eight pages of
+candidates in view. v7.2 widens it: 12,000 per round, 40,000 per turn.
+Honest accounting: the 344k stands against the dynamic condition on 27. Two
+of the three walls it hit on this case were the operator's clips, and one was
+its own stale plan.
