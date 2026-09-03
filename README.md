@@ -50,6 +50,19 @@ queue, its door, and a git commit for every turn. The host never supplies
 structure; the container is replaced freely; everything the model runs comes
 from the home first. Updated with each substrate change.
 
+## What it built, and why that
+
+The substrate above is the operator's. What the agent built for itself inside
+it — its reach, its two-tier memory, its persistence, its runners — and the
+turn each piece appeared, with the case that was in front of it at the time,
+is in [`docs/dweller-architecture.md`](docs/dweller-architecture.md). The
+short version: every tool traces to the case in front of it, build order
+followed queue order one for one, and the same model in three homes built
+three different things because of what each home told it — not what it was
+told to do.
+
+![What the dweller built](docs/dweller.svg)
+
 ## What the model brings, and what it does not
 
 **Structure emerges.** Phases 1–2 ran a minimal bridle — a model writes bash,

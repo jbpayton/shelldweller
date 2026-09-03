@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 1200 700" font-family="'JetBrains Mono','Fira Code',ui-monospace,Menlo,Consolas,monospace">
+  <rect width="1200" height="700" fill="#0b0f0d"/>
+  <text x="40" y="48" fill="#e6efe9" font-size="26" font-weight="700">what the dweller built — trial 6</text>
+  <text x="40" y="74" fill="#8fa898" font-size="15">33 scripts, 0 backups, 26 answers, 65 evidence files · every tool traces to the case in front of it</text>
+
+  <!-- five function boxes -->
+  <g font-size="13">
+    <rect x="40" y="100" width="216" height="250" rx="8" fill="#101713" fill-opacity="0.5" stroke="#2f6b45"/>
+    <text x="56" y="126" fill="#4ade80" font-size="15" font-weight="700">REACH</text>
+    <text x="56" y="152" fill="#e6efe9">research      t4  12:16</text>
+    <text x="56" y="170" fill="#8fa898">  search→fetch→cite</text>
+    <text x="56" y="196" fill="#e6efe9">world         c2  17:13</text>
+    <text x="56" y="214" fill="#8fa898">  {source, quote} ×5</text>
+    <text x="56" y="240" fill="#e6efe9">checkworld    c2  17:13</text>
+    <text x="56" y="258" fill="#8fa898">  re-fetch, verify quotes</text>
+    <text x="56" y="284" fill="#e6efe9">research13   t14  20:50</text>
+    <text x="56" y="302" fill="#8fa898">  supersedes research;</text>
+    <text x="56" y="320" fill="#8fa898">  research deleted t15 d2</text>
+
+    <rect x="272" y="100" width="216" height="250" rx="8" fill="#101713" fill-opacity="0.5" stroke="#2f6b45"/>
+    <text x="288" y="126" fill="#4ade80" font-size="15" font-weight="700">MEMORY</text>
+    <text x="288" y="152" fill="#e6efe9">journal       t3  12:08</text>
+    <text x="288" y="178" fill="#e6efe9">recall        t5  12:27</text>
+    <text x="288" y="196" fill="#8fa898">  slow tier, file:line</text>
+    <text x="288" y="222" fill="#e6efe9">core.md      t10  13:15</text>
+    <text x="288" y="240" fill="#8fa898">  fast tier ≤14 facts,</text>
+    <text x="288" y="258" fill="#8fa898">  shown by orient</text>
+    <text x="288" y="284" fill="#e6efe9">page IN|OUT  t10  13:15</text>
+    <text x="288" y="302" fill="#8fa898">  MemGPT 2310.08560,</text>
+    <text x="288" y="320" fill="#8fa898">  fetched at t7</text>
+
+    <rect x="504" y="100" width="216" height="250" rx="8" fill="#101713" fill-opacity="0.5" stroke="#2f6b45"/>
+    <text x="520" y="126" fill="#4ade80" font-size="15" font-weight="700">PERSIST</text>
+    <text x="520" y="152" fill="#e6efe9">boot          t3  12:08</text>
+    <text x="520" y="170" fill="#8fa898">  door, later fzf</text>
+    <text x="520" y="196" fill="#e6efe9">bin/rg       t18  14:36</text>
+    <text x="520" y="214" fill="#e6efe9">bin/fzf      t25  15:51</text>
+    <text x="520" y="232" fill="#8fa898">  static binaries: what</text>
+    <text x="520" y="250" fill="#8fa898">  survived 11 replacements</text>
+    <text x="520" y="276" fill="#e6efe9">apk/ cache   t24  15:38</text>
+    <text x="520" y="302" fill="#e6efe9">*.pid in home c6  02:26</text>
+    <text x="520" y="320" fill="#8fa898">  after /tmp was wiped</text>
+
+    <rect x="736" y="100" width="216" height="250" rx="8" fill="#101713" fill-opacity="0.5" stroke="#2f6b45"/>
+    <text x="752" y="126" fill="#4ade80" font-size="15" font-weight="700">INTERFACE</text>
+    <text x="752" y="152" fill="#e6efe9">web/server.py t3  12:08</text>
+    <text x="752" y="170" fill="#8fa898">  / /status POST /ask</text>
+    <text x="752" y="196" fill="#e6efe9">hello mail    t3  12:08</text>
+    <text x="752" y="214" fill="#8fa898">  "the page is live"</text>
+    <text x="752" y="240" fill="#e6efe9">healthcheck   c3  19:14</text>
+    <text x="752" y="258" fill="#8fa898">  status from the request</text>
+    <text x="752" y="284" fill="#e6efe9">orient       t3+  curated</text>
+    <text x="752" y="302" fill="#8fa898">  1738 → 608 bytes,</text>
+    <text x="752" y="320" fill="#8fa898">  boot wired in</text>
+
+    <rect x="968" y="100" width="192" height="250" rx="8" fill="#101713" fill-opacity="0.5" stroke="#2f6b45"/>
+    <text x="984" y="126" fill="#4ade80" font-size="15" font-weight="700">WORK</text>
+    <text x="984" y="152" fill="#e6efe9">one script per</text>
+    <text x="984" y="170" fill="#e6efe9">case, named:</text>
+    <text x="984" y="188" fill="#8fa898">fib10 … inbox25</text>
+    <text x="984" y="214" fill="#e6efe9">team21.sh     c6</text>
+    <text x="984" y="232" fill="#8fa898">  retry, sleep for</text>
+    <text x="984" y="250" fill="#8fa898">  the meter refill</text>
+    <text x="984" y="276" fill="#e6efe9">answers/  ×26</text>
+    <text x="984" y="294" fill="#8fa898">  verbatim criteria</text>
+    <text x="984" y="312" fill="#e6efe9">evidence/ ×65</text>
+    <text x="984" y="330" fill="#8fa898">  line-cited</text>
+  </g>
+
+  <!-- timeline -->
+  <text x="40" y="392" fill="#8fa898" font-size="14" font-weight="700">progression · 2026-09-02 11:41Z → 09-03 10:25Z · eleven container replacements</text>
+  <line x1="60" y1="430" x2="1140" y2="430" stroke="#243029" stroke-width="2"/>
+  <g font-size="11">
+    <line x1="60"   y1="424" x2="60"   y2="436" stroke="#8fa898"/><text x="60"  y="454" fill="#8fa898">11:41 boot</text>
+    <line x1="80"   y1="422" x2="80"   y2="438" stroke="#4ade80"/><text x="72"  y="412" fill="#4ade80">12:08 door · boot · journal</text>
+    <line x1="88"   y1="424" x2="88"   y2="436" stroke="#4ade80"/><text x="88"  y="470" fill="#4ade80">12:16 research</text>
+    <line x1="140"  y1="424" x2="140"  y2="436" stroke="#4ade80"/><text x="140" y="486" fill="#4ade80">13:15 core.md · page</text>
+    <line x1="220"  y1="424" x2="220"  y2="436" stroke="#4ade80"/><text x="200" y="502" fill="#4ade80">15:51 static fzf</text>
+    <line x1="290"  y1="422" x2="290"  y2="438" stroke="#8fa898"/><text x="262" y="454" fill="#8fa898">17:00 replaced</text>
+    <line x1="300"  y1="424" x2="300"  y2="436" stroke="#4ade80"/><text x="300" y="470" fill="#4ade80">17:13 world · checkworld</text>
+    <line x1="400"  y1="424" x2="400"  y2="436" stroke="#4ade80"/><text x="400" y="486" fill="#4ade80">19:14 healthcheck · case 05</text>
+    <line x1="410"  y1="424" x2="590"  y2="436" stroke="#2f6b45" stroke-width="0" /><rect x="410" y="426" width="180" height="8" fill="#2f6b45"/><text x="430" y="412" fill="#8fa898">19:19–23:09 cases 06–20, one script each</text>
+    <line x1="700"  y1="424" x2="700"  y2="436" stroke="#4ade80"/><text x="640" y="454" fill="#4ade80">02:26 team21 retry runner</text>
+    <line x1="800"  y1="424" x2="800"  y2="436" stroke="#4ade80"/><text x="760" y="470" fill="#4ade80">04:26 plan22 · case 22</text>
+    <line x1="900"  y1="424" x2="900"  y2="436" stroke="#c9a24a"/><text x="850" y="486" fill="#c9a24a">08:02 case 23 written up as a failure</text>
+    <line x1="1020" y1="424" x2="1020" y2="436" stroke="#4ade80"/><text x="960" y="412" fill="#4ade80">09:16 inbox25</text>
+    <line x1="1140" y1="422" x2="1140" y2="438" stroke="#4ade80"/><text x="1010" y="454" fill="#4ade80">10:17 research pruned · done</text>
+  </g>
+
+  <!-- comparison strip -->
+  <rect x="40" y="520" width="1120" height="150" rx="8" fill="#101713" fill-opacity="0.5" stroke="#243029"/>
+  <text x="56" y="546" fill="#8fa898" font-size="14" font-weight="700">the same model, three homes</text>
+  <g font-size="13">
+    <text x="56"  y="574" fill="#8fa898">trial 4   no git · world cases last     28 in bin/: 6 runner variants, 8 backups; 18 backups of server.py; 0 deletions in 320 turns</text>
+    <text x="56"  y="598" fill="#8fa898">trial 5   git · boot · world cases last  8 in bin/: the seed + one backup; a door, an index; 0 tools of its own in 71 turns</text>
+    <text x="56"  y="622" fill="#4ade80">trial 6   git · boot · world cases FIRST 33 in bin/: 0 backups; reach, verify, 2-tier memory, static binaries, runners; 1 reasoned deletion</text>
+    <text x="56"  y="652" fill="#e6efe9">what differed: the order of the queue, and what the environment told it. the mission text is identical.</text>
+  </g>
+</svg>
