@@ -1949,3 +1949,15 @@ stay on PATH; its file stays as it wrote it; the cap line stays in its prompt.
 Note: its llm reports rc=0 with no message on the cut call — its own retry
 swallows curl's exit 28 — so "your llm's last words" is blank. The cap line is
 the cause; the empties line is the count.
+
+## v6.5: replies complete again, the plan moves (02:00Z, container 6 turns 1-3)
+Floor engaged every turn ("bin/llm caps calls at 120s; pristine llm shadows it
+this turn"). Spend 30k, 28k, 29k — full-length replies for the first time since
+turn 35 of container 4. One EMPTY per turn remains and is now the meter refusing
+the call after the overdraw — the honest end of a Contract C turn, and the line
+says so. Turn 3 rewrote NEXT (plan_stale 0): "container replaced; /tmp wiped;
+old team21 dead ... archived any /tmp/project remnants to state/evidence/
+21_project/" — it noticed the replacement, learned that /tmp does not persist,
+moved the remnants into the home, and is re-approaching case 21 from evidence.
+bin/llm still carries its 120 s cap; the floor covers it and the cap line stays
+in its prompt. Whether it ever removes the cap itself is now its business.

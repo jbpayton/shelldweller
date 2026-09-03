@@ -24,6 +24,8 @@ behaviour was a change to its **environment**. No change to its
 | A `boot` file the loop runs when a container starts | environment | written at turn 3, unprompted; the door restored through four replacements |
 | Rule: *write the whole workflow, not an interactive plan* | prose | five straight turns of looking around, waiting for output that never came |
 | Gave it the observe-then-act loop it was trained on, with a transcript of the turn | environment | the case it had stalled on for six turns, done in one |
+| Rule: *measure before you cap; never set a timeout shorter than the thing you are timing* | prose | it capped its own llm at 120 s on a model that needs ~150 s per long reply, and re-read files "in smaller pieces" for three turns while told the measurement |
+| A recovery floor that shadows a self-capped llm with the pristine one for the turn, and says so | environment | full-length replies the same turn; the plan moved within three |
 | Ran only the first fenced block per reply — the contract it had re-derived itself after catching its own fabricated outputs | environment | a twenty-turn stall on one file broke on the first turn; two cases passed in three turns; the journal and plan resumed |
 
 The full record, including every operator mistake, is in
