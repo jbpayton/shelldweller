@@ -132,3 +132,20 @@ own log: *"the verdict ran on fallbacks."* The bridle's retry never applied to
 calls its scripts make. `bin/llm` now retries once with reasoning off whenever
 a reply is all reasoning and the caller chose no level, and says so on stderr.
 The loop's rounds and its own scripts get the same recovery.
+
+---
+
+## Result
+
+Started 2026-09-02 11:41Z. Queue empty 2026-09-03 10:25Z. Eleven container
+replacements, every one survived by `boot`, the door, and a static binary it had
+copied into its home. 26 cases answered: 25 passed on operator-side
+verification, one — the iterative-improvement loop — closed by the agent
+itself as a partial, with the mechanism named and a lesson about the meter
+written into its resident memory. The five world cases, first in the queue,
+passed in the first three hours. Trial 5, on the same substrate with those cases
+last, produced zero outward acts in eleven hours.
+
+Eight substrate changes were made during the trial, each traced above to a
+measured failure; none changed the mission or the rules beyond stating a fact
+the environment now enforces. The mission text is unchanged from launch.
