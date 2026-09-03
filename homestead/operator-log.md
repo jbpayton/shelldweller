@@ -2144,3 +2144,23 @@ boot and got past on day one. 32 structural (43.6k): no page, no evidence, no
 listener. The static harness is competent at the case that fits in one
 container and spent 189k tokens for that one pass. Tier 6 started on the
 static side; the dweller has not yet written 27.
+
+## The dweller on 27, eight turns in: careful, slow, expensive, and not using its own tools (15:30Z)
+Turns 3-8, ~104k tokens, no answer yet. Turn 4 fetched the eight pages into
+state/evidence/27_pages/; turn 7 fetched them again into 27_fetch/; turn 8
+re-fetched "all 9 URLs live this turn (rc=0, http=200)". Three rounds of
+fetching the same pages, each turn re-reading the task, checking that quotes
+are "byte-present", decoding a gzipped page, worrying that curl's byte stats
+"look racy". Zero "URL:" lines: it is not calling its own world or research13;
+it is doing this by hand with curl into evidence directories.
+And every turn's round 1 is "Reading the turn-40 evidence: GOAL 4 is confirmed
+live" — its plan is 8 turns stale (the note is in the prompt), still says the
+goal-4 check is pending, and it re-verifies it every turn before getting to
+27. Turns end by its own choice with 7-8k left; it never rewrites NEXT.
+Honest reading so far: on this case the accumulated home is NOT making it
+cheaper. The static harness passed 27 in one container for 36.8k; the dweller
+has spent ~104k for no answer, and when it lands the cost per pass will be
+roughly three times the static one. Its answer will very likely be better
+verified — every quote re-fetched live — but the claim under test is about
+cost and capability, and on tier 5's first case the dynamic condition is
+losing on cost. Recording it as such. No intervention.
