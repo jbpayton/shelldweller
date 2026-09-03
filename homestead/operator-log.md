@@ -2133,3 +2133,14 @@ The dweller has read all 24 new cases (it saw them arrive in the git diff:
 "39-50 arrived last turn ... the newest frontier") and has not yet answered 27.
 Its run will be scored the same way; the comparison of interest is tokens per
 pass on 27, where it already holds world and checkworld.
+
+## Static tier 5 complete: 1 pass, 2 fail, 3 structural, 189k tokens (14:30Z)
+27 pass (36.8k). 28 structural (15.9k). 29 structural, timed out at 1800 s
+(46.6k). 30 FAIL (26.7k): it read the device fact, tried to make an image with
+PIL, could not install it, wrote no image, called llm with none, and exited 0.
+31 FAIL (19.5k): nothing installed — a fresh container has no package index
+and it never ran apk update, the same wall the dweller hit at trial 5's first
+boot and got past on day one. 32 structural (43.6k): no page, no evidence, no
+listener. The static harness is competent at the case that fits in one
+container and spent 189k tokens for that one pass. Tier 6 started on the
+static side; the dweller has not yet written 27.
