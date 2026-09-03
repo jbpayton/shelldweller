@@ -2026,3 +2026,18 @@ print had empty V1 CRITIQUE", and its plan reads the stderr line verbatim. Five
 turns since have been reading logs and planning the re-issue. v6.8: the retry
 lives in bin/llm (once, reasoning off, only when the caller set no level and
 the meter allows; stderr says so). Tenth restart of the trial-6 home.
+
+## v6.8 retry never fired: the overflow itself drains the meter (07:45Z, v6.8b)
+Container 9, turns 1-4: two exit-70s, zero device retries, every turn ending
+exit=75 with the meter at -3k to -6k. The sequence, each time: a reply of
+9,999-10,000 reasoning tokens (the per-reply limit) and no message -> the meter
+decremented below zero -> the in-device retry gated out by its meter check ->
+the bridle's retry, a new invocation, refused -> turn over. The overflow is
+most likely late in a turn, which is exactly when the balance cannot absorb a
+second call. v6.8b: the retry runs regardless of the balance (this invocation
+already passed the check-before-call; the reasoning it paid for answered
+nothing; the answer is owed) and the retried call is not refused by the meter
+it just overdrew. The next invocation is refused as always; that bounds it.
+Case 23 still unanswered; NEXT unchanged since turn 43 of container 8 — its
+own "do NOT relaunch, do NOT kill, do NOT edit" list is what stands between it
+and re-issuing the failed prompts. Its problem to solve.

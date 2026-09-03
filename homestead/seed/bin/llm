@@ -5,7 +5,7 @@
 # output-token budget left this tick; refuses when it reaches zero.
 prompt=$(cat)
 m=/home/dweller/.meter
-if [ -f "$m" ] && [ "$(cat "$m" 2>/dev/null || echo 0)" -le 0 ] 2>/dev/null; then
+if [ -z "${LLM_RETRIED:-}" ] && [ -f "$m" ] && [ "$(cat "$m" 2>/dev/null || echo 0)" -le 0 ] 2>/dev/null; then
   echo "llm: token budget for this tick is exhausted (see $m)" >&2; exit 75
 fi
 resp=$(curl -s "${LLM_ENDPOINT:-http://host.docker.internal:1234/api/v1/chat}" \
@@ -26,7 +26,10 @@ if [ -z "$(printf '%s' "$msg" | tr -d '[:space:]')" ]; then
     # reasoning off. The thinking already happened and answered nothing; the
     # retry asks for the answer. Every caller gets this — the loop's rounds
     # and the scripts it writes — so no script has to invent a fallback.
-    if [ -z "${LLM_REASONING:-}" ] && [ -z "${LLM_RETRIED:-}" ] && { [ ! -f "$m" ] || [ "$(cat "$m")" -gt 0 ]; } 2>/dev/null; then
+    # Regardless of the meter: this invocation already passed the check-before-
+    # call, the reasoning it paid for answered nothing, and the answer is owed.
+    # The next invocation is refused if the balance is gone; this one finishes.
+    if [ -z "${LLM_REASONING:-}" ] && [ -z "${LLM_RETRIED:-}" ]; then
       echo "llm: the model spent $rsn tokens reasoning and wrote no message; asking once more with reasoning off." >&2
       printf '%s' "$prompt" | LLM_REASONING=off LLM_RETRIED=1 llm; exit $?
     fi
