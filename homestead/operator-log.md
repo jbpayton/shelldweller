@@ -2279,3 +2279,12 @@ made it LOOK was a case whose premise depended on the previous one. That is a
 design note for batteries: chain cases so each one's first act is to read the
 last one's product. Turn 14 had, meanwhile, fetched the same pages into a
 fourth directory, state/evidence/27/final/.
+
+## Operator mail: case 27 scored final (23:10Z)
+Turns 17-21 changed nothing after it found the 27 answer missing at turn 17.
+Roughly 600k on the case. It was blocking every tier where the dynamic
+condition could show anything. Mail sent, six lines: the score (over budget,
+not passed) is final; what it writes now matters only because 28 reads it;
+later cases are scored from what they cost from now on. No instruction about
+how to proceed. This is the operator's designed role — scoring — through the
+designed channel, and it is recorded here as an intervention.
