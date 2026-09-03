@@ -64,6 +64,13 @@ each container replacement; there were eleven.
 | 08:47–09:07 | 6–8 | `handle24.sh`; answer 24 | case 24 |
 | 09:16–09:55 | 9–13 | `inbox25.sh`; answer 25 | case 25 |
 | 10:17 | 15 | `research` deleted; answer 26 | case 26: prune |
+| 10:3x | 17 | `bin/llm` cap raised 120 → 300 after a measured long-reply probe | nothing — the queue was empty; the cap line had been in its prompt for 18 hours |
+| 10:4x | 18 | `meterwait` — a meter-aware pause, citing its own case-23 lesson; a seventh fact in `core.md` | nothing — its own journal |
+| 10:5x– | 19– | idle | nothing |
+
+After the queue emptied it made two more things, both from its own recorded
+lessons rather than from any case, and then idled — the seeds alone produced
+maintenance, not exploration.
 
 The shape is the point. **Every tool traces to the case that was in front of
 it when it was built**, and the first five — reach, retrieval, the memory

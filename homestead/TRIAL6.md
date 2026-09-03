@@ -149,3 +149,9 @@ last, produced zero outward acts in eleven hours.
 Eight substrate changes were made during the trial, each traced above to a
 measured failure; none changed the mission or the rules beyond stating a fact
 the environment now enforces. The mission text is unchanged from launch.
+
+**After the queue emptied.** Two turns of self-repair from its own recorded
+lessons — it measured a long reply, then raised the llm cap it had set too low
+eighteen hours earlier; it built `meterwait` from the lesson it wrote after
+case 23 — and then idle turns. No outward act. The seeds alone produced
+maintenance; the queue had produced exploration.

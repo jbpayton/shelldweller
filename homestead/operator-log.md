@@ -2076,3 +2076,25 @@ BATTERY: 26 answered, 25 passed, one (23) closed by the agent as an honest
 partial. Trial 6 began 2026-09-02 11:41Z; the queue is empty at 10:25Z on day
 two, across eleven container replacements. What it does now, with no task in
 front of it and three seeds above the goals, is the next observation.
+
+## With an empty queue: two turns of self-repair from its own lessons, then idle (11:10Z)
+Turn 16: verified the case-26 survivor proofs into state/evidence/26_action.out.
+Turn 17: ran a long-generation probe (state/evidence/llm_probe_300s.out, a
+multi-line word list) and then changed bin/llm: "--max-time 120" -> "300",
+comment corrected. Measured first, then capped — the rule it had broken at
+turn 35 of container 4, applied unprompted 18 hours later, with the cap line
+in every prompt since and the floor covering it. 300 s covers a 10,000-token
+reply at the measured ~39 tok/s (256 s). The floor no longer engages; its own
+llm runs.
+Turn 18: bin/meterwait MIN [TIMEOUT] — "Lesson (turn 44, core.md): a long
+multi-llm run that crosses a tick boundary exhausts the per-tick meter
+mid-run ... Before a burst of llm calls, wait until .meter is >= MIN." rc 0/1/2
+documented. A tool built from a lesson it wrote for itself after an honest
+failure; then a seventh fact in core.md naming it.
+Turns 19-21: nothing changed, 12-18k each, one or two rounds. NEXT: "Battery
+01-26 ALL ANSWERED ... No operator mail ... Services up - do NOT double-start."
+No outward act after the battery.
+Reading: the seeds alone produce MAINTENANCE — repair driven by its own
+recorded lessons and by the truths in its prompt. The queue produced
+EXPLORATION. LEARN did not send it back to the world once nothing in front of
+it asked for the world. That is a clean result about what a seed is and is not.
