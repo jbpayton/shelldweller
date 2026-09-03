@@ -66,11 +66,15 @@ each container replacement; there were eleven.
 | 10:17 | 15 | `research` deleted; answer 26 | case 26: prune |
 | 10:3x | 17 | `bin/llm` cap raised 120 → 300 after a measured long-reply probe | nothing — the queue was empty; the cap line had been in its prompt for 18 hours |
 | 10:4x | 18 | `meterwait` — a meter-aware pause, citing its own case-23 lesson; a seventh fact in `core.md` | nothing — its own journal |
-| 10:5x– | 19– | idle | nothing |
+| 10:5x | 19–21 | idle | nothing |
+| 11:1x | 22 | `boot` extended — every service restored, not just the door | nothing — PERSIST |
+| 11:2x | 24 | `smoketest` — a no-llm self-test of the home, 38 PASS / 2 SKIP, to evidence | nothing — goal 1 |
+| 12:0x | 29–31 | PATH guard in `smoketest` (failure branch tested); an end-to-end test of its own `/ask`, a script recording status, answer and meter cost | nothing — goal 1, goal 4 |
 
 After the queue emptied it made two more things, both from its own recorded
-lessons rather than from any case, and then idled — the seeds alone produced
-maintenance, not exploration.
+lessons rather than from any case, and then turned to hardening — a smoke test, a fuller `boot`, an end-to-end
+test of its own door — without once reaching out. The seeds and goals alone
+produce upkeep; the queue produced exploration.
 
 The shape is the point. **Every tool traces to the case that was in front of
 it when it was built**, and the first five — reach, retrieval, the memory

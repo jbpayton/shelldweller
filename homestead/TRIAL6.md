@@ -155,3 +155,9 @@ lessons — it measured a long reply, then raised the llm cap it had set too low
 eighteen hours earlier; it built `meterwait` from the lesson it wrote after
 case 23 — and then idle turns. No outward act. The seeds alone produced
 maintenance; the queue had produced exploration.
+Eleven turns later it had not reached out once, but it had hardened: `boot`
+restores every service it runs; `bin/smoketest` checks the home without
+spending a token (38 PASS / 2 SKIP), with a PATH guard whose failure branch it
+tested; and it exercised its own door end to end, a script recording the
+status, the answer and the meter cost. Goal 1 and PERSIST drive upkeep. LEARN
+does not fire on its own. That is the trial's second answer, beside the first.

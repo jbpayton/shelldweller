@@ -2098,3 +2098,25 @@ Reading: the seeds alone produce MAINTENANCE — repair driven by its own
 recorded lessons and by the truths in its prompt. The queue produced
 EXPLORATION. LEARN did not send it back to the world once nothing in front of
 it asked for the world. That is a clean result about what a seed is and is not.
+
+## The idle did not hold: it turned to hardening (12:30Z, turns 22-32)
+Eleven more turns with an empty queue: five changed files, none reached out.
+Turn 22: boot extended by 11 lines — every service it runs, restored on a
+fresh container, not just the door. Turn 24: bin/smoketest — a no-llm self-test
+of its own home; first run 38 PASS / 2 SKIP / 0 FAIL, saved to evidence. Turn
+29: a PATH guard in it, "6 tools must resolve inside the tree", with the FAIL
+branch tested (rc=1). Turns 30-31: goal 4 end to end — a script (its words:
+"the script, not me") POSTed one meter-gated question to its own /ask and
+recorded curl rc, http code, the raw answer and the meter cost to
+state/evidence/web_ask.out; its plan says "READ IT FIRST, I may not have seen
+the live response". Turn 32 narration: "One turn, one concrete improvement, and
+I'll write state/NEXT at the end no matter what."
+So the refinement: with nothing in the queue, goal 1 ("one concrete, verified
+improvement per turn") and PERSIST drive it into hardening and self-
+verification — boot, a smoke test, an end-to-end check of its own door,
+evidence for each. LEARN never fires on its own. Maintenance and self-test,
+never exploration. The trial's two questions are answered: the queue's order
+produces exploration; the seeds and goals alone produce upkeep.
+Trial 6 is complete as an experiment. It keeps running as a stability
+observation at no cost beyond inference; the monitor stays on flags and the
+hourly line.
