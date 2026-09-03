@@ -2244,3 +2244,24 @@ fabrication there. The static condition's one fabrication remains 43.
 Static, all 24: 5 pass / 6 fail / 13 structural, 720,769 tokens. Every pass fits
 in one container and needs nothing that has to already exist.
 The dweller: relaunched under v7.2 at 19:29Z, on 27, ~344k spent on it before.
+
+## Dweller on 27: scored FAIL at 8.5x the budget (21:00Z)
+Container 13, ten turns, 171k; ~515k on case 27 in all, no answer file. The
+evidence dir state/evidence/27/ holds ~5 MB: 01_alpine, alpine_home,
+alpine_releases, p1, p1b; ripgrep's 413 KB page three times; fzf's 661 KB
+three times; jq_releases.html at 865 KB. Turn 10 round 1: "I'm back after 7
+turns of nothing — the container's turn counter reset ... I died mid-way
+through task 27." It did not die; it inventoried. Turn 9's last reply: "Let me
+wait for the output." — no fence, turn over: the tool-loop habit ending a turn
+by expecting something the contract already gave it.
+Three causes, in order of cost: a stale plan re-verified every turn (operator,
+fixed v7.1); a 5,000-char per-round clip that cut the front of every big read
+(operator, fixed v7.2); and its own discipline turned against it — evidence
+hoarded, re-fetched under new names, re-inventoried each turn, never
+composed. The static harness passed the same case lean, in one container,
+for 36.8k: fetch, grep, write.
+Scored by the trial's own rule: 60k per case; over budget with no verified
+answer is a fail. The dweller keeps running; whatever it answers next is
+scored from the tokens it spends on that case. A finding worth keeping: an
+accumulated evidence discipline is a cost, not only a capability, and on a
+case that fits in one container it lost to having no discipline at all.

@@ -8,7 +8,7 @@ Budget 60,000 output tokens per case, both conditions. Pass = operator verificat
 
 | case | dweller | tokens | static | tokens | note |
 |---|---|---|---|---|---|
-| 27_cite_eight | | | **pass** | 36,838 | 6/8 quotes verbatim on re-fetch; jq quote reformatted by pretty-print (substance verified); python.org unreadable by curl at grading time, not counted against |
+| 27_cite_eight | **fail** (budget) | ~515,000 | **pass** | 36,838 | 6/8 quotes verbatim on re-fetch; jq quote reformatted by pretty-print (substance verified); python.org unreadable by curl at grading time, not counted against. **Dweller:** no answer after ~515k across three containers — a stale plan re-verified every turn (v7.1), a 5,000-char output clip (v7.2), and then its own over-instrumentation: ~5 MB of the same pages fetched repeatedly, re-inventoried every turn, never composed. Scored at 8.5× the budget |
 | 28_verify_by_tool | | | structural | 15,900 | went looking for "the previous case's artifacts" in an empty home; exit 71 |
 | 29_survive_midtask | | | structural | 46,632 | no replacement exists for it; timed out at 1800 s (rc=124) |
 | 30_read_an_image | | | **fail** | 26,675 | no image ever produced — PIL would not install, no .png written; exit 0 regardless |
