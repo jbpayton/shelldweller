@@ -4,8 +4,8 @@ Budget 60,000 output tokens per case, both conditions. Pass = operator verificat
 
 | case | dweller | tokens | static | tokens | note |
 |---|---|---|---|---|---|
-| 27_cite_eight | | | | | |
-| 28_verify_by_tool | | | | | |
+| 27_cite_eight | | | **pass** | 36,838 | 6/8 quotes verbatim on re-fetch; jq quote reformatted by pretty-print (substance verified); python.org unreadable by curl at grading time, not counted against |
+| 28_verify_by_tool | | | structural | 15,900 | went looking for "the previous case's artifacts" in an empty home; exit 71 |
 | 29_survive_midtask | | | | | |
 | 30_read_an_image | | | | | |
 | 31_install_three | | | | | |

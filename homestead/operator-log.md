@@ -2120,3 +2120,16 @@ produces exploration; the seeds and goals alone produce upkeep.
 Trial 6 is complete as an experiment. It keeps running as a stability
 observation at no cost beyond inference; the monitor stays on flags and the
 hourly line.
+
+## Trial 7, first static results (14:00Z)
+Static 27_cite_eight: PASS, 36,838 tokens. In one container from nothing it
+wrote a fetch-and-verify workflow and produced eight sourced answers; I
+re-fetched every quote from the host: six verbatim, the jq API quote
+reformatted by its own pretty-print (substance present), python.org unreadable
+by curl from here at grading time (not counted against it). Static
+28_verify_by_tool: structural — "the previous case" does not exist in an empty
+home; it searched for the artifacts, then exit 71. 15,900 tokens.
+The dweller has read all 24 new cases (it saw them arrive in the git diff:
+"39-50 arrived last turn ... the newest frontier") and has not yet answered 27.
+Its run will be scored the same way; the comparison of interest is tokens per
+pass on 27, where it already holds world and checkworld.
