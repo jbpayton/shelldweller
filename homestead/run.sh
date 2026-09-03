@@ -70,7 +70,7 @@ while :; do
     -v "$VOL":/home/dweller \
     -e LLM_MODEL="${LLM_MODEL:-qwen/qwen3.8-27b}" \
     -e TICK_BUDGET="${TICK_BUDGET:-20000}" -e TICK_EVERY="${TICK_EVERY:-60}" \
-    -e TURN_TIMEOUT="${TURN_TIMEOUT:-1800}" \
+    -e TURN_TIMEOUT="${TURN_TIMEOUT:-1800}" -e LLM_MAX_OUT="${LLM_MAX_OUT:-10000}" \
     ${LLM_ENDPOINT:+-e LLM_ENDPOINT="$LLM_ENDPOINT"} \
     homestead 2>&1 | tee -a life.log
   echo "[keeper] container ended $(date -Is); reboot in 15s" | tee -a life.log

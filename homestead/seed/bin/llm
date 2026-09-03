@@ -12,7 +12,17 @@ resp=$(curl -s "${LLM_ENDPOINT:-http://host.docker.internal:1234/api/v1/chat}" \
   -H "Content-Type: application/json" \
   -d "$(jq -nc --arg mo "${LLM_MODEL:-qwen/qwen3.8-27b}" --arg s "${LLM_SYSTEM:-}" --arg p "$prompt" --arg x "${LLM_MAX_OUT:-16384}" \
         '{model:$mo, input:$p, max_output_tokens:($x|tonumber)} + (if $s != "" then {system_prompt:$s} else {} end)')")
-printf '%s' "$resp" | jq -r '[.output[]? | select(.type == "message") | .content] | join("\n")'
-if [ -f "$m" ]; then
-  echo $(( $(cat "$m") - $(printf '%s' "$resp" | jq -r '.stats.total_output_tokens // 0') )) > "$m"
+msg=$(printf '%s' "$resp" | jq -r '[.output[]? | select(.type == "message") | .content] | join("\n")')
+tot=$(printf '%s' "$resp" | jq -r '.stats.total_output_tokens // 0')
+rsn=$(printf '%s' "$resp" | jq -r '.stats.reasoning_output_tokens // 0')
+if [ -f "$m" ]; then echo $(( $(cat "$m") - tot )) > "$m"; fi
+printf '%s' "$msg"
+# An empty message is a fact worth stating. Trial 6: three turns lost to
+# replies that were all reasoning and no message, reported as exit 0.
+if [ -z "$(printf '%s' "$msg" | tr -d '[:space:]')" ]; then
+  if [ -z "$resp" ]; then echo "llm: no response from ${LLM_ENDPOINT:-the model server} (curl failed or timed out)" >&2; exit 69; fi
+  if [ "${rsn:-0}" -gt 0 ] 2>/dev/null; then
+    echo "llm: the model spent $rsn tokens reasoning and wrote no message (limit ${LLM_MAX_OUT:-16384} output tokens per reply). Only the message reaches you." >&2; exit 70
+  fi
+  echo "llm: empty message from the model server: $(printf '%s' "$resp" | head -c 200)" >&2; exit 71
 fi

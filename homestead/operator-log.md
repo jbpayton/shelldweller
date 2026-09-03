@@ -1978,3 +1978,17 @@ economy on top of it. The heaviest case in the battery, the one that starved
 under the old contract, passed on an honest exit code.
 21 of 26. Left: 22 long-horizon plan, 23 iterative improvement, 24 http api
 server, 25 task inbox, 26 one_of_each (pruning; bin/ is at 28 files).
+
+## Case 22: reasoning that never became a message (03:45Z, v6.6)
+Turns 10-12: one round each, 16.7k / 16.7k / 22.3k spent, one empty reply
+(exit 0, no stderr) from the PRISTINE llm via the floor — so not the 120 s cap.
+The arithmetic: the round-1 recon reply was small; the empty one consumed
+~16k. That is the trial-2 failure at the 16k scale: the model reasoned about
+the five-phase plan until max_output_tokens and emitted no message; the API
+returns a reasoning block and no message block; the pristine llm printed
+nothing and exited 0; v6.4 counted it as an unexplained EMPTY.
+v6.6: llm states the cause on stderr with a code (70 reasoning-only, 69 no
+response, 71 empty message); the bridle retries a 70 once with that sentence
+appended; LLM_MAX_OUT=10000 from the keeper. Not lowered further: the trial-2
+lesson was that a cap under the model's reasoning need yields empties, and the
+measured normal reply is 6-9k. Eighth restart of the trial-6 home.

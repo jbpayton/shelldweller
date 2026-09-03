@@ -102,3 +102,14 @@ nothing truncates" instead. The reply long enough to reason it through was the
 one being cut. The recovery floor now covers this class: when `bin/llm` caps a
 call under 200 s, the pristine llm shadows it for the turn — only llm, its own
 tools stay on PATH — and the WHAT CHANGED block says so. Its file is untouched.
+
+**An empty reply says why (v6.6, container 6 turn 13).** Turns 10–12 each ran
+one script and then received one empty reply, exit 0, from the pristine llm —
+16–22k tokens spent on a single call. The model had reasoned about the
+five-phase plan until it hit the 16,384-token per-reply limit and emitted no
+message. `bin/llm` now reports it: *"the model spent N tokens reasoning and
+wrote no message (limit X output tokens per reply). Only the message reaches
+you"* — exit 70, distinct from a refused meter (75) and a dead server (69).
+The bridle gives a reasoning-only reply one more chance, quoting that line. The
+per-reply limit is 10,000 from the keeper, so one overflow costs half a turn.
+Measured: ordinary replies run 6–9k; the overflows ran 16k+.
