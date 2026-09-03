@@ -2003,3 +2003,15 @@ xhigh|on. bin/llm passes LLM_REASONING; the bridle's single retry after a 70
 sets it off and says so. Not a global change — "don't fight the model and how
 it works with reasoning" — a recovery for the reply after thinking demonstrably
 ate the whole reply. Ninth restart of the trial-6 home.
+
+## v6.7 verified: four reasoning overflows, four recoveries; 22 passes (05:00Z)
+Container 8, turns 1-4: 4-5 rounds each, three of four changed files. exit-70
+(reasoning-only reply) happened four times; the reasoning-off retry recovered a
+round all four times. The only turn-ending empties are now rc=75, the meter —
+the honest end of a turn. 22_long_horizon_plan PASS: its answer has a "Criteria
+check — lines read this turn, with source" section mapping each criterion to a
+line of state/evidence/22_run.out (planning llm call, wfreq.sh, tests pass=3
+fail=0, retrospective llm call, END plan22 exit=0), durable copies in
+state/evidence/22_project/. 22 of 26. Case 23 is running detached with its pid
+and log in state/evidence/ — it learned that /tmp does not persist and puts the
+evidence in the home now.

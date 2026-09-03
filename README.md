@@ -27,6 +27,7 @@ behaviour was a change to its **environment**. No change to its
 | Rule: *measure before you cap; never set a timeout shorter than the thing you are timing* | prose | it capped its own llm at 120 s on a model that needs ~150 s per long reply, and re-read files "in smaller pieces" for three turns while told the measurement |
 | A recovery floor that shadows a self-capped llm with the pristine one for the turn, and says so | environment | full-length replies the same turn; the plan moved within three |
 | Made an empty reply from the model a failure with the model server's own exit code, instead of "done" | environment | it wrote a team runner that retries a refused sub-agent after sleeping for the meter to refill — and passed the heaviest case in the battery on it |
+| Told the model, in its own server's words, that its last reply was all reasoning and no message, and re-ran that one reply with reasoning off | environment | four overflows on a planning case, four recoveries; the case passed the same turn |
 | Ran only the first fenced block per reply — the contract it had re-derived itself after catching its own fabricated outputs | environment | a twenty-turn stall on one file broke on the first turn; two cases passed in three turns; the journal and plan resumed |
 
 The full record, including every operator mistake, is in
