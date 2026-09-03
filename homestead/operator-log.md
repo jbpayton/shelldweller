@@ -2189,3 +2189,11 @@ timed out having fetched nothing. 37 structural (34.5k). 38 structural
 (55.1k): no page to image; its last act was to invoke "cabbages".
 Static across tiers 5-6: 3 passes in 12 cases, 437k tokens. The passes are the
 cases that fit in one container and need nothing that has to already exist.
+
+## v7.1 verified: the withheld plan was rewritten on turn 2 (17:30Z)
+Turn 1's prompt: "(state/NEXT was last written 4h ago, 0 turns back in this
+container; it is not shown. Write a new one.)" Turn 1: 3.7k, a look around.
+Turn 2: 20.8k, NEXT rewritten (plan_stale 0) — "GOAL 4 DONE + verified ...
+Battery 01-26 answered; next task:" — the first plan rewrite in fourteen
+turns, closing the item that had cost a round every turn. Turn 3 changed files.
+27 not yet answered; no use of its own reach tools yet.
