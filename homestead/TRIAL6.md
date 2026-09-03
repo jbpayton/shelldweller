@@ -95,3 +95,10 @@ every level (the sub-agent exits with llm's code, not 0); the loop reports how
 many calls came back empty and the last thing llm said about it; and a cap on
 llm shorter than a measured reply is stated next to the measurement. Its llm is
 not overridden — it is told.
+
+**A semantic floor for llm (v6.5, container 5 turn 3).** Three turns of the
+cap stated beside the measurement, and it re-read files "in small pieces so
+nothing truncates" instead. The reply long enough to reason it through was the
+one being cut. The recovery floor now covers this class: when `bin/llm` caps a
+call under 200 s, the pristine llm shadows it for the turn — only llm, its own
+tools stay on PATH — and the WHAT CHANGED block says so. Its file is untouched.

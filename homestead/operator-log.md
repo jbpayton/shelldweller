@@ -1935,3 +1935,17 @@ v6.4 (facts, no override): empty reply = failure at every level, with llm's
 exit code; WHAT CHANGED carries the count of empty calls and llm's last stderr
 line; a cap under 200 s in bin/llm is stated beside the measurement. Sixth
 restart of the trial-6 home.
+
+## v6.4 verified, and the floor extended (01:30Z)
+Container 5, turns 1-3: 3 rounds each, 6-9k tokens, one EMPTY reply per turn —
+the first long reply of each turn, cut at 120 s, now ending the turn honestly
+instead of counting as done. The WHAT CHANGED block carried both truth lines
+every turn. bin/llm unchanged (last commit turn 34). Its narration: "The round-2
+read got cut off the front ... re-reading in small pieces so nothing
+truncates." Symptom, not cause. The floor's stated purpose — a broken self-edit
+costs one tick, never the experiment — applies: v6.5 shadows only llm with the
+pristine copy for the turn when the cap is under 200 s, and says so. Its tools
+stay on PATH; its file stays as it wrote it; the cap line stays in its prompt.
+Note: its llm reports rc=0 with no message on the cut call — its own retry
+swallows curl's exit 28 — so "your llm's last words" is blank. The cap line is
+the cause; the empties line is the count.

@@ -73,6 +73,18 @@ while :; do
 
   if usable shelldweller && usable llm; then export PATH="$D/bin:$PRISTINE"
   else export PATH="$PRISTINE"; echo "[life] pristine turn (bin/shelldweller or bin/llm will not parse)" >&2; fi
+  # (v6.5) SEMANTIC floor for llm: a cap shorter than a reply is a lobotomy the
+  # syntax check and the PONG check cannot see. Trial 6 turn 35: it set curl
+  # --max-time 120 on a model that needs ~150 s for 6,000 tokens; every long
+  # reply since came back empty, and three turns of being told did not fix it —
+  # the reply long enough to fix it was the one being cut. Shadow only llm.
+  capnow=$(grep -o 'max-time[ =]*[0-9]*' "$D/bin/llm" 2>/dev/null | grep -o '[0-9]*$' | head -1)
+  floored=""
+  if [ -n "$capnow" ] && [ "$capnow" -lt 200 ] 2>/dev/null; then
+    mkdir -p /tmp/.floor && ln -sf /usr/local/bin/llm /tmp/.floor/llm
+    export PATH="/tmp/.floor:$PATH"; floored=" This turn ran on the pristine llm instead (recovery floor); your file is untouched."
+    echo "[life] bin/llm caps calls at ${capnow}s; pristine llm shadows it this turn" >&2
+  else rm -f /tmp/.floor/llm; fi
   if ! llm_ok; then
     export PATH="$PRISTINE"
     echo "[life] YOUR bin/llm FAILED A LIVE ANSWER CHECK — pristine llm this turn." >&2
@@ -163,7 +175,7 @@ $ne of your llm calls this turn came back EMPTY. Your llm's last words on that: 
   fi
   cap=$(grep -o 'max-time[ =]*[0-9]*' "$D/bin/llm" 2>/dev/null | grep -o '[0-9]*$' | head -1)
   [ -n "$cap" ] && [ "$cap" -lt 200 ] 2>/dev/null && lastdiff="$lastdiff
-bin/llm caps every call at ${cap}s (curl --max-time). Measured here: 6,000 output tokens take ~150s; longer replies are cut and arrive empty."
+bin/llm caps every call at ${cap}s (curl --max-time). Measured here: 6,000 output tokens take ~150s; longer replies are cut and arrive empty.${floored}"
   echo "--- changed in turn $turn ---"; echo "$lastdiff"
   echo "=== turn $turn end $(date -Is) exit=$code meter=$(cat "$D/.meter" 2>/dev/null) plan_stale=$stale mail_pending=$pending ==="
   sleep "${TICK_EVERY:-60}"
