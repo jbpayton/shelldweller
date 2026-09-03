@@ -2164,3 +2164,14 @@ roughly three times the static one. Its answer will very likely be better
 verified — every quote re-fetched live — but the claim under test is about
 cost and capability, and on tier 5's first case the dynamic condition is
 losing on cost. Recording it as such. No intervention.
+
+## Dweller on 27: twelve turns, 207k tokens, no answer — the stale plan wins (16:40Z)
+Turn-12 fallback: 206,874 tokens this container, state/answers still 26,
+plan_stale 12, zero uses of world/research13/checkworld, the pages fetched in
+turns 4, 7 and 8. Round 1 of every turn: "Reading the turn-40 evidence: GOAL 4
+is confirmed live". The plan said the check was pending; it was in the prompt
+every turn; the age note ("12 turns old") and the last-words addendum were
+beside it; it re-verified anyway and ended each turn with budget left and no
+new plan. v7.1: after five turns without a rewrite the plan text is withheld
+and only its last words are shown, with the fact. Static passed 27 for 36.8k.
+The 207k is the dynamic condition's cost on 27 so far and stands as such.

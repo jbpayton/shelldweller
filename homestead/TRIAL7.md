@@ -49,3 +49,18 @@ for the static harness. Scores in `TRIAL7-scores.md`.
 
 **Substrate.** Trial 6's, plus: `llm` accepts an image; the keeper grows the
 queue on boot; `static.sh`. Mission text unchanged.
+
+---
+
+## Substrate changes made during trial 7
+
+**A plan nobody rewrites in five turns is not shown (v7.1, container 11 turn
+12).** The first tier-5 case cost twelve turns and 207k tokens with no answer.
+Its plan file, last written before the new cases arrived, said a door check was
+pending; round one of every turn re-verified it, the eight pages were fetched
+three times over, and every turn ended by its own choice before rewriting the
+plan. The age note and its own last words were both in the prompt; the stale
+text still won by being there. Now, after five turns without a rewrite, the
+loop shows only the fact and the model's last words. The file is untouched.
+Recorded as a cost against the dynamic condition: the 207k stands in the
+scores.

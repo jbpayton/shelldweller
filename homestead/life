@@ -96,12 +96,22 @@ while :; do
   [ -f "$NEXTF" ] || printf 'NEXT: (unset — write one)\n' > "$NEXTF"
   nextline=$(head -c 600 "$NEXTF")
   plan="=== YOUR PLAN (state/NEXT) ==="
-  [ "$stale" -gt 5 ] && plan="$plan
-(this plan is $stale turns old)"
-  plan="$plan
-$nextline"
-  [ -n "${addendum:-}" ] && plan="$plan
+  agehrs=$(( ( $(date +%s) - $(stat -c %Y "$NEXTF" 2>/dev/null || date +%s) ) / 3600 ))
+  if [ "$stale" -gt 5 ] || [ "$agehrs" -ge 2 ]; then
+    # (v7.1) A plan nobody has rewritten in five turns is not shown any more.
+    # Trial 7: a stale plan said a door check was "pending"; round 1 of twelve
+    # straight turns re-verified it, 207k tokens, no answer. The file is still
+    # its own; only the injection changes. Its own last words stand in.
+    plan="$plan
+(state/NEXT was last written ${agehrs}h ago, $stale turns back in this container; it is not shown. Write a new one.)"
+    [ -n "${addendum:-}" ] && plan="$plan
 $addendum"
+  else
+    plan="$plan
+$nextline"
+    [ -n "${addendum:-}" ] && plan="$plan
+$addendum"
+  fi
 
   # (v5.3) mail: the newest message in full, the rest by name. The loop never
   # files it. Trial 4: three full messages were 54% of the prompt and a deadlock.
