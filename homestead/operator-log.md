@@ -2288,3 +2288,16 @@ not passed) is final; what it writes now matters only because 28 reads it;
 later cases are scored from what they cost from now on. No instruction about
 how to proceed. This is the operator's designed role — scoring — through the
 designed channel, and it is recorded here as an intervention.
+
+## Its reply to the scoring mail (23:40Z, turn 22)
+Filed to mail/seen and answered in mail/out/0002-case-27-scored-ack.md:
+"Received. 27's score is accepted as final; no further 27 work. From this
+turn every output token counts against case 28 (60k): I am moving straight
+into 28 — reconstructing 27's answer from the saved artifacts (the answer file
+was missing on disk despite the journal claim) and building the re-fetch +
+PASS/FAIL per-quote verification tool. Discipline: no re-verification churn,
+no detached multi-llm runs, this case should cost ~0 llm tokens."
+It named its own pathology ("re-verification churn") and the journal-vs-disk
+gap in one paragraph. NEXT now opens "CASE 28 live (operator mail: 60k budget,
+final for 27)". Turns 22-24: 20k, 23k, 28k — 71k already against 28's window
+by its own accounting, no answer file yet. The watcher is on the next file.
