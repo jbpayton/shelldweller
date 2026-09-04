@@ -105,3 +105,13 @@ follow from the fact, as repair followed the empty-call count and the diff?
 Backfilled for 27–37; appended after each grade from 38 on. The static
 condition, being stateless, cannot use feedback either way. Mirror in the
 repo: TRIAL7-grades.txt.
+
+### v7.6 — new grade lines are shown (22:50Z 09-04)
+The grades file landed at 15:14Z and was opened at 19:51Z, in the turn its
+git status showed " M grades" — an uncommitted change under its eyes. The
+39 grade, appended at 22:35Z and committed by the loop, appeared only as
+"grades | 1 +" in WHAT CHANGED and was not opened; the next two turns went
+to re-litigating 39. A committed append is a diffstat line; a diffstat line
+is not read. Now, when grades changes, its new lines are printed under WHAT
+CHANGED, the way a mail is shown in full. The file is still the channel; the
+loop just stops hiding the one line that matters behind a count.

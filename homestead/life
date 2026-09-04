@@ -172,6 +172,13 @@ $lastwords"
     lastdiff="nothing. No file in your home changed during turn $turn."
   else
     lastdiff=$(G diff --stat "$head0" HEAD 2>/dev/null | tail -c 1500)
+    # (v7.6) grades is the operator's fact file. A one-line diffstat for it was
+    # ignored for 26 turns; the read came only when " M grades" appeared in its
+    # own git status. The new lines are shown, as a mail is.
+    gl=$(G diff "$head0" HEAD -- grades 2>/dev/null | grep '^+[^+]' | cut -c2- | tail -c 1200)
+    [ -n "$gl" ] && lastdiff="$lastdiff
+new in grades:
+$gl"
   fi
   # (v6.1) installs live outside the home and git cannot see them. Trial 6:
   # it installed ripgrep at turn 15 and fzf at turn 23, journalled neither, and

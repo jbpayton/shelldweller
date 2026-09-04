@@ -2609,3 +2609,11 @@ restore. Nothing rose. Fifteen turns, ~357k (6×), after a plan whose first
 line was the budget. Grade line appended to grades within minutes of the
 answer; the next-read watch will say whether the append is the trigger.
 Static: fail (no tool to improve). Tier 3 (39–44, self-measurement) opens 0/1.
+
+## v7.6: show the grade lines (22:50Z 09-04)
+Turns 43–45 stayed on 39 after its grade was on file: turn 43 saw
+"grades | 1 +" and read nothing; 44 and 45 burned their meters on recon and
+changed nothing. Trigger distinction established: a modified file in its own
+`git status` output got the file opened (turn 28); a committed diffstat line
+in the prompt did not. life now prints the added lines of grades under WHAT
+CHANGED. Restart needed (life is in the image): a replacement, logged.
