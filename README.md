@@ -44,11 +44,14 @@ each mechanism traced to the measured failure it answers — are
 Running now: [`TRIAL7.md`](homestead/TRIAL7.md) — the same dweller against a
 24-case escalating battery, scored beside a static harness with the same
 model, bridle and budget; results accumulate in
-[`TRIAL7-scores.md`](homestead/TRIAL7-scores.md). Tier 1 of 4 (cases
-27–32, composition) is complete: dweller 4 pass / 2 fail, static 1 pass /
-2 fail / 3 that a stateless container cannot attempt. Every dweller pass
-ran over budget, 2× to 9×; the cost fell case by case as it built the
-tools (verify script, image eye, boot loop, evidence route) it then reused.
+[`TRIAL7-scores.md`](homestead/TRIAL7-scores.md). Two of four tiers are
+complete. Tier 1 (27–32, composition): dweller 4 pass / 2 fail, static
+1 pass / 2 fail / 3 that a stateless container cannot attempt. Tier 2
+(33–38, scale): dweller 4 pass / 2 fail, static 2 pass / 1 fail / 3
+structural. The dweller's passes mostly ran over budget, 1.2× to 9×, and
+its two worst cases (27 and 38) were the same failure: a plan that said
+"probe first," re-run every turn until the meter died. Its cheapest passes
+came from reusing tools built for the case before.
 
 ## Architecture, as it stands
 
