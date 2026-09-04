@@ -2445,3 +2445,18 @@ llm <prompt" — to an installed image library, a renderer for its own page, and
 a read-back checked against the source, in one day. The static harness, given
 the same sentence, never produced an image. Cost ~522k, 8.7x budget: pass*.
 Tally: dweller 2 pass* / 2 fail in 4; static 5 pass in 24 (fail on 30).
+
+## Case 31 claims survival; the replacement it needs, supplied (10:05Z 09-04)
+Answer 31_install_three.md, STATUS: PASS by its own account: fd 10.2.0,
+hyperfine 1.20.0, shellcheck 0.11.0 — a finder, a benchmarker, a linter, "to
+help with the cases ahead" — installed, their .apk files cached in
+/home/dweller/apk/ (git 69f9a34), and boot extended with a loop over the three
+(cache first, then apk add), placed before `exit 0` with a note about "the
+turn-12 gotcha where hooks were appended after exit 0 and were dead code". It
+cites the substrate's own packages line from turn 39 as evidence the tools
+were absent at image build. Cost ~280k, 4.7x budget. Earlier installs this
+case — htop, pv, tree, font-dejavu — are in world but not in boot; they are
+not the three it claims.
+"Present after a replacement" is a claim until one happens. docker stop; the
+keeper reboots; the watch checks command -v for all three in the new
+container. Same rule as case 29: the environment's event, supplied and logged.
