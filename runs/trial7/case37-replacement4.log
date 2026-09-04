@@ -1,0 +1,5 @@
+14:38:28Z window opens: boot 20 has 7 turn-ends; acting after 10 unless 37 is answered
+15:04:51Z replacement 4: stopped
+15:05:09Z boot 21: [life] boot exited 0 (output in state/boot.log)
+15:05:11Z after boot 21, before its first turn: 0.0.0.0:8080 0.0.0.0:9090 | procs=3 | door=200
+15:05:12Z fourth replacement done

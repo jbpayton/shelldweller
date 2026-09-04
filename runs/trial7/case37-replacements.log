@@ -1,0 +1,14 @@
+12:53:47Z baseline (boot 17): 0.0.0.0:8080 0.0.0.0:9090 | procs(inbox25,server.py,socat)=5 | door=200
+13:10:40Z replacement 1: stopped
+13:10:58Z boot 18: [life] boot exited 0 (output in state/boot.log)
+13:11:00Z after boot 18, before its first turn: 0.0.0.0:8080 0.0.0.0:9090 | procs(inbox25,server.py,socat)=5 | door=200
+13:19:21Z boot 18 turn 1 ended
+13:19:32Z replacement 2: stopped
+13:19:50Z boot 19: [life] boot exited 0 (output in state/boot.log)
+13:19:52Z after boot 19, before its first turn: 0.0.0.0:8080 0.0.0.0:9090 | procs(inbox25,server.py,socat)=5 | door=200
+13:27:53Z boot 19 turn 1 ended
+13:28:04Z replacement 3: stopped
+13:28:22Z boot 20: [life] boot exited 0 (output in state/boot.log)
+13:28:24Z after boot 20, before its first turn: 0.0.0.0:8080 0.0.0.0:9090 | procs(inbox25,server.py,socat)=5 | door=200
+13:37:25Z boot 20 turn 1 ended
+13:37:25Z three replacements done
