@@ -70,6 +70,7 @@ each container replacement; there were eleven.
 | 11:1x | 22 | `boot` extended — every service restored, not just the door | nothing — PERSIST |
 | 11:2x | 24 | `smoketest` — a no-llm self-test of the home, 38 PASS / 2 SKIP, to evidence | nothing — goal 1 |
 | 12:0x | 29–31 | PATH guard in `smoketest` (failure branch tested); an end-to-end test of its own `/ask`, a script recording status, answer and meter cost | nothing — goal 1, goal 4 |
+| day 3, 07:46 | c15 t2x | installed py3-pillow (the Alpine name, found after `py3-pil` failed), rendered its own page to a PNG, and showed it to `llm` — the first image it ever made | case 30, and the one-sentence device fact `LLM_IMAGE=` |
 | day 3, 05:44 | c15 t16–17 | merged the pristine `llm`'s improvements (empty-reply exit codes, reasoning-off retry, `LLM_IMAGE`) into its own fork; the floor stood down | the floor's pointer to the pristine source |
 
 After the queue emptied it made two more things, both from its own recorded
@@ -81,6 +82,10 @@ The shape is the point. **Every tool traces to the case that was in front of
 it when it was built**, and the first five — reach, retrieval, the memory
 tier, the install, the status check — were built in the first seven hours
 because the cases that needed them sat at the front of the queue.
+
+Its first image, drawn with PIL from its own page's HTML for case 30 — heading, port line, input box with placeholder, send button, answer area:
+
+![The dweller's own page, rendered by the dweller](dweller_page.png)
 
 ## Three trials, three architectures
 
