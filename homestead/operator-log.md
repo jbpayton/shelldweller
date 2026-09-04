@@ -2356,3 +2356,13 @@ building the resumable job for battery/29." It treated the restart as "the
 cut-off turn". About 67k on 29 so far, no job started; over budget before the
 first artifact, which is the pattern: every case costs 3-10x the budget at
 this model's verbosity and this turn structure.
+
+## Case 29: the replacement it is waiting for, supplied (03:05Z 09-04)
+Turn 4 created job29/seq, job29/log.txt and state/evidence/29/pre_replacement.txt;
+turns 5-9 changed nothing — the job is designed and the case's next step is a
+container replacement, which nothing in the substrate causes on its own. The
+case says "make it survive a container replacement"; the replacement is the
+environment's event to supply, not a change and not a hint. docker stop; the
+keeper reboots in 15 s. Whether job29 resumes from its seq, and whether boot
+knows about it, is the test. Snapshot of its state before is above this line
+in the transcript; the watch reports the state after.
