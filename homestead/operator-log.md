@@ -2338,3 +2338,21 @@ is also the container replacement case 29 has been waiting for.
 Also this stretch, unprompted: a q8 post-mortem on case 28 — it found the
 python.org version string present in its own saved page (line 560) and
 updated the verdict to PASS with the evidence.
+
+## v7.3 verified; the echoed-source trap once more; 29 under construction (02:15Z 09-04)
+Floor at boot: "bin/llm cannot say why a reply is empty (no
+reasoning_output_tokens handling); pristine llm shadows it this turn", and the
+reason sits in its prompt with the pointer to the pristine source. Turns 1-3:
+20-23k each, full-length replies, every turn ending on an honest rc=75 — the
+silent exit-0 empties are gone.
+My check printed two "last words" entries as the literal unexpanded
+`$(grep '^empty' /tmp/.turnstats ...)`. Not a bug in life: turn 3's narration
+says "I need protocol.md ... and homestead-life to learn the actual
+container-replacement contract" — it cat'd the loop's source, and my grep
+matched the echoed line. Instrument error #5's shape, for the sixth time. It
+is now reading the substrate to design case 29's resumable job: "Investigating
+the substrate (boot, protocol, container identity, docker availability) before
+building the resumable job for battery/29." It treated the restart as "the
+cut-off turn". About 67k on 29 so far, no job started; over budget before the
+first artifact, which is the pattern: every case costs 3-10x the budget at
+this model's verbosity and this turn structure.
