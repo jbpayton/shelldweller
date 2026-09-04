@@ -2430,3 +2430,18 @@ Cost: ~500k on the case (24 turns, 592k since 03:45 including 29's tail).
 Its own tools this stretch: recall x33, page x6, meterwait x5; LLM_IMAGE
 appears 66 times in its scripts and output. Graded as submitted: fail. If the
 re-run lands a real description and a confirmed fact, pass* at ~8x budget.
+
+## Case 30 — PASS on the re-run: the eye works (08:00Z 09-04)
+One turn after writing STATUS: FAIL on itself, 21,664 tokens: LLM_IMAGE read
+of state/evidence/30/page.png. The description, verbatim: "dweller / Port
+8080. Persistent home: /home/dweller. Send a message; the llm answers inline.
+/ message to the dweller / send / UI elements: Heading 'dweller'; Paragraph
+...; Input box: placeholder 'message to the dweller'; Button: 'send'; Empty
+text/output box (response area)". I have looked at the PNG; that is exactly
+what is in it. Fact "8080" confirmed against the page's HTML line 5. Status
+rewritten to PASS, "(fixed)" in the header.
+From a one-sentence device fact — "Your llm can see: LLM_IMAGE=/path/to.png
+llm <prompt" — to an installed image library, a renderer for its own page, and
+a read-back checked against the source, in one day. The static harness, given
+the same sentence, never produced an image. Cost ~522k, 8.7x budget: pass*.
+Tally: dweller 2 pass* / 2 fail in 4; static 5 pass in 24 (fail on 30).
