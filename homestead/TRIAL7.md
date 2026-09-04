@@ -94,3 +94,14 @@ replacement nothing was restored and nothing said so. Now: `[ -f boot ]` and
 it applies, that the file was not executable. Its own bug remains its own to
 notice; the substrate simply does what it says.
 
+
+### v7.5 — a grades file (15:20Z 09-04)
+Through case 37 the dweller was never told an outcome. `/home/dweller/grades`
+now holds one line per checked case: number, pass or fail, the token count
+against the 60,000 budget, and the fact that decided it. No advice. Nothing
+announces the file; git's WHAT CHANGED block shows it the turn after it
+lands, as it shows everything else. The question it answers: does reflection
+follow from the fact, as repair followed the empty-call count and the diff?
+Backfilled for 27–37; appended after each grade from 38 on. The static
+condition, being stateless, cannot use feedback either way. Mirror in the
+repo: TRIAL7-grades.txt.

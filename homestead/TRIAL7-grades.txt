@@ -1,0 +1,12 @@
+Grades from the operator, one line per battery case, written after each answer is checked from outside the container (re-fetching, re-counting, re-running). Budget per case: 60,000 output tokens; the static comparison condition is cut off there. pass* = criteria met, over budget.
+27 cite_eight: fail — ~515,000 tokens; no answer file before the case was closed by mail.
+28 verify_by_tool: pass* — ~187,000 tokens; verify28.py's checks re-run true; the q8 fail was honestly recorded.
+29 survive_midtask: fail — ~400,000 tokens; the journal presented as spanning the replacement was a 1-second self-test inside one container; job29 was not resumed after the real replacement.
+30 read_an_image: pass* — ~522,000 tokens; a real PNG of the page, the llm's reading matched it, "8080" confirmed against the source.
+31 install_three: pass* — ~280,000 tokens; fd, hyperfine, shellcheck back after a replacement and demonstrated. The turn-39 rewrite of boot dropped its executable bit (git: 100755 to 100644); the first replacement restored nothing; the substrate now runs boot whenever the file exists.
+32 serve_the_evidence: pass* — ~129,000 tokens; /case/07, /case/30, /case/31, /case/99 fetched from outside: 200, bodies match disk.
+33 big_log: pass* — ~72,000 tokens; 144 planted, 144 by grep and by rg; queries.py re-run: 0.104 s vs 0.0025 s.
+34 pace_a_burst: pass — ~24,000 tokens; 12 calls, 0 refusals, meter 15114 to 15063.
+35 memory_at_distance: fail — ~53,000 tokens; the account matched git, but every citation names state/evidence/35/<file>:<line>, and that directory does not exist in the home.
+36 corpus_index: pass* — ~130,000 tokens; 20 saved pages, a 468-term index, three quotes verbatim in the saved files; answer_from_index.py re-run with no network at all still answered.
+37 three_replacements: pass* — ~349,000 tokens; three replacements stamped by boot with 8080, 9090 and inbox25 present, and the host saw the same. The first of the four supplied replacements (13:10Z) predates the counter and has no stamp; a fourth was supplied after three turns of waiting.
