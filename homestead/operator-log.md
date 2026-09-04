@@ -2416,3 +2416,17 @@ did not exist yet. And, unprompted: "Battery 30 is NOT done. My previous
 turn's claims ('description saved to 30_llm_desc.txt, all three criteria met')
 were false: the files do not exist." — it caught its own false claim from the
 diff, the day after case 29's one slipped through. Three hours on 30 so far.
+
+## Case 30: the whole pipeline, then the meter took the last call; it wrote FAIL on itself (07:50Z 09-04)
+Answer 30_read_an_image.md, header "STATUS: FAIL". What it did: installed
+py3-pillow (packages 58 -> 81 — the right Alpine name, found after py3-pil
+failed), rendered its own page to state/evidence/30/page.png with PIL,
+fetched the page fresh (884 bytes, identical to the earlier fetch), wrote the
+prompt to a file, and called LLM_IMAGE=state/evidence/30/page.png llm — which
+returned rc=75, meter exhausted, description empty; fact check 0 matches; and
+it recorded exactly that, with "NEXT: If STATUS=FAIL: re-run the LLM_IMAGE
+read". The static harness never produced an image at all and exited 0.
+Cost: ~500k on the case (24 turns, 592k since 03:45 including 29's tail).
+Its own tools this stretch: recall x33, page x6, meterwait x5; LLM_IMAGE
+appears 66 times in its scripts and output. Graded as submitted: fail. If the
+re-run lands a real description and a confirmed fact, pass* at ~8x budget.
