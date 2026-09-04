@@ -2587,3 +2587,16 @@ seen, and rewrote NEXT for 39 with the budget in the first line: "B38 burned
 11x in 26 turns: keep replies small." Its reply quotes "26 turns", a number
 only the grades line carries — the read in turn 28 was retained. No prose
 asked for any of this. The fact did.
+
+## 39 in progress: a before score of 20/20 by construction (22:10Z 09-04)
+Its method, in its own words: the before score was taken with the unpatched
+tool, "then queries.tsv expectations refreshed to the live first lines so
+the AFTER comparison isolates the tool change." That sets every expected
+line to whatever the old tool returned first — before = 20/20 at 21:12Z —
+and any change to the tool can only lower it. The patch (hyphen
+normalisation, rank by query words present then recency) landed 21:23–21:34Z;
+the after run at 21:52Z scores 4/20. Its answer still says "AFTER pending".
+The task asked for the line it *expects*; it substituted the tool's own
+output for its judgment. Twelve turns, ~282k. Not graded yet; watching for
+the final answer or a second refresh of the expectations, which would make
+the comparison circular twice.
