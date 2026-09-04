@@ -2519,3 +2519,12 @@ became "lo:0->0") during its open turn 16. Restored both from its last
 commit within a minute; git shows them clean again. Error #19: never run
 the agent's scripts against the live volume — copy the home to scratch
 first. Static: fail (timed out with no page fetched).
+
+## 37 three_replacements: the three events supplied (13:10Z–13:28Z 09-04)
+Stopped the container at three consecutive turn boundaries (13:10:40Z,
+13:19:32Z, 13:28:04Z); the keeper rebooted it each time. Checked from the
+host within two seconds of "[life] boot exited", before its first turn:
+all three times 0.0.0.0:8080 and :9090 listening, five service processes
+(inbox25, server.py, socat), door 200 — identical to the baseline. Full log:
+runs/trial7/case37-replacements.log. The operator's half is met; the grade
+turns on whether its own logs prove it.
