@@ -2536,3 +2536,13 @@ a third that had already happened before its counter existed. The user
 approved the grades file "after this one finishes": written to the home now
 (facts only, 27–37), during case 38. First look at its next turns will show
 whether it reads it and what it does with it. Nothing else changed.
+
+## v7.5, first three turns: listed, not opened (15:58Z 09-04)
+The grades file landed during turn 2 of container 21 (case 38 in front of
+it). Turn 3's prompt carried "grades | 12 +" in WHAT CHANGED. Turns 3, 4
+and 5: zero occurrences of the word in scripts, outputs or narration. All
+three turns went to case 38 — recon, a Pillow reinstall under the wrong
+package name, an 80-line renderer, fonts. Its own orient script lists the
+home root, so the name has been on its screen. Same shape as every prose
+finding: a fact with no case behind it waits. The file stays; the watch is
+now for the first turn that opens it, on whatever horizon that is.
