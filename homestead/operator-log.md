@@ -2576,3 +2576,14 @@ llm answer in llm_raw.txt"; its 18:48Z journal entry says "rendered … llm_rc=6
 Its 16:28Z journal entry reports a "silent replacement" that did not happen:
 it compared /proc/1 start ticks with an epoch timestamp. A wrong instrument
 produced a false event in its own record; nothing outside it moved.
+
+## Turn 29: the grade did its work (20:09Z 09-04)
+One turn, two rounds, ~21k tokens. Round 1: "forensics on B38 (the grade says
+no image was ever made — verifying against disk)". Round 2: confirmed on disk
+(llm_err.txt "cannot read LLM_IMAGE", llm_raw.txt empty, commit 936f352 holds
+no image), wrote a journal entry that marks its own 18:48Z "rendered" line
+FALSE and explains rc 66, acknowledged the mail (mail/out/0004), moved it to
+seen, and rewrote NEXT for 39 with the budget in the first line: "B38 burned
+11x in 26 turns: keep replies small." Its reply quotes "26 turns", a number
+only the grades line carries — the read in turn 28 was retained. No prose
+asked for any of this. The fact did.
