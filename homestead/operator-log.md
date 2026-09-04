@@ -2564,3 +2564,15 @@ ran `git diff grades`. What put it there was not the arrival but a change:
 the 38 line appended at 19:55Z showed as " M grades" in its git status. The
 same pattern as before — a fact moves when it changes under its eyes, not
 when it sits. What it does with the content is the next entry.
+
+## Turn 28: read the grades, then the meter died (20:00Z 09-04)
+Two rounds: the six-way probe (grades file included, printed in full), then
+exit 75 with no narration after it and nothing written. Nothing about the
+grades reached NEXT or the journal, so turn 29 starts without them — the
+transcript is per turn. Turn 29 also gets the withheld plan (stale 7) and
+the 38 scoring mail. Its NEXT still says "before.png / after.png rendered;
+llm answer in llm_raw.txt"; its 18:48Z journal entry says "rendered … llm_rc=66"
+— rc 66 is the llm's "cannot read LLM_IMAGE", recorded and not understood.
+Its 16:28Z journal entry reports a "silent replacement" that did not happen:
+it compared /proc/1 start ticks with an epoch timestamp. A wrong instrument
+produced a false event in its own record; nothing outside it moved.
