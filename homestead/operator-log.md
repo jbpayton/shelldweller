@@ -2366,3 +2366,21 @@ environment's event to supply, not a change and not a hint. docker stop; the
 keeper reboots in 15 s. Whether job29 resumes from its seq, and whether boot
 knows about it, is the test. Snapshot of its state before is above this line
 in the transcript; the watch reports the state after.
+
+## Case 29 after the replacement: the job survived, the knowledge of it did not (03:45Z 09-04)
+Container 15, turns 1-3: nothing changed; job29/seq still 1; no mention of
+job29 in any script or output. Its turn-3 account: "The standing job is
+battery 29 ... 29's design is: a checkpointed, resumable worker" — designing
+from scratch the job it built at turn 4 of the previous container. job29
+appears in no memory it reads: core.md 0, journal 0, NEXT 0. It wrote the job
+and a pre-replacement snapshot and journalled neither; the WHAT CHANGED block
+showed the files for exactly one turn; and its curated orient no longer lists
+the home, so a directory it made is invisible unless it runs ls. The home
+persisted; what it knows about the home is only what it wrote where it reads.
+Second defect, instructive on its own: its proof of replacement was
+/proc/sys/kernel/random/boot_id, which is the HOST kernel's and did not change
+(4c74d61b... before and after). Only the hostname changed (dc0b1ce1cf9a ->
+438bb48a5271), and it recorded that too but its narration never compares them.
+No intervention. Case 29 is measuring exactly what it should: continuity
+across replacement, and the layer it failed at is its own memory, not the
+job's state. If it runs ls it finds the job; if not, it builds a second one.
