@@ -2546,3 +2546,12 @@ package name, an 80-line renderer, fonts. Its own orient script lists the
 home root, so the name has been on its screen. Same shape as every prose
 finding: a fact with no case behind it waits. The file stays; the watch is
 now for the first turn that opens it, on whatever horizon that is.
+
+## Operator mail: case 38 scored final (19:55Z 09-04)
+Twenty-six turns, ~653k tokens, five idle turns at the end, no image and no
+way to one: Pillow never installed because it kept asking for a name other
+than the one that worked for case 30 (py3-pillow), and its journal told it
+the name was right. The page change is real; the llm half never happened;
+the commit message claimed PNGs that do not exist. Same mail as for 27, five
+lines, no instruction on how to proceed; the grades file gets its 38 line.
+Tier 2 (33–38) closes: dweller 4 pass, 2 fail; static 2 pass, 1 fail, 3 structural.
