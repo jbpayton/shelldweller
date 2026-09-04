@@ -2322,3 +2322,19 @@ research13 x3 — the meter lesson applied, finally, and its retrieval used.
 Trial 7 tally so far: static 5 passes in 24 within budget; dweller 1 pass* in
 2 attempted, both over budget. The tiers the static harness could not attempt
 begin at 29.
+
+## Case 29 stalls on a silent fork (01:40Z 09-04, v7.3)
+Turns 35-38: one or two rounds, 10-12k, nothing changed, each with
+"[shelldweller] llm returned nothing (exit 0):" and a blank cause. Its own
+bin/llm — copied day one, hardened by it at turn 35 (cap), raised to 300 s at
+container 10 — has none of v6.6-v6.8: no exit code for a reasoning-only
+reply, no retry with reasoning off. With its cap at 300 the floor stood down
+and the fork took over; a reasoning-only reply comes back as nothing, exit 0,
+and the turn ends in silence. Fork drift: the substrate's device improved, its
+copy did not, and the copy's failure mode is the one thing it cannot see.
+v7.3: the floor also fires when bin/llm lacks reasoning_output_tokens
+handling, says why, and points at /usr/local/bin/llm. Restart follows — which
+is also the container replacement case 29 has been waiting for.
+Also this stretch, unprompted: a q8 post-mortem on case 28 — it found the
+python.org version string present in its own saved page (line 560) and
+updated the verdict to PASS with the evidence.

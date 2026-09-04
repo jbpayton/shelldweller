@@ -75,3 +75,12 @@ was nowhere near full — 32k tokens, the prompt under 3k — so the clip was th
 constraint, not the context. Per-round output 12,000, turn transcript 40,000;
 scripts unchanged. Both conditions get the new bridle from here; static tier 7
 was already running on the old one and is marked so.
+
+**The floor covers fork drift (v7.3, container 13 turn 39).** It copied `llm`
+into its home on day one. The device has since learned to say why a reply is
+empty and to retry a reasoning-only reply with reasoning off; its copy did not,
+and when it raised its own cap to 300 s the floor stepped back and the copy
+returned. Turns 35–38 each ended on one empty reply, exit 0, no words. A device
+that cannot explain an empty reply is now floored like one with a cap it cannot
+meet, with the reason stated and a pointer to the pristine source. Its file is
+untouched; it can merge what it likes.

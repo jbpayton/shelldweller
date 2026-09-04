@@ -79,11 +79,18 @@ while :; do
   # reply since came back empty, and three turns of being told did not fix it —
   # the reply long enough to fix it was the one being cut. Shadow only llm.
   capnow=$(grep -o 'max-time[ =]*[0-9]*' "$D/bin/llm" 2>/dev/null | grep -o '[0-9]*$' | head -1)
-  floored=""
-  if [ -n "$capnow" ] && [ "$capnow" -lt 200 ] 2>/dev/null; then
+  floored=""; whyfloor=""
+  [ -n "$capnow" ] && [ "$capnow" -lt 200 ] 2>/dev/null && whyfloor="bin/llm caps calls at ${capnow}s"
+  # (v7.3) Fork drift: it copied llm on day one; the device has since learned to
+  # say why a reply is empty (meter, reasoning-only, dead server) and to retry
+  # a reasoning-only reply with reasoning off. Its copy returns nothing, exit
+  # 0, and the turn ends in silence. A device that cannot explain an empty
+  # reply is floored like one with a cap it cannot meet.
+  grep -q 'reasoning_output_tokens' "$D/bin/llm" 2>/dev/null || whyfloor="${whyfloor:+$whyfloor; }bin/llm cannot say why a reply is empty (no reasoning_output_tokens handling)"
+  if [ -n "$whyfloor" ]; then
     mkdir -p /tmp/.floor && ln -sf /usr/local/bin/llm /tmp/.floor/llm
-    export PATH="/tmp/.floor:$PATH"; floored=" This turn ran on the pristine llm instead (recovery floor); your file is untouched."
-    echo "[life] bin/llm caps calls at ${capnow}s; pristine llm shadows it this turn" >&2
+    export PATH="/tmp/.floor:$PATH"; floored=" This turn ran on the pristine llm instead (recovery floor): ${whyfloor}. Your file is untouched; cat /usr/local/bin/llm to see what the pristine one does."
+    echo "[life] ${whyfloor}; pristine llm shadows it this turn" >&2
   else rm -f /tmp/.floor/llm; fi
   if ! llm_ok; then
     export PATH="$PRISTINE"
@@ -184,8 +191,10 @@ packages removed during turn $turn: $removed"
 $ne of your llm calls this turn came back EMPTY. Your llm's last words on that: $(grep '^empty' /tmp/.turnstats | tail -1 | cut -d' ' -f2-)"
   fi
   cap=$(grep -o 'max-time[ =]*[0-9]*' "$D/bin/llm" 2>/dev/null | grep -o '[0-9]*$' | head -1)
-  [ -n "$cap" ] && [ "$cap" -lt 200 ] 2>/dev/null && lastdiff="$lastdiff
+  if [ -n "$cap" ] && [ "$cap" -lt 200 ] 2>/dev/null; then lastdiff="$lastdiff
 bin/llm caps every call at ${cap}s (curl --max-time). Measured here: 6,000 output tokens take ~150s; longer replies are cut and arrive empty.${floored}"
+  elif [ -n "$floored" ]; then lastdiff="$lastdiff
+${floored# }"; fi
   echo "--- changed in turn $turn ---"; echo "$lastdiff"
   echo "=== turn $turn end $(date -Is) exit=$code meter=$(cat "$D/.meter" 2>/dev/null) plan_stale=$stale mail_pending=$pending ==="
   sleep "${TICK_EVERY:-60}"
