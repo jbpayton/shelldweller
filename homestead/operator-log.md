@@ -2617,3 +2617,11 @@ changed nothing. Trigger distinction established: a modified file in its own
 `git status` output got the file opened (turn 28); a committed diffstat line
 in the prompt did not. life now prints the added lines of grades under WHAT
 CHANGED. Restart needed (life is in the image): a replacement, logged.
+
+## grades header: coverage and the closing rule, stated once (23:20Z 09-04)
+Turn 1 after the v7.6 replacement was still case 39: "CHECK next turn those
+sections are non-empty." Nothing in its home says a graded case is closed —
+the 27 and 38 mails said it per case. A second header line now says it
+once: graded so far 27–39; a graded case is closed; the next is scored from
+its cost. Same content as the mails, through the file. v7.6 will show the
+line under WHAT CHANGED next turn. No instruction on how to proceed.
