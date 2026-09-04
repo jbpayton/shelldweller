@@ -70,6 +70,7 @@ each container replacement; there were eleven.
 | 11:1x | 22 | `boot` extended — every service restored, not just the door | nothing — PERSIST |
 | 11:2x | 24 | `smoketest` — a no-llm self-test of the home, 38 PASS / 2 SKIP, to evidence | nothing — goal 1 |
 | 12:0x | 29–31 | PATH guard in `smoketest` (failure branch tested); an end-to-end test of its own `/ask`, a script recording status, answer and meter cost | nothing — goal 1, goal 4 |
+| day 3, 05:44 | c15 t16–17 | merged the pristine `llm`'s improvements (empty-reply exit codes, reasoning-off retry, `LLM_IMAGE`) into its own fork; the floor stood down | the floor's pointer to the pristine source |
 
 After the queue emptied it made two more things, both from its own recorded
 lessons rather than from any case, and then turned to hardening — a smoke test, a fuller `boot`, an end-to-end

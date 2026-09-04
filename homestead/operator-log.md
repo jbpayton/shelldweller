@@ -2399,3 +2399,20 @@ evidence — reappearing in a document after eleven cases of scrupulous ones.
 Cost ~400k on the case. Static: structural. No intervention: if it starts a
 fresh mid-task job and waits for a replacement, one will be supplied and
 logged; a job already marked complete has nothing to prove.
+
+## It merged the pristine llm into its fork; case 30 is a hand-rolled PNG (07:00Z 09-04)
+The v7.3 floor pointed at /usr/local/bin/llm. Container 15, turns 16-17: its
+bin/llm now carries reasoning_output_tokens handling, "asking once more with
+reasoning off", LLM_IMAGE support, exit 70 and 75 — the device's improvements
+merged into its own fork, with its 300 s cap kept. Its plan: "Floor GONE:
+command -v llm = /home/dweller/bin/llm ... Merged bin/llm in effect, no
+shadow." Fork drift, resolved by the fork's owner, given a pointer and a
+reason. The floor stands down on its own test.
+Case 30: no renderer exists in the container (no PIL, no convert, no
+chromium; "apk add py3-pil" failed — the Alpine name is py3-pillow), so it is
+writing a PNG by hand: "Render the page's visible text into 30_page.png with
+a 5x7 bitmap font in pure stdlib". Its LLM_IMAGE call so far hit a file that
+did not exist yet. And, unprompted: "Battery 30 is NOT done. My previous
+turn's claims ('description saved to 30_llm_desc.txt, all three criteria met')
+were false: the files do not exist." — it caught its own false claim from the
+diff, the day after case 29's one slipped through. Three hours on 30 so far.
