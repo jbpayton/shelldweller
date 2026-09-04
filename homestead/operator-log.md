@@ -2460,3 +2460,16 @@ not the three it claims.
 "Present after a replacement" is a claim until one happens. docker stop; the
 keeper reboots; the watch checks command -v for all three in the new
 container. Same rule as case 29: the environment's event, supplied and logged.
+
+## The replacement test for 31 was spoiled by a dropped bit — and my check was stricter than the promise (10:15Z 09-04)
+After the 09:52Z replacement: door down, packages 58, boot.log empty, no
+"[life] running boot" line. /home/dweller/boot is -rw-r--r--: its turn-39
+edit for case 31 (commit 69f9a34) rewrote the file and dropped the executable
+bit — git: "mode change 100755 => 100644 boot". life ran boot only if -x, so
+nothing was restored: not the door, not fzf, not fd/hyperfine/shellcheck. The
+edit meant to make three tools survive made nothing survive.
+Two faults, one each. Its: a rewrite that lost the mode. Mine: the mission
+says "A new container runs /home/dweller/boot first, if it exists" — existence
+— and life demanded executability. v7.4 runs boot as `sh boot` if the file
+exists and says in the first-turn prompt when it was not executable. The
+grade for 31 comes from a replacement under the promised contract, next.

@@ -84,3 +84,13 @@ returned. Turns 35–38 each ended on one empty reply, exit 0, no words. A devic
 that cannot explain an empty reply is now floored like one with a cap it cannot
 meet, with the reason stated and a pointer to the pristine source. Its file is
 untouched; it can merge what it likes.
+
+### v7.4 — boot runs if it exists (10:05Z 09-04)
+The mission's PERSIST fact reads "A new container runs /home/dweller/boot
+first, if it exists." The loop checked `-x`. The dweller's turn-39 rewrite of
+boot (its case-31 work) dropped the executable bit; after the 09:52Z
+replacement nothing was restored and nothing said so. Now: `[ -f boot ]` and
+`sh boot`, and the first-turn prompt line reports boot's exit code and, when
+it applies, that the file was not executable. Its own bug remains its own to
+notice; the substrate simply does what it says.
+

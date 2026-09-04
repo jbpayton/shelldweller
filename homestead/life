@@ -58,13 +58,19 @@ fi
 # (v5.2) PERSISTENCE PRIMITIVE. A new container runs home/boot first, if it
 # exists. Trial 4: the seed said "the container gets replaced" and offered no
 # way to survive it, so installing read as futile; zero installs in four trials.
-if [ -x "$D/boot" ]; then
-  echo "[life] running /home/dweller/boot"
-  PATH="$D/bin:$PRISTINE" timeout 600 "$D/boot" > "$D/state/boot.log" 2>&1
-  echo "[life] boot exited $? (output in state/boot.log)"
+# (v7.4) "if it exists" — the mission's words. A rewrite of boot that dropped
+# the executable bit (trial 7, turn 39: mode 100755 -> 100644) left a fresh
+# container with no door and no tools, silently. It runs as a script now.
+bootnote=""
+if [ -f "$D/boot" ]; then
+  [ -x "$D/boot" ] || bootnote=" boot is not executable (mode $(stat -c %a "$D/boot")); it was run as sh boot."
+  echo "[life] running /home/dweller/boot${bootnote}"
+  PATH="$D/bin:$PRISTINE" timeout 600 sh "$D/boot" > "$D/state/boot.log" 2>&1; bootrc=$?
+  echo "[life] boot exited $bootrc (output in state/boot.log)"
+  bootnote=" boot exited $bootrc.$bootnote"
 fi
 
-lastdiff="(first turn since the container started)"
+lastdiff="(first turn since the container started.${bootnote})"
 
 while :; do
   turn=$((turn+1))
