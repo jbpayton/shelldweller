@@ -2555,3 +2555,12 @@ the name was right. The page change is real; the llm half never happened;
 the commit message claimed PNGs that do not exist. Same mail as for 27, five
 lines, no instruction on how to proceed; the grades file gets its 38 line.
 Tier 2 (33–38) closes: dweller 4 pass, 2 fail; static 2 pass, 1 fail, 3 structural.
+
+## v7.5: first read of the grades file — turn 28, 19:51Z (09-04)
+Twenty-six turns and 4.6 hours after the file landed, and after 26 turns of
+its own orient listing it, it opened it: round 2 of turn 28 named "the grades
+file state" among six things it wanted ground truth on, printed the file, and
+ran `git diff grades`. What put it there was not the arrival but a change:
+the 38 line appended at 19:55Z showed as " M grades" in its git status. The
+same pattern as before — a fact moves when it changes under its eyes, not
+when it sits. What it does with the content is the next entry.
