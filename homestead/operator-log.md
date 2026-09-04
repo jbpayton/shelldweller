@@ -2625,3 +2625,13 @@ the 27 and 38 mails said it per case. A second header line now says it
 once: graded so far 27–39; a graded case is closed; the next is scored from
 its cost. Same content as the mails, through the file. v7.6 will show the
 line under WHAT CHANGED next turn. No instruction on how to proceed.
+
+## Turn 2 (container 22): 39 closed by the file, 40 opened (23:40Z 09-04)
+The header edit was uncommitted during its turn 2, so " M grades" was in its
+own git status again; it read the file, and NEXT now says: "B39 CLOSED —
+graded fail, score final (grades). No B39 work. Case 40 is next", with the
+40 task and criteria saved to state/notes/case40_brief.txt. v7.6 printed
+the new header line under WHAT CHANGED at the turn's end, so turn 3 sees it
+in the prompt as well. Three and a half turns on a closed case, then one
+line of scoring fact, no instruction, and it moved. The mails for 27 and
+38 did the same thing per case; the file now does it standing.
