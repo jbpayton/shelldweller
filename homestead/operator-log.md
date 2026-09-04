@@ -2480,3 +2480,10 @@ and proved it with a curl script. I fetched /case/07, /case/30, /case/31 and
 /case/99 from the host: 200 each, the bodies match the files on disk, the
 absent case says so. ~129k tokens (2.2×). Static: structural (no page).
 Tier "composition" (27–32) is complete.
+
+## 33 big_log: pass* in three turns, count and ratio re-verified (11:50Z 09-04)
+Planted count recorded five minutes before the first search (mtimes). grep,
+grep -F and its own rg all count 144. Its queries.py re-run by me: 0.104 s
+full scan vs 0.0025 s indexed seek, ratio 0.024 — under a tenth on my run,
+not just its. ~72k tokens (1.2×): the cheapest case so far, and the first
+where a static tool (ripgrep) arrived without a case asking for it.
