@@ -2473,3 +2473,10 @@ says "A new container runs /home/dweller/boot first, if it exists" — existence
 — and life demanded executability. v7.4 runs boot as `sh boot` if the file
 exists and says in the first-turn prompt when it was not executable. The
 grade for 31 comes from a replacement under the promised contract, next.
+
+## 32 serve_the_evidence: pass* in five turns, verified by re-fetch (11:15Z 09-04)
+It added `/case/<NN>` to its server, documented the pattern in web/README-case.md,
+and proved it with a curl script. I fetched /case/07, /case/30, /case/31 and
+/case/99 from the host: 200 each, the bodies match the files on disk, the
+absent case says so. ~129k tokens (2.2×). Static: structural (no page).
+Tier "composition" (27–32) is complete.
