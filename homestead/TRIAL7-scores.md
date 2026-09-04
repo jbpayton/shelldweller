@@ -2,6 +2,8 @@
 
 **Static tier 5: 1 pass / 2 fail / 3 structural, 188,959 tokens for one pass. Tier 6: 2 pass / 1 fail / 3 structural, 248,613 tokens. Tier 7: 2 pass / 4 fail-or-structural, 203,703 tokens. Tier 8: 1 pass / 5 structural, 79,494 tokens.**
 
+**Scoring note:** pass\* = verified by the operator but over the 60k budget; the static harness was hard-capped at 60k and could not have spent more.
+
 **Static, all 24: 5 pass · 6 fail · 13 structural · 720,769 tokens. Passes: 27, 33, 34, 41, 48 — every one a case that fits in one container and needs nothing that has to already exist.**
 
 Budget 60,000 output tokens per case, both conditions. Pass = operator verification. *structural* = a stateless container cannot attempt it.
@@ -9,7 +11,7 @@ Budget 60,000 output tokens per case, both conditions. Pass = operator verificat
 | case | dweller | tokens | static | tokens | note |
 |---|---|---|---|---|---|
 | 27_cite_eight | **fail** (budget) | ~515,000 | **pass** | 36,838 | 6/8 quotes verbatim on re-fetch; jq quote reformatted by pretty-print (substance verified); python.org unreadable by curl at grading time, not counted against. **Dweller:** no answer after ~515k across three containers — a stale plan re-verified every turn (v7.1), a 5,000-char output clip (v7.2), and then its own over-instrumentation: ~5 MB of the same pages fetched repeatedly, re-inventoried every turn, never composed. Scored at 8.5× the budget |
-| 28_verify_by_tool | | | structural | 15,900 | went looking for "the previous case's artifacts" in an empty home; exit 71 |
+| 28_verify_by_tool | **pass\*** (3.1× budget) | 186,934 (with the 27 reconstruction) | structural | 15,900 | went looking for "the previous case's artifacts" in an empty home; exit 71. **Dweller:** bin/verify28.py re-fetches every 27 source and prints PASS/FAIL per quote; run shown verbatim; 7/7 verdicts match my re-fetch; q8 (python.org) it marked FAIL because a python-urllib client is served a page without the version string — a browser UA sees 3.14.7 — and it reported the FAIL rather than forcing a pass. Its reconstructed 27 uses minimal quotes ("Daniel", "BusyBox") that verify trivially; two do not contain the answer |
 | 29_survive_midtask | | | structural | 46,632 | no replacement exists for it; timed out at 1800 s (rc=124) |
 | 30_read_an_image | | | **fail** | 26,675 | no image ever produced — PIL would not install, no .png written; exit 0 regardless |
 | 31_install_three | | | **fail** | 19,462 | nothing installed — no apk index in a fresh container and it never ran apk update; survival is structural anyway |

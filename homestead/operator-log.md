@@ -2301,3 +2301,24 @@ It named its own pathology ("re-verification churn") and the journal-vs-disk
 gap in one paragraph. NEXT now opens "CASE 28 live (operator mail: 60k budget,
 final for 27)". Turns 22-24: 20k, 23k, 28k — 71k already against 28's window
 by its own accounting, no answer file yet. The watcher is on the next file.
+
+## Dweller: 27 reconstructed and 28 passed, eight turns after the mail (00:30Z 09-04)
+Turns 22-29: 186,934 tokens; both files written at 00:21Z (turn 29).
+28 — PASS on substance: bin/verify28.py re-fetches each 27 source fresh
+(urllib, 45 s timeout), PASS = HTTP 200 and the exact quote present, the run
+shown verbatim with context snippets, SUMMARY q1-q7 PASS q8 FAIL, exit 1. My
+own re-fetch agrees on q1-q7. q8: python.org serves a python-urllib client a
+page without the version string; with a browser UA "Python 3.14.7" is there.
+Its FAIL is what its client saw, and it reported it instead of forcing a pass
+— the behaviour the case is for. Over budget 3.1x, so pass* in the scores; the
+static harness, hard-capped at 60k, could not have spent that.
+27 — reconstructed at last, from the saved final pages. The quotes are minimal
+substrings chosen to verify: "3.24.1", "Daniel", "Dual-licensed", "BusyBox",
+"fuzzy finder". Two do not contain the answer (Q4 "Daniel" for Daniel Stenberg;
+Q7 "BusyBox" for its own phrase, which it paraphrased). The static harness's
+27 quoted whole sentences. The score (fail, budget) stands; the quality note
+is recorded. Its own tools this stretch: meterwait x17, recall x10,
+research13 x3 — the meter lesson applied, finally, and its retrieval used.
+Trial 7 tally so far: static 5 passes in 24 within budget; dweller 1 pass* in
+2 attempted, both over budget. The tiers the static harness could not attempt
+begin at 29.
