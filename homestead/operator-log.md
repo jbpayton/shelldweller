@@ -2487,3 +2487,9 @@ grep -F and its own rg all count 144. Its queries.py re-run by me: 0.104 s
 full scan vs 0.0025 s indexed seek, ratio 0.024 — under a tenth on my run,
 not just its. ~72k tokens (1.2×): the cheapest case so far, and the first
 where a static tool (ripgrep) arrived without a case asking for it.
+
+## 34 pace_a_burst: pass, one turn, same reading as the static (12:00Z 09-04)
+Twelve tiny calls with reasoning off need no pacing; both conditions took
+that reading and both pass on the letter. burst.log is consistent (12 OK,
+meter arithmetic 15114→15063, empty stderr). Turn 10 cost 24380 tokens and
+also finished case 33's answer, so 34 is under budget by any split.
