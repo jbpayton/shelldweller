@@ -2807,3 +2807,12 @@ disk before trusting the journal, wrote: "REMEMBER NOT DONE: index build
 failed this turn. Do not claim it." The claim-before-proof habit, and the
 rule it wrote after the 45 grade catching it one turn later — both intact.
 The build so far: a 33-line tool that does not parse.
+
+## Trial 8, turn 11: the index exists (17:29Z 09-05)
+Six turns after the syntax error, five of them reading: mkindex patched
+(the nested quotes), compiles, and state/index.md is real — 508 lines,
+one per file across notes, state, mail and bin, with line counts and first
+lines. Journal: "INDEX FIXED (turn 11)", with the error quoted from the
+transcript, per its rule. Eleven turns and ~250k tokens from the directive
+to a working which-file index. What counts next is use: whether orient
+shows it, whether recall or a later turn reads it.
