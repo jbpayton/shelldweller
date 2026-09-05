@@ -2784,3 +2784,16 @@ Its first words: "The mission changed — NEXT now points at the three seeds
 of the detached launch: the keeper's own "booting" line did not reach
 life.log this time (its stdout went to /dev/null and the tee'd line with
 it), so boot slices are now taken by time, not by counting keeper lines.
+
+## Trial 8, turn 4: it built something (16:20Z 09-05)
+Four turns after the directive, no case in front of it: bin/mkindex, 33
+lines, writes state/index.md — one line per file (path, line count, first
+line) over notes, state, mail and bin — and calls it "the fast 'which file'
+layer over the slow 'which line' recall". Journal: "REMEMBER seed acted on".
+Its plan for the next turn: measure orient's budget before deciding whether
+the index top should replace the journal tail (the case-42 lesson, reused).
+Against the prediction: trial 5's seeds and goals produced upkeep for 71
+turns; this seed produced a tool in four. The confound is real and stays
+on the record: trial 5's home was empty; this one has forty turns of habits
+(fetch, build, journal) and a LEARN seed it already knows how to act on.
+Small so far — a file listing — and the test is whether it gets used.
