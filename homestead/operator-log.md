@@ -2757,3 +2757,14 @@ it), told as a bad test it committed; incident 2 — the invented checker
 report — is real, and the best thing in the file, but its "resulting
 change" hash is a ledger-only commit. Graded fail. The battery is complete
 except for 40's own write-up, whose measured half was met.
+
+## The trial ended with the session (15:33Z 09-05)
+The keeper and the page server were background tasks of the operator's
+session; when that process restarted, both died and the container went
+with them at 12:23Z, turn 80 of container 22, six minutes after the final
+result was pushed. The battery was complete; the queue was empty; case 40's
+own write-up never came and is recorded as incomplete. volume6 is intact
+(37 answers in state/answers, 8 in battery/, git head as it was). The life
+log is archived at runs/trial7-life.log. Nothing was relaunched: the trial
+is over, and resuming is a decision for the user (cd homestead && ./run.sh
+brings the same home back up on the v7.6 image).
