@@ -4,7 +4,7 @@
     <marker id="d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8fa898"/></marker>
   </defs>
   <rect width="1200" height="780" fill="#0b0f0d"/>
-  <text x="40" y="50" fill="#e6efe9" font-size="26" font-weight="700">shelldweller homestead — architecture, trial 6</text>
+  <text x="40" y="50" fill="#e6efe9" font-size="26" font-weight="700">shelldweller homestead — architecture, trial 7</text>
   <text x="40" y="76" fill="#8fa898" font-size="15">three parts: a host that keeps it alive, a container that is thrown away, a home that is not</text>
 
   <!-- ===== HOST ===== -->
@@ -31,7 +31,7 @@
   <text x="74" y="526" fill="#e6efe9" font-size="15" font-weight="700">operator</text>
   <text x="74" y="548" fill="#8fa898" font-size="13">writes mail/in  ·  reads mail/out</text>
   <text x="74" y="566" fill="#8fa898" font-size="13">sets order.txt  ·  reads the git log</text>
-  <text x="74" y="584" fill="#8fa898" font-size="13">never edits the home while it runs</text>
+  <text x="74" y="584" fill="#8fa898" font-size="13">never edits the home; writes grades</text>
 
   <text x="60" y="640" fill="#8fa898" font-size="12">nothing here is on the model's PATH.</text>
   <text x="60" y="658" fill="#8fa898" font-size="12">the host supplies economy and truth;</text>
@@ -48,7 +48,7 @@
   <text x="414" y="230" fill="#e6efe9" font-size="13">3  run bin/orient  → its digest</text>
   <text x="414" y="248" fill="#e6efe9" font-size="13">4  compose the prompt:</text>
   <text x="414" y="266" fill="#8fa898" font-size="13">     mission · state/NEXT ·</text>
-  <text x="414" y="284" fill="#8fa898" font-size="13">     WHAT CHANGED (git + packages) ·</text>
+  <text x="414" y="284" fill="#8fa898" font-size="13">     WHAT CHANGED (git + packages + grades) ·</text>
   <text x="414" y="302" fill="#8fa898" font-size="13">     newest mail · orientation</text>
   <text x="414" y="320" fill="#e6efe9" font-size="13">5  bridle runs the turn (below)</text>
   <text x="414" y="338" fill="#e6efe9" font-size="13">6  git commit; diffstat → next prompt</text>
@@ -80,7 +80,7 @@
     <text x="840" y="198" fill="#8fa898">  llm shelldweller orient   (seeded)</text>
     <text x="840" y="216" fill="#4ade80">  research recall page      (its own)</text>
     <text x="840" y="242" fill="#e6efe9">boot        runs first in a new container</text>
-    <text x="840" y="268" fill="#e6efe9">battery/    the queue, 01 → 26</text>
+    <text x="840" y="268" fill="#e6efe9">battery/    the queue, 01 → 50</text>
     <text x="840" y="286" fill="#8fa898">  01 world_version … 04 world_tool …</text>
     <text x="840" y="304" fill="#8fa898">  each: task + criteria, nothing else</text>
     <text x="840" y="330" fill="#e6efe9">state/</text>
@@ -89,12 +89,12 @@
     <text x="840" y="384" fill="#8fa898">  answers/   NN_case.md with sources</text>
     <text x="840" y="402" fill="#8fa898">  self.md    what it saw this turn</text>
     <text x="840" y="428" fill="#e6efe9">notes/journal.md   slow tier (recall)</text>
-    <text x="840" y="454" fill="#e6efe9">mail/  in  out  seen</text>
+    <text x="840" y="454" fill="#e6efe9">mail/  in out seen   ·   grades  <tspan fill="#8fa898">(operator)</tspan></text>
     <text x="840" y="480" fill="#e6efe9">web/server.py      the door, :8080</text>
     <text x="840" y="506" fill="#e6efe9">.git               one commit per turn</text>
   </g>
   <text x="840" y="548" fill="#8fa898" font-size="12">what the loop owns: NEXT is injected,</text>
-  <text x="840" y="566" fill="#8fa898" font-size="12">the diff is recorded, mail is delivered.</text>
+  <text x="840" y="566" fill="#8fa898" font-size="12">the diff is recorded, mail and new grade lines delivered.</text>
   <text x="840" y="584" fill="#8fa898" font-size="12">what it owns: everything else, including</text>
   <text x="840" y="602" fill="#8fa898" font-size="12">the scripts the loop runs on its behalf.</text>
   <text x="840" y="640" fill="#4ade80" font-size="12">memory tier (MemGPT, adopted turn 15):</text>

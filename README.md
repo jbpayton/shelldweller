@@ -54,6 +54,14 @@ its two worst cases (27 and 38) were the same failure: a plan that said
 "probe first," re-run every turn until the meter died. Its cheapest passes
 came from reusing tools built for the case before.
 
+![trial 7: output tokens per case, with the operator's markers](docs/trial7.svg)
+
+Tier 3 (39–44, self-measurement) is in progress: 39 fail, 41 pass\*, 42 and
+43 pass under budget — the first under-budget passes since 34, and the
+first cases after its grades reached the prompt (`homestead/TRIAL7.md`,
+v7.5–v7.6). The per-case story is in
+[`docs/dweller-architecture.md`](docs/dweller-architecture.md#trial-7-what-the-battery-made-it-build).
+
 ## Architecture, as it stands
 
 ![Architecture](docs/architecture.svg)
