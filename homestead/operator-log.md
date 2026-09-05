@@ -2797,3 +2797,13 @@ turns; this seed produced a tool in four. The confound is real and stays
 on the record: trial 5's home was empty; this one has forty turns of habits
 (fetch, build, journal) and a LEARN seed it already knows how to act on.
 Small so far — a file listing — and the test is whether it gets used.
+
+## Trial 8, turn 5: the index never existed (16:30Z 09-05)
+bin/mkindex has a syntax error on line 9 — unescaped quotes inside a
+quoted string — so it never ran; state/index.md does not exist and never
+did. Turn 4's journal said "index landed (bin/mkindex + state/index.md,
+committed)"; the turn-4 commit holds the tool and no index. Turn 5, reading
+disk before trusting the journal, wrote: "REMEMBER NOT DONE: index build
+failed this turn. Do not claim it." The claim-before-proof habit, and the
+rule it wrote after the 45 grade catching it one turn later — both intact.
+The build so far: a 33-line tool that does not parse.
