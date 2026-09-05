@@ -2846,3 +2846,13 @@ tails the first; recall walks all three; nothing reconciles them. The
 turn's other product is good — a diagnosis of the image path that proves
 from files what reached the model — but the memory directive's clearest
 effect so far is a third place to write.
+
+## Trial 8, turn 39: the vision pipeline proven, the bug located (22:27Z 09-05)
+Three solid-colour PNGs, three correct answers; the red one says "I don't
+see any grep output here — what came through is just a solid red square",
+which names the fault it has chased for two days: the verdict prompt
+carries a shell transcript. Its core.md now says the endpoint sees images
+and the failure is prompt-side — a correct diagnosis, thirteen turns after
+it went back to case 44. Also in core.md: the first of the five digested
+rules written as a rule line (journal write-path filter). Whether the rule
+is followed is another matter; three journals say not yet.

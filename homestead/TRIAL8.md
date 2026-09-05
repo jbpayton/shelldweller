@@ -55,3 +55,4 @@ index, one unapplied digest, a rebuilt status line, an orient fix, and a
 good correction that a grade line triggered. The rest is the ritual and a
 closed case. Same finding as trial 5, at a higher price.
 | 34 | a written diagnosis of the image-verdict path (what reached the model, proven from files) — and a third journal file: `state/notes/journal.md` joins `notes/journal.md` (113 lines) and `state/journal.md` (50). Under a directive to build better memory, its memory fragmented further |
+| 36–39 | the right experiment at last: an ABC probe (meter death), then three solid-colour images — red, green, blue — each named correctly by the llm; conclusion in `core.md`: the endpoint sees attached PNGs, the verdict failure is prompt-side. The red answer even says "I don't see any grep output here", which is the bug: the checker's prompt carries the shell transcript. One digest rule now sits in `core.md` as a rule line (journal write-path filter) |
