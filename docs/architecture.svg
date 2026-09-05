@@ -94,7 +94,7 @@
     <text x="840" y="506" fill="#e6efe9">.git               one commit per turn</text>
   </g>
   <text x="840" y="548" fill="#8fa898" font-size="12">what the loop owns: NEXT is injected,</text>
-  <text x="840" y="566" fill="#8fa898" font-size="12">the diff is recorded, mail and new grade lines delivered.</text>
+  <text x="840" y="566" fill="#8fa898" font-size="12">the diff is recorded, mail and grades delivered.</text>
   <text x="840" y="584" fill="#8fa898" font-size="12">what it owns: everything else, including</text>
   <text x="840" y="602" fill="#8fa898" font-size="12">the scripts the loop runs on its behalf.</text>
   <text x="840" y="640" fill="#4ade80" font-size="12">memory tier (MemGPT, adopted turn 15):</text>
@@ -121,5 +121,5 @@
   <line x1="320" y1="520" x2="380" y2="520" stroke="#8fa898" stroke-width="1.2" marker-end="url(#d)"/>
   <text x="326" y="513" fill="#8fa898" font-size="10">mail</text>
 
-  <text x="40" y="766" fill="#8fa898" font-size="12">docs/architecture.svg · updated with each substrate change · see homestead/TRIAL6.md for what each part answers</text>
+  <text x="40" y="766" fill="#8fa898" font-size="12">docs/architecture.svg · updated with each substrate change · see homestead/TRIAL7.md for what each part answers</text>
 </svg>
