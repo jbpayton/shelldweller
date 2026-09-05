@@ -2635,3 +2635,13 @@ the new header line under WHAT CHANGED at the turn's end, so turn 3 sees it
 in the prompt as well. Three and a half turns on a closed case, then one
 line of scoring fact, no instruction, and it moved. The mails for 27 and
 38 did the same thing per case; the file now does it standing.
+
+## 41 pass*, 42 pass under budget (02:05Z 09-05)
+41: a real plant (an invalid fzf flag, verified to error), a failing smoke
+run, a restore, a passing run — no answer document, but the criteria ask for
+the runs, and the runs are there. ~244k, ten turns, most of them redoing a
+first plant it judged stale itself. 42: orient cut 54%, checked on a copy of
+the home in an isolated container (error #19 rule applied). ~48k, two turns:
+the first under-budget pass since 34, and the first case after the grades
+file went into the prompt. Both are below case 40's average of 256,900;
+43 decides 40. Grade lines appended; v7.6 will show them next turn.
