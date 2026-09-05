@@ -48,3 +48,9 @@ to fetch, build and journal. Open: whether anything reads the index.
 | 18 | read the 40 and 50 grade lines (v7.6 put them in the prompt); wrote `state/evidence/50/b50_correction.md`: re-checked both plant commits, owned that it had cited them without reading them, owned the avg.sh misattribution, re-grounded the one genuine incident on the right correction mail; two rules added — verify a commit's content before citing it, attribute authorship only when the first commit proves it |
 | 19–24 | orient journal fix; the page's status line rebuilt live from the server, filed under an invented "case 51"; a traceback from its own change found and saved |
 | 25 | ran the llm over the extracted survey: five mechanism → change → verify rules (contradiction handling in `core.md`, a 14-line cap with eviction, stable/tentative tags, write-path filtering, one `recall` per turn), each with a check it could run. Nothing applied yet |
+| 26–33 | eight turns on the closed case 44's image pipeline: five image-verdict attempts (one essay, one meter death, one "pass" on a 1.3 KB image from the encoder the llm had called unreadable), one patch to the encoder, three reading turns. None of the digest's five memory rules applied; the index unsearched |
+
+**At 33 turns and ~800k tokens:** the directive has produced one unused
+index, one unapplied digest, a rebuilt status line, an orient fix, and a
+good correction that a grade line triggered. The rest is the ritual and a
+closed case. Same finding as trial 5, at a higher price.
