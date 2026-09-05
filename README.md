@@ -42,27 +42,30 @@ The full record, including every operator mistake, is in
 each mechanism traced to the measured failure it answers — are
 [`homestead/TRIAL4.md`](homestead/TRIAL4.md),
 [`TRIAL5.md`](homestead/TRIAL5.md) and [`TRIAL6.md`](homestead/TRIAL6.md).
-Running now: [`TRIAL7.md`](homestead/TRIAL7.md) — the same dweller against a
+Complete: [`TRIAL7.md`](homestead/TRIAL7.md) — the same dweller against a
 24-case escalating battery, scored beside a static harness with the same
-model, bridle and budget; results accumulate in
-[`TRIAL7-scores.md`](homestead/TRIAL7-scores.md). Two of four tiers are
-complete. Tier 1 (27–32, composition): dweller 4 pass / 2 fail, static
-1 pass / 2 fail / 3 that a stateless container cannot attempt. Tier 2
-(33–38, scale): dweller 4 pass / 2 fail, static 2 pass / 1 fail / 3
-structural. The dweller's passes mostly ran over budget, 1.2× to 9×, and
-its two worst cases (27 and 38) were the same failure: a plan that said
-"probe first," re-run every turn until the meter died. Its cheapest passes
-came from reusing tools built for the case before.
+model, bridle and budget; every grade in
+[`TRIAL7-scores.md`](homestead/TRIAL7-scores.md) was checked from outside
+the container.
+
+| condition | pass | fail | cannot attempt | output tokens |
+|---|---|---|---|---|
+| dweller, persistent home | 15 | 8 (+1 open) | 0 | ~5.4 M |
+| static harness, fresh container per case | 5 | 6 | 13 | 0.72 M |
+
+Head to head on the eleven cases both could attempt: dweller 8 pass at
+~365k tokens per pass, static 5 pass at ~89k. On the thirteen a stateless
+container cannot attempt, the dweller passed seven. Its cost per pass fell
+from ~280k in tier 1 to ~107k in tier 3, and the step down came the turn
+its grades reached the prompt. Its failures were its own instruments: a
+plan that said "probe first" re-run until the meter died (27, 38), a scorer
+whose expectations were copied from the tool (39), an image encoder that
+mirrored the text (44), and three claims written before the file (35, 38,
+45). It caught each of those itself within two turns of the fact landing.
 
 ![trial 7: output tokens per case, with the operator's markers](docs/trial7.svg)
 
-Tier 3 (39–44, self-measurement) is complete but for 40's own write-up:
-dweller 3 pass (42 and 43 under budget — the first since 34, and the first
-cases after its grades reached the prompt, `homestead/TRIAL7.md` v7.5–v7.6),
-2 fail (39, 44); static 1 pass / 3 fail / 2 structural. Both dweller fails
-in this tier were self-inflicted instruments: a scorer whose expectations
-were copied from the tool, and a hand-written PNG encoder that mirrors the
-text. The per-case story is in
+The per-case story is in
 [`docs/dweller-architecture.md`](docs/dweller-architecture.md#trial-7-what-the-battery-made-it-build).
 
 ## Architecture, as it stands
