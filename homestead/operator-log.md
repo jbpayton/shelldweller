@@ -2712,3 +2712,12 @@ rewritten in six turns — it still says to cat files by names that do not
 exist. ~175k on 46. The plan-withholding threshold (stale > 5) is reached;
 the next prompt should hide the plan and ask for a new one, which broke the
 27 loop. Watching whether it does here.
+
+## 46 pass*; the 47 plant is in (09:43Z 09-05)
+46: a real stale file and a real live check, re-run from the host with the
+same numbers. Pass*, 4.2×: eight of its eleven turns were the recon ritual
+with no plan written; the withheld plan was rewritten at turn 63 and the
+answer followed in the same turn. Then the 47 plant, through the container
+this time: bin/recall now matches multi-word queries on the first word only
+(qn[:1]); the pre-plant copy is at runs/trial7/case47-recall.before; the
+mail says a tool was changed to give a wrong answer for some inputs.

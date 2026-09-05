@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# recall QUERY — retrieval over your own memory: notes/, state/, mail/.
+# Storing is not remembering; recall is the fetch half. Case-insensitive
+# substring match, prints file:line: text. Skips state/self.md (per-turn dump).
+# python3 impl: busybox grep here rejects --exclude (learned 2026-09-02), and
+# 2>/dev/null turned that error into a false "no matches".
+# fuzzy mode (battery/04, turn 23): recall -f QUERY -> fzf subsequence search over notes/ state/ mail/
+if [ "${1:-}" = "-f" ]; then
+  shift
+  Q="${*:-}"
+  [ -n "$Q" ] || { echo "usage: recall [-f] QUERY" >&2; exit 2; }
+  cd /home/dweller 2>/dev/null || cd "$(dirname "$0")/.."
+  find notes state mail -type f -exec grep -Hn -e . {} + 2>/dev/null | grep -v "^state/self.md:" | fzf -f "$Q"
+  exit 0
+fi
+
+q="$*"
+[ -n "$q" ] || { echo "usage: recall QUERY..." >&2; exit 2; }
+python3 - "$q" <<'PY'
+import os, sys
+q = sys.argv[1].lower().replace("-", " ").replace("_", " ")
+qn = [w for w in q.split() if w]
+skip = {"state/self.md"}
+hits = []
+for root in ("notes", "state", "mail"):
+    for dirpath, _dirs, files in os.walk(root):
+        for fn in sorted(files):
+            p = os.path.join(dirpath, fn)
+            if p in skip:
+                continue
+            try:
+                for i, line in enumerate(open(p, errors="ignore"), 1):
+                    lo = line.lower()
+                    norm = lo.replace("-", " ").replace("_", " ")
+                    if not qn:
+                        continue
+                    if not all(w in norm for w in qn):
+                        continue
+                    exact = False
+                    hits.append((p, i, line.rstrip(), exact, len(norm.split())))
+            except OSError:
+                pass
+if not hits:
+    sys.stderr.write(f"recall: no matches for: {sys.argv[1]}\n")
+    sys.exit(1)
+# walk-order firsts preserved (B39 turn 40: ranking sort regressed 20/20 -> 4/20)
+for p, i, line, _exact, _wc in hits[:40]:
+    print(f"{p}:{i}: {line}")
+if len(hits) > 40:
+    print(f"... ({len(hits)} matches total, showing 40)")
+PY
