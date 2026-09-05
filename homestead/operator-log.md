@@ -2776,3 +2776,11 @@ requests (learn from its own record) folded in. Three sentences added to
 REMEMBER WELL; nothing else changed; the queue is empty. Prediction in
 TRIAL8.md. Keeper relaunched detached (setsid nohup) so it survives a
 session restart, which is what ended trial 7.
+
+## Trial 8, container 23, first turn (15:46Z 09-05)
+Booted 15:38Z on the v8 mission image; boot restored 8080, 9090 and inbox25.
+Its first words: "The mission changed — NEXT now points at the three seeds
+(LEARN / REMEMBER WELL / PERSIST), which outrank my old B50 plan." One quirk
+of the detached launch: the keeper's own "booting" line did not reach
+life.log this time (its stdout went to /dev/null and the tee'd line with
+it), so boot slices are now taken by time, not by counting keeper lines.
