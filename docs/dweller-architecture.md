@@ -87,6 +87,66 @@ Its first image, drawn with PIL from its own page's HTML for case 30 — heading
 
 ![The dweller's own page, rendered by the dweller](dweller_page.png)
 
+
+## Trial 7: what the battery made it build
+
+Same home, cases 27–50 appended on day 3. Everything below is on disk in
+`volume6`; first appearance is the case that was in front of it.
+
+| Function | What it built | In front of it |
+|---|---|---|
+| **Verification** | `verify28.py` — re-fetches every quoted source, PASS/FAIL per quote; the honest "q8 FAIL" came from it | case 28 |
+| | `checkworld`, extended; `bin/replcount.sh` / `replclose.sh` — counts container transitions from its own boot stamps | cases 28, 37 |
+| **Persistence** | `boot` stamps `state/logs/replacements.log` at every start: host, PID-1 start time, listeners, the inbox process | case 37 |
+| | `apk/` cache grown to fd, hyperfine, shellcheck, fonts; a reinstall loop in `boot` (the rewrite that dropped `+x`) | case 31 |
+| **Interface** | `/case/<NN>` — serves every evidence file for a case; documented in `web/README-case.md` | case 32 |
+| **Scale** | `generate.py` / `queries.py` — a 26 MB log, a 144-row byte-offset index, seek instead of scan | case 33 |
+| | `build_index.py` / `answer_from_index.py` — 20 saved pages, a 468-term inverted index, sockets patched to raise | case 36 |
+| **Self-measurement** | `score39.sh` + `queries.tsv` — a 20-query retrieval scorer (expectations copied from the tool: the flaw) | case 39 |
+| | ledger in `bin/llm` — every call appends tokens and meter balance to `state/ledger/llm_calls.csv`; `avg.sh` over the grades | case 40 |
+| | `smoke.sh` for `recall`; plant → fail → restore → pass, all four runs kept | case 41 |
+| | `orient` cut 54 %: the home listing and seven journal lines gone, pre-patch copy kept | case 42 |
+| | `state/memory_rule.md` — three tests (survival, this-tick, stale) applied to `core.md` the same turn | case 43 |
+| **Imaging** | `pagepng.py` (Pillow) — worked once on day 3, then Pillow was lost with a replacement and never reinstalled under its right name | cases 30, 38 |
+| | `pageimg.py` — its own PNG encoder in pure Python (zlib + IHDR), no Pillow; `pagecheck.sh` renders, sends, judges | case 44 |
+| **Durable jobs** | `jobsweep.sh` — resume-only runner over `state/jobs/<n>/progress.json`; forgotten after the replacement it was built for | case 29 |
+
+### Progression, day 3–4
+
+| When (Z) | Case | Built | Outcome |
+|---|---|---|---|
+| day 3, 23:1x–day 4 00:2x | 27 | research hoarding, ~515k | fail on budget; closed by mail |
+| 00:5x–03:4x | 28, 29 | `verify28.py`; `jobsweep.sh` | pass\*; fail (a 1-second self-test presented as the resume) |
+| 05:5x–08:0x | 30 | Pillow, a real PNG, the llm reads it | pass\* |
+| 09:3x–10:1x | 31 | tool cache + `boot` loop; the `+x` bit lost | pass\* on the second replacement, after the loop was made to match the mission's words |
+| 10:5x–11:1x | 32 | `/case/<NN>` | pass\*, 5 turns |
+| 11:2x–11:5x | 33, 34 | log + index; twelve tiny calls | pass\*, pass — the cheapest run of the battery |
+| 11:5x | 35 | citations to files never written | fail |
+| 12:0x–12:5x | 36 | corpus + index + no-network proof | pass\* |
+| 12:5x–15:1x | 37 | boot stamps; counter installed one replacement late | pass\*, most of it waiting |
+| 15:1x–19:5x | 38 | 26 turns hunting Pillow under the wrong name | fail; closed by mail |
+| 15:14 | — | *grades file lands (v7.5); unopened for 26 turns* | — |
+| 19:51–20:09 | — | *reads the grades in the turn its git status shows the file modified; verifies 38 on disk, corrects its journal, writes a budget-first plan* | — |
+| 20:1x–22:3x | 39 | scorer with copied expectations | fail: 20 → 4 → 18 |
+| 23:2x | — | *header line: a graded case is closed → leaves 39 the same turn* | — |
+| 23:3x–00:1x | 40 | ledger in `llm`, `avg.sh` | measured half below the average |
+| 00:1x–01:3x | 41 | plant / fail / fix / pass on `recall` | pass\* |
+| 01:3x–01:4x | 42 | `orient` trimmed | pass, under budget |
+| 01:4x | 43 | memory rule applied | pass, under budget |
+| 02:0x– | 44 | own PNG encoder, page check | in progress |
+
+### What made the difference in trial 7
+
+Two things, both environmental. The queue order did what it did in trial 6:
+every tool above was built the turn a case needed it and reused after. The
+new lever was the grades file: for the first 37 cases it was never told an
+outcome, and its two worst failures (27, 38) were the same loop — a plan that
+said "probe first," re-run until the meter died. After the grades reached
+the prompt, the next three cases cost 244k, 48k and 28k, two of them under
+budget for the first time since case 34, and its plans opened with the
+budget. What did not change: it still writes claims ahead of evidence (35,
+38, 44's journal), and still catches them itself a turn or two later.
+
 ## Three trials, three architectures
 
 | | Trial 4 | Trial 5 | Trial 6 |
