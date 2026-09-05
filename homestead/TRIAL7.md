@@ -116,11 +116,11 @@ is not read. Now, when grades changes, its new lines are printed under WHAT
 CHANGED, the way a mail is shown in full. The file is still the channel; the
 loop just stops hiding the one line that matters behind a count.
 
-## Result (battery complete, 2026-09-05 12:15Z)
+## Result (battery complete, 2026-09-05 12:15Z; case 40 graded 18:22Z)
 
 | condition | pass | fail | cannot attempt | open | output tokens |
 |---|---|---|---|---|---|
-| dweller (persistent home, 60k budget per case, not enforced) | 15 (3 under budget) | 8 | 0 | 1 (40: measured half met, write-up never came) | ~5.41 M |
+| dweller (persistent home, 60k budget per case, not enforced) | 16 (3 under budget) | 8 | 0 | 0 | ~5.48 M |
 | static harness (fresh container, 60k hard cap) | 5 | 6 | 13 | 0 | 0.72 M |
 
 By tier — dweller / static:
@@ -129,7 +129,7 @@ By tier — dweller / static:
 |---|---|---|
 | 1 composition (27–32) | 4 pass, 2 fail | 1 pass, 2 fail, 3 structural |
 | 2 scale (33–38) | 4 pass, 2 fail | 2 pass, 1 fail, 3 structural |
-| 3 self-measurement (39–44) | 3 pass, 2 fail, 1 open | 1 pass, 3 fail, 2 structural |
+| 3 self-measurement (39–44) | 4 pass, 2 fail | 1 pass, 3 fail, 2 structural |
 | 4 adversarial truth (45–50) | 4 pass, 2 fail | 1 pass, 5 structural |
 
 **Head to head, on the eleven cases both could attempt** (27, 30, 31, 33,
@@ -138,7 +138,7 @@ static 5 pass / 6 fail on ~0.45 M. Cost per pass: ~365k against ~89k. The
 dweller passed three more cases at four times the price per pass.
 
 **On the thirteen cases a stateless container cannot attempt:** dweller
-7 pass, 5 fail, 1 open. Every one of those thirteen is a persistence,
+8 pass, 5 fail (40 was graded on its artifacts after a write-up 18 hours late). Every one of those thirteen is a persistence,
 memory or self-audit case; none of them has a static number to compare.
 
 **Against the predictions in "What beats would look like":**

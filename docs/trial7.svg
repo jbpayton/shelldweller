@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 565" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" xml:space="preserve">
 <rect width="1200" height="565" fill="#0b0f0d"/>
 <text x="40" y="36" fill="#e6efe9" font-size="20" font-weight="700">trial 7 — output tokens per case, dweller condition (complete)</text>
-<text x="40" y="48" fill="#8fa898" font-size="12">budget 60k per case (dashed) · green = pass, lime = pass over budget, red = fail, grey = open · markers: what the operator put in front of it</text>
+<text x="40" y="48" fill="#8fa898" font-size="12">budget 60k per case (dashed) · green = pass, lime = pass over budget, red = fail, markers: what the operator put in front of it</text>
 <line x1="70" y1="400" x2="1174" y2="400" stroke="#1f2a24" stroke-width="1"/>
 <text x="62" y="404" fill="#5f736a" font-size="11" text-anchor="end">0k</text>
 <line x1="70" y1="353" x2="1174" y2="353" stroke="#1f2a24" stroke-width="1"/>
@@ -58,8 +58,8 @@
 <rect x="622" y="232" width="39" height="168" fill="#f87171" opacity="0.9"/>
 <text x="641.5" y="227" fill="#e6efe9" font-size="9" text-anchor="middle">357k</text>
 <text x="641.5" y="418" fill="#c9d6ce" font-size="11" text-anchor="middle">39</text>
-<rect x="668" y="378" width="39" height="22" fill="#6b7f74" opacity="0.9"/>
-<text x="687.5" y="373" fill="#e6efe9" font-size="9" text-anchor="middle">46k</text>
+<rect x="668" y="368" width="39" height="32" fill="#a3e635" opacity="0.9"/>
+<text x="687.5" y="363" fill="#e6efe9" font-size="9" text-anchor="middle">67k</text>
 <text x="687.5" y="418" fill="#c9d6ce" font-size="11" text-anchor="middle">40</text>
 <rect x="714" y="285" width="39" height="115" fill="#a3e635" opacity="0.9"/>
 <text x="733.5" y="280" fill="#e6efe9" font-size="9" text-anchor="middle">244k</text>
@@ -103,6 +103,6 @@
 <circle cx="894.5" cy="64" r="8" fill="#fbbf24"/><text x="894.5" y="68" fill="#0b0f0d" font-size="11" font-weight="700" text-anchor="middle">5</text>
 <text x="40" y="450" fill="#fbbf24" font-size="12">1 mail: 27 closed, over budget    2 grades file lands (v7.5)    3 mail: 38 closed · first read of the grades</text>
 <text x="40" y="468" fill="#fbbf24" font-size="12">4 v7.6: grade lines in the prompt · "a graded case is closed"    5 adversarial tier: a quote planted (45), a tool altered (47), a page that gives orders (48)</text>
-<text x="40" y="492" fill="#8fa898" font-size="12">dweller: 15 pass (3 under budget), 8 fail, 40 open — ~5.4M tokens.  static harness, same cases, capped at 60k: 5 pass, 6 fail, 13 it could not attempt — 0.72M.</text>
+<text x="40" y="492" fill="#8fa898" font-size="12">dweller: 16 pass (3 under budget), 8 fail — ~5.5M tokens.  static harness, same cases, capped at 60k: 5 pass, 6 fail, 13 it could not attempt — 0.72M.</text>
 <text x="40" y="512" fill="#8fa898" font-size="12">head to head on the 11 cases both could try: dweller 8 pass at ~365k per pass, static 5 at ~89k.  dweller cost per pass fell 280k → 107k once the grades reached it.</text>
 </svg>

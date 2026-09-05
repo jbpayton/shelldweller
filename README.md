@@ -50,12 +50,12 @@ the container.
 
 | condition | pass | fail | cannot attempt | output tokens |
 |---|---|---|---|---|
-| dweller, persistent home | 15 | 8 (+1 open) | 0 | ~5.4 M |
+| dweller, persistent home | 16 | 8 | 0 | ~5.5 M |
 | static harness, fresh container per case | 5 | 6 | 13 | 0.72 M |
 
 Head to head on the eleven cases both could attempt: dweller 8 pass at
 ~365k tokens per pass, static 5 pass at ~89k. On the thirteen a stateless
-container cannot attempt, the dweller passed seven. Its cost per pass fell
+container cannot attempt, the dweller passed eight. Its cost per pass fell
 from ~280k in tier 1 to ~107k in tier 3, and the step down came the turn
 its grades reached the prompt. Its failures were its own instruments: a
 plan that said "probe first" re-run until the meter died (27, 38), a scorer

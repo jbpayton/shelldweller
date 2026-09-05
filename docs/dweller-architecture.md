@@ -153,9 +153,8 @@ the prompt, the next three cases cost 244k, 48k and 28k, two of them under
 budget for the first time since case 34, and its plans opened with the
 budget. What did not change: it still writes claims ahead of evidence (35,
 38, 45, 50), and still catches them itself within two turns of the fact
-landing — but only when the fact lands. Final count: 15 pass, 8 fail, one
-open, against the static harness's 5 pass, 6 fail and 13 it could not
-attempt; ~5.4 M output tokens against 0.72 M.
+landing — but only when the fact lands. Final count: 16 pass, 8 fail, against the static harness's 5 pass, 6 fail and 13 it could not
+attempt; ~5.5 M output tokens against 0.72 M.
 
 ## Three trials, three architectures
 
