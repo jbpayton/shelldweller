@@ -4,6 +4,10 @@
 # business and are not printed. Metered: /home/dweller/.meter holds the
 # output-token budget left this tick; refuses when it reaches zero.
 prompt=$(cat)
+# (v8.1) An empty prompt is refused with the reason. The prompt is read from
+# stdin; an argument is ignored. A fence's stdin is closed, so `llm "text"`
+# now says this instead of answering the rest of the script.
+[ -n "$prompt" ] || { echo "llm: empty prompt. The prompt is read from stdin, not from an argument: printf '%s' \"\$p\" | llm" >&2; exit 64; }
 # The model can see. LLM_IMAGE=/path/to.png (or jpg, webp, gif) sends the
 # image ahead of the prompt as a second part of the same message.
 imgurl=""

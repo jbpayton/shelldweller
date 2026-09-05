@@ -2856,3 +2856,17 @@ and the failure is prompt-side — a correct diagnosis, thirteen turns after
 it went back to case 44. Also in core.md: the first of the five digested
 rules written as a rule line (journal write-path filter). Whether the rule
 is followed is another matter; three journals say not yet.
+
+## Substrate error: the bridle fed the script to any command that read stdin — and operator error #21 (22:40Z 09-05)
+Found through its turn-40 secret test ("this looks like a shell script
+fragment…"). `echo "$script" | bash` plus `prompt=$(cat)` plus its
+`llm "$prompt"` meant two days of verdicts were answers to script text.
+Part of 44's fail and all of the "endpoint may hold context" hypothesis
+trace to this. v8.1: fence from a file, stdin closed; empty prompt refused
+with the reason. Applying it: my first attempt used `pkill -f './run.sh'`,
+whose pattern matched my own shell's command line and the hourly monitor's,
+so it killed both and stopped before the swap (#21: kill by exact command,
+never by a pattern that appears in your own command). Second attempt:
+keeper killed by pid, container stopped, its bridle copy swapped (backup
+bin/shelldweller.pre-v8.1), mail written, keeper relaunched detached. The
+claims-vs-disk block drafted earlier is now v8.2, awaiting the user's go.

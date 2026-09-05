@@ -114,7 +114,11 @@ Resend ONLY the fenced bash, smaller. You can continue after it runs."
   skipped=""; [ "$nfence" -gt 1 ] && skipped=" Only your first fenced block ran; the other $((nfence-1)) were NOT executed — write them after reading this output."
   [ -z "$(printf '%s' "$script" | tr -d '[:space:]')" ] && exit $code
   [ "$TOP" = "1" ] && echo "--- round $((steps+1)) ---"
-  output=$(echo "$script" | bash 2>&1); code=$?
+  # (v8.1) The fence runs from a file with stdin closed. Piping the script into
+  # bash let any command that reads stdin — llm, cat, read, python3 - — eat the
+  # rest of the script in silence: two days of image verdicts were the llm
+  # answering the tail of the script that called it.
+  printf '%s\n' "$script" > /tmp/.fence.$$; output=$(bash /tmp/.fence.$$ 2>&1 < /dev/null); code=$?; rm -f /tmp/.fence.$$
   printf '%s\n' "$output"
   steps=$((steps+1))
   if [ $code -eq 0 ]; then verdict="ran (exit 0)"; ask="Continue with more fenced bash, or reply with no fence to end the turn."

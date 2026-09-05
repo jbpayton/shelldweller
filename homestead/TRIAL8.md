@@ -56,3 +56,15 @@ good correction that a grade line triggered. The rest is the ritual and a
 closed case. Same finding as trial 5, at a higher price.
 | 34 | a written diagnosis of the image-verdict path (what reached the model, proven from files) — and a third journal file: `state/notes/journal.md` joins `notes/journal.md` (113 lines) and `state/journal.md` (50). Under a directive to build better memory, its memory fragmented further |
 | 36–39 | the right experiment at last: an ABC probe (meter death), then three solid-colour images — red, green, blue — each named correctly by the llm; conclusion in `core.md`: the endpoint sees attached PNGs, the verdict failure is prompt-side. The red answer even says "I don't see any grep output here", which is the bug: the checker's prompt carries the shell transcript. One digest rule now sits in `core.md` as a rule line (journal write-path filter) |
+
+### v8.1 — the bridle's stdin (substrate defect, found by its turn-40 "secret" test)
+The bridle piped each fenced block into bash on stdin. Both llm devices read
+their prompt from stdin. Its page checker passed the prompt as an argument,
+which the device ignores — so the device read stdin, which was the rest of
+the running script. Every image verdict since case 44 was the llm answering
+the tail of the script that called it, with the image attached. Fix: the
+fence runs from a file with stdin closed; the pristine llm refuses an empty
+prompt and says where the prompt comes from. Its bridle copy, identical to
+the seed, was replaced while stopped and announced by one line of mail. Its
+own fault — the argument form — stays its own; the substrate's was making
+it silent.
