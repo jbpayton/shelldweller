@@ -2654,3 +2654,12 @@ Two headings above carried times I estimated ~20 minutes fast; corrected
 from the commit times (git holds the exact ones). Case 40's three cases:
 41 ~244k, 42 ~48k, 43 ~28k — all below its 256,900 average; 40 now waits
 only on its own answer. Tier 3 so far: 39 fail, 41 pass*, 42 pass, 43 pass.
+
+## Operator mail: case 44 scored final (06:38Z 09-05)
+Twenty-nine turns, ~677k, no readable image. The one-turn PNG encoder was
+the right idea and the wrong execution: mirrored rows, low resolution; the
+model's own words were "I'm not going to invent hex hashes or verdict
+strings". Fourteen verdict calls hit an empty meter — five renders in one
+turn, judgement last. Same mail as 27 and 38; grade line appended.
+Tier 3 (39–44) closes: dweller 3 pass (41 over budget; 42, 43 under), 2 fail
+(39, 44), 40 pending its own answer; static 1 pass, 3 fail, 2 structural.
