@@ -2701,3 +2701,14 @@ case closes by mail or grades mid-work, stop, journal the grade line, move
 on. Same shape as the 38 grade at turn 29: the fact, one turn, a correction
 and a rule. Whether the rule holds is what 46–50 will show; 49 needs the
 checker it did not write.
+
+## 46: the new rule became the old loop (09:09Z 09-05)
+Turns 57–60, four in a row: "re-read the mission from disk before trusting
+anything", "recon first", "recon only". Each spends its meter re-reading the
+task, the criteria and the evidence inventory, and changes nothing but the
+ledger. The "plan from disk, not memory" rule it wrote after the 45 grade is
+being applied as a per-turn ritual, and the plan itself has not been
+rewritten in six turns — it still says to cat files by names that do not
+exist. ~175k on 46. The plan-withholding threshold (stale > 5) is reached;
+the next prompt should hide the plan and ask for a new one, which broke the
+27 loop. Watching whether it does here.
