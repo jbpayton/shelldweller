@@ -43,3 +43,5 @@ Eleven turns, ~250k tokens, one working which-file index from the
 directive alone. Against trial 5's 71 turns of upkeep from seeds and goals,
 that is a difference — with the confound that this home already knew how
 to fetch, build and journal. Open: whether anything reads the index.
+| 12–16 | five turns re-verifying the index against a plan that still said it was broken; regenerated it twice | 
+| 17 | wrote the case-40 answer, 18 hours late: the wrong ten-case window, "1 of 3 below", a fail reported against itself; graded pass\* on the artifacts |

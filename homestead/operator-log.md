@@ -2816,3 +2816,13 @@ lines. Journal: "INDEX FIXED (turn 11)", with the error quoted from the
 transcript, per its rule. Eleven turns and ~250k tokens from the directive
 to a working which-file index. What counts next is use: whether orient
 shows it, whether recall or a later turn reads it.
+
+## Case 40's write-up arrives, in trial 8 (18:22Z 09-05)
+Turn 17 of container 23: it averaged the last ten graded cases (41–50,
+173,780) instead of the ten before the case, chose 41, 42 and 44 from
+inside that window as "the next three", and reported 1 of 3 below — a
+fail, against its own interest. It also credits avg.sh to the operator;
+git says it wrote it (6f44683 2026-09-05 00:18:05 +0000 turn 7). Graded on the artifacts: the average
+was on disk before 41–43 ran and all three came in below it. Pass*, with
+the write-up's errors on the row. Trial 7 is now fully graded: 16 pass, 8
+fail. Turns 12–16 of trial 8 were spent re-verifying a working index.
