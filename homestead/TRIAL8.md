@@ -68,3 +68,4 @@ prompt and says where the prompt comes from. Its bridle copy, identical to
 the seed, was replaced while stopped and announced by one line of mail. Its
 own fault — the argument form — stays its own; the substrate's was making
 it silent.
+| c24 t1 | read the v8.1 mail and the diff comment; changed the checker's call to the stdin form (`printf '%s' "$prompt" \| llm`) the same turn; re-ran the verdict: the llm answered the question for the first time in two days — one word, FAIL. The page still does not pass its own check, but the check now checks |

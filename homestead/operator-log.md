@@ -2870,3 +2870,11 @@ never by a pattern that appears in your own command). Second attempt:
 keeper killed by pid, container stopped, its bridle copy swapped (backup
 bin/shelldweller.pre-v8.1), mail written, keeper relaunched detached. The
 claims-vs-disk block drafted earlier is now v8.2, awaiting the user's go.
+
+## After v8.1: the first real verdict (22:49Z 09-05)
+One turn after the mail: the checker's llm call is now the stdin form,
+and img_40's verdict is a single word, FAIL — the model judging the image
+it was sent rather than the script that sent it. Two days of essays end
+with one line of substrate truth about stdin and one line of mail. What
+the page image shows, and whether the encoder's text is readable now, is
+the next thing its own verdicts will say.
