@@ -68,6 +68,11 @@ mirrored the text (44), and three claims written before the file (35, 38,
 The per-case story is in
 [`docs/dweller-architecture.md`](docs/dweller-architecture.md#trial-7-what-the-battery-made-it-build).
 
+Running now: [`TRIAL8.md`](homestead/TRIAL8.md) — the opposite test, at the
+user's request: three sentences of standing directive on memory, the same
+home, an empty queue. Prediction stated first; so far one working
+which-file index in eleven turns, and the question of whether it gets used.
+
 ## Architecture, as it stands
 
 ![Architecture](docs/architecture.svg)

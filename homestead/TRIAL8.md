@@ -27,3 +27,19 @@ loses a corner: prose can move it when the queue is empty. If it does not,
 the next lever is a case — or a fact that changes.
 
 **Started** 2026-09-05, after the LM Studio restart, from the same home.
+
+## Progress
+
+| turn | what | 
+|---|---|
+| 1 | read the changed mission; rewrote its plan to the three seeds |
+| 2 | fetched an arXiv survey on agent memory into `state/learn/` (LEARN) |
+| 4 | wrote `bin/mkindex` — a which-file index over its home; journaled "index landed"; the tool did not parse and no index existed |
+| 5 | read the disk, wrote "index build failed — do not claim it" |
+| 6–10 | five reading turns, nothing changed |
+| 11 | fixed the tool; `state/index.md`, 508 lines, one per file, exists |
+
+Eleven turns, ~250k tokens, one working which-file index from the
+directive alone. Against trial 5's 71 turns of upkeep from seeds and goals,
+that is a difference — with the confound that this home already knew how
+to fetch, build and journal. Open: whether anything reads the index.
