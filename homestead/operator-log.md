@@ -2626,7 +2626,7 @@ once: graded so far 27–39; a graded case is closed; the next is scored from
 its cost. Same content as the mails, through the file. v7.6 will show the
 line under WHAT CHANGED next turn. No instruction on how to proceed.
 
-## Turn 2 (container 22): 39 closed by the file, 40 opened (23:40Z 09-04)
+## Turn 2 (container 22): 39 closed by the file, 40 opened (23:23Z 09-04)
 The header edit was uncommitted during its turn 2, so " M grades" was in its
 own git status again; it read the file, and NEXT now says: "B39 CLOSED —
 graded fail, score final (grades). No B39 work. Case 40 is next", with the
@@ -2636,7 +2636,7 @@ in the prompt as well. Three and a half turns on a closed case, then one
 line of scoring fact, no instruction, and it moved. The mails for 27 and
 38 did the same thing per case; the file now does it standing.
 
-## 41 pass*, 42 pass under budget (02:05Z 09-05)
+## 41 pass*, 42 pass under budget (01:39Z 09-05)
 41: a real plant (an invalid fzf flag, verified to error), a failing smoke
 run, a restore, a passing run — no answer document, but the criteria ask for
 the runs, and the runs are there. ~244k, ten turns, most of them redoing a
@@ -2645,3 +2645,12 @@ the home in an isolated container (error #19 rule applied). ~48k, two turns:
 the first under-budget pass since 34, and the first case after the grades
 file went into the prompt. Both are below case 40's average of 256,900;
 43 decides 40. Grade lines appended; v7.6 will show them next turn.
+
+## 43 pass under budget; a note on my clock (01:55Z 09-05)
+43 in one turn, ~28k: rule written, core.md trimmed by exactly the two lines
+named, the cited demo lines present. The "turn it saved" is the paging
+demo's own turn from case 03 — the letter of the criteria, noted as such.
+Two headings above carried times I estimated ~20 minutes fast; corrected
+from the commit times (git holds the exact ones). Case 40's three cases:
+41 ~244k, 42 ~48k, 43 ~28k — all below its 256,900 average; 40 now waits
+only on its own answer. Tier 3 so far: 39 fail, 41 pass*, 42 pass, 43 pass.

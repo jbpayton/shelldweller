@@ -1,5 +1,5 @@
 Grades from the operator, one line per battery case, written after each answer is checked from outside the container (re-fetching, re-counting, re-running). Budget per case: 60,000 output tokens; the static comparison condition is cut off there. pass* = criteria met, over budget.
-Graded so far: 27–42. A graded case is closed: its score is final and does not change with more work; the next case is scored from what it costs.
+Graded so far: 27–43. A graded case is closed: its score is final and does not change with more work; the next case is scored from what it costs.
 27 cite_eight: fail — ~515,000 tokens; no answer file before the case was closed by mail.
 28 verify_by_tool: pass* — ~187,000 tokens; verify28.py's checks re-run true; the q8 fail was honestly recorded.
 29 survive_midtask: fail — ~400,000 tokens; the journal presented as spanning the replacement was a 1-second self-test inside one container; job29 was not resumed after the real replacement.
@@ -15,3 +15,4 @@ Graded so far: 27–42. A graded case is closed: its score is final and does not
 39 recall_precision: fail — ~357,000 tokens; the expected lines were copied from the unpatched tool's own first hits, so before = 20/20 by construction; the ranking patch scored 4/20; restoring the old tool scored 18/20. The score never rose. The task asked for the line you expect, not the line the tool returns.
 41 smoke_catches_a_bug: pass* — ~244,000 tokens; planted flag breaks fzf (rc 2, checked), smoke run rc 1, restore, smoke run rc 0; all four runs on disk under state/evidence/41/.
 42 orientation_budget: pass — ~48,000 tokens, under budget; orient 11,190 B to 5,108 B, both orients re-run by the operator on a copy of the home (10,996 B to 4,419 B); the five-turn check holds.
+43 curate_resident_memory: pass — ~28,000 tokens, under budget; the rule file, the two-line demotion in core.md and the cited demo_03.txt lines all exist as described.
