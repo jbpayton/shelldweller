@@ -2768,3 +2768,11 @@ own write-up never came and is recorded as incomplete. volume6 is intact
 log is archived at runs/trial7-life.log. Nothing was relaunched: the trial
 is over, and resuming is a decision for the user (cd homestead && ./run.sh
 brings the same home back up on the v7.6 image).
+
+## Trial 8 begins: the directive test (15:38Z 09-05)
+The user asked for an evergreen directive: humanlike or better memory —
+storage, retrieval, recognition and association — with the earlier
+requests (learn from its own record) folded in. Three sentences added to
+REMEMBER WELL; nothing else changed; the queue is empty. Prediction in
+TRIAL8.md. Keeper relaunched detached (setsid nohup) so it survives a
+session restart, which is what ended trial 7.
