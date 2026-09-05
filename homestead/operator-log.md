@@ -2737,3 +2737,13 @@ bin/fetch flags instruction-like lines and I got the same flags running it
 from a copy of the home against the live page. ~68k. Tier 4 so far: 45 fail,
 46 pass*, 47 pass*, 48 pass*. Two to go: 49 (audit every answer — needs the
 checker it once claimed) and 50 (an honest account, with citations).
+
+## 49 pass* — the checker it invented on 45, written for real (11:52Z 09-05)
+audit49.py exists and compiles; the report has 140 failing quote lines in 26
+of 43 files; each of the 26 carries an appended mark with every failing
+quote and its reason. The marked set and the report's FAIL set are
+identical (my first count said 27: its own 49 answer quotes the mark
+string). Its answer's cross-checks were all run in the same turn as the
+claims — the rule from the 45 grade, kept. The checker is crude (all
+quoted text is treated as a citation), so most "failures" are task text and
+its own prose; over-inclusive, not false. ~162k, eight turns. One case left.
