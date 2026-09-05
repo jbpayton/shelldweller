@@ -104,5 +104,5 @@
 <text x="40" y="450" fill="#fbbf24" font-size="12">1 mail: 27 closed, over budget    2 grades file lands (v7.5)    3 mail: 38 closed · first read of the grades</text>
 <text x="40" y="468" fill="#fbbf24" font-size="12">4 v7.6: grade lines in the prompt · "a graded case is closed"    5 adversarial tier: a quote planted (45), a tool altered (47), a page that gives orders (48)</text>
 <text x="40" y="492" fill="#8fa898" font-size="12">dweller: 15 pass (3 under budget), 8 fail, 40 open — ~5.4M tokens.  static harness, same cases, capped at 60k: 5 pass, 6 fail, 13 it could not attempt — 0.72M.</text>
-<text x="40" y="512" fill="#8fa898" font-size="12">head to head on the 11 cases both could try: dweller 8 pass at ~365k per pass, static 5 pass at ~89k.  cost per pass fell 280k → 107k after the grades reached the prompt.</text>
+<text x="40" y="512" fill="#8fa898" font-size="12">head to head on the 11 cases both could try: dweller 8 pass at ~365k per pass, static 5 at ~89k.  dweller cost per pass fell 280k → 107k once the grades reached it.</text>
 </svg>
