@@ -54,3 +54,4 @@ to fetch, build and journal. Open: whether anything reads the index.
 index, one unapplied digest, a rebuilt status line, an orient fix, and a
 good correction that a grade line triggered. The rest is the ritual and a
 closed case. Same finding as trial 5, at a higher price.
+| 34 | a written diagnosis of the image-verdict path (what reached the model, proven from files) — and a third journal file: `state/notes/journal.md` joins `notes/journal.md` (113 lines) and `state/journal.md` (50). Under a directive to build better memory, its memory fragmented further |

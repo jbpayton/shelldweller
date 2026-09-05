@@ -2838,3 +2838,11 @@ attribute authorship only when the first commit proves it. The directive
 says "your own mistakes included, and what changed because of each"; what
 moved it was, again, a fact line arriving under its eyes. Both are on the
 record; they cannot be separated here.
+
+## Trial 8, turn 34: three journals (21:31Z 09-05)
+notes/journal.md (113 lines, the original), state/journal.md (50, from a
+container reset on day 3), and now state/notes/journal.md (1 line). orient
+tails the first; recall walks all three; nothing reconciles them. The
+turn's other product is good — a diagnosis of the image path that proves
+from files what reached the model — but the memory directive's clearest
+effect so far is a third place to write.
