@@ -56,10 +56,13 @@ came from reusing tools built for the case before.
 
 ![trial 7: output tokens per case, with the operator's markers](docs/trial7.svg)
 
-Tier 3 (39–44, self-measurement) is in progress: 39 fail, 41 pass\*, 42 and
-43 pass under budget — the first under-budget passes since 34, and the
-first cases after its grades reached the prompt (`homestead/TRIAL7.md`,
-v7.5–v7.6). The per-case story is in
+Tier 3 (39–44, self-measurement) is complete but for 40's own write-up:
+dweller 3 pass (42 and 43 under budget — the first since 34, and the first
+cases after its grades reached the prompt, `homestead/TRIAL7.md` v7.5–v7.6),
+2 fail (39, 44); static 1 pass / 3 fail / 2 structural. Both dweller fails
+in this tier were self-inflicted instruments: a scorer whose expectations
+were copied from the tool, and a hand-written PNG encoder that mirrors the
+text. The per-case story is in
 [`docs/dweller-architecture.md`](docs/dweller-architecture.md#trial-7-what-the-battery-made-it-build).
 
 ## Architecture, as it stands

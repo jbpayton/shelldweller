@@ -70,8 +70,8 @@
 <rect x="1030" y="387" width="52" height="13" fill="#4ade80" opacity="0.9"/>
 <text x="1056.0" y="381" fill="#e6efe9" font-size="11" text-anchor="middle">28k</text>
 <text x="1056.0" y="418" fill="#c9d6ce" font-size="12" text-anchor="middle">43</text>
-<rect x="1090" y="296" width="52" height="104" fill="#6b7f74" opacity="0.9"/>
-<text x="1116.0" y="290" fill="#e6efe9" font-size="11" text-anchor="middle">220k</text>
+<rect x="1090" y="81" width="52" height="319" fill="#f87171" opacity="0.9"/>
+<text x="1116.0" y="75" fill="#e6efe9" font-size="11" text-anchor="middle">677k</text>
 <text x="1116.0" y="418" fill="#c9d6ce" font-size="12" text-anchor="middle">44</text>
 <line x1="126.0" y1="72" x2="126.0" y2="400" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="3 3"/>
 <circle cx="126.0" cy="64" r="8" fill="#fbbf24"/><text x="126.0" y="68" fill="#0b0f0d" font-size="11" font-weight="700" text-anchor="middle">1</text>
@@ -83,6 +83,6 @@
 <circle cx="846.0" cy="64" r="8" fill="#fbbf24"/><text x="846.0" y="68" fill="#0b0f0d" font-size="11" font-weight="700" text-anchor="middle">4</text>
 <text x="40" y="450" fill="#fbbf24" font-size="12">1 mail: 27 closed, over budget    2 grades file lands (v7.5)</text>
 <text x="40" y="468" fill="#fbbf24" font-size="12">3 mail: 38 closed · first read of the grades    4 v7.6: grade lines in the prompt · "a graded case is closed"</text>
-<text x="40" y="492" fill="#8fa898" font-size="12">before it read the grades (27–38): mean 280k per case, plans said "probe first".  after (41–43): 244k, 48k, 28k — two under budget, the first since 34.</text>
-<text x="40" y="512" fill="#8fa898" font-size="12">40 and 44 are open.  static-harness condition, all 24 cases, hard-capped at 60k: 5 pass, 6 fail, 13 structural (TRIAL7-scores.md).</text>
+<text x="40" y="492" fill="#8fa898" font-size="12">before it read the grades (27–38): mean 280k per case, plans said "probe first".  after: 41–43 cost 244k, 48k, 28k — two under budget — then 44 ran to 677k on an unreadable image.</text>
+<text x="40" y="512" fill="#8fa898" font-size="12">40 is open.  static-harness condition, all 24 cases, hard-capped at 60k: 5 pass, 6 fail, 13 structural (TRIAL7-scores.md).</text>
 </svg>
