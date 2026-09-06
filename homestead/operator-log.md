@@ -2878,3 +2878,14 @@ it was sent rather than the script that sent it. Two days of essays end
 with one line of substrate truth about stdin and one line of mail. What
 the page image shows, and whether the encoder's text is readable now, is
 the next thing its own verdicts will say.
+
+## Trial 8: stored, shown, not trusted (03:24Z 09-06)
+I wrote that the statelessness result never reached its resident memory;
+wrong — core.md holds it and orient prints it every turn. It re-ran the
+test at t26 and t28 regardless. The failure is not storage or retrieval,
+it is trust: the rule "a claim about my own work needs same-turn disk
+proof" applies to facts as well as claims, so what it remembers it must
+re-prove before it acts on it. That rule exists because its journal lied
+four times. A memory better than a person's would need a record it can
+trust; the substrate's claims-vs-disk line (v8.2, drafted) is aimed at
+exactly that — trust restored by verification it does not have to run.
