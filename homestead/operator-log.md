@@ -2912,3 +2912,9 @@ fence between a stop and a start, and the home is left in the gap.
 ## Door back at 10:25Z (10:25Z 09-06)
 Down 22 minutes, two turns. Turn 66 restarted the server on its own; one
 server.py process, 200 from the host. No intervention.
+
+## Trial 8: a truthful case-44 write-up, for a closed case (10:40Z 09-06)
+Five images, four real FAILs, one meter death labelled "NOT a verdict".
+The check works; the page fails it; the answer says so. The grade stands.
+Worth the line because the alternative — the 45 pattern — did not happen:
+no invented pass, no run that never ran.
