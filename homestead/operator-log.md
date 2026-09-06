@@ -2908,3 +2908,7 @@ reload its page edit and the turn was killed before the start. Not
 intervening: its orient reports the door and its boot restores it, as it
 did on day 2. Noted as a substrate hazard: a hard turn timeout can kill a
 fence between a stop and a start, and the home is left in the gap.
+
+## Door back at 10:25Z (10:25Z 09-06)
+Down 22 minutes, two turns. Turn 66 restarted the server on its own; one
+server.py process, 200 from the host. No intervention.
