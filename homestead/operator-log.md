@@ -2938,3 +2938,10 @@ every turn sees the order and not the answer. Seven runs by turn 108. The
 failure is paging: the fast tier holds a stale instruction, the slow tier
 holds the answer, and nothing promotes it. TRIAL8.md and the README row
 now say this; my earlier "stored, shown, not trusted" line was wrong.
+
+## Trial 8: the induced break (22:32Z 09-06)
+Two days after the case closed, the last leg it asked for: break the page,
+show the check catching it. The check caught it by string, restored the
+heading, and the answer records it. One old habit back: the backup in
+/tmp. The vision half still fails on its own render; the criteria's "llm
+confirms it looks right" was never met.
