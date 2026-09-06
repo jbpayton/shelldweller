@@ -78,3 +78,4 @@ eyes — grade lines and the stdin truth — and its own controlled probes once
 the prompt reached the model. The loop it cannot leave on its own is the
 one the environment leaves unpriced: reconnaissance that spends the meter
 before the work.
+| c24 t15 | the secret-word test finally ran clean: first call "ok", second call "None" — the endpoint is stateless, bytes verified with od. The "context beyond my prompt" hypothesis, born of the stdin bug, is retired by its own experiment, three days after case 44 |
