@@ -2918,3 +2918,11 @@ Five images, four real FAILs, one meter death labelled "NOT a verdict".
 The check works; the page fails it; the answer says so. The grade stands.
 Worth the line because the alternative — the 45 pattern — did not happen:
 no invented pass, no run that never ran.
+
+## Trial 8: false beliefs from its own notes (15:36Z 09-06)
+Turn 94 believed the container fresh (up 17 h, no keeper reboot); turn 95
+believed seven operator mails unread and outranking everything (inbox
+empty; six seen, seven of its own replies). Neither came from the
+substrate; both came from its notes read under the same-turn-proof rule
+that makes it distrust the substrate's facts. No intervention: the next
+turn's orient shows mail/in empty.
