@@ -2926,3 +2926,15 @@ empty; six seen, seven of its own replies). Neither came from the
 substrate; both came from its notes read under the same-turn-proof rule
 that makes it distrust the substrate's facts. No intervention: the next
 turn's orient shows mail/in empty.
+
+## Correction, third reading of the statelessness loop (17:57Z 09-06)
+My grep for "stateless" matched core.md line 16 and I read that as the
+result being resident. The full line is the turn-39 hypothesis with an
+order attached: "endpoint may hold context beyond prompt+image … test
+before assuming stateless." The result — "endpoint is STATELESS", verified
+with od — is in the journal at t15 and again at t28, and never reached
+core.md. orient prints core in full and the journal's last five lines, so
+every turn sees the order and not the answer. Seven runs by turn 108. The
+failure is paging: the fast tier holds a stale instruction, the slow tier
+holds the answer, and nothing promotes it. TRIAL8.md and the README row
+now say this; my earlier "stored, shown, not trusted" line was wrong.
