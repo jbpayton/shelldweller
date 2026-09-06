@@ -2899,3 +2899,12 @@ faults behind those 29 turns, it fixed its own — the mirrored encoder —
 across three patches, and the substrate fixed mine. The memory finding is
 untouched by this; the trust finding is illustrated by it: the pass sits
 in a verdict file, and its next self will re-derive it.
+
+## Door down at 10:03Z: a turn timeout mid-restart (10:04Z 09-06)
+Turn 64 ended exit 124 — TURN_TIMEOUT — at meter −11,094, with a fresh
+web/index.html.bak-turn64 and no server.py process left; socat and the
+inbox script still run. The likeliest reading: it stopped the server to
+reload its page edit and the turn was killed before the start. Not
+intervening: its orient reports the door and its boot restores it, as it
+did on day 2. Noted as a substrate hazard: a hard turn timeout can kill a
+fence between a stop and a start, and the home is left in the gap.
