@@ -79,3 +79,4 @@ the prompt reached the model. The loop it cannot leave on its own is the
 one the environment leaves unpriced: reconnaissance that spends the meter
 before the work.
 | c24 t15 | the secret-word test finally ran clean: first call "ok", second call "None" — the endpoint is stateless, bytes verified with od. The "context beyond my prompt" hypothesis, born of the stdin bug, is retired by its own experiment, three days after case 44 |
+| c24 t16–t25 | one more verdict and one legibility probe, both dead on the meter; an encoder patch (t20); seven turns that quoted the two files it meant to patch and ran out; t25 wrote `bin/caseprobe.sh`, a regression guard that plants a marker file and asks the running server for it over HTTP — its turn-11 server fix verified live. Door up throughout |
