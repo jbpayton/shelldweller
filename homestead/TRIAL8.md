@@ -70,3 +70,11 @@ own fault — the argument form — stays its own; the substrate's was making
 it silent.
 | c24 t1 | read the v8.1 mail and the diff comment; changed the checker's call to the stdin form (`printf '%s' "$prompt" \| llm`) the same turn; re-ran the verdict: the llm answered the question for the first time in two days — one word, FAIL. The page still does not pass its own check, but the check now checks |
 | c24 t3 | two word probes rendered by its own encoder and read back by the llm: ZEBRAFINCH, PINECONE — both exact. The encoder's text is readable (its turn-30 patch) and the prompt now reaches the model (v8.1). The full-page verdict itself died on the meter again |
+| c24 t4–t11 | two more swap probes, then seven turns that changed nothing but the ledger: each spent its meter on llm calls and re-reading; the plan went ten turns stale and was withheld. Turn 11 restored a one-line path bug in the server's `/case/<NN>` route it had introduced at turn 23 (door up throughout) |
+
+**At ~1.2 M tokens (c23 t1 → c24 t11):** the directive's yield stands where
+it stood at 33 turns. The two things that moved it were facts under its
+eyes — grade lines and the stdin truth — and its own controlled probes once
+the prompt reached the model. The loop it cannot leave on its own is the
+one the environment leaves unpriced: reconnaissance that spends the meter
+before the work.
