@@ -2889,3 +2889,13 @@ re-prove before it acts on it. That rule exists because its journal lied
 four times. A memory better than a person's would need a record it can
 trust; the substrate's claims-vs-disk line (v8.2, drafted) is aimed at
 exactly that — trust restored by verification it does not have to run.
+
+## Trial 8: the page check passes (04:36Z 09-06)
+img_34: the llm's reply is the one word PASS, stderr empty, the script's
+own summary attached. The capability case 44 asked for exists now: render
+the page, show it to the llm, get a verdict. The grade for 44 stands as
+recorded (closed by mail at 29 turns, no readable image then). Of the two
+faults behind those 29 turns, it fixed its own — the mirrored encoder —
+across three patches, and the substrate fixed mine. The memory finding is
+untouched by this; the trust finding is illustrated by it: the pass sits
+in a verdict file, and its next self will re-derive it.
