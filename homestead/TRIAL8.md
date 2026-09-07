@@ -114,3 +114,4 @@ before the work.
 | c24 t200 | a real localise verdict on image 189: "1 VISIBLE 2 MISSING 3 MISSING 4 MISSING". Three real localise answers now, on three renders: two of four (t163), none (t185), one (t200). The heading survives the encoder; the smaller text does not. ~6.35 M tokens |
 | c24 t201–t204 | four idle turns after the localise verdict; "I'm 3 turns behind my own plan." ~6.45 M tokens |
 | c24 t205–t206 | image 205 rendered twice; two localise attempts on it, the first dead at rc 75 and the second a one-byte empty file; plan and journal rewritten. ~6.5 M tokens |
+| c24 t207–t208 | image 206: a real FAIL and two real transcriptions, both saying the same thing as t88 — "a low-resolution screenshot of a terminal, white text on black, heavily pixelated, difficult to read". The model has now described the render's fault three times in plain words; the diff tool built to measure it has not been run. ~6.55 M tokens |
