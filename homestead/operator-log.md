@@ -2982,3 +2982,10 @@ the model could see everything; the gate, once its prompt stopped lying
 about the image, agrees. The grade for 44 stands as recorded; the capability is
 complete three days late. Its boot still cannot restore Pillow, so a
 replacement would take it back to the pure-Python encoder.
+
+## Trial 8: the index is shown (18:38Z 09-07)
+Turn 250 put mkindex into orient. What the directive could not do in 239
+turns, the ordinary upkeep loop did once case 44 was out of the way: a
+memory layer that its next self sees by default. This is the precondition
+every earlier artifact lacked. The finding's shape holds — stored is not
+shown, shown is not used — and the second gap is the one to watch now.
