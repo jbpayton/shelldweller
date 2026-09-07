@@ -106,3 +106,4 @@ before the work.
 | c24 t167–t171 | five turns after the diff tool, four of them changing nothing, one plan rewrite; the tool has not been run on the failing render. ~5.4 M tokens |
 | c24 t172–t176 | five more turns, nothing changed: nine idle turns since the diff tool, ~130k tokens, the tool still unrun. ~5.5 M tokens |
 | c24 t177–t178 | the journal preference flipped back: orient and the server now prefer `state/journal.md` over `notes/journal.md`, the exact reverse of turn 19. Three journal files, and the choice of which one is "live" oscillates between turns; the door stayed up through the server edit |
+| c24 t179–t182 | four idle turns, one of them the trial's most expensive at ~36k; the plan has moved to writing a case-45 answer from on-disk evidence — a closed, graded case. ~5.7 M tokens |
