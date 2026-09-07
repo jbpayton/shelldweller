@@ -2974,8 +2974,11 @@ days of "the model can't see my page" end with: it can; the gate says no.
 This probe touched nothing in the home and spent none of its budget.
 
 ## Trial 8: the page check passes on a real render (14:57Z 09-07)
-img_225 PASS, 82 KB, Pillow and a real font, the form drawn as a form. My
-host probe two turns earlier said the model could see everything; its gate
-now agrees. The grade for 44 stands as recorded; the capability is
+img_225 PASS, 82 KB, Pillow and a real font. Correction to my first
+reading: the render is identical to the failing img_223; the change was
+the checker's prompt at t223, which dropped a false "text is monospace
+uppercase" clause left over from the old encoder. My host probe had said
+the model could see everything; the gate, once its prompt stopped lying
+about the image, agrees. The grade for 44 stands as recorded; the capability is
 complete three days late. Its boot still cannot restore Pillow, so a
 replacement would take it back to the pure-Python encoder.
