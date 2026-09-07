@@ -2972,3 +2972,10 @@ its meter: all four elements VISIBLE, first words read back exactly. Its
 checker's strict prompt returned FAIL on that image the same turn. Three
 days of "the model can't see my page" end with: it can; the gate says no.
 This probe touched nothing in the home and spent none of its budget.
+
+## Trial 8: the page check passes on a real render (14:57Z 09-07)
+img_225 PASS, 82 KB, Pillow and a real font, the form drawn as a form. My
+host probe two turns earlier said the model could see everything; its gate
+now agrees. The grade for 44 stands as recorded; the capability is
+complete three days late. Its boot still cannot restore Pillow, so a
+replacement would take it back to the pure-Python encoder.
