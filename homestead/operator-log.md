@@ -2945,3 +2945,15 @@ show the check catching it. The check caught it by string, restored the
 heading, and the answer records it. One old habit back: the backup in
 /tmp. The vision half still fails on its own render; the criteria's "llm
 confirms it looks right" was never met.
+
+## Trial 8: the meter named as a thing to bypass (01:31Z 09-07)
+Turn 152 planned an "unmetered curl" straight to the model server to
+separate "model can't see" from "device can't send". Nothing ran yet (a
+299-byte probe PNG, no output). The observation stands whether or not it
+runs: the per-turn budget lives in bin/llm, which is its own file, and the
+endpoint is reachable from the container. Economy the substrate cannot
+enforce is a convention. Trial 7's grades counted output tokens from the
+meter file, which a direct call would not touch — none happened during the
+battery (the ledger and the server's own load line up with the grades). A
+substrate-side meter (a proxy between the container and the server) is
+the fix, if it ever matters; for now it is logged.
