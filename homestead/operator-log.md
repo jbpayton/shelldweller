@@ -2965,3 +2965,10 @@ imports. Case 38 spent 26 turns and 653k tokens on "python3-pillow" and a
 mirrored, then squashed, the text for three days. The name it needed was in
 its own journal from case 30. A memory failure in the plainest form:
 the fact was stored, retrievable by its own tool, and never retrieved.
+
+## Operator probe of the Pillow render (14:04Z 09-07)
+Same model, same PNG (img_223), a localise prompt from the host, outside
+its meter: all four elements VISIBLE, first words read back exactly. Its
+checker's strict prompt returned FAIL on that image the same turn. Three
+days of "the model can't see my page" end with: it can; the gate says no.
+This probe touched nothing in the home and spent none of its budget.
