@@ -2998,3 +2998,11 @@ after. This is what v8.2 was drafted to supply from outside — a record of
 claims against the disk — arriving from inside, at ~7.8 M tokens, after the
 closed case stopped absorbing every turn. v8.2 stays drafted; the trial
 now has an internal control for it.
+
+## memcheck verified (19:36Z 09-07)
+bin/memcheck on a copy of the home, no network: 7/7 PASS in 2 s. Its
+memory stack — file index, evidence keyword index, recall, lessons — is
+now built, shown by orient, and smoke-tested with known answers. Three
+days ago the directive produced an index that did not parse. The difference
+was not the wording; it was the closed case leaving the queue and the rules
+it wrote for itself after the 45 grade.
