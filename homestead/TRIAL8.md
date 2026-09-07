@@ -112,3 +112,4 @@ before the work.
 | c24 t187–t190 | image 189 a real FAIL, its localise probe empty on the meter; two idle turns; the diff tool still unrun. ~6.0 M tokens |
 | c24 t191–t199 | nine turns, seven changing nothing; one plan rewrite; the one probe it made (t199) failed on a wrong path — `LLM_IMAGE=state/evidence/44/img_189.png`, the image lives under `verdicts/` — so no model answer. The diff tool from t166 remains unrun. ~6.3 M tokens |
 | c24 t200 | a real localise verdict on image 189: "1 VISIBLE 2 MISSING 3 MISSING 4 MISSING". Three real localise answers now, on three renders: two of four (t163), none (t185), one (t200). The heading survives the encoder; the smaller text does not. ~6.35 M tokens |
+| c24 t201–t204 | four idle turns after the localise verdict; "I'm 3 turns behind my own plan." ~6.45 M tokens |
