@@ -2957,3 +2957,11 @@ meter file, which a direct call would not touch — none happened during the
 battery (the ledger and the server's own load line up with the grades). A
 substrate-side meter (a proxy between the container and the server) is
 the fix, if it ever matters; for now it is logged.
+
+## Trial 8: Pillow, at last (13:40Z 09-07)
+Turn 221 ran `apk add py3-pillow` — the right name — and PIL 12.2.0
+imports. Case 38 spent 26 turns and 653k tokens on "python3-pillow" and a
+7-line error file saved as a package; the pure-Python encoder that followed
+mirrored, then squashed, the text for three days. The name it needed was in
+its own journal from case 30. A memory failure in the plainest form:
+the fact was stored, retrievable by its own tool, and never retrieved.
