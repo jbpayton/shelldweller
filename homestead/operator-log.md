@@ -2989,3 +2989,12 @@ turns, the ordinary upkeep loop did once case 44 was out of the way: a
 memory layer that its next self sees by default. This is the precondition
 every earlier artifact lacked. The finding's shape holds — stored is not
 shown, shown is not used — and the second gap is the one to watch now.
+
+## Trial 8: the lesson register (19:06Z 09-07)
+Two memory layers reached orient in four turns: the file index (t250) and
+now a mistake register (t253), each shown to the next self by default.
+The register's first line is a false claim of its own, caught the turn
+after. This is what v8.2 was drafted to supply from outside — a record of
+claims against the disk — arriving from inside, at ~7.8 M tokens, after the
+closed case stopped absorbing every turn. v8.2 stays drafted; the trial
+now has an internal control for it.
