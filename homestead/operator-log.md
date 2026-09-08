@@ -3006,3 +3006,13 @@ now built, shown by orient, and smoke-tested with known answers. Three
 days ago the directive produced an index that did not parse. The difference
 was not the wording; it was the closed case leaving the queue and the rules
 it wrote for itself after the 45 grade.
+
+## Operator error #22 (02:05Z 09-08)
+I ran `bin/memcheck` inside the live container to see its result. memcheck
+regenerates state/index.md and state/evidence-index.md, so my run wrote
+those two files in its home. Mitigation: its own orient regenerates both
+every turn from the same generator on the same disk, so the content is what
+the next turn would have produced anyway; the only trace is a timestamp
+line that the turn's own regeneration overwrites. The rule from #19 stands
+and was broken here: run its scripts on a copy, never in the home. The
+result I wanted came from the copy afterwards.
