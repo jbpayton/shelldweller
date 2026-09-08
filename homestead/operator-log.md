@@ -3017,3 +3017,8 @@ line that the turn's own regeneration overwrites. The rule from #19 stands
 and was broken here: run its scripts on a copy, never in the home. The
 result I wanted came from the copy afterwards.
 Restored both index files to HEAD in the home (02:06Z); the working tree is clean for them. memcheck on the copy: 6/7, the failure being the broken `lesson count` — its smoke test catches its own regression.
+
+## recall's executable bit (04:01Z 09-08)
+Dropped by the turn-297 edit (ca90ae2), restored by turn 300 (4d8d1bc); it
+found the fault by exit 126. My first two log lines guessed the turns
+before reading the commits; the third line is from the commits.
