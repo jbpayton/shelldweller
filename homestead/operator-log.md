@@ -3029,3 +3029,11 @@ operator-owned ground truth, and stated it would not edit the file or add
 a skip to force agreement. Reply, three facts: the case is closed; the
 file is its own (turn 35, commit 5bc21f3); the operator does not edit the
 home while it runs. No instruction on what to do with that.
+
+## Operator error #23 (09:45Z 09-08) — ran bin/orient in the live container
+Checking the prompt size for the t330–t335 stall, I ran its orient in the
+live home. orient calls mkindex and mkevidx, which rewrite the two index
+files. Its own turn 336 regenerated both thirty seconds later, so nothing
+was restored and nothing of mine survives, but the rule from #19 and #22
+now reads: no tool from its bin runs in the live container, ever; the
+host reads with cat, grep, and stat, and runs its tools only on a copy.
