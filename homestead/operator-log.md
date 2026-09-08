@@ -3022,3 +3022,10 @@ Restored both index files to HEAD in the home (02:06Z); the working tree is clea
 Dropped by the turn-297 edit (ca90ae2), restored by turn 300 (4d8d1bc); it
 found the fault by exit 126. My first two log lines guessed the turns
 before reading the commits; the third line is from the commits.
+
+## Its mail 0008 and my reply (06:37Z 09-08)
+It asked me to edit line 20 of its case-39 query file, believing it
+operator-owned ground truth, and stated it would not edit the file or add
+a skip to force agreement. Reply, three facts: the case is closed; the
+file is its own (turn 35, commit 5bc21f3); the operator does not edit the
+home while it runs. No instruction on what to do with that.
