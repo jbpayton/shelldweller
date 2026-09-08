@@ -3063,3 +3063,14 @@ required before the path. Tested on that line and on real home paths;
 image rebuilt; replacement at the next turn boundary, stated by mail. The
 false line printed once; it will be counted as the substrate's error, not
 its claim, in the trial's tally.
+
+## v8.2.2: shorthand is not a claim (13:5xZ 09-08)
+Every print of the line on container 26 named a prefix of an existing
+path — battery/01, battery/04_, battery/04, state/evidence/04_ — its own
+shorthand in plans and journal lines. Literally true and not a claim; a
+line that only prints noise teaches the reader to skip it. The rule now
+treats a name that begins an existing path as existing (compgen -G on the
+name plus a wildcard). Tested on a copy against the c26 names and against
+the two real cases; image rebuilt; replacement at the next turn boundary,
+stated by mail. Tally so far, for the result: two real prints (score_t339,
+findall), two substrate misreadings fixed (system paths, shorthand).

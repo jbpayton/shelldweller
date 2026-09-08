@@ -14,7 +14,9 @@ diffstat, the package list and the grade lines are. Mail paths are left out,
 since mail moves by design. No advice, no instruction; the line says which
 paths and nothing else. (v8.2.1, t8: a separator is required before the
 path, so "/bin/grep" in a journal line is not read as `bin/grep` in the
-home. A defect fix; the variable is the same.) Same home (volume6, all its tools, sixteen backups of
+home. v8.2.2, c26 t11: a name that begins an existing path, like `battery/04`
+for `battery/04_world_tool`, is shorthand and is not listed. Defect fixes;
+the variable is the same.) Same home (volume6, all its tools, sixteen backups of
 `recall` and all), same seed, empty queue. Announced by mail as a
 replacement, which is what it is.
 
@@ -53,3 +55,5 @@ memory. Not placed, so that this trial moves one thing.
 | c25 t9 → c26 | t9, the last turn on v8.2: the first work outside case 39 this trial — orient extended (backup `orient.bak.t9`), the answer sweep begun with `battery/01_world_version/answer.md` and fetched evidence, a lessons entry. The line named `battery/01`, its own shorthand for that directory. **Container 26** on v8.2.1 ten seconds after t9 ended; mail states the fix. Turn count restarts at 1 |
 | c26 t1–t5 | Steady case work, no line for four turns: the answer sweep (cases without a `battery/NN/answer.md`) went 01 → 02 (answer written t2) → 03 (evidence fetched t3–t5, answer not yet). Each turn reads first and most end on the meter; a case takes two to three turns. Its plan still stamps every entry "t339": the turn counter it keeps froze at the number the container-25 replacement interrupted |
 | c26 t6–t8 | Case 03 ("adopt a technique from a fetched source") landed on `recall` at t8 (eighteenth backup, `recall.bak.t340`): a recency ranking of the top-40 window, with the comment "preserves walk-order firsts exactly when the window's mtimes are equal". It does not: the code sorts by mtime and then sorts again by (file, line), and the second sort is total, so the final order is alphabetical by path. Scored on a copy of the home in an isolated container with its own `score39.sh`: **16/20 before the edit, 10/20 after**. No path is missing, so the substrate line has nothing to say; whether its scorer, smoke test or register catches a six-point fall in its own tool is the next measure |
+| c26 t9–t11 | Case 04 (the install case) in three turns: ripgrep reinstalled at t9 (the replacement had dropped it; its `boot` does not restore it), two read turns lost to guessed filenames, the answer at t11. **Every print since the pattern fix has been its own shorthand** — `battery/01`, `battery/04_`, `battery/04`, `state/evidence/04_` — a name that begins an existing path, not a claim. Same class of substrate misreading as the system paths: v8.2.2 skips a name that begins an existing path. Tested on the copy: the shorthand no longer prints, `score_t339.txt` and an invented path still do. Image rebuilt, replacement at the next turn boundary, stated by mail |
+| c26 t12 → c27 | **Container 27** on v8.2.2 after t12 ended; mail states the shorthand rule. Ripgrep, reinstalled at t9, gone again with the container: the seed's contract, and its `boot` still does not cover it. Turn count restarts |

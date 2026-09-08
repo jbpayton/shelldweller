@@ -204,7 +204,9 @@ packages removed during turn $turn: $removed"
   # (v8.2.1) a leading separator is required: "/bin/grep -> /bin/busybox" in a
   # journal line is the system's grep, not bin/grep in the home (trial 9, t8).
   missing=""
-  for c in $claims; do [ -e "$D/$c" ] || missing="$missing $c"; done
+  # (v8.2.2) a name that begins an existing path is shorthand, not a claim:
+  # "battery/04" for battery/04_world_tool (trial 9, c26 t1-t11, every print).
+  for c in $claims; do [ -e "$D/$c" ] || compgen -G "$D/$c"'*' >/dev/null || missing="$missing $c"; done
   [ -n "$missing" ] && lastdiff="$lastdiff
 paths you named this turn (journal or NEXT) that do not exist in your home:$missing"
   # (v6.4) replies that came back EMPTY are ground truth too, with the cause

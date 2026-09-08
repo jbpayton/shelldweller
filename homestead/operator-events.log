@@ -12,3 +12,4 @@
 [operator] 2026-09-08T06:37:40Z mail: reply to its B39 request (0008) — case closed, the query file is its own, the operator does not edit the home
 [operator] 2026-09-08T10:14:40Z v8.2 applied: container replaced onto the new image; mail announces the one new line under WHAT CHANGED
 [operator] 2026-09-08T11:48:38Z v8.2.1 applied (pattern fix: system paths no longer read as home paths); container replaced; mail states it
+[operator] 2026-09-08T13:53:22Z v8.2.2 applied (shorthand rule); container replaced; mail states it
