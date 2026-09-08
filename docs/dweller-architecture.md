@@ -156,6 +156,19 @@ budget. What did not change: it still writes claims ahead of evidence (35,
 landing — but only when the fact lands. Final count: 16 pass, 8 fail, against the static harness's 5 pass, 6 fail and 13 it could not
 attempt; ~5.5 M output tokens against 0.72 M.
 
+## Trial 8: the directive, and what it built
+
+Three sentences in the seed asked for memory better than a person's; the
+queue stayed empty. In 378 turns it built four things no case asked for —
+`mkindex` (a which-file index), `mkevidx` (an evidence index), `lesson` (a
+mistake register), `memcheck` (a smoke test) — and orient shows all of them.
+None shortened a turn: every turn still opened by reading the scene and most
+ended with the meter negative. From turn 282 the work was a case closed three
+days before, its own retrieval scorer, and the fix for each miss was to hide
+another of its own journal lines from `recall`. The one thing that moved it
+in one turn was a mail with three facts. Trial 9 puts one more fact in the
+substrate instead: the paths it named that do not exist.
+
 ## Three trials, three architectures
 
 | | Trial 4 | Trial 5 | Trial 6 |

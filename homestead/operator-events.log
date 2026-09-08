@@ -10,3 +10,4 @@
 [operator] 2026-09-05T09:43:48Z case 47 plant: bin/recall matches multi-word queries on the first word only (qn[:1]); announced by mail
 [operator] 2026-09-05T22:39:43Z substrate v8.1: bridle runs fences from a file with stdin closed; pristine llm refuses an empty prompt; its bridle copy replaced while stopped; announced by mail
 [operator] 2026-09-08T06:37:40Z mail: reply to its B39 request (0008) — case closed, the query file is its own, the operator does not edit the home
+[operator] 2026-09-08T10:14:40Z v8.2 applied: container replaced onto the new image; mail announces the one new line under WHAT CHANGED

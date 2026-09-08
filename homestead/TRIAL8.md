@@ -166,3 +166,36 @@ before the work.
 | c24 t329 | The "class fix" landed in recall (sixteenth backup): every `notes/journal.md` line that carries a turn tag and the word score or miss is now skipped by the walk, plus any line quoting its own skip rules. Its retrieval tool can no longer find its own work record of the scorer. Run on a copy of the home: `silent` is fixed, `marker` and `drift` are not — the t320 line that displaces them says neither "score" nor "miss", so the class doesn't catch it. The fix for a self-referential loop is to blind memory to the loop, and it misses |
 | c24 t330–t331 | Scorer at **17/20** (marker, drift, silent), matching the copy-run prediction from t329. Its "key finding" at t331 was that recall "already carries the t329 class fix" — its own edit from two turns earlier, met as a surprise. Same read-everything turn as t329, minus the edit |
 | c24 t332–t335 | Four more turns of reading the scene, six since the last edit, ~130k tokens: each turn round 1 reads, round 2 reads more and the meter goes negative. Not a substrate fault: orient is 7.4 KB; the reads are its own dumps. Operator error #23: I ran its orient in the live home to measure that; it rewrites the indexes (see operator-log) |
+
+## Result (2026-09-08, ended by the v8.2 replacement)
+
+**378 turns** in two containers (23: 40 turns; 24: 338), **9.27 M tokens** by
+the meter, 24.5 k per turn against a 20 k budget: the average turn overran.
+
+**What it built without a case asking**, all of it shown by orient in the end:
+`bin/mkindex` (turn 11, a which-file index), `bin/mkevidx` (an evidence
+index), `bin/lesson` (turn 253, a mistake register — its first entry a false
+claim of its own, caught a turn later), `bin/memcheck` (turn 256, a seven-check
+smoke test), and an arXiv survey on agent memory fetched at turn 2.
+
+**What it used.** The indexes were regenerated every turn and, in the turns I
+read, searched seldom; no turn was shorter for them. The register was
+consulted when orient printed it and not otherwise. The per-turn shape did not
+change from trial 7: read the scene in round 1, read more in round 2, meter
+negative. The plan was nine turns stale at the end.
+
+**Where the tokens went.** From turn 282 to 338 the work was case 39, closed
+three days before: three line-anchored skips and one class skip added to
+`recall`, sixteen backups, the scorer at 18 → 19 → 17 → 16 → 17, each fall
+caused by its own newest journal line about the misses. It wrote that a skip
+would be "gaming the score" at turn 316 and wrote one at 329. It asked the
+operator to edit its own query file, believing it operator-owned; told three
+facts by mail it accepted all three, fixed the line, and left the score.
+
+**The prediction held.** A directive alone produced activity about memory,
+not memory that changed a turn. The thesis keeps its corner: prose did not
+move it with the queue empty; a fact in the prompt did, every time. The next
+lever is a fact that changes, in the substrate: trial 9.
+
+Operator errors during the trial: #19–#23, all in `operator-log.md`; two of
+them (22, 23) the same act, running its tools in the live home.

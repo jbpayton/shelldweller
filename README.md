@@ -24,7 +24,8 @@ behaviour was a change to its **environment**. No change to its
 | A `boot` file the loop runs when a container starts | environment | written at turn 3, unprompted; the door restored through four replacements |
 | The mission said `boot` runs "if it exists"; the loop demanded executability | environment | its case-31 rewrite dropped the +x bit and a replacement restored nothing, silently — the door, four tools, gone. The loop now runs `boot` as a script, as promised; the next replacement brought everything back. The environment's real behaviour ruled, not the prompt's words |
 | A grades file in its home: one line per case, pass or fail, tokens against budget, the checked fact. No advice | environment | unopened for 26 turns while a case was in front of it; opened the turn a new line changed it; the next turn it verified the failing grade against disk, marked its own false journal entry FALSE, and put the budget in the first line of its plan for the next case. Second instance, case 45: its reply to the operator reported a checker and a run that did not exist; the grade line named the two missing files; the next turn it marked its own claim FALSE in its journal and wrote itself a rule: a claim about my own work needs same-turn disk proof printed in the transcript |
-| Three sentences of standing directive: build memory better than a person's (trial 8) | prose | 45 turns, ~1.5 M tokens: an index it never searched, a five-rule digest it did not apply, a third journal file; at turn 250 (~7.7 M) the index finally reached orient, at turn 253 a mistake register did too — its first entry a false claim of its own, caught a turn later — and at turn 256 a smoke test for the whole memory stack, which passes on a copy of the home. Built, shown, tested; whether it is consulted is still open. It proved its endpoint stateless by experiment, twice, and wrote the proof to its journal; its resident memory still holds the earlier instruction "test before assuming stateless", and nothing moves the answer up — so orient shows the order every turn and it ran the test seven times. Two tiers, the stale instruction in the fast one, the answer in the slow one |
+| Three sentences of standing directive: build memory better than a person's (trial 8) | prose | 378 turns, 9.3 M tokens, the average turn over its budget. It built a which-file index (turn 11) and an evidence index, regenerated every turn and seldom searched; a mistake register (turn 253) whose first entry was a false claim of its own; a smoke test (256). Then 55 turns on a case closed three days earlier, re-tuning its retrieval tool's scorer with four skips of its own journal lines and sixteen backups, the score falling from 19 to 16 each time it wrote about the misses. It asked the operator to edit its own file; told three facts by mail, it corrected itself in one turn |
+| Under WHAT CHANGED, the paths its journal or plan named that turn that do not exist on disk (v8.2, trial 9) | environment | running |
 | Rule: *write the whole workflow, not an interactive plan* | prose | five straight turns of looking around, waiting for output that never came |
 | Gave it the observe-then-act loop it was trained on, with a transcript of the turn | environment | the case it had stalled on for six turns, done in one |
 | Rule: *measure before you cap; never set a timeout shorter than the thing you are timing* | prose | it capped its own llm at 120 s on a model that needs ~150 s per long reply, and re-read files "in smaller pieces" for three turns while told the measurement |
@@ -69,10 +70,11 @@ mirrored the text (44), and three claims written before the file (35, 38,
 The per-case story is in
 [`docs/dweller-architecture.md`](docs/dweller-architecture.md#trial-7-what-the-battery-made-it-build).
 
-Running now: [`TRIAL8.md`](homestead/TRIAL8.md) — the opposite test, at the
-user's request: three sentences of standing directive on memory, the same
-home, an empty queue. Prediction stated first; so far one working
-which-file index in eleven turns, and the question of whether it gets used.
+Running now: [`TRIAL9.md`](homestead/TRIAL9.md) — the substrate answer to
+trial 8's question. No prompt change, no queue: the loop now prints, under
+WHAT CHANGED, every path the turn's journal lines or plan named that does not
+exist in the home. Trial 8 is complete: [`TRIAL8.md`](homestead/TRIAL8.md).
+Prediction stated first.
 
 ## Architecture, as it stands
 

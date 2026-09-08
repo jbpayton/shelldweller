@@ -3037,3 +3037,19 @@ files. Its own turn 336 regenerated both thirty seconds later, so nothing
 was restored and nothing of mine survives, but the rule from #19 and #22
 now reads: no tool from its bin runs in the live container, ever; the
 host reads with cat, grep, and stat, and runs its tools only on a copy.
+
+## Trial 8 closed; trial 9 begins on v8.2 (10:14Z 09-08)
+The user: "let's continue and put together our next iteration / get that
+started." Trial 8's result is in TRIAL8.md: 378 turns, 9.27 M tokens, four
+memory tools built unasked and none that shortened a turn; from turn 282 a
+closed case and its own scorer. The next iteration is the substrate change
+drafted on 09-07 and held for the user's go: life v8.2 prints, under WHAT
+CHANGED, the paths named in the turn's journal lines or NEXT that do not
+exist in the home (mail paths excluded). Tested first on a copy of the home
+over the last twenty turns: one true claim (score_t325.txt, named in a plan,
+never written), the rest transient mail paths, now excluded. Image rebuilt;
+the container stopped ten seconds after turn 338 ended and the keeper
+brought the same home up on the new image at 10:14:35Z. The block is in
+the running loop (grep in the container). One mail states the replacement
+and the new line. Nothing else changed: same seed, empty queue. The memory
+case stays in reserve so one thing moves.
