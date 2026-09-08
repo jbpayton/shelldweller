@@ -200,7 +200,9 @@ packages removed during turn $turn: $removed"
   # score_t325.txt, a file it never wrote. Truth about its own claims, the
   # turn after, no advice. Mail paths are left out: mail moves by design.
   claims=$( { G diff "$head0" HEAD -- notes/journal.md state/journal.md 2>/dev/null | grep '^+' | grep -v '^+++'; cat "$NEXTF" 2>/dev/null; } \
-    | grep -oE '(state|bin|notes|web|battery)/[A-Za-z0-9_./-]+' | sed 's/[.,;:)]*$//' | sort -u )
+    | grep -oE '(^|[^A-Za-z0-9_./-])(state|bin|notes|web|battery)/[A-Za-z0-9_./-]+' | sed -E 's|^[^A-Za-z0-9_./-]||; s/[.,;:)]*$//' | sort -u )
+  # (v8.2.1) a leading separator is required: "/bin/grep -> /bin/busybox" in a
+  # journal line is the system's grep, not bin/grep in the home (trial 9, t8).
   missing=""
   for c in $claims; do [ -e "$D/$c" ] || missing="$missing $c"; done
   [ -n "$missing" ] && lastdiff="$lastdiff

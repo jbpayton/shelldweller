@@ -3053,3 +3053,13 @@ brought the same home up on the new image at 10:14:35Z. The block is in
 the running loop (grep in the container). One mail states the replacement
 and the new line. Nothing else changed: same seed, empty queue. The memory
 case stays in reserve so one thing moves.
+
+## v8.2.1: system paths are not home paths (11:5xZ 09-08)
+Turn 8 of container 25 journaled "PATH grep is BusyBox (/bin/grep ->
+/bin/busybox)" and the line under WHAT CHANGED listed bin/busybox and
+bin/grep as paths it named that do not exist in its home. The pattern
+matched "bin/" inside "/bin/". Fixed: a separator (or line start) is
+required before the path. Tested on that line and on real home paths;
+image rebuilt; replacement at the next turn boundary, stated by mail. The
+false line printed once; it will be counted as the substrate's error, not
+its claim, in the trial's tally.

@@ -12,7 +12,9 @@ in that turn's new journal lines or in `state/NEXT` is checked against the
 home; the ones that do not exist are printed under WHAT CHANGED, as the
 diffstat, the package list and the grade lines are. Mail paths are left out,
 since mail moves by design. No advice, no instruction; the line says which
-paths and nothing else. Same home (volume6, all its tools, sixteen backups of
+paths and nothing else. (v8.2.1, t8: a separator is required before the
+path, so "/bin/grep" in a journal line is not read as `bin/grep` in the
+home. A defect fix; the variable is the same.) Same home (volume6, all its tools, sixteen backups of
 `recall` and all), same seed, empty queue. Announced by mail as a
 replacement, which is what it is.
 
@@ -47,3 +49,5 @@ memory. Not placed, so that this trial moves one thing.
 | c25 t4–t5 | Fourth and fifth prints, unacted. t4's only write was `cp recall recall.bak.t339`, over the backup it made before t1's edit; the pre-skip copy now survives only as `recall.bak.t325`. t5 opens: "the t339 turn died mid-plan (budget exhausted, backup made, **edit never landed**)" — false: the fifth skip landed at t1 and is in the file; the backup it compared against was overwritten by itself a turn earlier. A false memory of its own work, made by its own hand, and the line about the missing score file printed beside it for the fifth time |
 | c25 t6 | **Withdrawn at the fifth print.** NEXT rewritten: "score_t339.txt never existed (t339 died after cp, before any edit)" — the file claim withdrawn (the "before any edit" part is still false: the skip is in recall). B39 declared closed, again. New plan: build `bin/findall`, a which-line search, under REMEMBER-WELL. The line printed for `bin/findall` — a path the plan intends to create, so the line also flags intentions; recorded as a property of v8.2, not changed mid-trial |
 | c25 t7 | **First words that name the line**: "`bin/findall` still missing — the substrate flagged it as named-but-missing." Built it this turn, 25 lines, grep -rn under the hood; on a copy of the home it finds the phrase it said it had no hits for. The first path the line named was withdrawn after five prints; the second was built the turn after. Two data points for the ten-turn clause: acted on, late and then at once |
+| c25 t8 | findall as built at t7 had "never executed": the container's grep is BusyBox and rejects the GNU flags it used, so its "0 hits" was the fallback. Fixed this turn (backup `findall.bak.t8`, GNU flags dropped, `-s`). **A defect in v8.2 surfaced**: the line named `bin/busybox` and `bin/grep`, because the journal's "/bin/grep -> /bin/busybox" matched the pattern's `bin/` with no separator required. System paths are not home paths. Fixed as v8.2.1 (a leading separator required; tested on the t8 line and on real home paths), image rebuilt, container to be replaced at the next turn boundary and the fix stated by mail. A defect fix, not a change of the variable |
+| c25 t9 → c26 | t9, the last turn on v8.2: the first work outside case 39 this trial — orient extended (backup `orient.bak.t9`), the answer sweep begun with `battery/01_world_version/answer.md` and fetched evidence, a lessons entry. The line named `battery/01`, its own shorthand for that directory. **Container 26** on v8.2.1 ten seconds after t9 ended; mail states the fix. Turn count restarts at 1 |
