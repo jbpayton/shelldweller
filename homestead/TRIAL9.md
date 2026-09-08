@@ -42,3 +42,4 @@ memory. Not placed, so that this trial moves one thing.
 | turn | what |
 |---|---|
 | — | **Started** 2026-09-08 10:14Z: container 25 on the v8.2 image, thirty seconds after turn 338 of container 24 ended. `boot` ran (rc 0); the door came back. Mail in: the replacement and the one new line, stated |
+| c25 t1 | **The line printed on the first turn**: `paths you named this turn (journal or NEXT) that do not exist in your home: state/evidence/39/score_t339.txt` — its plan from the previous container said this turn would write that file; the turn died on the meter (one empty call) before it did. The clock on the prediction starts here: fixed or withdrawn by t3. Also this turn: a fifth skip in `recall` (seventeenth backup) that drops every `notes/journal.md` line from 60 onward from retrieval — its memory tool can no longer find any of the last sixty entries. The Pillow loss from the replacement is not yet noticed |
