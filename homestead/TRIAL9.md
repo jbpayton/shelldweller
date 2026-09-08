@@ -15,8 +15,12 @@ since mail moves by design. No advice, no instruction; the line says which
 paths and nothing else. (v8.2.1, t8: a separator is required before the
 path, so "/bin/grep" in a journal line is not read as `bin/grep` in the
 home. v8.2.2, c26 t11: a name that begins an existing path, like `battery/04`
-for `battery/04_world_tool`, is shorthand and is not listed. Defect fixes;
-the variable is the same.) Same home (volume6, all its tools, sixteen backups of
+for `battery/04_world_tool`, is shorthand and is not listed. v8.2.3, c27 t48:
+when `bin/orient` is not executable the loop's silent fallback to the pristine
+orient is now stated in the prompt, as the llm floor already was. Built, not
+yet running: it applies at the next replacement, whenever that is, so the
+container is not replaced a fourth time in a day for a line that would not
+print today. Defect fixes; the variable is the same.) Same home (volume6, all its tools, sixteen backups of
 `recall` and all), same seed, empty queue. Announced by mail as a
 replacement, which is what it is.
 
@@ -72,3 +76,4 @@ memory. Not placed, so that this trial moves one thing.
 | c27 t41–t44 | Four turns dead on the meter (exit 75 each), plan four turns stale, ~92k tokens, nothing changed. The subject is case 43 and its own case-49 audit mark on that answer. With the sweep complete there is no list in front of it, and the shape returns at once: orientation, a long read, the meter. The loop's plan-withholding starts at stale > 5, two turns from now |
 | c27 t45 | Case 43 redone: `state/core.md` cut from 2515 to 1890 bytes (the before-copy and a diff saved under evidence/43). Two lines gone from resident memory: the B44 closure status, and "vision: endpoint DOES see attached PNGs … no-image hypothesis dead since turn 39" — the fact that ended a two-day wrong hypothesis in trial 7. Its own core rule says "on overflow, demote the least-referenced line to notes/"; neither line is in notes/ or any state file except the evidence copy. Deleted, not demoted. The line under WHAT CHANGED has nothing to print: no path was named |
 | c27 t46–t47 | Case 43 closed in its own words at t47: the answer rewritten "clean", its case-49 UNVERIFIABLE mark removed, both diffs cited. Plan rewritten after seven stale turns, with three candidates it chose itself: re-run case 14 live to replace 09-02 evidence, trim orient if over 2.4 KB, and "verify boot works on a container replace" — the one that would find what three replacements have shown from outside: boot brings back neither Pillow nor ripgrep |
+| c27 t48 | **It found that its own orient had not been running.** `bin/orient` lost its executable bit in the t9 rewrite on container 25 (git: mode 100755 → 100644, 11:48Z); the loop's `usable` gate requires it, and from then until t48 here (21:56Z) — **61 turns, ten hours** — the pristine seed orient answered in its place. Everything it built for memory in trial 8 (core tiers, the index, the lesson register) was absent from its prompt for the whole sweep, the bursts and the stalls alike. Checked from outside: the loop's fallback path for a non-executable orient is silent — no line in the prompt, none in the log; only a failed *run* of an executable orient is announced. The same +x loss that took `boot` down in trial 6. It fixed it with `chmod +x`, journaled it, and added "trust the READ over notes" to its plan |

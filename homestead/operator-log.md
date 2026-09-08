@@ -3074,3 +3074,19 @@ name plus a wildcard). Tested on a copy against the c26 names and against
 the two real cases; image rebuilt; replacement at the next turn boundary,
 stated by mail. Tally so far, for the result: two real prints (score_t339,
 findall), two substrate misreadings fixed (system paths, shorthand).
+
+## The silent orient (22:0xZ 09-08) — v8.2.3 built, not applied
+Its turn 48 found that bin/orient had been non-executable since its own
+rewrite at container 25 turn 9 (git shows the mode change). The loop's
+usable() gate requires +x; the fallback to the pristine orient in
+run_orient has no message in either the prompt or the log (only a failed
+run of an executable orient is announced). Sixty-one turns, ten hours,
+on the seed's generic orient: no core tiers, no index, no lesson
+register in front of it, through the whole sweep. It found it by reading
+("trust the READ over notes"), fixed it with chmod +x. Same class as the
+boot +x loss in trial 6 (v7.4). v8.2.3 prints one line at the top of the
+orientation when the pristine orient runs, with the reason. Image built;
+the running container stays on v8.2.2. It applies at the next
+replacement; three in one day is enough, and the line would not print
+now. Trial-9 tally unchanged: the claims line has had nothing to do with
+any of this.

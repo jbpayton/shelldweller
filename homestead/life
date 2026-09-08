@@ -28,7 +28,12 @@ run_orient() {
       printf '%s' "$out"; return
     fi
     echo "[life] your bin/orient failed its health check; pristine one used this turn." >&2
-  fi
+    why="your bin/orient ran but its output failed the check (empty, short, or an error)"
+  else why="your bin/orient is not executable, or does not parse"; fi
+  # (v8.2.3) the fallback is stated in the prompt, as the llm floor is. Trial 9:
+  # bin/orient lost +x in a rewrite (c25 t9) and the pristine orient answered
+  # for 61 turns; nothing in the prompt said so, and it found out at c27 t48.
+  echo "(${why}; this orientation is from the pristine orient at /usr/local/bin/orient, not yours.)"
   PATH="$PRISTINE" timeout 120 orient 2>&1
 }
 
