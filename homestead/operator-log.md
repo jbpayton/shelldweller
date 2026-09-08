@@ -3016,3 +3016,4 @@ the next turn would have produced anyway; the only trace is a timestamp
 line that the turn's own regeneration overwrites. The rule from #19 stands
 and was broken here: run its scripts on a copy, never in the home. The
 result I wanted came from the copy afterwards.
+Restored both index files to HEAD in the home (02:06Z); the working tree is clean for them. memcheck on the copy: 6/7, the failure being the broken `lesson count` — its smoke test catches its own regression.
