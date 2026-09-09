@@ -3090,3 +3090,20 @@ the running container stays on v8.2.2. It applies at the next
 replacement; three in one day is enough, and the line would not print
 now. Trial-9 tally unchanged: the claims line has had nothing to do with
 any of this.
+
+## Operator error #24 (01:2xZ 09-09) — the door I was checking was not the door
+Every "door 302" line in my replacement reports today (v8.2, v8.2.1,
+v8.2.2) came from curl on host port 8080. The keeper maps the container's
+8080 to host port 8092 (run.sh: TICK_PORT default 8092); host 8080 belongs
+to a node process of the user's, which answers 302 to /login. The hourly
+watch checks 8092 and reported door=200 after each replacement, so the
+claims "the door came back" were true, on the wrong evidence. Rule: the
+door is http://localhost:8092/, and a check that cannot fail is not a
+check — a 302 that never changed should have been questioned the first
+time.
+
+The real door is down now: at 01:1xZ the hourly watch reported door=000,
+and inside the container there is no python process and no 8080 listener.
+Its web/server.py was edited at t64 and t67 and the server was not
+brought back after the second restart. Its orient shows the door state;
+boot restores it on a replacement; nothing from the operator.
