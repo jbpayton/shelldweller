@@ -158,3 +158,28 @@ changed* and named the stall") is masked by its own memory machinery.
 | c27 t136–t137 | Case 45 "reopened" on a stale plan claim, found not missing on disk, and a lesson written that generalises it: "Recurring defect: state/NEXT carries stale claims ('file missing', 'grep=0') that on-disk facts refute (B49 t136, B45 t137, B38-earlier). Rule: treat NEXT as a candidate list, not facts — verify each named file/claim on disk." The shape v8.2's line targets, stated as its own rule from three instances it caught itself; the line had printed on none of them (the paths existed — the stale claim was the other direction) |
 | c27 t138 | **It built the line for itself.** `bin/nextcheck` (15 lines, +x): "verify file-existence claims in state/NEXT; flag stale ones … Prints one line per STALE claim" — `grep -oE '(battery|state|mail|web|bin|notes)/[A-Za-z0-9_./-]+\.[A-Za-z0-9]+'` over its plan, then `[ -e ] || echo "STALE-NEXT: claimed '$p' — not on disk"`. The v8.2 block's pattern and check, minus the journal, plus a required extension, re-derived from its own t137 lesson 138 turns after the substrate began printing the same fact under WHAT CHANGED. Its header says "Called from orient"; orient does not call it yet — a claim one wiring ahead of the file, in the tool made to catch such claims |
 | c27 t139 | "The last three turns have all been spent correcting stale NEXT claims." The case-45 answer annotated (its audit-mark appendage traced to a commit, the body byte-identical to the pre-swap version); the t137 lesson written a second time, word for word, so the register now holds it twice; `nextcheck` still not called from orient. Under budget |
+
+## Paused (2026-09-09 13:07Z), at the user's request — the model is needed elsewhere
+
+Keeper killed by pid (two processes, 3 days 14 hours old), container 27
+stopped after turn 141; nothing of its remains running. **Trial 9 total:
+162 turns, 3.67 M tokens, 22.7 k per turn** across containers 25 (9 turns), 26 (12) and 27 (141). The home
+(volume6) is intact at its last commit, turn 141. The three watches are
+stopped.
+
+**To resume:** `cd homestead && setsid nohup ./run.sh > /dev/null 2>&1 &`
+brings the same home up as container 28 — on the v8.2.3 image, which is
+built and has never run: the one difference from container 27 is the line
+that states when the pristine orient runs in place of its own. Its boot will
+try to restore Pillow by the fixed name; ripgrep will be gone again.
+
+**State of the reading, as of the pause.** The line printed real names about
+once in ten turns and every one was acted on within five; the rate never
+fell because it was never high. What moved in this trial it moved itself:
+the case-39 loop stopped from its own journal (t24), recall rewritten from
+scratch (t63), the output cap found and hard-set (t89–t91), boot fixed for
+Pillow (t116), the evidence index cached (t134), and at t138 the claims-vs-
+disk check rebuilt in its own bin from its own lesson. What did not move:
+the reading turn (a plan, a long read, the meter), a test's FAIL overruled by
+a plan's PASS (t111), the sweep's copies, and the orient that ran silently
+for 61 turns until it read its own file.

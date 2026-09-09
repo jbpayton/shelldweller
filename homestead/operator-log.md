@@ -3107,3 +3107,10 @@ and inside the container there is no python process and no 8080 listener.
 Its web/server.py was edited at t64 and t67 and the server was not
 brought back after the second restart. Its orient shows the door state;
 boot restores it on a replacement; nothing from the operator.
+
+## Trial 9 paused (13:07Z 09-09)
+The user: "shut down the agent / container and end it... we need to free up
+the model for something else." Keeper killed by its two pids (not pkill by
+pattern — error #21), container stopped ten seconds later, verified: no
+container, no keeper. Watches stopped. 162 turns, 3.67 M tokens, 22.7 k per turn. Resume brings container 28 up
+on v8.2.3, built and never run. Nothing else changed.
