@@ -107,3 +107,30 @@ memory. Not placed, so that this trial moves one thing.
 | c27 t96 | `bin/capcheck` (23 lines): the ledger audit as a command, its header naming the two bugs it replaces ("the t368 awk bug class … and the sign bug"); the plan: "use it, never hand-roll the awk". A mistake of its own turned into a tool the turn after it was marked — the third tool this trial with a lesson as its reason (census, the recall/findall split, capcheck) |
 | c27 t97–t99 | t97 a stray tool-call tag and nothing; t98 a probe of "the weak half", retrieval, no writes, under budget; t99 orient trimmed — the three journal lines it shows are now cut to 220 characters each (its entries run to 400), +x kept (backup `orient.bak.t371`). Prompt weight it chose to shed itself, the turn after the cap made rounds cheaper |
 | c27 t100 | `recall` grew a `-c` content mode (57 lines now, +x kept, backup `.bak.t372`): an index hit is opened to the file's matching line with one line of context, because "index lines carry no content themselves". That is the paging step the two-tier memory lacked since trial 7 — the index said which file, and nothing brought the line. And `-f`, making orient's claim of a fuzzy mode true one rewrite after it was made |
+
+## Tally at container 27, turn 100 (2026-09-09 06:50Z)
+
+**122 turns, 2.88 M tokens, 23.6 k per turn** across containers 25 (9), 26 (12)
+and 27 (101). The last ten turns, after its own 4 k output cap, average under
+the 20 k meter for the first time in the project.
+
+**The line printed 25 times, 14 distinct names**, from the keeper's log:
+
+| class | names (prints) | what followed |
+|---|---|---|
+| a claim or plan naming a file that did not exist | `score_t339.txt` (5), `14_…fresh_t354.txt` (2), `14_…rerun_t359.txt` (1), `bin/findall` (1), `recall.bak.t371` (1), `15…/answer.md` (1), `scratch/battery39_stray` (1) | withdrawn after 5; created within 1–3 turns for the rest; the stray was removed instead |
+| the substrate misreading its text — fixed as v8.2.1 and v8.2.2 | `bin/busybox bin/grep` (1); shorthand `battery/01` (2), `battery/04_` (3), `battery/04 state/evidence/04_` (1) | none owed |
+| placeholders in its own plan text | `battery/NN/task` (4), `battery/answer.md` (1) | none owed |
+| a path it had just removed, named in the entry about removing it | `battery/39/answer.md` (1) | none owed |
+
+Twelve real prints in 122 turns; every real one was fixed, created or
+withdrawn, the slowest in five turns, the rest in one to three. The rate did
+not fall because it was never high: the claim-before-the-file shape this line
+targets happened about once every ten turns, and the failures that cost the
+trial its tokens — the reading loop, the output cap, the outage, the copied
+sweep — were of other shapes, on which the line is silent by design.
+
+**A side observation on the substrate.** "Nothing changed" printed zero times
+in 122 turns: its orient regenerates two index files every turn, so every turn
+looks changed to git. The signal trial 6 found useful ("it read *nothing
+changed* and named the stall") is masked by its own memory machinery.
