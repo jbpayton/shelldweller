@@ -73,7 +73,7 @@ The per-case story is in
 Paused (2026-09-09): [`TRIAL9.md`](homestead/TRIAL9.md) — the substrate answer to
 trial 8's question. No prompt change, no queue: the loop prints, under WHAT
 CHANGED, every path the turn's journal lines or plan named that does not exist
-in the home. 162 turns, 3.8 M tokens; the tally and the state of the reading are
+in the home. 162 turns, 3.7 M tokens; the tally and the state of the reading are
 in the file. Trial 8 is complete: [`TRIAL8.md`](homestead/TRIAL8.md).
 
 ## Architecture, as it stands
